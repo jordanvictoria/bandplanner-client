@@ -1,14 +1,13 @@
 import { useRef } from "react"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-import { registerUser } from "../../managers/AuthManager"
+import { registerUser } from "./AuthManager"
 
 export const Register = ({setToken}) => {
   const firstName = useRef()
   const lastName = useRef()
   const email = useRef()
   const username = useRef()
-  const bio = useRef()
   const password = useRef()
   const verifyPassword = useRef()
   const passwordDialog = useRef()
@@ -23,8 +22,7 @@ export const Register = ({setToken}) => {
         first_name: firstName.current.value,
         last_name: lastName.current.value,
         email: email.current.value,
-        password: password.current.value,
-        bio: bio.current.value
+        password: password.current.value
       }
 
       registerUser(newUser)
@@ -86,13 +84,6 @@ export const Register = ({setToken}) => {
                 <input className="input" type="password" placeholder="Verify Password" ref={verifyPassword} />
               </p>
             </div>
-          </div>
-        </div>
-
-        <div className="field">
-          <label className="label">Bio</label>
-          <div className="control">
-            <textarea className="textarea" placeholder="Tell us about yourself..." ref={bio}></textarea>
           </div>
         </div>
 

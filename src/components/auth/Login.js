@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { loginUser } from "../../managers/AuthManager"
+import { loginUser } from "./AuthManager"
 
 export const Login = ({ setToken }) => {
   const username = useRef()
@@ -17,7 +17,6 @@ export const Login = ({ setToken }) => {
     }
 
     loginUser(user).then(res => {
-      // console.log(res)
       if ("valid" in res && res.valid) {
         setToken(res.token)
         navigate("/")
@@ -31,7 +30,7 @@ export const Login = ({ setToken }) => {
   return (
     <section className="columns is-centered">
       <form className="column is-two-thirds" onSubmit={handleLogin}>
-        <h1 className="title">Rare Publishing</h1>
+        <h1 className="title">Bandplanner</h1>
         <p className="subtitle">Please sign in</p>
 
         <div className="field">

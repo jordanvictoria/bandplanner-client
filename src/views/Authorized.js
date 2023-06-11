@@ -6,3 +6,5 @@ export const Authorized = ({ token }) => {
   }
   return <Navigate to='/login' replace />
 }
+
+

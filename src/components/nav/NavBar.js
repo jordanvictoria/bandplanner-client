@@ -22,10 +22,10 @@ export const NavBar = ({ token, setToken }) => {
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           <img src={Logo} height="3rem" alt="Rare Logo" />{" "}
-          <h1 className="title is-4">Rare Publishing</h1>
+          <h1 className="title is-4">Bandplanner</h1>
         </a>
 
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        
         <a
           role="button"
           className="navbar-burger"
@@ -45,8 +45,8 @@ export const NavBar = ({ token, setToken }) => {
         <div className="navbar-start">
           <div>
             {token ? (
-              <Link to="/posts" className="navbar-item">
-                Posts
+              <Link to="/" className="navbar-item">
+                Home
               </Link>
             ) : (
               ""
@@ -55,7 +55,7 @@ export const NavBar = ({ token, setToken }) => {
           <div>
             {token ? (
               <Link to="/my-posts" className="navbar-item">
-                My Posts
+                Releases
               </Link>
             ) : (
               ""
@@ -63,7 +63,7 @@ export const NavBar = ({ token, setToken }) => {
           </div>
           <div>{token ? (
               <Link to="/postForm" className="navbar-item">
-                New Post
+                Live
               </Link>
             ) : (
               ""
@@ -71,7 +71,7 @@ export const NavBar = ({ token, setToken }) => {
           <div>
             {token ? (
               <Link to="/categories" className="navbar-item">
-                Category Management
+                Press
               </Link>
             ) : (
               ""
@@ -80,7 +80,7 @@ export const NavBar = ({ token, setToken }) => {
           <div>
             {token ? (
               <Link to="/tags" className="navbar-item">
-                Tag Management
+                Notes
               </Link>
             ) : (
               ""
@@ -89,7 +89,7 @@ export const NavBar = ({ token, setToken }) => {
           <div>
             {token ? (
               <Link to="/users" className="navbar-item">
-                User Management
+                Profile
               </Link>
             ) : (
               ""

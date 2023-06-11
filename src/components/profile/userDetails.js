@@ -2,8 +2,8 @@ import { useState, useEffect } from "react"
 import { getAllUsers, getUserById } from "./UserManager"
 import { useNavigate, useParams } from "react-router-dom"
 import { addNewSubscription } from "./UserManager"
-import { GetAllSubscriptions } from "../posts/postManager"
-import { deleteSubscription } from "../posts/postManager"
+import { GetAllSubscriptions } from "../events/postManager"
+import { deleteSubscription } from "../events/postManager"
 
 export const UserDetails = () => {
     const [user, setUser] = useState({})
