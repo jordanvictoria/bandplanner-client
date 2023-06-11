@@ -10,9 +10,10 @@ import Modal from "react-bootstrap/Modal";
 import "./event.css"
 
 export const Home = () => {
-    const localUser = localStorage.getItem('bandUserId')
+    const localUser = localStorage.getItem("userId");
     const [events, setEvents] = useState([])
     const [event, setEvent] = useState({
+        user: 0,
         event_type: 0,
         title: "",
         date: "",
@@ -106,14 +107,14 @@ export const Home = () => {
 
 
 
-   
 
 
-    const eventHandleSaveButtonClick = (event) => {
+
+    const eventHandleSaveButtonClick = async (event) => {
         event.preventDefault()
 
         const eventToSendToAPI = {
-            user: parseInt(localUser.id),
+            user: parseInt(localUser),
             event_type: parseInt(eventType),
             title: newEvent.title,
             date: newEvent.date,
@@ -122,8 +123,11 @@ export const Home = () => {
         }
         console.log(eventToSendToAPI)
 
-        addEvent(eventToSendToAPI)
+        await addEvent(eventToSendToAPI)
             .then(response => response.json())
+
+        const newEvents = await getEvents()
+        setEvents(newEvents)
     }
 
 
@@ -244,10 +248,13 @@ export const Home = () => {
                     <button className="btn btn-secondary">
                         Edit
                     </button>
-                    <button className="btn btn-secondary" onClick={() =>
-                        deleteEvent(event.id)
-                    }>Delete
-                    </button>
+                    <button className="btn btn-secondary" onClick={async () => {
+                        await deleteEvent(event.id);
+                        const newEvents = await getEvents();
+                        setEvents(newEvents);
+                        handleCloseModal();
+                    }}>Delete</button>
+
                 </Modal.Footer>
             </Modal>
 
