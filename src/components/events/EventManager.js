@@ -10,6 +10,14 @@ export const getEvents = () => {
   
 };
 
+export const getEventById = (id) => {
+  return fetch(`http://localhost:8000/events/${id}`, {
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  }).then((res) => res.json());
+};
+
 
 export const getEventTypes = () => {
   return fetch("http://localhost:8000/eventtypes", {

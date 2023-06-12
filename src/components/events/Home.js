@@ -2,7 +2,7 @@
 // import "@fullcalendar/daygrid/main.css";
 
 import { useEffect, useState } from "react";
-import { getEvents, getEventTypes, deleteEvent, editEvent, addEvent, addBundle, addGig, addRehearsal, addSingle } from "./EventManager";
+import { getEvents, getEventTypes, deleteEvent, getEventById, editEvent, addEvent, addBundle, addGig, addRehearsal, addSingle } from "./EventManager";
 import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -20,11 +20,24 @@ export const Home = () => {
         time: "",
         description: ""
     });
+    const [eventId, setEventId] = useState(0)
+    const [eventEdit, updateEventEdit] = useState({
+        id: 0,
+        user: 0,
+        event_type: 0,
+        title: "",
+        date: "",
+        time: "",
+        description: ""
+    })
+    const [dateInputType, setDateInputType] = useState('text');
+    const [timeInputType, setTimeInputType] = useState('text');
     const [eventTypes, setEventTypes] = useState([])
     const [eventType, setEventType] = useState(0)
     const [showModal, setShowModal] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [newForm, openNewForm] = useState(false);
+    const [editForm, openEditForm] = useState(false);
     const [newEvent, updateNewEvent] = useState({
         user: 0,
         event_type: 0,
@@ -33,48 +46,48 @@ export const Home = () => {
         time: "",
         description: ""
     })
-    const [newSingleRelease, updateNewSingleRelease] = useState({
-        event: 0,
-        song_title: "",
-        genre: "",
-        upc: 0,
-        isrc: 0,
-        composer: "",
-        producer: "",
-        explicit: false,
-        audio_url: "",
-        artwork: "",
-        uploaded_to_distro: false
-    })
-    const [newBundleRelease, updateNewBundleRelease] = useState({
-        event: 0,
-        bundle_title: "",
-        genre: "",
-        upc: 0,
-        audio_url: "",
-        artwork: "",
-        uploaded_to_distro: false
-    })
-    const [newRehearsal, updateNewRehearsal] = useState({
-        event: 0,
-        location: "",
-        band_info: ""
-    })
-    const [newGig, updateNewGig] = useState({
-        event: 0,
-        city_state: "",
-        venue: "",
-        band_info: "",
-        age_requirement: "",
-        ticket_price: 0,
-        ticket_link: "",
-        guarantee: 0,
-        sold_out: false,
-        announced: false,
-        flier: "",
-        stage_plot: "",
-        input_list: ""
-    })
+    // const [newSingleRelease, updateNewSingleRelease] = useState({
+    //     event: 0,
+    //     song_title: "",
+    //     genre: "",
+    //     upc: 0,
+    //     isrc: 0,
+    //     composer: "",
+    //     producer: "",
+    //     explicit: false,
+    //     audio_url: "",
+    //     artwork: "",
+    //     uploaded_to_distro: false
+    // })
+    // const [newBundleRelease, updateNewBundleRelease] = useState({
+    //     event: 0,
+    //     bundle_title: "",
+    //     genre: "",
+    //     upc: 0,
+    //     audio_url: "",
+    //     artwork: "",
+    //     uploaded_to_distro: false
+    // })
+    // const [newRehearsal, updateNewRehearsal] = useState({
+    //     event: 0,
+    //     location: "",
+    //     band_info: ""
+    // })
+    // const [newGig, updateNewGig] = useState({
+    //     event: 0,
+    //     city_state: "",
+    //     venue: "",
+    //     band_info: "",
+    //     age_requirement: "",
+    //     ticket_price: 0,
+    //     ticket_link: "",
+    //     guarantee: 0,
+    //     sold_out: false,
+    //     announced: false,
+    //     flier: "",
+    //     stage_plot: "",
+    //     input_list: ""
+    // })
 
 
     useEffect(
@@ -93,16 +106,33 @@ export const Home = () => {
         }, []
     )
 
+    useEffect(() => {
+        if (eventId) {
+            getEventById(eventId).then((res) => {
+                updateEventEdit(res)
+            })
+        }
+    }, [eventId])
 
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
 
     const handleShowModal = () => {
         setShowModal(true);
     };
 
 
+    const handleCloseModal = () => {
+        return new Promise((resolve) => {
+            setShowModal(false);
+            resolve();
+        });
+    };
+
+    const openEditFormAsync = (open) => {
+        return new Promise((resolve) => {
+            openEditForm(open);
+            resolve();
+        });
+    };
 
 
 
@@ -129,6 +159,31 @@ export const Home = () => {
         const newEvents = await getEvents()
         setEvents(newEvents)
     }
+
+
+    const eventHandleEditButtonClick = async (event) => {
+        event.preventDefault()
+
+        const editToSendToAPI = {
+            id: eventId,
+            user: parseInt(localUser),
+            event_type: eventEdit.event_type.id,
+            title: eventEdit.title,
+            date: eventEdit.date,
+            time: eventEdit.time,
+            description: eventEdit.description
+        }
+
+        console.log(editToSendToAPI)
+
+        await editEvent(editToSendToAPI)
+
+        const newEvents = await getEvents()
+        setEvents(newEvents)
+    }
+
+
+   
 
 
 
@@ -226,6 +281,58 @@ export const Home = () => {
                     </form>
                 </div>
             )}
+
+        {editForm && (
+                <div>
+                    <form className="relativeForm">
+                        <fieldset>
+                            <div>Title:
+                                <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.title = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Date:
+                                <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.date = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Time:
+                                <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        const unformattedTime = evt.target.value
+                                        const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                        copy.time = formattedTime
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Description:
+                                <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.description = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <button onClick={(clickEvent) => {
+                                eventHandleEditButtonClick(clickEvent)
+                                openEditForm(false)
+                            }}>Save</button>
+                            <button className="cancelItem" onClick={() => openEditForm(false)}>Cancel</button>
+                        </fieldset>
+                    </form>
+                </div>
+            )}
         </div>
 
         <div>
@@ -245,7 +352,11 @@ export const Home = () => {
                     <button className="btn btn-secondary" onClick={handleCloseModal}>
                         Close
                     </button>
-                    <button className="btn btn-secondary">
+                    <button className="btn btn-secondary" onClick={async () => {
+                        setEventId(parseInt(event.id));
+                        await openEditFormAsync(true);
+                        await handleCloseModal();
+                    }}>
                         Edit
                     </button>
                     <button className="btn btn-secondary" onClick={async () => {
