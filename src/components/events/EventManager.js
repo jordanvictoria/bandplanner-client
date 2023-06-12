@@ -10,8 +10,28 @@ export const getEvents = () => {
   
 };
 
+export const getSingleReleases = () => {
+  return fetch("http://localhost:8000/singlereleases", {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  })
+  .then((res) => res.json())
+  
+};
+
 export const getEventById = (id) => {
   return fetch(`http://localhost:8000/events/${id}`, {
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  }).then((res) => res.json());
+};
+
+export const getSingleById = (id) => {
+  return fetch(`http://localhost:8000/singlereleases/${id}`, {
     headers: {
       "Authorization": `Token ${localStorage.getItem("band_token")}`
     }
@@ -53,6 +73,18 @@ export const editEvent = (newEvent) => {
       "Authorization": `Token ${localStorage.getItem("band_token")}`
     },
     body: JSON.stringify(newEvent)
+  })
+}
+
+export const editSingleRelease = (newSingleRelease) => {
+  return fetch(`http://localhost:8000/singlereleases/${newSingleRelease.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    },
+    body: JSON.stringify(newSingleRelease)
   })
 }
 
