@@ -2,7 +2,7 @@
 // import "@fullcalendar/daygrid/main.css";
 
 import { useEffect, useState } from "react";
-import { getEvents, getSingleReleases, getEventTypes, deleteEvent, getEventById, editEvent, editSingleRelease, addEvent, addBundle, addGig, addRehearsal, getSingleById, addSingle } from "./EventManager";
+import { getEvents, getEventTypes, deleteEvent, getEventById, editEvent, addEvent, getSingleReleases, getSingleById, addSingle, editSingleRelease, getBundleReleases, getBundleById, addBundle, editBundleRelease, getRehearsals, getRehearsalById, addRehearsal, editRehearsal, getGigs, getGigById, addGig, editGig } from "./EventManager";
 import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -11,24 +11,23 @@ import "./event.css"
 
 export const Home = () => {
     const localUser = localStorage.getItem("userId");
-    const [singleReleases, setSingleReleases] = useState([])
+    const [events, setEvents] = useState([])
+    const [event, setEvent] = useState({});
     const [eventTypes, setEventTypes] = useState([])
     const [eventType, setEventType] = useState(0)
-    const [events, setEvents] = useState([])
-    const [event, setEvent] = useState({
-        user: 0,
-        event_type: 0,
-        title: "",
-        date: "",
-        time: "",
-        description: ""
-    });
-    const [singleReleaseId, setSingleReleaseId] = useState(0)
-    const [eventId, setEventId] = useState(0)
-    const [dateInputType, setDateInputType] = useState('text');
-    const [timeInputType, setTimeInputType] = useState('text');
     const [showModal, setShowModal] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [dateInputType, setDateInputType] = useState('text');
+    const [timeInputType, setTimeInputType] = useState('text');
+    const [eventId, setEventId] = useState(0)
+    const [singleReleaseId, setSingleReleaseId] = useState(0)
+    const [bundleReleaseId, setBundleReleaseId] = useState(0)
+    const [rehearsalId, setRehearsalId] = useState(0)
+    const [gigId, setGigId] = useState(0)
+    const [singleReleases, setSingleReleases] = useState([])
+    const [bundleReleases, setBundleReleases] = useState([])
+    const [rehearsals, setRehearsals] = useState([])
+    const [gigs, setGigs] = useState([])
     const [singleForm, openSingleForm] = useState(false);
     const [singleEditForm, openSingleEditForm] = useState(false);
     const [newSingleRelease, updateNewSingleRelease] = useState({
@@ -61,8 +60,78 @@ export const Home = () => {
         uploaded_to_distro: false
     })
     const [bundleForm, openBundleForm] = useState(false);
+    const [bundleEditForm, openBundleEditForm] = useState(false);
+    const [newBundleRelease, updateNewBundleRelease] = useState({
+        user: 0,
+        event: 0,
+        bundle_title: "",
+        genre: "",
+        upc: 0,
+        audio_url: "",
+        artwork: "",
+        uploaded_to_distro: false
+    })
+    const [bundleEdit, updateBundleEdit] = useState({
+        id: 0,
+        user: 0,
+        event: 0,
+        bundle_title: "",
+        genre: "",
+        upc: 0,
+        audio_url: "",
+        artwork: "",
+        uploaded_to_distro: false
+    })
     const [rehearsalForm, openRehearsalForm] = useState(false);
+    const [rehearsalEditForm, openRehearsalEditForm] = useState(false);
+    const [newRehearsal, updateNewRehearsal] = useState({
+        user: 0,
+        event: 0,
+        location: "",
+        band_info: ""
+    })
+    const [rehearsalEdit, updateRehearsalEdit] = useState({
+        id: 0,
+        user: 0,
+        event: 0,
+        location: "",
+        band_info: ""
+    })
     const [gigForm, openGigForm] = useState(false);
+    const [gigEditForm, openGigEditForm] = useState(false);
+    const [newGig, updateNewGig] = useState({
+        user: 0,
+        event: 0,
+        city_state: "",
+        venue: "",
+        band_info: "",
+        age_requirement: "",
+        ticket_price: 0,
+        ticket_link: "",
+        guarantee: 0,
+        sold_out: false,
+        announced: false,
+        flier: "",
+        stage_plot: "",
+        input_list: ""
+    })
+    const [gigEdit, updateGigEdit] = useState({
+        id: 0,
+        user: 0,
+        event: 0,
+        city_state: "",
+        venue: "",
+        band_info: "",
+        age_requirement: "",
+        ticket_price: 0,
+        ticket_link: "",
+        guarantee: 0,
+        sold_out: false,
+        announced: false,
+        flier: "",
+        stage_plot: "",
+        input_list: ""
+    })
     const [newForm, openNewForm] = useState(false);
     const [eventEditForm, openEventEditForm] = useState(false);
     const [newEvent, updateNewEvent] = useState({
@@ -82,36 +151,12 @@ export const Home = () => {
         time: "",
         description: ""
     })
-    // const [newBundleRelease, updateNewBundleRelease] = useState({
-    //     event: 0,
-    //     bundle_title: "",
-    //     genre: "",
-    //     upc: 0,
-    //     audio_url: "",
-    //     artwork: "",
-    //     uploaded_to_distro: false
-    // })
-    // const [newRehearsal, updateNewRehearsal] = useState({
-    //     event: 0,
-    //     location: "",
-    //     band_info: ""
-    // })
-    // const [newGig, updateNewGig] = useState({
-    //     event: 0,
-    //     city_state: "",
-    //     venue: "",
-    //     band_info: "",
-    //     age_requirement: "",
-    //     ticket_price: 0,
-    //     ticket_link: "",
-    //     guarantee: 0,
-    //     sold_out: false,
-    //     announced: false,
-    //     flier: "",
-    //     stage_plot: "",
-    //     input_list: ""
-    // })
 
+
+
+
+
+    // USE EFFECTS
 
     useEffect(
         () => {
@@ -135,9 +180,31 @@ export const Home = () => {
                 setSingleReleases(data)
             })
         }, []
-        )
-        
-        console.log(singleReleases)
+    )
+
+    useEffect(
+        () => {
+            getBundleReleases().then((data) => {
+                setBundleReleases(data)
+            })
+        }, []
+    )
+    useEffect(
+        () => {
+            getRehearsals().then((data) => {
+                setRehearsals(data)
+            })
+        }, []
+    )
+
+    useEffect(
+        () => {
+            getGigs().then((data) => {
+                setGigs(data)
+            })
+        }, []
+    )
+
 
 
 
@@ -164,15 +231,29 @@ export const Home = () => {
 
     useEffect(() => {
         if (eventId) {
-          getEventById(eventId).then((res) => {
-            updateEventEdit(res);
-            const matchedSingle = singleReleases.find(single => single.event.id === eventId);
-            if (matchedSingle) {
-              setSingleReleaseId(matchedSingle.id);
-            }
-          });
+            getEventById(eventId).then((res) => {
+                updateEventEdit(res);
+                const matchedSingle = singleReleases.find(single => single.event.id === eventId);
+                const matchedBundle = bundleReleases.find(bundle => bundle.event.id === eventId);
+                const matchedRehearsal = rehearsals.find(rehearsal => rehearsal.event.id === eventId);
+                console.log(gigs)
+                const matchedGig = gigs.find(gig => gig.event.id === eventId);
+                if (matchedSingle) {
+                    setSingleReleaseId(matchedSingle.id);
+                }
+                if (matchedBundle) {
+                    setBundleReleaseId(matchedBundle.id);
+                }
+                if (matchedRehearsal) {
+                    setRehearsalId(matchedRehearsal.id);
+                }
+                if (matchedGig) {
+                    setGigId(matchedGig.id);
+                }
+
+            });
         }
-      }, [eventId]);
+    }, [eventId]);
 
 
     useEffect(() => {
@@ -181,12 +262,73 @@ export const Home = () => {
                 updateSingleEdit(res)
             })
         }
-    }, [singleReleaseId])
+        if (bundleReleaseId) {
+            getBundleById(bundleReleaseId).then((res) => {
+                updateBundleEdit(res)
+            })
+        }
+        if (rehearsalId) {
+            getRehearsalById(rehearsalId).then((res) => {
+                updateRehearsalEdit(res)
+            })
+        }
+        if (gigId) {
+            getGigById(gigId).then((res) => {
+                updateGigEdit(res)
+            })
+        }
+    }, [singleReleaseId, bundleReleaseId, rehearsalId, gigId])
+
+
+
+    useEffect(() => {
+        if (eventId) {
+            openEventEditForm(true)
+        }
+        if (eventId && singleReleaseId) {
+            openEventEditForm(false)
+            openSingleEditForm(true)
+        }
+        if (eventId && bundleReleaseId) {
+            openEventEditForm(false)
+            openBundleEditForm(true)
+        }
+        if (eventId && rehearsalId) {
+            openEventEditForm(false)
+            openRehearsalEditForm(true)
+        }
+        if (eventId && gigId) {
+            openEventEditForm(false)
+            openGigEditForm(true)
+        }
+    }, [eventId, singleReleaseId, bundleReleaseId, gigId, rehearsalId])
+
+    // useEffect(() => {
+    //     if (eventId && singleReleaseId) {
+    //         openSingleEditForm(true)
+    //     }
+    //     if (eventId && bundleReleaseId) {
+    //         openBundleEditForm(true)
+    //     }
+    //     if (eventId && rehearsalId) {
+    //         openRehearsalEditForm(true)
+    //     }
+    //     if (eventId && gigId) {
+    //         openGigEditForm(true)
+    //     }
+    //     if ((singleReleaseId < 1) && (bundleReleaseId < 1) && (rehearsalId < 1) && (gigId < 1)) {
+    //         if (eventId) {
+    //             openEventEditForm(true)
+    //         }
+    //     }
+    // }, [eventId, singleReleaseId])
 
 
 
 
 
+
+    // MODAL
 
 
     const handleShowModal = () => {
@@ -203,32 +345,11 @@ export const Home = () => {
 
 
 
-    
 
 
-    const openEditFormAsync = () => {
-        return new Promise((resolve) => {
-            if (eventId) {
-                openEventEditForm(true)
-                if (singleReleaseId) {
-                    openSingleEditForm(true)
-                    openEventEditForm(false)
-                }
-            }
-            resolve();
-        });
-    };
-    
-    
-    // if (eventId && bundleReleaseId) {
-    //     openBundleEditForm(true)
-    // }
-    // if (eventId && rehearsalId) {
-    //     openRehearsalEditForm(true)
-    // }
-    // if (eventId && gigId) {
-    //     openGigEditForm(true)
-    // }
+
+
+
 
 
 
@@ -272,6 +393,9 @@ export const Home = () => {
 
         const newEvents = await getEvents()
         setEvents(newEvents)
+
+        const newSingles = await getSingleReleases()
+        setSingleReleases(newSingles)
     }
 
 
@@ -293,6 +417,7 @@ export const Home = () => {
             editSingleRelease({
                 id: singleReleaseId,
                 user: parseInt(localUser),
+                event: eventId,
                 song_title: singleEdit.song_title,
                 genre: singleEdit.genre,
                 upc: singleEdit.upc,
@@ -308,8 +433,227 @@ export const Home = () => {
 
         const newEvents = await getEvents()
         setEvents(newEvents)
+
+        const newSingles = await getSingleReleases()
+        setSingleReleases(newSingles)
     }
 
+
+    // POST BUNDLE
+
+    const bundleSaveButtonClick = async (event) => {
+        event.preventDefault()
+
+        const eventToSendToAPI = {
+            user: parseInt(localUser),
+            event_type: parseInt(eventType),
+            title: newEvent.title,
+            date: newEvent.date,
+            time: newEvent.time,
+            description: newEvent.description
+        }
+
+
+        let bundleToSendToAPI = {
+            user: parseInt(localUser),
+            bundle_title: newBundleRelease.bundle_title,
+            genre: newBundleRelease.genre,
+            upc: newBundleRelease.upc,
+            audio_url: newBundleRelease.audio_url,
+            artwork: newBundleRelease.artwork,
+            uploaded_to_distro: newBundleRelease.uploaded_to_distro
+        }
+
+        await addEvent(eventToSendToAPI)
+            .then(response => response.json())
+            .then(createdEvent => {
+                bundleToSendToAPI.event = parseInt(createdEvent.id)
+                addBundle(bundleToSendToAPI)
+            })
+
+        const newEvents = await getEvents()
+        setEvents(newEvents)
+    }
+
+
+    // EDIT BUNDLE
+
+    const bundleEditButtonClick = async (event) => {
+        event.preventDefault()
+
+
+        await editEvent({
+            id: eventId,
+            user: parseInt(localUser),
+            event_type: eventEdit.event_type.id,
+            title: eventEdit.title,
+            date: eventEdit.date,
+            time: eventEdit.time,
+            description: eventEdit.description
+        }).then(() => {
+            editBundleRelease({
+                id: bundleReleaseId,
+                user: parseInt(localUser),
+                event: eventId,
+                bundle_title: bundleEdit.bundle_title,
+                genre: bundleEdit.genre,
+                upc: bundleEdit.upc,
+                audio_url: bundleEdit.audio_url,
+                artwork: bundleEdit.artwork,
+                uploaded_to_distro: bundleEdit.uploaded_to_distro
+            })
+        })
+
+        const newEvents = await getEvents()
+        setEvents(newEvents)
+    }
+
+
+
+    // POST REHEARSAL
+
+    const rehearsalSaveButtonClick = async (event) => {
+        event.preventDefault()
+
+        const eventToSendToAPI = {
+            user: parseInt(localUser),
+            event_type: parseInt(eventType),
+            title: newEvent.title,
+            date: newEvent.date,
+            time: newEvent.time,
+            description: newEvent.description
+        }
+
+
+        let rehearsalToSendToAPI = {
+            user: parseInt(localUser),
+            location: newRehearsal.location,
+            band_info: newRehearsal.band_info,
+        }
+
+        await addEvent(eventToSendToAPI)
+            .then(response => response.json())
+            .then(createdEvent => {
+                rehearsalToSendToAPI.event = parseInt(createdEvent.id)
+                addRehearsal(rehearsalToSendToAPI)
+            })
+
+        const newEvents = await getEvents()
+        setEvents(newEvents)
+
+        const newRehearsals = await getRehearsals()
+        setRehearsals(newRehearsals)
+    }
+
+
+    // EDIT REHEARSAL
+
+    const rehearsalEditButtonClick = async (event) => {
+        event.preventDefault()
+
+
+        await editEvent({
+            id: eventId,
+            user: parseInt(localUser),
+            event_type: eventEdit.event_type.id,
+            title: eventEdit.title,
+            date: eventEdit.date,
+            time: eventEdit.time,
+            description: eventEdit.description
+        }).then(() => {
+            editRehearsal({
+                id: rehearsalId,
+                user: parseInt(localUser),
+                event: eventId,
+                location: rehearsalEdit.location,
+                band_info: rehearsalEdit.band_info
+            })
+        })
+
+        const newEvents = await getEvents()
+        setEvents(newEvents)
+    }
+
+    // POST GIG
+
+    const gigSaveButtonClick = async (event) => {
+        event.preventDefault()
+
+        const eventToSendToAPI = {
+            user: parseInt(localUser),
+            event_type: parseInt(eventType),
+            title: newEvent.title,
+            date: newEvent.date,
+            time: newEvent.time,
+            description: newEvent.description
+        }
+
+
+        let gigToSendToAPI = {
+            user: parseInt(localUser),
+            city_state: newGig.city_state,
+            venue: newGig.venue,
+            band_info: newGig.band_info,
+            age_requirement: newGig.age_requirement,
+            ticket_price: newGig.ticket_price,
+            ticket_link: newGig.ticket_link,
+            guarantee: newGig.guarantee,
+            sold_out: newGig.sold_out,
+            announced: newGig.announced,
+            flier: newGig.flier,
+            stage_plot: newGig.stage_plot,
+            input_list: newGig.input_list
+        }
+
+        await addEvent(eventToSendToAPI)
+            .then(response => response.json())
+            .then(createdEvent => {
+                gigToSendToAPI.event = parseInt(createdEvent.id)
+                addGig(gigToSendToAPI)
+            })
+
+        const newEvents = await getEvents()
+        setEvents(newEvents)
+    }
+
+
+    // EDIT GIG
+
+    const gigEditButtonClick = async (event) => {
+        event.preventDefault()
+
+
+        await editEvent({
+            id: eventId,
+            user: parseInt(localUser),
+            event_type: eventEdit.event_type.id,
+            title: eventEdit.title,
+            date: eventEdit.date,
+            time: eventEdit.time,
+            description: eventEdit.description
+        }).then(() => {
+            editGig({
+                id: gigId,
+                user: parseInt(localUser),
+                event: eventId,
+                city_state: gigEdit.city_state,
+                venue: gigEdit.venue,
+                band_info: gigEdit.band_info,
+                age_requirement: gigEdit.age_requirement,
+                ticket_price: gigEdit.ticket_price,
+                ticket_link: gigEdit.ticket_link,
+                guarantee: gigEdit.guarantee,
+                sold_out: gigEdit.sold_out,
+                announced: gigEdit.announced,
+                flier: gigEdit.flier,
+                stage_plot: gigEdit.stage_plot,
+                input_list: gigEdit.input_list
+            })
+        })
+
+        const newEvents = await getEvents()
+        setEvents(newEvents)
+    }
 
 
     // POST EVENT
@@ -405,7 +749,7 @@ export const Home = () => {
             )}
 
 
-
+            {/* SINGLE FORMS */}
 
             {singleForm && (
                 <div>
@@ -702,16 +1046,771 @@ export const Home = () => {
                             <button onClick={(clickEvent) => {
                                 singleEditButtonClick(clickEvent)
                                 openSingleEditForm(false)
-                                // setEventType(0)
+                                setSingleReleaseId(0)
+                                setEventId(0)
                             }}>Save</button>
                             <button className="cancelItem" onClick={() => {
                                 openSingleEditForm(false)
-                                // setEventType(0)
+                                setSingleReleaseId(0)
+                                setEventId(0)
                             }}>Cancel</button>
                         </fieldset>
                     </form>
                 </div>
             )}
+
+{/* BUNDLE FORMS */}
+
+
+
+            {bundleForm && (
+                <div>
+                    <form className="relativeForm">
+                        <fieldset>
+                            <div>Title:
+                                <input type="text" id="title" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.title = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Date:
+                                <input type="date" id="date" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.date = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Time:
+                                <input type="time" id="time" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        const unformattedTime = evt.target.value
+                                        const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                        copy.time = formattedTime
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Description:
+                                <input type="text" id="description" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.description = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                        </fieldset>
+                        <h3>Bundle Release</h3>
+                        <fieldset>
+                            <div>Bundle Title:
+                                <input type="text" id="bundle_title" onChange={
+                                    (evt) => {
+                                        const copy = { ...newBundleRelease }
+                                        copy.bundle_title = evt.target.value
+                                        updateNewBundleRelease(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Genre:
+                                <input type="text" id="genre" onChange={
+                                    (evt) => {
+                                        const copy = { ...newBundleRelease }
+                                        copy.genre = evt.target.value
+                                        updateNewBundleRelease(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>UPC:
+                                <input type="number" id="upc" onChange={
+                                    (evt) => {
+                                        const copy = { ...newBundleRelease }
+                                        copy.upc = evt.target.value
+                                        updateNewBundleRelease(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Audio:
+                                <input type="url" id="audio_url" onChange={
+                                    (evt) => {
+                                        const copy = { ...newBundleRelease }
+                                        copy.audio_url = evt.target.value
+                                        updateNewBundleRelease(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Artwork:
+                                <input type="url" id="artwork" onChange={
+                                    (evt) => {
+                                        const copy = { ...newBundleRelease }
+                                        copy.artwork = evt.target.value
+                                        updateNewBundleRelease(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Uploaded to Distro:
+                                <input type="checkbox"
+                                    value={newBundleRelease.uploaded_to_distro}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...newBundleRelease }
+                                            copy.uploaded_to_distro = evt.target.checked
+                                            updateNewBundleRelease(copy)
+                                        }
+                                    } />
+                            </div>
+                            <button onClick={(clickEvent) => {
+                                bundleSaveButtonClick(clickEvent)
+                                openBundleForm(false)
+                                setEventType(0)
+                            }}>Save</button>
+                            <button className="cancelItem" onClick={() => {
+                                openBundleForm(false)
+                                setEventType(0)
+                            }}>Cancel</button>
+                        </fieldset>
+                    </form>
+                </div>
+            )}
+
+            {bundleEditForm && (
+                <div>
+                    <form className="relativeForm">
+                        <fieldset>
+                            <div>Title:
+                                <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.title = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Date:
+                                <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.date = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Time:
+                                <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        const unformattedTime = evt.target.value
+                                        const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                        copy.time = formattedTime
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Description:
+                                <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.description = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                        </fieldset>
+                        <h3>Bundle Release</h3>
+                        <fieldset>
+                            <div>Bundle Title:
+                                <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} onChange={
+                                    (evt) => {
+                                        const copy = { ...bundleEdit }
+                                        copy.bundle_title = evt.target.value
+                                        updateBundleEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Genre:
+                                <input type="text" id="genre" placeholder={bundleEdit.genre} onChange={
+                                    (evt) => {
+                                        const copy = { ...bundleEdit }
+                                        copy.genre = evt.target.value
+                                        updateBundleEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>UPC:
+                                <input type="number" id="upc" placeholder={bundleEdit.upc} onChange={
+                                    (evt) => {
+                                        const copy = { ...bundleEdit }
+                                        copy.upc = evt.target.value
+                                        updateBundleEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Audio:
+                                <input type="url" id="audio_url" placeholder={bundleEdit.audio_url} onChange={
+                                    (evt) => {
+                                        const copy = { ...bundleEdit }
+                                        copy.audio_url = evt.target.value
+                                        updateBundleEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Artwork:
+                                <input type="url" id="artwork" placeholder={bundleEdit.artwork} onChange={
+                                    (evt) => {
+                                        const copy = { ...bundleEdit }
+                                        copy.artwork = evt.target.value
+                                        updateBundleEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Uploaded to Distro:
+                                <input type="checkbox"
+                                    value={bundleEdit.uploaded_to_distro}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...bundleEdit }
+                                            copy.uploaded_to_distro = evt.target.checked
+                                            updateBundleEdit(copy)
+                                        }
+                                    } />
+                            </div>
+                            <button onClick={(clickEvent) => {
+                                bundleEditButtonClick(clickEvent)
+                                openBundleEditForm(false)
+                                setBundleReleaseId(0)
+                                setEventId(0)
+                            }}>Save</button>
+                            <button className="cancelItem" onClick={() => {
+                                openBundleEditForm(false)
+                                setBundleReleaseId(0)
+                                setEventId(0)
+                            }}>Cancel</button>
+                        </fieldset>
+                    </form>
+                </div>
+            )}
+
+{/* REHEARSAL FORMS */}
+
+            {rehearsalForm && (
+                <div>
+                    <form className="relativeForm">
+                        <fieldset>
+                            <div>Title:
+                                <input type="text" id="title" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.title = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Date:
+                                <input type="date" id="date" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.date = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Time:
+                                <input type="time" id="time" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        const unformattedTime = evt.target.value
+                                        const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                        copy.time = formattedTime
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Description:
+                                <input type="text" id="description" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.description = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                        </fieldset>
+                        <h3>Rehearsal</h3>
+                        <fieldset>
+                            <div>Location:
+                                <input type="text" id="location" onChange={
+                                    (evt) => {
+                                        const copy = { ...newRehearsal }
+                                        copy.location = evt.target.value
+                                        updateNewRehearsal(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Band Members:
+                                <input type="text" id="band_info" onChange={
+                                    (evt) => {
+                                        const copy = { ...newRehearsal }
+                                        copy.band_info = evt.target.value
+                                        updateNewRehearsal(copy)
+                                    }
+                                } />
+                            </div>
+                            <button onClick={(clickEvent) => {
+                                rehearsalSaveButtonClick(clickEvent)
+                                openRehearsalForm(false)
+                                setEventType(0)
+                            }}>Save</button>
+                            <button className="cancelItem" onClick={() => {
+                                openRehearsalForm(false)
+                                setEventType(0)
+                            }}>Cancel</button>
+                        </fieldset>
+                    </form>
+                </div>
+            )}
+
+            {rehearsalEditForm && (
+                <div>
+                    <form className="relativeForm">
+                        <fieldset>
+                            <div>Title:
+                                <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.title = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Date:
+                                <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.date = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Time:
+                                <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        const unformattedTime = evt.target.value
+                                        const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                        copy.time = formattedTime
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Description:
+                                <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.description = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                        </fieldset>
+                        <h3>Rehearsal</h3>
+                        <fieldset>
+                            <div>Location:
+                                <input type="text" id="location" placeholder={rehearsalEdit.location} onChange={
+                                    (evt) => {
+                                        const copy = { ...rehearsalEdit }
+                                        copy.location = evt.target.value
+                                        updateRehearsalEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Band Members:
+                                <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} onChange={
+                                    (evt) => {
+                                        const copy = { ...rehearsalEdit }
+                                        copy.band_info = evt.target.value
+                                        updateRehearsalEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <button onClick={(clickEvent) => {
+                                rehearsalEditButtonClick(clickEvent)
+                                openRehearsalEditForm(false)
+                                setRehearsalId(0)
+                                setEventId(0)
+                            }}>Save</button>
+                            <button className="cancelItem" onClick={() => {
+                                openRehearsalEditForm(false)
+                                setRehearsalId(0)
+                                setEventId(0)
+                            }}>Cancel</button>
+                        </fieldset>
+                    </form>
+                </div>
+            )}
+
+{/* GIG FORMS */}
+
+
+            {gigForm && (
+                <div>
+                    <form className="relativeForm">
+                        <fieldset>
+                            <div>Title:
+                                <input type="text" id="title" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.title = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Date:
+                                <input type="date" id="date" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.date = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Time:
+                                <input type="time" id="time" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        const unformattedTime = evt.target.value
+                                        const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                        copy.time = formattedTime
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Description:
+                                <input type="text" id="description" onChange={
+                                    (evt) => {
+                                        const copy = { ...newEvent }
+                                        copy.description = evt.target.value
+                                        updateNewEvent(copy)
+                                    }
+                                } />
+                            </div>
+                        </fieldset>
+                        <h3>Gig</h3>
+                        <fieldset>
+                            <div>City/State:
+                                <input type="text" id="city_state" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.city_state = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Venue:
+                                <input type="text" id="venue" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.venue = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Band members:
+                                <input type="text" id="band_info" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.band_info = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Age Requirement:
+                                <select onChange={
+                                (evt) => {
+                                    const copy = { ...newGig }
+                                    copy.age_requirement = evt.target.value
+                                    updateNewGig(copy)
+                                }
+                            } >
+                                <option value="0">Select Event Type...</option>
+                                <option value="21+">21+</option>
+                                <option value="18+">18+</option>
+                                <option value="All ages">All ages</option>
+                            </select>
+                            </div>
+                            <div>Ticket Price:
+                                <input type="number" id="ticket_price" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.ticket_price = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Ticket Link:
+                                <input type="url" id="ticket_link" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.ticket_link = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Guarantee:
+                                <input type="number" id="guarantee" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.guarantee = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Sold Out:
+                                <input type="checkbox"
+                                    value={newGig.sold_out}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...newGig }
+                                            copy.sold_out = evt.target.checked
+                                            updateNewGig(copy)
+                                        }
+                                    } />
+                            </div>
+                            <div>Announced:
+                                <input type="checkbox"
+                                    value={newGig.announced}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...newGig }
+                                            copy.announced = evt.target.checked
+                                            updateNewGig(copy)
+                                        }
+                                    } />
+                            </div>
+                            <div>Flier:
+                                <input type="url" id="flier" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.flier = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Stage Plot:
+                                <input type="url" id="stage_plot" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.stage_plot = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Input List:
+                                <input type="url" id="input_list" onChange={
+                                    (evt) => {
+                                        const copy = { ...newGig }
+                                        copy.input_list = evt.target.value
+                                        updateNewGig(copy)
+                                    }
+                                } />
+                            </div>
+                            <button onClick={(clickEvent) => {
+                                gigSaveButtonClick(clickEvent)
+                                openGigForm(false)
+                                setEventType(0)
+                            }}>Save</button>
+                            <button className="cancelItem" onClick={() => {
+                                openGigForm(false)
+                                setEventType(0)
+                            }}>Cancel</button>
+                        </fieldset>
+                    </form>
+                </div>
+            )}
+
+            {gigEditForm && (
+                <div>
+                    <form className="relativeForm">
+                        <fieldset>
+                            <div>Title:
+                                <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.title = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Date:
+                                <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.date = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Time:
+                                <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        const unformattedTime = evt.target.value
+                                        const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                        copy.time = formattedTime
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Description:
+                                <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    (evt) => {
+                                        const copy = { ...eventEdit }
+                                        copy.description = evt.target.value
+                                        updateEventEdit(copy)
+                                    }
+                                } />
+                            </div>
+                        </fieldset>
+                        <h3>Gig</h3>
+                        <fieldset>
+                        <div>City/State:
+                                <input type="text" id="city_state" placeholder={gigEdit.city_state} onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.city_state = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Venue:
+                                <input type="text" id="venue" placeholder={gigEdit.venue}onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.venue = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Band members:
+                                <input type="number" id="band_info" placeholder={gigEdit.band_info} onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.band_info = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Age Requirement:
+                                <select onChange={
+                                (evt) => {
+                                    const copy = { ...gigEdit }
+                                    copy.age_requirement = evt.target.value
+                                    updateGigEdit(copy)
+                                }
+                            } >
+                                <option value={gigEdit?.age_requirement}>{gigEdit?.age_requirement}</option>
+                                <option value="21+">21+</option>
+                                <option value="18+">18+</option>
+                                <option value="All ages">All ages</option>
+                            </select>
+                            </div>
+                            <div>Ticket Price:
+                                <input type="number" id="ticket_price" placeholder={gigEdit.ticket_price} onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.ticket_price = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Ticket Link:
+                                <input type="url" id="ticket_link" placeholder={gigEdit.ticket_link} onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.ticket_link = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Guarantee:
+                                <input type="number" id="guarantee" placeholder={gigEdit.guarantee} onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.guarantee = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Sold Out:
+                                <input type="checkbox"
+                                    value={gigEdit.sold_out}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...gigEdit }
+                                            copy.sold_out = evt.target.checked
+                                            updateGigEdit(copy)
+                                        }
+                                    } />
+                            </div>
+                            <div>Announced:
+                                <input type="checkbox"
+                                    value={gigEdit.announced}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...gigEdit }
+                                            copy.announced = evt.target.checked
+                                            updateGigEdit(copy)
+                                        }
+                                    } />
+                            </div>
+                            <div>Flier:
+                                <input type="url" id="flier" placeholder={gigEdit.flier} onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.flier = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Stage Plot:
+                                <input type="url" id="stage_plot" placeholder={gigEdit.stage_plot} onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.stage_plot = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <div>Input List:
+                                <input type="url" id="input_list" placeholder={gigEdit.input_list} onChange={
+                                    (evt) => {
+                                        const copy = { ...gigEdit }
+                                        copy.input_list = evt.target.value
+                                        updateGigEdit(copy)
+                                    }
+                                } />
+                            </div>
+                            <button onClick={(clickEvent) => {
+                                gigEditButtonClick(clickEvent)
+                                openGigEditForm(false)
+                                setGigId(0)
+                                setEventId(0)
+                            }}>Save</button>
+                            <button className="cancelItem" onClick={() => {
+                                openGigEditForm(false)
+                                setGigId(0)
+                                setEventId(0)
+                            }}>Cancel</button>
+                        </fieldset>
+                    </form>
+                </div>
+            )}
+
+{/* EVENT FORMS */}
 
             {newForm && (
                 <div>
@@ -814,8 +1913,13 @@ export const Home = () => {
                             <button onClick={(clickEvent) => {
                                 eventEditButtonClick(clickEvent)
                                 openEventEditForm(false)
+                                setEventId(0)
                             }}>Save</button>
-                            <button className="cancelItem" onClick={() => openEventEditForm(false)}>Cancel</button>
+                            <button className="cancelItem" onClick={() => {
+                                openEventEditForm(false)
+                                setEventId(0)
+                            }}>
+                                Cancel</button>
                         </fieldset>
                     </form>
                 </div>
@@ -842,7 +1946,6 @@ export const Home = () => {
                     <button className="btn btn-secondary" onClick={async () => {
                         setEventId(parseInt(event.id));
                         await handleCloseModal();
-                        await openEditFormAsync();
                     }}>
                         Edit
                     </button>
@@ -877,148 +1980,6 @@ export const Home = () => {
         </div>
     </>;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const bundleHandleSaveButtonClick = (event) => {
-//     event.preventDefault()
-
-//     const eventToSendToAPI = {
-//         event_type: newEvent.eventType,
-//         title: newEvent.title,
-//         date: newEvent.date,
-//         time: newEvent.time,
-//         description: newEvent.description
-//     }
-
-//     let bundleToSendToAPI = {
-//         bundle_title: newSingleRelease.bundle_title,
-//         genre: newSingleRelease.genre,
-//         upc: newSingleRelease.upc,
-//         audio_url: newSingleRelease.audio_url,
-//         artwork: newSingleRelease.artwork,
-//         uploaded_to_distro: newSingleRelease.uploaded_to_distro
-//     }
-
-//     addEvent(eventToSendToAPI)
-//         .then(response => response.json())
-//         .then(createdEvent => {
-//             bundleToSendToAPI.event = parseInt(createdEvent.id)
-//             addBundle(bundleToSendToAPI)
-//         })
-// }
-
-
-
-
-
-
-
-
-
-// const rehearsalHandleSaveButtonClick = (event) => {
-//     event.preventDefault()
-
-//     const eventToSendToAPI = {
-//         event_type: newEvent.eventType,
-//         title: newEvent.title,
-//         date: newEvent.date,
-//         time: newEvent.time,
-//         description: newEvent.description
-//     }
-
-//     let rehearsalToSendToAPI = {
-//         location: newRehearsal.location,
-//         band_info: newRehearsal.band_info
-//     }
-
-//     addEvent(eventToSendToAPI)
-//         .then(response => response.json())
-//         .then(createdEvent => {
-//             rehearsalToSendToAPI.event = parseInt(createdEvent.id)
-//             addRehearsal(rehearsalToSendToAPI)
-//         })
-// }
-
-
-
-
-
-
-
-
-
-// const gigHandleSaveButtonClick = (event) => {
-//     event.preventDefault()
-
-//     const eventToSendToAPI = {
-//         event_type: newEvent.eventType,
-//         title: newEvent.title,
-//         date: newEvent.date,
-//         time: newEvent.time,
-//         description: newEvent.description
-//     }
-
-//     let gigToSendToAPI = {
-//         city_state: newGig.city_state,
-//         venue: newGig.venue,
-//         band_info: newGig.band_info,
-//         age_requirement: newGig.age_requirement,
-//         ticket_price: newGig.ticket_price,
-//         ticket_link: newGig.ticket_link,
-//         guarantee: newGig.guarantee,
-//         sold_out: newGig.sold_out,
-//         announced: newGig.announced,
-//         flier: newGig.flier,
-//         stage_plot: newGig.stage_plot,
-//         input_list: newGig.input_list
-//     }
-
-//     addEvent(eventToSendToAPI)
-//         .then(response => response.json())
-//         .then(createdEvent => {
-//             gigToSendToAPI.event = parseInt(createdEvent.id)
-//             addGig(gigToSendToAPI)
-//         })
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
