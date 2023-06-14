@@ -35,4 +35,22 @@
   background-color: #f7f7f7;
 }
 
+.filterBox {
+  border: 2px solid black;
+  margin-left: 15px;
+  padding: 2px;
+}
+
+.filterOne {
+  margin-right: 10px;
+}
+
+.filterTwo {
+  margin-right: 10px;
+}
+
+.filterFour {
+  margin-left: 10px;
+}
+
   

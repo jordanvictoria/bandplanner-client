@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import Logo from "./rare.jpeg";
@@ -7,10 +7,20 @@ export const NavBar = ({ token, setToken }) => {
   const navigate = useNavigate();
   const navbar = useRef();
   const hamburger = useRef();
+  const [isReleaseDropdownVisible, setReleaseDropdownVisible] = useState(false);
+  const [isLiveDropdownVisible, setLiveDropdownVisible] = useState(false);
 
   const showMobileNavbar = () => {
     hamburger.current.classList.toggle("is-active");
     navbar.current.classList.toggle("is-active");
+  };
+
+  const handleReleaseDropdownToggle = () => {
+    setReleaseDropdownVisible(!isReleaseDropdownVisible);
+  };
+
+  const handleLiveDropdownToggle = () => {
+    setLiveDropdownVisible(!isLiveDropdownVisible);
   };
 
   return (
@@ -25,7 +35,7 @@ export const NavBar = ({ token, setToken }) => {
           <h1 className="title is-4">Bandplanner</h1>
         </a>
 
-        
+
         <a
           role="button"
           className="navbar-burger"
@@ -52,22 +62,49 @@ export const NavBar = ({ token, setToken }) => {
               ""
             )}
           </div>
-          <div>
-            {token ? (
-              <Link to="/my-posts" className="navbar-item">
+          <div onMouseEnter={handleReleaseDropdownToggle} onMouseLeave={handleReleaseDropdownToggle}>{token ? (
+            <>
+              <Link to="/release" className="navbar-item">
                 Releases
               </Link>
-            ) : (
-              ""
-            )}
+              {isReleaseDropdownVisible && (
+                <div className="dropdown-content">
+                  <li>
+                    <Link to="/release">Release Schedule</Link>
+                  </li>
+                  <li>
+                    <Link to="/releasechecklist">Promo Checklist</Link>
+                  </li>
+                </div>
+              )}
+            </>
+          ) : (
+            ""
+          )}
           </div>
-          <div>{token ? (
-              <Link to="/postForm" className="navbar-item">
+          <div onMouseEnter={handleLiveDropdownToggle} onMouseLeave={handleLiveDropdownToggle}>{token ? (
+            <>
+              <Link to="/live" className="navbar-item">
                 Live
               </Link>
-            ) : (
-              ""
-            )}</div>
+              {isLiveDropdownVisible && (
+                <div className="dropdown-content">
+                  <li>
+                    <Link to="/live">Live Events</Link>
+                  </li>
+                  <li>
+                    <Link to="/setlist">Setlists</Link>
+                  </li>
+                  <li>
+                    <Link to="/showchecklist">Promo Checklist</Link>
+                  </li>
+                </div>
+              )}
+            </>
+          ) : (
+            ""
+          )}
+          </div>
           <div>
             {token ? (
               <Link to="/categories" className="navbar-item">
