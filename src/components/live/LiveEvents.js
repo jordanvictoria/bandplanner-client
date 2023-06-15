@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getEvents, getEventTypes, getEventsByType, deleteEvent, getEventById, editEvent, addEvent, getRehearsals, getRehearsalById, addRehearsal, editRehearsal, getGigs, getGigById, addGig, editGig } from "./LiveManager";
+import { getEvents, getEventsByType, deleteEvent, getEventById, editEvent, addEvent, getRehearsals, getRehearsalById, addRehearsal, editRehearsal, getGigs, getGigById, addGig, editGig } from "./LiveManager";
 import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -16,20 +16,21 @@ export const LiveEvents = () => {
     // const [eventTypes, setEventTypes] = useState([])
     const [eventType, setEventType] = useState(0)
     const [eventsFromAPI, setEventsFromAPI] = useState([])
-    const [searchOption, setSearchOption] = useState('text');
+    const [searchOption, setSearchOption] = useState('');
     const [startSearch, setStartSearch] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [locationSearch, setLocationSearch] = useState(false);
-    const [locationForAPI, setLocationForAPI] = useState('text');
+    const [locationForAPI, setLocationForAPI] = useState('');
     const [artistSearch, setArtistSearch] = useState(false);
-    const [artistForAPI, setArtistForAPI] = useState('text');
+    const [artistForAPI, setArtistForAPI] = useState('');
     const [venueSearch, setVenueSearch] = useState(false);
-    const [venueForAPI, setVenueForAPI] = useState('text');
+    const [venueForAPI, setVenueForAPI] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [filteredByType, setFilteredByType] = useState(0)
     const [checkedIndex, setCheckedIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
-    const [dateInputType, setDateInputType] = useState('text');
-    const [timeInputType, setTimeInputType] = useState('text');
+    const [dateInputType, setDateInputType] = useState('');
+    const [timeInputType, setTimeInputType] = useState('');
     const [eventId, setEventId] = useState(0)
     const [rehearsalId, setRehearsalId] = useState(0)
     const [gigId, setGigId] = useState(0)
@@ -265,6 +266,8 @@ export const LiveEvents = () => {
             default:
                 break;
         }
+        setStartSearch(false)
+        setIsLoading(true)
     };
 
 
@@ -277,7 +280,9 @@ export const LiveEvents = () => {
         if (startSearch) {
             let url = "";
             if (searchOption === "location" && locationForAPI) {
-                url = `https://concerts-artists-events-tracker.p.rapidapi.com/location?name=${locationForAPI}&minDate=2023-06-14&maxDate=2024-06-20&page=1`;
+                const minDate = getCurrentDateFormatted()
+                const maxDate = getDateAfter30DaysFormatted()
+                url = `https://concerts-artists-events-tracker.p.rapidapi.com/location?name=${locationForAPI}&minDate=${minDate}&maxDate=${maxDate}&page=1`;
             } else if (searchOption === "artist" && artistForAPI) {
                 url = `https://concerts-artists-events-tracker.p.rapidapi.com/artist?name=${artistForAPI}&page=1`;
             } else if (searchOption === "venue" && venueForAPI) {
@@ -293,6 +298,7 @@ export const LiveEvents = () => {
                     },
                 };
                 fetchData(url, options);
+                console.log(url)
             }
         }
     }, [startSearch, searchOption, locationForAPI, artistForAPI, venueForAPI]);
@@ -304,6 +310,10 @@ export const LiveEvents = () => {
             const events = result.data;
             console.log(events);
             setEventsFromAPI(events);
+            setIsLoading(false);
+            setLocationForAPI('')
+            setArtistForAPI('')
+            setVenueForAPI('')
         } catch (error) {
             console.error(error);
             // You can handle the error here or throw it to be handled elsewhere
@@ -336,6 +346,37 @@ export const LiveEvents = () => {
 
         return formattedDateTime;
     }
+
+
+    const getCurrentDateFormatted = () => {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        let month = currentDate.getMonth() + 1;
+        let day = currentDate.getDate();
+      
+        // Add leading zero if month/day is a single digit
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+      
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate;
+      }
+
+      const getDateAfter30DaysFormatted = () => {
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + 30);
+      
+        const year = currentDate.getFullYear();
+        let month = currentDate.getMonth() + 1;
+        let day = currentDate.getDate();
+      
+        // Add leading zero if month/day is a single digit
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+      
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate;
+      }
 
 
 
@@ -548,7 +589,6 @@ export const LiveEvents = () => {
             <div className="API">
                 <p>Search Live Events By </p>
                 <div>
-                    {/* Radio buttons */}
                     <input
                         type="radio"
                         id="radioOption1"
@@ -575,7 +615,7 @@ export const LiveEvents = () => {
                     <label htmlFor="radioOption3">Venue</label>
                 </div>
                 {searchOption === "location" && (
-                    <div>
+                    <div className="searchBar">
                         <input
                             type="text"
                             onChange={handleInputChange}
@@ -586,7 +626,7 @@ export const LiveEvents = () => {
                     </div>
                 )}
                 {searchOption === "artist" && (
-                    <div>
+                    <div className="searchBar">
                         <input
                             type="text"
                             onChange={handleInputChange}
@@ -597,7 +637,7 @@ export const LiveEvents = () => {
                     </div>
                 )}
                 {searchOption === "venue" && (
-                    <div>
+                    <div className="searchBar">
                         <input
                             type="text"
                             onChange={handleInputChange}
@@ -608,7 +648,7 @@ export const LiveEvents = () => {
                     </div>
                 )}
                 {
-                    eventsFromAPI && (
+                    !isLoading && eventsFromAPI && (
                         <div className="scrollable">
                             {
                                 eventsFromAPI.map((event, index) => {
@@ -675,7 +715,7 @@ export const LiveEvents = () => {
 
             {
                 rehearsalForm && (
-                    <div>
+                    <div className="pop_up_rehearsal">
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
@@ -754,7 +794,7 @@ export const LiveEvents = () => {
 
             {
                 rehearsalEditForm && (
-                    <div>
+                    <div className="pop_up_rehearsal">
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
@@ -838,7 +878,7 @@ export const LiveEvents = () => {
 
             {
                 gigForm && (
-                    <div>
+                    <div className="pop_up_gig">
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
@@ -1016,7 +1056,7 @@ export const LiveEvents = () => {
 
             {
                 gigEditForm && (
-                    <div>
+                    <div className="pop_up_gig">
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:

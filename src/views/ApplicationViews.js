@@ -4,6 +4,7 @@ import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { LiveEvents } from "../components/live/LiveEvents"
+import { Setlists } from "../components/live/Setlists"
 
 
 export const ApplicationViews = ({ token, setToken }) => {
@@ -14,6 +15,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route element={<Authorized token={token}  />}>
       <Route path="/" element={<Home  />} />
       <Route path="/live" element={<LiveEvents  />} />
+      <Route path="/setlist" element={<Setlists  />} />
       </Route>
     </Routes>
   </>

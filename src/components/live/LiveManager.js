@@ -1,5 +1,16 @@
 
 
+export const getBandUsers = () => {
+  return fetch("http://localhost:8000/bandusers", {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  })
+  .then((res) => res.json())
+  
+};
 
 
 
@@ -8,17 +19,213 @@
 
 
 
-export const getEventTypes = () => {
-    return fetch("http://localhost:8000/eventtypes", {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": `Token ${localStorage.getItem("band_token")}`
-      }
-    })
-    .then((res) => res.json())
-    
-  };
+// setlists
+
+
+export const getSetlists = () => {
+  return fetch("http://localhost:8000/setlists", {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  })
+  .then((res) => res.json())
+  
+};
+
+export const getSetlistById = (id) => {
+  return fetch(`http://localhost:8000/setlists/${id}`, {
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  }).then((res) => res.json());
+};
+
+
+
+export const addSetlist = (newSetlist) => {
+  return fetch("http://localhost:8000/setlists", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    },
+    body: JSON.stringify(newSetlist)
+  })
+};
+
+
+
+export const editSetlist = (newSetlist) => {
+  return fetch(`http://localhost:8000/setlists/${newSetlist.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    },
+    body: JSON.stringify(newSetlist)
+  })
+}
+
+
+export const deleteSetlist = (id) => {
+  return fetch(`http://localhost:8000/setlists/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
+
+export const getSongs = () => {
+  return fetch("http://localhost:8000/songs", {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  })
+  .then((res) => res.json())
+  
+};
+
+
+
+
+
+
+
+export const getSongById = (id) => {
+  return fetch(`http://localhost:8000/songs/${id}`, {
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  }).then((res) => res.json());
+};
+
+
+
+
+
+
+export const addSong = (newSong) => {
+  return fetch("http://localhost:8000/songs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    },
+    body: JSON.stringify(newSong)
+  })
+};
+
+
+
+
+export const editSong = (newSong) => {
+  return fetch(`http://localhost:8000/songs/${newSong.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    },
+    body: JSON.stringify(newSong)
+  })
+}
+
+
+export const deleteSong = (id) => {
+  return fetch(`http://localhost:8000/songs/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  })
+}
+
+
+
+
+
+
+
+
+export const getSetlistSongs = () => {
+  return fetch("http://localhost:8000/setlistsongs", {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  })
+  .then((res) => res.json())
+  
+};
+
+export const getSetlistSongById = (id) => {
+  return fetch(`http://localhost:8000/setlistsongs/${id}`, {
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  }).then((res) => res.json());
+};
+
+
+
+
+
+ export const addSetlistSong = (newSetlistSong) => {
+  return fetch("http://localhost:8000/setlistsongs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    },
+    body: JSON.stringify(newSetlistSong)
+  })
+};
+
+export const editSetlistSong = (newSetlistSong) => {
+  return fetch(`http://localhost:8000/setlistsongs/${newSetlistSong.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    },
+    body: JSON.stringify(newSetlistSong)
+  })
+}
+
+
+
+export const deleteSetlistSong = (id) => {
+  return fetch(`http://localhost:8000/setlistsongs/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("band_token")}`
+    }
+  })
+}
+
+
+
+
+
+    //events
+
   
   export const getEventsByType = (event_type) => {
     return fetch(`http://localhost:8000/events?event_type=${event_type}`, {
@@ -29,7 +236,6 @@ export const getEventTypes = () => {
   }
   
   
-  //events
   
   export const getEvents = () => {
     return fetch("http://localhost:8000/events", {
@@ -49,6 +255,8 @@ export const getEventTypes = () => {
       }
     }).then((res) => res.json());
   };
+  
+
   
   
   

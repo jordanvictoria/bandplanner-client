@@ -1,15 +1,19 @@
+
+
+
+
 .container {
     position: relative;
 }
 
 
 .API {
-    position: absolute;
-    top: -90px;
-    left: 0;
+    position: sticky;
+    top: 0;
     width: 20%;
+    height: 100%;
     border: 2px solid black;
-    transform: translateY(50%);
+    /* transform: translateY(20%); */
 }
 
 
@@ -17,6 +21,44 @@
 .scrollable {
     height: 300px; /* Set the desired height for the scrollable div */
     overflow: auto; /* Enable scrolling */
+}
+
+
+
+.pop_up {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    /* Ensure the pop-up is in front of other content */
+    /* Add additional styles for the pop-up */
+}
+
+.pop_up_rehearsal {
+    position: fixed;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+     /* Ensure the pop-up is in front of other content */
+    /* Add additional styles for the pop-up */
+}
+
+.pop_up_gig {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke; 
+    border: 2px solid black;
+    /* Ensure the pop-up is in front of other content */
+    /* Add additional styles for the pop-up */
 }
 
 
@@ -91,3 +133,93 @@
 .filterFour {
     margin-left: 10px;
 }
+
+
+/* setlists */
+
+
+
+
+
+
+.setlistContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust the height as needed */
+  }
+  
+
+.setlistBoxContainer {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+  
+  .setListBandName {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .setlistBox {
+    width: 200px; /* Adjust the width to your desired size */
+    height: 200px; /* Adjust the height to your desired size */
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    
+  }
+  
+  .setlistBox h3 {
+    margin-top: 0;
+  }
+  
+  .setlistBox h6 {
+    margin-bottom: 5px;
+  }
+
+
+
+
+.viewContainer {
+    position: absolute;
+    width: 60%;
+    height: 85%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
+}
+
+
+  .setlistView {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    width: 70%;
+    height: 70%;
+    z-index: 9999;
+    background-color: rgb(142, 182, 187);
+    border: 2px solid black;
+}
+
+
+
