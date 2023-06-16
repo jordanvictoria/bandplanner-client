@@ -14,6 +14,29 @@ export const Setlists = () => {
     const [setlistViewObj, setSetlistViewObj] = useState({})
     const [viewSetlist, setViewSetlist] = useState(false)
     const [filteredSetlistSongs, setFilteredSetlistSongs] = useState([])
+    const [newSetlistForm, openNewSetlistForm] = useState(false)
+    const [newSetlist, updateNewSetlist] = useState({
+        user: 0,
+        title: "",
+        notes: "",
+        date_created: "",
+        last_edited: ""
+    })
+    const [editSetlistId, setEditSetlistId] = useState(0)
+    const [editSetlistForm, openEditSetlistForm] = useState(false)
+    const [setlistEdit, updateSetlistEdit] = useState({
+        id: 0,
+        user: 0,
+        title: "",
+        notes: "",
+        date_created: "",
+        last_edited: ""
+    })
+    const [songForm, openSongForm] = useState(false)
+    const [newSong, updateNewSong] = useState({
+        user: 0,
+        name: ""
+    })
 
 
 
@@ -62,6 +85,133 @@ export const Setlists = () => {
         }, [setlistId, setlistSongs]
     )
 
+    useEffect(
+        () => {
+            if (editSetlistId != 0) {
+                getSetlistById(editSetlistId).then((data) => {
+                    updateSetlistEdit(data)
+                })
+                const setlistSongsByEditSetlistId = setlistSongs.filter(song => song.setlist.id === editSetlistId)
+                setFilteredSetlistSongs(setlistSongsByEditSetlistId)
+            }
+        }, [editSetlistId, setlistSongs]
+    )
+
+
+
+
+
+
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+
+
+    const setlistSaveButtonClick = async (event) => {
+        event.preventDefault()
+
+        const currentDate = new Date();
+        const formattedDate = formatDate(currentDate);
+
+        const setlistToSendToAPI = {
+            user: parseInt(localUser),
+            title: newSetlist.title,
+            notes: newSetlist.notes,
+            date_created: formattedDate,
+            last_edited: formattedDate
+        }
+
+        await addSetlist(setlistToSendToAPI)
+            .then(response => response.json())
+            .then(createdSetlist => {
+                setEditSetlistId(parseInt(createdSetlist.id))
+            })
+    }
+
+
+
+    const setlistEditButtonClick = async (event) => {
+        event.preventDefault()
+
+        const currentDate = new Date();
+        const formattedDate = formatDate(currentDate);
+
+        const editToSendToAPI = {
+            id: editSetlistId,
+            user: parseInt(localUser),
+            title: setlistEdit.title,
+            notes: setlistEdit.notes,
+            date_created: setlistEdit.date_created,
+            last_edited: formattedDate
+        }
+
+        await editSetlist(editToSendToAPI)
+
+        const newSetlists = await getSetlists()
+        setSetlists(newSetlists)
+    }
+
+    const handleSubmit = (event) => {
+        setlistEditButtonClick(event);
+        openEditSetlistForm(false);
+        setEditSetlistId(0);
+    };
+
+
+    const setlistSongSaveButtonClick = async (songId, setlistId) => {
+        const setlistSongToSendToAPI = {
+            user: parseInt(localUser),
+            song: parseInt(songId),
+            setlist: parseInt(setlistId),
+            notes: ""
+        }
+
+        await addSetlistSong(setlistSongToSendToAPI)
+            .then(response => response.json())
+    }
+
+
+
+    const songSaveButtonClick = async (event) => {
+        event.preventDefault()
+
+
+        const songToSendToAPI = {
+            user: parseInt(localUser),
+            name: newSong.title
+        }
+
+        await addSong(songToSendToAPI)
+            .then(response => response.json())
+            
+        const newSongs = await getSongs()
+        setSongs(newSongs)
+    }
+
+
+
+    const filterSongs = (setlistsongs, songs) => {
+        // Create a new array to store the filtered songs
+        let filteredSongs = [...songs];
+      
+        // Loop through each setlistsong
+        setlistsongs.forEach((setlistsong) => {
+          // Filter out the songs that have a matching songId
+          filteredSongs = filteredSongs.filter((song) => song.id !== setlistsong.song.id);
+        });
+      
+        // Return the filtered songs
+        return filteredSongs;
+      }
+
+      const unchosenSongs = filterSongs(filteredSetlistSongs, songs)
+
+
+
 
 
 
@@ -90,7 +240,9 @@ export const Setlists = () => {
                         )
                     })
                 }
-                <div className="setlistBox">
+                <div className="setlistBox" onClick={() => {
+                    openNewSetlistForm(true)
+                }}>
                     Add New Setlist
                 </div>
             </div>
@@ -100,23 +252,29 @@ export const Setlists = () => {
                         <div className="setlistView">
                             <h2 className="color">{setlistViewObj.title}</h2>
                             <h3 className="color">Description: {setlistViewObj.notes}</h3>
-                            <ol className="color">
+                            <ul className="color">
                                 {
                                     filteredSetlistSongs.map(song => {
                                         return (
                                             <li key={song.id} value={song.id} className="setlistSong">
                                                 {song.song.name}
-                                                <button>Edit</button>
-                                                <button onClick={async () => {
-                                                    await deleteSetlistSong(song.id)
-                                                    const newSetlistSongs = await getSetlistSongs();
-                                                    setSetlistSongs(newSetlistSongs);
-                                                }}>Delete</button>
                                             </li>
                                         )
                                     })
                                 }
-                            </ol>
+                            </ul>
+                            <button onClick={() => {
+                                setEditSetlistId(setlistViewObj.id)
+                                setSetlistId(0)
+                                setViewSetlist(false)
+                                openEditSetlistForm(true)
+                            }}>Edit</button>
+                            <button onClick={async () => {
+                                await deleteSetlist(setlistViewObj.id)
+                                const newSetlists = await getSetlists();
+                                setSetlists(newSetlists);
+                                setViewSetlist(false)
+                            }}>Delete</button>
                             <button onClick={() => {
                                 setSetlistId(0)
                                 setViewSetlist(false)
@@ -125,15 +283,169 @@ export const Setlists = () => {
                     </div>
                 )
             }
-        </div>
+            {
+                newSetlistForm && (
+                    <div className="newSetlistContainer">
+                        <div className="newSetlistForm">
+                            <h2 className="color">Create New Setlist</h2>
+                            <form className="">
+                                <fieldset>
+                                    <div>Title:
+                                        <input type="text" id="title" onChange={
+                                            (evt) => {
+                                                const copy = { ...newSetlist }
+                                                copy.title = evt.target.value
+                                                updateNewSetlist(copy)
+                                            }
+                                        } />
+                                    </div>
+                                    <div>Description:
+                                        <input type="text" id="notes" onChange={
+                                            (evt) => {
+                                                const copy = { ...newSetlist }
+                                                copy.notes = evt.target.value
+                                                updateNewSetlist(copy)
+                                            }
+                                        } />
+                                    </div>
+                                    <button onClick={(clickEvent) => {
+                                        setlistSaveButtonClick(clickEvent)
+                                        openNewSetlistForm(false)
+                                        openEditSetlistForm(true)
+                                    }}>Save</button>
+                                    <button onClick={() => {
+                                        openNewSetlistForm(false)
+                                    }}>Cancel</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                )
+            }
+            {
+                editSetlistForm && (
+                    <div className="editSetlistContainer">
+                        <div className="editSetlistForm">
+                            <form onSubmit={handleSubmit}>
+                                <fieldset>
+                                    <div>Title:
+                                        <input type="text" id="title" placeholder={setlistEdit.title} onChange={
+                                            (evt) => {
+                                                const copy = { ...setlistEdit }
+                                                copy.title = evt.target.value
+                                                updateSetlistEdit(copy)
+                                            }
+                                        } />
+                                    </div>
+                                    <div>Description:
+                                        <input type="text" id="notes" placeholder={setlistEdit.notes} onChange={
+                                            (evt) => {
+                                                const copy = { ...setlistEdit }
+                                                copy.notes = evt.target.value
+                                                updateSetlistEdit(copy)
+                                            }
+                                        } />
+                                    </div>
+                                </fieldset>
+                                <div className="buttonDiv">
+                                    <button type="submit">Save</button>
+                                    <button onClick={() => {
+                                        openEditSetlistForm(false)
+                                        setEditSetlistId(0)
+                                    }}>Cancel</button>
+                                </div>
+                            </form>
+                            {
+                                filteredSetlistSongs && (
+
+                                    <div className="filteredSongs">
+                                        {
+                                            filteredSetlistSongs.map(song => {
+                                                return (
+                                                    <li key={song.id} value={song.id} className="setlistSong">
+                                                        {song.song.name}
+                                                        <button onClick={async () => {
+                                                            await deleteSetlistSong(song.id)
+                                                            const newSetlistSongs = await getSetlistSongs();
+                                                            const setlistSongsByEditSetlistId = newSetlistSongs.filter(song => song.setlist.id === editSetlistId)
+                                                            setFilteredSetlistSongs(setlistSongsByEditSetlistId)
+                                                        }}>Remove</button>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                )
+                            }
+                            <div>
+                                <button className="newSong" onClick={() => {
+                                    openSongForm(true)
+                                }}>
+                                    Add Song
+                                </button>
+                                {
+                                    songForm && (
+                                        <div className="newSetlistContainer">
+                                            <div className="newSetlistForm">
+                                                <form className="">
+                                                    <fieldset>
+                                                        <div>Name:
+                                                            <input type="text" id="name" onChange={
+                                                                (evt) => {
+                                                                    const copy = { ...newSong }
+                                                                    copy.title = evt.target.value
+                                                                    updateNewSong(copy)
+                                                                }
+                                                            } />
+                                                        </div>
+                                                        <button onClick={(clickEvent) => {
+                                                            songSaveButtonClick(clickEvent)
+                                                            openSongForm(false)
+                                                        }}>Save</button>
+                                                        <button onClick={() => {
+                                                            openSongForm(false)
+                                                        }}>Cancel</button>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                {
+                                    unchosenSongs.map(song => {
+                                        return (
+                                            <li key={song.id} value={song.id} className="song">
+                                                {song.name}
+                                                <button onClick={async () => {
+                                                    await setlistSongSaveButtonClick(song.id, editSetlistId)
+                                                    const newSetlistSongs = await getSetlistSongs();
+                                                    const setlistSongsByEditSetlistId = newSetlistSongs.filter(song => song.setlist.id === editSetlistId)
+                                                    setFilteredSetlistSongs(setlistSongsByEditSetlistId)
+                                                }}>Add to Setlist</button>
+                                                <button onClick={async () => {
+                                                    await deleteSong(song.id)
+                                                    const newSongs = await getSongs();
+                                                    setSongs(newSongs)
+                                                }}>Remove</button>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+        </div >
 
 
 
     </>
-
-
-
-
-
-
 }
+
+
+
+
+
+
+

@@ -676,7 +676,6 @@ export const Home = () => {
             time: newEvent.time,
             description: newEvent.description
         }
-        console.log(eventToSendToAPI)
 
         await addEvent(eventToSendToAPI)
             .then(response => response.json())

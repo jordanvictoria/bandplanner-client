@@ -135,7 +135,15 @@
 }
 
 
-/* setlists */
+
+
+
+
+
+
+
+
+/* SETLISTS */
 
 
 
@@ -196,6 +204,12 @@
 
 
 
+
+
+/* VIEW SETLIST */
+
+
+
 .viewContainer {
     position: absolute;
     width: 60%;
@@ -220,6 +234,77 @@
     background-color: rgb(142, 182, 187);
     border: 2px solid black;
 }
+
+
+
+
+/* POST SETLIST */
+
+
+
+
+.newSetlistContainer {
+    position: absolute;
+    width: 60%;
+    height: 85%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
+}
+
+
+  .newSetlistForm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    width: 70%;
+    height: 70%;
+    z-index: 9999;
+    background-color: rgb(142, 182, 187);
+    border: 2px solid black;
+}
+
+
+
+
+
+/* EDIT SETLIST */
+
+.editSetlistContainer {
+    position: absolute;
+    width: 60%;
+    height: 85%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
+}
+
+
+  .editSetlistForm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    width: 70%;
+    height: 70%;
+    z-index: 9999;
+    background-color: rgb(142, 182, 187);
+    border: 2px solid black;
+}
+
+.buttonDiv {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+  }
 
 
 
