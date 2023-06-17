@@ -153,13 +153,23 @@ export const Setlists = () => {
 
         const newSetlists = await getSetlists()
         setSetlists(newSetlists)
+
+        const newSetlistSongs = await getSetlistSongs()
+        setSetlistSongs(newSetlistSongs)
     }
+
+
+
 
     const handleSubmit = (event) => {
         setlistEditButtonClick(event);
         openEditSetlistForm(false);
         setEditSetlistId(0);
     };
+
+
+
+
 
 
     const setlistSongSaveButtonClick = async (songId, setlistId) => {
@@ -173,6 +183,8 @@ export const Setlists = () => {
         await addSetlistSong(setlistSongToSendToAPI)
             .then(response => response.json())
     }
+
+
 
 
 
