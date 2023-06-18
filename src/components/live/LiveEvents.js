@@ -13,7 +13,6 @@ export const LiveEvents = () => {
     const [allEvents, setAllEvents] = useState([])
     const [events, setEvents] = useState([])
     const [event, setEvent] = useState({});
-    // const [eventTypes, setEventTypes] = useState([])
     const [eventType, setEventType] = useState(0)
     const [eventsFromAPI, setEventsFromAPI] = useState([])
     const [searchOption, setSearchOption] = useState('');
@@ -86,8 +85,6 @@ export const LiveEvents = () => {
         stage_plot: "",
         input_list: ""
     })
-    const [newForm, openNewForm] = useState(false);
-    const [eventEditForm, openEventEditForm] = useState(false);
     const [newEvent, updateNewEvent] = useState({
         user: 0,
         event_type: 0,

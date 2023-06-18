@@ -64,13 +64,13 @@ export const NavBar = ({ token, setToken }) => {
           </div>
           <div onMouseEnter={handleReleaseDropdownToggle} onMouseLeave={handleReleaseDropdownToggle}>{token ? (
             <>
-              <Link to="/release" className="navbar-item">
+              <Link to="/releases" className="navbar-item">
                 Releases
               </Link>
               {isReleaseDropdownVisible && (
                 <div className="dropdown-content">
                   <li>
-                    <Link to="/release">Release Schedule</Link>
+                    <Link to="/releases">Release Schedule</Link>
                   </li>
                   <li>
                     <Link to="/releasechecklist">Promo Checklist</Link>
