@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getBandUsers, getSetlistSongs, getSongs, getSetlists, getSetlistById, getSetlistSongById, getSongById, addSetlist, addSetlistSong, addSong, editSetlist, editSetlistSong, editSong, deleteSetlist, deleteSong, deleteSetlistSong } from "./LiveManager";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import React from "react";
 import "./live.css"
 
@@ -38,6 +39,9 @@ export const Setlists = () => {
         name: ""
     })
 
+
+
+    // USE EFFECTS
 
 
     useEffect(
@@ -80,7 +84,15 @@ export const Setlists = () => {
                     setSetlistViewObj(data)
                 })
                 const setlistSongsBySetlistId = setlistSongs.filter(song => song.setlist.id === setlistId)
-                setFilteredSetlistSongs(setlistSongsBySetlistId)
+
+                // Sort the songs by the order property
+                setlistSongsBySetlistId.sort((a, b) => {
+                    const orderA = parseInt(a.notes);
+                    const orderB = parseInt(b.notes);
+                    return orderA - orderB;
+                });
+
+                setFilteredSetlistSongs(setlistSongsBySetlistId);
             }
         }, [setlistId, setlistSongs]
     )
@@ -92,6 +104,13 @@ export const Setlists = () => {
                     updateSetlistEdit(data)
                 })
                 const setlistSongsByEditSetlistId = setlistSongs.filter(song => song.setlist.id === editSetlistId)
+
+                setlistSongsByEditSetlistId.sort((a, b) => {
+                    const orderA = parseInt(a.notes);
+                    const orderB = parseInt(b.notes);
+                    return orderA - orderB;
+                });
+
                 setFilteredSetlistSongs(setlistSongsByEditSetlistId)
             }
         }, [editSetlistId, setlistSongs]
@@ -102,12 +121,10 @@ export const Setlists = () => {
 
 
 
-    const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
+
+
+    // POST AND EDIT FORMS
+
 
 
 
@@ -160,24 +177,12 @@ export const Setlists = () => {
 
 
 
-
-    const handleSubmit = (event) => {
-        setlistEditButtonClick(event);
-        openEditSetlistForm(false);
-        setEditSetlistId(0);
-    };
-
-
-
-
-
-
     const setlistSongSaveButtonClick = async (songId, setlistId) => {
         const setlistSongToSendToAPI = {
             user: parseInt(localUser),
             song: parseInt(songId),
             setlist: parseInt(setlistId),
-            notes: ""
+            notes: "0"
         }
 
         await addSetlistSong(setlistSongToSendToAPI)
@@ -191,7 +196,6 @@ export const Setlists = () => {
     const songSaveButtonClick = async (event) => {
         event.preventDefault()
 
-
         const songToSendToAPI = {
             user: parseInt(localUser),
             name: newSong.title
@@ -199,31 +203,115 @@ export const Setlists = () => {
 
         await addSong(songToSendToAPI)
             .then(response => response.json())
-            
+
         const newSongs = await getSongs()
         setSongs(newSongs)
     }
+
+
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+
+
+
+
+
+
+
+    // DRAG AND DROP
+
+
+
+    const handleDragEnd = (result) => {
+        if (!result.destination) return; // Dragged outside a droppable area
+
+        const items = Array.from(filteredSetlistSongs);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+
+        setFilteredSetlistSongs(items);
+    };
+
+
+
+    const updateFilteredSetlistSongsOrder = async (songs) => {
+        for (let i = 0; i < songs.length; i++) {
+            const song = songs[i];
+            const setlistSong = await getSetlistSongById(parseInt(song.id));
+            setlistSong.notes = String(i + 1); // Convert the order to string if needed
+            setlistSong.user = parseInt(localUser);
+            setlistSong.song = parseInt(setlistSong.song.id);
+            setlistSong.setlist = parseInt(setlistSong.setlist.id);
+            setlistSong.id = parseInt(setlistSong.id);
+
+
+            await editSetlistSong(setlistSong);
+        }
+    };
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await setlistEditButtonClick(event);
+        
+        openEditSetlistForm(false);
+
+        // Update the order of filteredSetlistSongs
+        const updatedFilteredSetlistSongs = filteredSetlistSongs.map((song, index) => {
+            const updatedSong = { ...song };
+            updatedSong.notes = String(index + 1); // Convert the order to string if needed
+            return updatedSong;
+        });
+
+        // Save the updated order to the backend or perform any necessary operations
+        await updateFilteredSetlistSongsOrder(updatedFilteredSetlistSongs) // Replace with your actual API call or update logic
+
+        const newSetlistSongs = await getSetlistSongs()
+
+        setSetlistSongs(newSetlistSongs)
+        setEditSetlistId(0);
+    };
+
+
+
+
+
+
+
+
+
+
+
+    // UNCHOSEN SONGS
 
 
 
     const filterSongs = (setlistsongs, songs) => {
         // Create a new array to store the filtered songs
         let filteredSongs = [...songs];
-      
+
         // Loop through each setlistsong
         setlistsongs.forEach((setlistsong) => {
-          // Filter out the songs that have a matching songId
-          filteredSongs = filteredSongs.filter((song) => song.id !== setlistsong.song.id);
+            // Filter out the songs that have a matching songId
+            filteredSongs = filteredSongs.filter((song) => song.id !== setlistsong.song.id);
         });
-      
+
         // Return the filtered songs
         return filteredSongs;
-      }
+    }
 
-      const unchosenSongs = filterSongs(filteredSetlistSongs, songs)
+    const unchosenSongs = filterSongs(filteredSetlistSongs, songs)
 
 
 
+
+
+    
 
 
 
@@ -369,24 +457,36 @@ export const Setlists = () => {
                             </form>
                             {
                                 filteredSetlistSongs && (
-
-                                    <div className="filteredSongs">
-                                        {
-                                            filteredSetlistSongs.map(song => {
-                                                return (
-                                                    <li key={song.id} value={song.id} className="setlistSong">
-                                                        {song.song.name}
-                                                        <button onClick={async () => {
-                                                            await deleteSetlistSong(song.id)
-                                                            const newSetlistSongs = await getSetlistSongs();
-                                                            const setlistSongsByEditSetlistId = newSetlistSongs.filter(song => song.setlist.id === editSetlistId)
-                                                            setFilteredSetlistSongs(setlistSongsByEditSetlistId)
-                                                        }}>Remove</button>
-                                                    </li>
-                                                )
-                                            })
-                                        }
-                                    </div>
+                                    <DragDropContext onDragEnd={handleDragEnd}>
+                                        <Droppable droppableId="setlistSongs">
+                                            {(provided) => (
+                                                <div {...provided.droppableProps} ref={provided.innerRef}>
+                                                    {
+                                                        filteredSetlistSongs.map((song, index) => (
+                                                            <Draggable key={song.id} draggableId={String(song.id)} index={index}>
+                                                                {(provided) => (
+                                                                    <li
+                                                                        ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                        {...provided.dragHandleProps}
+                                                                        className="setlistSong"
+                                                                    >
+                                                                        {song.song.name}
+                                                                        <button onClick={async () => {
+                                                                            await deleteSetlistSong(song.id)
+                                                                            const newSetlistSongs = await getSetlistSongs();
+                                                                            const setlistSongsByEditSetlistId = newSetlistSongs.filter(song => song.setlist.id === editSetlistId)
+                                                                            setFilteredSetlistSongs(setlistSongsByEditSetlistId)
+                                                                        }}>Remove</button>
+                                                                    </li>
+                                                                )}
+                                                            </Draggable>
+                                                        ))}
+                                                    {provided.placeholder}
+                                                </div>
+                                            )}
+                                        </Droppable>
+                                    </DragDropContext>
                                 )
                             }
                             <div>
