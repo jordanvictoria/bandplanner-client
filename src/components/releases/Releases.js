@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getEvents, getEventsByType, deleteEvent, getEventById, editEvent, addEvent, getSingleReleases, getSingleReleaseById, addSingleRelease, editSingleRelease, getBundleReleases, getBundleReleaseById, addBundleRelease, editBundleRelease } from "./ReleaseManager";
+import { getEvents, getEventsByType, deleteEvent, getEventById, editEvent, addEvent, getSingleReleases, getSingleReleaseById, addSingleRelease, editSingleRelease, getBundleReleases, getBundleReleaseById, addBundleRelease, editBundleRelease, getBundleSongs, getBundleSongById, addBundleSong, editBundleSong, deleteBundleSong } from "./ReleaseManager";
 import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -14,6 +14,13 @@ export const Releases = () => {
     const [events, setEvents] = useState([])
     const [event, setEvent] = useState({});
     const [eventType, setEventType] = useState(0)
+    const [listSelected, setListSelected] = useState(true);
+    const [calendarSelected, setCalendarSelected] = useState(false);
+    const [eventListId, setEventListId] = useState(0)
+    const [matchedSingle, setMatchedSingle] = useState({});
+    const [viewMatchedSingle, setViewMatchedSingle] = useState(false);
+    const [matchedBundle, setMatchedBundle] = useState({});
+    const [viewMatchedBundle, setViewMatchedBundle] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [filteredByType, setFilteredByType] = useState(0)
     const [checkedIndex, setCheckedIndex] = useState(0);
@@ -21,10 +28,14 @@ export const Releases = () => {
     const [dateInputType, setDateInputType] = useState('');
     const [timeInputType, setTimeInputType] = useState('');
     const [eventId, setEventId] = useState(0)
+    const [bundleId, setBundleId] = useState(0)
     const [singleReleaseId, setSingleReleaseId] = useState(0)
     const [bundleReleaseId, setBundleReleaseId] = useState(0)
+    const [bundleSongId, setBundleSongId] = useState(0)
     const [singleReleases, setSingleReleases] = useState([])
     const [bundleReleases, setBundleReleases] = useState([])
+    const [bundleSongs, setBundleSongs] = useState([])
+    const [matchedBundleSongs, setMatchedBundleSongs] = useState([])
     const [singleReleaseForm, openSingleReleaseForm] = useState(false);
     const [singleReleaseEditForm, openSingleReleaseEditForm] = useState(false);
     const [newSingleRelease, updateNewSingleRelease] = useState({
@@ -79,6 +90,29 @@ export const Releases = () => {
         artwork: "",
         uploaded_to_distro: false
     })
+    const [bundleSongForm, openBundleSongForm] = useState(false);
+    const [bundleSongEditForm, openBundleSongEditForm] = useState(false);
+    const [newBundleSong, updateNewBundleSong] = useState({
+        user: 0,
+        bundle: 0,
+        song_title: "",
+        genre: "",
+        isrc: 0,
+        composer: "",
+        producer: "",
+        explicit: false
+    })
+    const [bundleSongEdit, updateBundleSongEdit] = useState({
+        id: 0,
+        user: 0,
+        bundle: 0,
+        song_title: "",
+        genre: "",
+        isrc: 0,
+        composer: "",
+        producer: "",
+        explicit: false
+    })
     const [newEvent, updateNewEvent] = useState({
         user: 0,
         event_type: 0,
@@ -129,6 +163,16 @@ export const Releases = () => {
         }, []
     )
 
+    useEffect(
+        () => {
+            getBundleSongs().then((data) => {
+                setBundleSongs(data)
+            })
+        }, []
+    )
+
+
+
 
 
 
@@ -143,6 +187,16 @@ export const Releases = () => {
             )
         ];
 
+        // Custom comparison function to compare the date strings
+        const compareDates = (a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateA - dateB;
+        };
+
+        // Sort the eventArr based on the date property
+        eventArr.sort(compareDates);
+
         setEvents(eventArr);
     }, [allEvents, singleReleases, bundleReleases]);
 
@@ -153,10 +207,10 @@ export const Releases = () => {
 
 
     useEffect(() => {
-        if (eventType === 3) {
+        if (eventType === 1) {
             openSingleReleaseForm(true)
         }
-        if (eventType === 4) {
+        if (eventType === 2) {
             openBundleReleaseForm(true)
         }
     }, [eventType])
@@ -193,7 +247,12 @@ export const Releases = () => {
                 updateBundleEdit(res)
             })
         }
-    }, [singleReleaseId, bundleReleaseId])
+        if (bundleSongId) {
+            getBundleSongById(bundleSongId).then((res) => {
+                updateBundleSongEdit(res)
+            })
+        }
+    }, [singleReleaseId, bundleReleaseId, bundleSongId])
 
 
 
@@ -204,7 +263,12 @@ export const Releases = () => {
         if (eventId && bundleReleaseId) {
             openBundleReleaseEditForm(true)
         }
-    }, [bundleReleaseId, singleReleaseId])
+        if (bundleSongId) {
+            openBundleSongEditForm(true)
+        }
+    }, [eventId, bundleReleaseId, singleReleaseId, bundleSongId])
+
+
 
 
 
@@ -224,8 +288,64 @@ export const Releases = () => {
     )
 
 
+    useEffect(() => {
+        if (eventListId !== 0) {
+            const matchedSingleRelease = singleReleases.find(release => release.event.id === eventListId);
+            const matchedBundleRelease = bundleReleases.find(release => release.event.id === eventListId);
+
+            if (matchedSingleRelease) {
+                setMatchedSingle(matchedSingleRelease);
+                setViewMatchedSingle(true)
+            } else if (matchedBundleRelease) {
+                setMatchedBundle(matchedBundleRelease);
+                setViewMatchedBundle(true)
+            }
+        }
+    }, [eventListId, singleReleases, bundleReleases]);
 
 
+    useEffect(() => {
+        if (matchedBundle) {
+            const filteredSongs = bundleSongs.filter(bundle => bundle.bundle.id === matchedBundle.id)
+            setMatchedBundleSongs(filteredSongs)
+
+        }
+    }, [bundleSongs, matchedBundle]);
+
+
+
+
+
+
+
+
+
+
+
+    // TOGGLE
+
+    const handleOptionClick = (option) => {
+        if (option === 1) {
+            setCalendarSelected(false);
+            setListSelected(true);
+        }
+        if (option === 2) {
+            setListSelected(false);
+            setCalendarSelected(true);
+        }
+    };
+
+
+
+
+    //LIST VIEW
+
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
 
 
 
@@ -415,6 +535,56 @@ export const Releases = () => {
     }
 
 
+    // POST BUNDLE SONG RELEASE
+
+    const bundleSongSaveButtonClick = async (event) => {
+        event.preventDefault()
+
+
+        let singleToSendToAPI = {
+            user: parseInt(localUser),
+            bundle: bundleId,
+            song_title: newBundleSong.song_title,
+            genre: newBundleSong.genre,
+            isrc: newBundleSong.isrc,
+            composer: newBundleSong.composer,
+            producer: newBundleSong.producer,
+            explicit: newBundleSong.explicit
+        }
+
+        await addBundleSong(singleToSendToAPI)
+            .then(response => response.json())
+
+
+        const newBundleSongs = await getBundleSongs()
+        setBundleSongs(newBundleSongs)
+    }
+
+
+    // EDIT BUNDLE SONG
+
+    const bundleSongEditButtonClick = async (event) => {
+        event.preventDefault()
+
+
+
+        await editBundleSong({
+            id: bundleSongId,
+            user: parseInt(localUser),
+            bundle: bundleSongEdit.bundle.id,
+            song_title: bundleSongEdit.song_title,
+            genre: bundleSongEdit.genre,
+            isrc: bundleSongEdit.isrc,
+            composer: bundleSongEdit.composer,
+            producer: bundleSongEdit.producer,
+            explicit: bundleSongEdit.explicit
+        })
+
+
+        const newBundleSongs = await getBundleSongs()
+        setBundleSongs(newBundleSongs)
+    }
+
 
 
 
@@ -435,24 +605,43 @@ export const Releases = () => {
     return <>
 
         <div className="container">
+
             <div className="button-checkbox-container">
                 <button onClick={() => setIsOpen(true)}>
                     Add New Event
                 </button>
                 <span className="filterBox">
-                    <span className="filterThree">
+                    <span className="releaseFilterOne">
                         Show All <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
                             onClick={() => setFilteredByType(0)} />
                     </span>
-                    <span className="filterThree">
-                        Show Single Releases Only <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
+                    <span className="releaseFilterThree">
+                        Show Single Releases <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
                             onClick={() => setFilteredByType(1)} />
                     </span>
-                    <span className="filterFour">
-                        Show Bundle Releases Only <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
+                    <span className="releaseFilterFour">
+                        Show Bundle Releases <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
                             onClick={() => setFilteredByType(2)} />
                     </span>
                 </span>
+            </div>
+            <div className="button-view-container">
+                <button
+                    onClick={() => handleOptionClick(1)}
+                    style={{
+                        backgroundColor: listSelected ? 'green' : 'white',
+                    }}
+                >
+                    List View
+                </button>
+                <button
+                    onClick={() => handleOptionClick(2)}
+                    style={{
+                        backgroundColor: calendarSelected ? 'green' : 'white',
+                    }}
+                >
+                    Calendar View
+                </button>
             </div>
 
 
@@ -1030,7 +1219,6 @@ export const Releases = () => {
                     </div>
                 )
             }
-
         </div >
 
         <div>
@@ -1069,22 +1257,305 @@ export const Releases = () => {
 
         </div>
 
-        <div className="react-calendar">
-            <FullCalendar
-                // defaultView="dayGridMonth"
-                // header={{
-                //     left: "prev,next",
-                //     center: "title",
-                //     right: "dayGridMonth,timeGridWeek,timeGridDay",
-                //     height: "auto"
-                // }}
-                themeSystem="Simplex"
-                plugins={[dayGridPlugin]}
-                events={events}
-                eventClick={(info) => {
-                    setEvent(info.event);
-                    handleShowModal();
-                }} />
-        </div>
+
+        {
+            listSelected && (
+                <div className="listViewContainer">
+                    <ul>
+                        {
+                            events.map((event) => {
+                                const formattedListDate = formatDate(event.date)
+                                return (
+                                    <li className="eventCard" key={event.id} value={event.id}>
+                                        <div>
+                                            <h3>{event.title}</h3>
+                                            <section>{formattedListDate}</section>
+                                            <section>{event.description}</section>
+                                            <button onClick={() => { setEventListId(event.id) }}>View Details</button>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                    {
+                        viewMatchedSingle && (
+                            <div className="pop_up_single">
+                                <h3>Title: {matchedSingle.song_title}</h3>
+                                <div>Genre: {matchedSingle.genre}</div>
+                                <div>UPC: {matchedSingle.upc}</div>
+                                <div>ISRC: {matchedSingle.isrc}</div>
+                                <div>Composer: {matchedSingle.composer}</div>
+                                <div>Producer: {matchedSingle.producer}</div>
+                                <div>Explicit: {matchedSingle.explicit ? 'Yes' : 'No'}</div>
+                                <div>Audio URL: {matchedSingle.audio_url}</div>
+                                <div>Artwork: {matchedSingle.artwork}</div>
+                                <div>Ready for Distribution: {matchedSingle.uploaded_to_distro ? 'Yes' : 'No'}</div>
+                                <button className="btn btn-secondary" onClick={async () => {
+                                    setViewMatchedSingle(false)
+                                    setEventListId(0)
+                                    setEventId(parseInt(matchedSingle.event.id));
+                                }}>
+                                    Edit
+                                </button>
+                                <button className="btn btn-secondary" onClick={async () => {
+                                    await deleteEvent(parseInt(matchedSingle.event.id));
+                                    const newEvents = await getEvents();
+                                    setAllEvents(newEvents);
+                                }}>Delete</button>
+                                <button onClick={() => {
+                                    setViewMatchedSingle(false)
+                                    setEventListId(0)
+                                }}>Close</button>
+                            </div>
+                        )
+                    }
+                    {
+                        viewMatchedBundle && (
+                            <div className="pop_up_gig">
+                                <h3>Title: {matchedBundle.bundle_title}</h3>
+                                <div>Genre: {matchedBundle.genre}</div>
+                                <div>UPC: {matchedBundle.upc}</div>
+                                <div>Audio URL: {matchedBundle.audio_url}</div>
+                                <div>Artwork: {matchedBundle.artwork}</div>
+                                <div>Ready for Distribution: {matchedBundle.uploaded_to_distro ? 'Yes' : 'No'}</div>
+                                <button onClick={() => {
+                                    setBundleId(matchedBundle.id)
+                                    openBundleSongForm(true)
+                                }}>Add Song to Bundle Release</button>
+                                {
+                                    bundleSongForm && (
+                                        <div className="pop_up_rehearsal">
+                                            <form className="relativeForm">
+                                                <h3>Bundle Song</h3>
+                                                <fieldset>
+                                                    <div>Song Title:
+                                                        <input type="text" id="song_title" onChange={
+                                                            (evt) => {
+                                                                const copy = { ...newBundleSong }
+                                                                copy.song_title = evt.target.value
+                                                                updateNewBundleSong(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>Genre:
+                                                        <input type="text" id="genre" onChange={
+                                                            (evt) => {
+                                                                const copy = { ...newBundleSong }
+                                                                copy.genre = evt.target.value
+                                                                updateNewBundleSong(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>ISRC:
+                                                        <input type="number" id="isrc" onChange={
+                                                            (evt) => {
+                                                                const copy = { ...newBundleSong }
+                                                                copy.isrc = evt.target.value
+                                                                updateNewBundleSong(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>Composer:
+                                                        <input type="text" id="composer" onChange={
+                                                            (evt) => {
+                                                                const copy = { ...newBundleSong }
+                                                                copy.composer = evt.target.value
+                                                                updateNewBundleSong(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>Producer:
+                                                        <input type="text" id="producer" onChange={
+                                                            (evt) => {
+                                                                const copy = { ...newBundleSong }
+                                                                copy.producer = evt.target.value
+                                                                updateNewBundleSong(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>Explicit:
+                                                        <input type="checkbox"
+                                                            value={newBundleSong.explicit}
+                                                            onChange={
+                                                                (evt) => {
+                                                                    const copy = { ...newBundleSong }
+                                                                    copy.explicit = evt.target.checked
+                                                                    updateNewBundleSong(copy)
+                                                                }
+                                                            } />
+                                                    </div>
+                                                    <button onClick={(clickEvent) => {
+                                                        bundleSongSaveButtonClick(clickEvent)
+                                                        openBundleSongForm(false)
+                                                        setBundleId(0)
+                                                    }}>Save</button>
+                                                    <button className="cancelItem" onClick={() => {
+                                                        openBundleSongForm(false)
+                                                        setBundleId(0)
+                                                    }}>Cancel</button>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    )
+                                }
+                                {
+                                    bundleSongEditForm && (
+                                        <div className="pop_up_rehearsal">
+                                            <form className="relativeForm">
+                                                <h3>Bundle Song</h3>
+                                                <fieldset>
+                                                    <div>Song Title:
+                                                        <input type="text" id="song_title" placeholder={bundleSongEdit.song_title} onChange={
+                                                            (evt) => {
+                                                                const copy = { ...bundleSongEdit }
+                                                                copy.song_title = evt.target.value
+                                                                updateBundleSongEdit(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>Genre:
+                                                        <input type="text" id="genre" placeholder={bundleSongEdit.genre} onChange={
+                                                            (evt) => {
+                                                                const copy = { ...bundleSongEdit }
+                                                                copy.genre = evt.target.value
+                                                                updateBundleSongEdit(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>ISRC:
+                                                        <input type="number" id="isrc" placeholder={bundleSongEdit.isrc} onChange={
+                                                            (evt) => {
+                                                                const copy = { ...bundleSongEdit }
+                                                                copy.isrc = evt.target.value
+                                                                updateBundleSongEdit(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>Composer:
+                                                        <input type="text" id="composer" placeholder={bundleSongEdit.composer} onChange={
+                                                            (evt) => {
+                                                                const copy = { ...bundleSongEdit }
+                                                                copy.composer = evt.target.value
+                                                                updateBundleSongEdit(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>Producer:
+                                                        <input type="text" id="producer" placeholder={bundleSongEdit.producer} onChange={
+                                                            (evt) => {
+                                                                const copy = { ...bundleSongEdit }
+                                                                copy.producer = evt.target.value
+                                                                updateBundleSongEdit(copy)
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div>Explicit:
+                                                        <input type="checkbox"
+                                                            value={bundleSongEdit.explicit}
+                                                            onChange={
+                                                                (evt) => {
+                                                                    const copy = { ...bundleSongEdit }
+                                                                    copy.explicit = evt.target.checked
+                                                                    updateBundleSongEdit(copy)
+                                                                }
+                                                            } />
+                                                    </div>
+                                                    <button onClick={(clickEvent) => {
+                                                        bundleSongEditButtonClick(clickEvent)
+                                                        openBundleSongEditForm(false)
+                                                        setBundleSongId(0)
+                                                    }}>Save</button>
+                                                    <button className="cancelItem" onClick={() => {
+                                                        openBundleSongEditForm(false)
+                                                        setBundleSongId(0)
+                                                    }}>Cancel</button>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    )
+                                }
+                                {
+                                    matchedBundleSongs ? (
+                                        <div className="matched_bundle_songs">
+                                            {
+                                                matchedBundleSongs.map(song => {
+                                                    return <>
+                                                        <li key={song.id} value={song.id}>
+                                                            <h3>Title: {song.song_title}</h3>
+                                                            <div>Genre: {song.genre}</div>
+                                                            <div>ISRC: {song.isrc}</div>
+                                                            <div>Composer: {song.composer}</div>
+                                                            <div>Producer: {song.producer}</div>
+                                                            <div>Explicit: {song.explicit ? 'Yes' : 'No'}</div>
+                                                            <button className="btn btn-secondary" onClick={async () => {
+                                                                setBundleSongId(song.id)
+                                                            }}>
+                                                                Edit
+                                                            </button>
+                                                            <button className="btn btn-secondary" onClick={async () => {
+                                                                await deleteBundleSong(parseInt(song.id));
+                                                                const newBundleSongs = await getBundleSongs();
+                                                                setBundleSongs(newBundleSongs);
+                                                            }}>Delete</button>
+                                                        </li>
+                                                    </>
+                                                })
+                                            }
+                                        </div>
+                                    )
+                                        :
+                                        ""
+                                }
+                                <div>
+                                    <button className="btn btn-secondary" onClick={async () => {
+                                        setViewMatchedBundle(false)
+                                        setEventListId(0)
+                                        setEventId(parseInt(matchedBundle.event.id));
+                                    }}>
+                                        Edit
+                                    </button>
+                                    <button className="btn btn-secondary" onClick={async () => {
+                                        await deleteEvent(parseInt(matchedBundle.event.id));
+                                        const newEvents = await getEvents();
+                                        setAllEvents(newEvents);
+                                    }}>Delete</button>
+                                    <button onClick={() => {
+                                        setViewMatchedBundle(false)
+                                        setEventListId(0)
+                                    }}>Close</button>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+            )
+        }
+
+
+        {
+            calendarSelected && (
+
+                <div className="react-calendar">
+                    <FullCalendar
+                        // defaultView="dayGridMonth"
+                        // header={{
+                        //     left: "prev,next",
+                        //     center: "title",
+                        //     right: "dayGridMonth,timeGridWeek,timeGridDay",
+                        //     height: "auto"
+                        // }}
+                        themeSystem="Simplex"
+                        plugins={[dayGridPlugin]}
+                        events={events}
+                        eventClick={(info) => {
+                            setEvent(info.event);
+                            handleShowModal();
+                        }} />
+                </div>
+            )
+        }
+
+
     </>;
 }

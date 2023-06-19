@@ -14,6 +14,13 @@ export const LiveEvents = () => {
     const [events, setEvents] = useState([])
     const [event, setEvent] = useState({});
     const [eventType, setEventType] = useState(0)
+    const [listSelected, setListSelected] = useState(true);
+    const [calendarSelected, setCalendarSelected] = useState(false);
+    const [eventListId, setEventListId] = useState(0)
+    const [matchedRehearsal, setMatchedRehearsal] = useState({});
+    const [viewMatchedRehearsal, setViewMatchedRehearsal] = useState(false);
+    const [matchedGig, setMatchedGig] = useState({});
+    const [viewMatchedGig, setViewMatchedGig] = useState(false);
     const [eventsFromAPI, setEventsFromAPI] = useState([])
     const [searchOption, setSearchOption] = useState('');
     const [startSearch, setStartSearch] = useState(false);
@@ -149,6 +156,16 @@ export const LiveEvents = () => {
             )
         ];
 
+        // Custom comparison function to compare the date strings
+        const compareDates = (a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateA - dateB;
+        };
+
+        // Sort the eventArr based on the date property
+        eventArr.sort(compareDates);
+
         setEvents(eventArr);
     }, [allEvents, rehearsals, gigs]);
 
@@ -232,7 +249,48 @@ export const LiveEvents = () => {
 
 
 
+    useEffect(() => {
+        if (eventListId !== 0) {
+            const matchedRehearsals = rehearsals.find(release => release.event.id === eventListId);
+            const matchedGig = gigs.find(release => release.event.id === eventListId);
 
+            if (matchedRehearsals) {
+                setMatchedRehearsal(matchedRehearsals);
+                setViewMatchedRehearsal(true)
+            } else if (matchedGig) {
+                setMatchedGig(matchedGig);
+                setViewMatchedGig(true)
+            }
+        }
+    }, [eventListId, rehearsals, gigs]);
+
+
+
+
+    // TOGGLE
+
+    const handleOptionClick = (option) => {
+        if (option === 1) {
+            setCalendarSelected(false);
+            setListSelected(true);
+        }
+        if (option === 2) {
+            setListSelected(false);
+            setCalendarSelected(true);
+        }
+    };
+
+
+
+
+    //LIST VIEW
+
+
+    const formatListDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
 
 
 
@@ -350,30 +408,30 @@ export const LiveEvents = () => {
         const year = currentDate.getFullYear();
         let month = currentDate.getMonth() + 1;
         let day = currentDate.getDate();
-      
+
         // Add leading zero if month/day is a single digit
         month = month < 10 ? '0' + month : month;
         day = day < 10 ? '0' + day : day;
-      
+
         const formattedDate = `${year}-${month}-${day}`;
         return formattedDate;
-      }
+    }
 
-      const getDateAfter30DaysFormatted = () => {
+    const getDateAfter30DaysFormatted = () => {
         const currentDate = new Date();
         currentDate.setDate(currentDate.getDate() + 30);
-      
+
         const year = currentDate.getFullYear();
         let month = currentDate.getMonth() + 1;
         let day = currentDate.getDate();
-      
+
         // Add leading zero if month/day is a single digit
         month = month < 10 ? '0' + month : month;
         day = day < 10 ? '0' + day : day;
-      
+
         const formattedDate = `${year}-${month}-${day}`;
         return formattedDate;
-      }
+    }
 
 
 
@@ -670,19 +728,37 @@ export const LiveEvents = () => {
                     Add New Event
                 </button>
                 <span className="filterBox">
-                    <span className="filterThree">
+                    <span className="liveFilterOne">
                         Show All <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
                             onClick={() => setFilteredByType(0)} />
                     </span>
-                    <span className="filterThree">
+                    <span className="liveFilterThree">
                         Show Rehearsals Only <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
                             onClick={() => setFilteredByType(3)} />
                     </span>
-                    <span className="filterFour">
+                    <span className="liveFilterFour">
                         Show Gigs Only <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
                             onClick={() => setFilteredByType(4)} />
                     </span>
                 </span>
+            </div>
+            <div className="button-view-container">
+                <button
+                    onClick={() => handleOptionClick(1)}
+                    style={{
+                        backgroundColor: listSelected ? 'green' : 'white',
+                    }}
+                >
+                    List View
+                </button>
+                <button
+                    onClick={() => handleOptionClick(2)}
+                    style={{
+                        backgroundColor: calendarSelected ? 'green' : 'white',
+                    }}
+                >
+                    Calendar View
+                </button>
             </div>
 
 
@@ -1269,22 +1345,109 @@ export const LiveEvents = () => {
 
         </div>
 
-        <div className="react-calendar">
-            <FullCalendar
-                // defaultView="dayGridMonth"
-                // header={{
-                //     left: "prev,next",
-                //     center: "title",
-                //     right: "dayGridMonth,timeGridWeek,timeGridDay",
-                //     height: "auto"
-                // }}
-                themeSystem="Simplex"
-                plugins={[dayGridPlugin]}
-                events={events}
-                eventClick={(info) => {
-                    setEvent(info.event);
-                    handleShowModal();
-                }} />
-        </div>
+        {
+            listSelected && (
+                <div className="listViewContainer">
+                    <ul>
+                        {
+                            events.map((event) => {
+                                const formattedListDate = formatDate(event.date)
+                                return (
+                                    <li className="eventCard" key={event.id} value={event.id}>
+                                        <div>
+                                            <h3>{event.title}</h3>
+                                            <section>{formattedListDate}</section>
+                                            <section>{event.description}</section>
+                                            <button onClick={() => { setEventListId(event.id) }}>View Details</button>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                    {
+                        viewMatchedRehearsal && (
+                            <div className="pop_up_single">
+                                <h3>Location: {matchedRehearsal.location}</h3>
+                                <div>Band Members: {matchedRehearsal.band_info}</div>
+                                <button className="btn btn-secondary" onClick={async () => {
+                                    setViewMatchedRehearsal(false)
+                                    setEventListId(0)
+                                    setEventId(parseInt(matchedRehearsal.event.id));
+                                }}>
+                                    Edit
+                                </button>
+                                <button className="btn btn-secondary" onClick={async () => {
+                                    await deleteEvent(parseInt(matchedRehearsal.event.id));
+                                    const newEvents = await getEvents();
+                                    setAllEvents(newEvents);
+                                }}>Delete</button>
+                                <button onClick={() => {
+                                    setViewMatchedRehearsal(false)
+                                    setEventListId(0)
+                                }}>Close</button>
+                            </div>
+                        )
+                    }
+                    {
+                        viewMatchedGig && (
+                            <div className="pop_up_single">
+                                <h3>City/State: {matchedGig.song_city_state}</h3>
+                                <div>Venue: {matchedGig.venue}</div>
+                                <div>Band Members: {matchedGig.band_info}</div>
+                                <div>Age Requirement: {matchedGig.age_requirement}</div>
+                                <div>Ticket Price: {matchedGig.ticket_price}</div>
+                                <div>Ticket Link: {matchedGig.ticket_link}</div>
+                                <div>Guarantee: {matchedGig.guarantee}</div>
+                                <div>Sold out: {matchedGig.sold_out ? 'Yes' : 'No'}</div>
+                                <div>Announced: {matchedGig.announced ? 'Yes' : 'No'}</div>
+                                <div>Flier: {matchedGig.flier}</div>
+                                <div>Stage Plot: {matchedGig.stage_plot}</div>
+                                <div>Input List: {matchedGig.input_list}</div>
+                                <button className="btn btn-secondary" onClick={async () => {
+                                    setViewMatchedGig(false)
+                                    setEventListId(0)
+                                    setEventId(parseInt(matchedGig.event.id));
+                                }}>
+                                    Edit
+                                </button>
+                                <button className="btn btn-secondary" onClick={async () => {
+                                    await deleteEvent(parseInt(matchedGig.event.id));
+                                    const newEvents = await getEvents();
+                                    setAllEvents(newEvents);
+                                }}>Delete</button>
+                                <button onClick={() => {
+                                    setViewMatchedGig(false)
+                                    setEventListId(0)
+                                }}>Close</button>
+                            </div>
+                        )
+                    }
+                </div>
+            )
+        }
+
+        {
+            calendarSelected && (
+
+                <div className="react-calendar">
+                    <FullCalendar
+                        // defaultView="dayGridMonth"
+                        // header={{
+                        //     left: "prev,next",
+                        //     center: "title",
+                        //     right: "dayGridMonth,timeGridWeek,timeGridDay",
+                        //     height: "auto"
+                        // }}
+                        themeSystem="Simplex"
+                        plugins={[dayGridPlugin]}
+                        events={events}
+                        eventClick={(info) => {
+                            setEvent(info.event);
+                            handleShowModal();
+                        }} />
+                </div>
+            )
+        }
     </>;
 }

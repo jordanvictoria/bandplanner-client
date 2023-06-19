@@ -122,16 +122,19 @@
     padding: 2px;
 }
 
-.filterOne {
-    margin-right: 10px;
+.liveFilterOne {
+    margin-right: 5px;
+    font-size: small;
 }
 
-.filterTwo {
-    margin-right: 10px;
+.liveFilterThree {
+    margin-right: 5px;
+    font-size: small;
 }
 
-.filterFour {
-    margin-left: 10px;
+.liveFilterFour {
+    /* margin-left: 5px; */
+    font-size: small;
 }
 
 

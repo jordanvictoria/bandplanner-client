@@ -1,59 +1,87 @@
-
 .container {
     position: relative;
 }
 
 
 
-.pop_up {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: whitesmoke;
-    border: 2px solid black;
-    /* Ensure the pop-up is in front of other content */
-    /* Add additional styles for the pop-up */
-}
-
-.pop_up_rehearsal {
-    position: fixed;
-    top: 28%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: whitesmoke;
-    border: 2px solid black;
-     /* Ensure the pop-up is in front of other content */
-    /* Add additional styles for the pop-up */
-}
-
-.pop_up_gig {
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: whitesmoke; 
-    border: 2px solid black;
-    /* Ensure the pop-up is in front of other content */
-    /* Add additional styles for the pop-up */
-}
 
 
-
+/* BUTTONS AND FILTER */
 
 
 .button-checkbox-container {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 23%;
     transform: translateY(50%);
 }
 
-.react-calendar {
+
+.button-view-container {
     position: absolute;
+    top: 0;
+    right: 23%;
+    transform: translateY(50%);
+}
+
+.filterBox {
+    border: 2px solid black;
+    margin-left: 15px;
+    padding: 2px;
+}
+
+.releaseFilterOne {
+    margin-right: 5px;
+    font-size: small;
+}
+
+.releaseFilterThree {
+    margin-right: 5px;
+    font-size: small;
+}
+
+.releaseFilterFour {
+    /* margin-left: 5px; */
+    font-size: small;
+}
+
+
+
+
+
+
+/* LIST VIEW */
+
+
+
+.listViewContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 70%;
+}
+
+.eventCard {
+    border: 2px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* CALENDAR */
+
+
+.react-calendar {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -96,20 +124,70 @@
     background-color: #f7f7f7;
 }
 
-.filterBox {
+
+
+
+
+
+/* POP UPs */
+
+
+
+.pop_up {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
     border: 2px solid black;
-    margin-left: 15px;
-    padding: 2px;
+    /* Ensure the pop-up is in front of other content */
+    /* Add additional styles for the pop-up */
 }
 
-.filterOne {
-    margin-right: 10px;
+.pop_up_rehearsal {
+    position: fixed;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    /* Ensure the pop-up is in front of other content */
+    /* Add additional styles for the pop-up */
 }
 
-.filterTwo {
-    margin-right: 10px;
+.pop_up_gig {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    /* Ensure the pop-up is in front of other content */
+    /* Add additional styles for the pop-up */
 }
 
-.filterFour {
-    margin-left: 10px;
+
+.pop_up_single {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    /* Ensure the pop-up is in front of other content */
+    /* Add additional styles for the pop-up */
+}
+
+
+
+
+.matched_bundle_songs {
+    height: 300px;
+    /* Set the desired height for the scrollable div */
+    overflow: auto;
+    /* Enable scrolling */
 }

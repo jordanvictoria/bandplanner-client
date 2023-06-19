@@ -17,6 +17,8 @@ export const getBandUsers = () => {
 
 
 
+
+
 // events
 
 
@@ -123,7 +125,7 @@ export const addSingleRelease = (newSingleRelease) => {
             "Content-Type": "application/json",
             "Authorization": `Token ${localStorage.getItem("band_token")}`
         },
-        body: JSON.stringify(newEvent)
+        body: JSON.stringify(newSingleRelease)
     })
 };
 export const editSingleRelease = (newSingleRelease) => {
@@ -170,7 +172,7 @@ export const addBundleRelease = (newBundleRelease) => {
             "Content-Type": "application/json",
             "Authorization": `Token ${localStorage.getItem("band_token")}`
         },
-        body: JSON.stringify(newEvent)
+        body: JSON.stringify(newBundleRelease)
     })
 };
 export const editBundleRelease = (newBundleRelease) => {
@@ -182,5 +184,62 @@ export const editBundleRelease = (newBundleRelease) => {
             "Authorization": `Token ${localStorage.getItem("band_token")}`
         },
         body: JSON.stringify(newBundleRelease)
+    })
+}
+
+
+
+
+
+// bundle songs
+
+export const getBundleSongs = () => {
+    return fetch("http://localhost:8000/bundlesongs", {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("band_token")}`
+        }
+    })
+        .then((res) => res.json())
+
+};
+
+export const getBundleSongById = (id) => {
+    return fetch(`http://localhost:8000/bundlesongs/${id}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("band_token")}`
+        }
+    }).then((res) => res.json());
+};
+
+export const addBundleSong = (newBundleSong) => {
+    return fetch("http://localhost:8000/bundlesongs", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("band_token")}`
+        },
+        body: JSON.stringify(newBundleSong)
+    })
+};
+export const editBundleSong = (newBundleSong) => {
+    return fetch(`http://localhost:8000/bundlesongs/${newBundleSong.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("band_token")}`
+        },
+        body: JSON.stringify(newBundleSong)
+    })
+}
+
+export const deleteBundleSong = (id) => {
+    return fetch(`http://localhost:8000/bundlesongs/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("band_token")}`
+        }
     })
 }
