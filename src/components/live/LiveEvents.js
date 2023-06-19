@@ -4,6 +4,7 @@ import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Modal from "react-bootstrap/Modal";
+import { ImageUploader } from 'cloudinary-react';
 import "./live.css"
 // import '@fullcalendar/common/main.css';
 // import '@fullcalendar/daygrid/main.css';

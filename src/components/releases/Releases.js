@@ -4,7 +4,10 @@ import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Modal from "react-bootstrap/Modal";
+import { UploadFile } from "../cloudinary/UploadFile"
+import { ReplaceFile } from "../cloudinary/ReplaceFile"
 import "./releases.css"
+import cloudinary from 'cloudinary-core';
 // import '@fullcalendar/common/main.css';
 // import '@fullcalendar/daygrid/main.css';
 
@@ -14,6 +17,10 @@ export const Releases = () => {
     const [events, setEvents] = useState([])
     const [event, setEvent] = useState({});
     const [eventType, setEventType] = useState(0)
+    const [url, setURL] = useState("")
+    const [singleEditURL, setSingleEditURL] = useState("")
+    const [bundleEditURL, setBundleEditURL] = useState("")
+    const [error, updateError] = useState("")
     const [listSelected, setListSelected] = useState(true);
     const [calendarSelected, setCalendarSelected] = useState(false);
     const [eventListId, setEventListId] = useState(0)
@@ -240,11 +247,13 @@ export const Releases = () => {
         if (singleReleaseId) {
             getSingleReleaseById(singleReleaseId).then((res) => {
                 updateSingleEdit(res)
+                setSingleEditURL(res.artwork)
             })
         }
         if (bundleReleaseId) {
             getBundleReleaseById(bundleReleaseId).then((res) => {
                 updateBundleEdit(res)
+                setBundleEditURL(res.artwork)
             })
         }
         if (bundleSongId) {
@@ -313,6 +322,28 @@ export const Releases = () => {
     }, [bundleSongs, matchedBundle]);
 
 
+    useEffect(
+        () => {
+            if (url !== "") {
+                if (openSingleReleaseForm) {
+                    HandleNewSingleChange(url)
+                }
+                if (openSingleReleaseEditForm) {
+                    HandleSingleEditChange(url)
+                }
+                if (openBundleReleaseForm) {
+                    HandleNewBundleChange(url)
+                }
+                if (openBundleReleaseEditForm) {
+                    HandleBundleEditChange(url)
+                }
+            }
+        }, [url, openSingleReleaseForm, openSingleReleaseEditForm, openBundleReleaseForm, openBundleReleaseEditForm])
+
+
+
+
+
 
 
 
@@ -379,6 +410,52 @@ export const Releases = () => {
             resolve();
         });
     };
+
+
+
+
+
+
+
+    // CLOUDINARY
+
+    function handleOnUpload(error, result, widget) {
+        if (error) {
+            updateError(error);
+            widget.close({
+                quiet: true
+            });
+            return;
+        }
+        setURL(result?.info?.secure_url)
+    }
+
+    const HandleNewSingleChange = (url) => {
+        const copy = { ...newSingleRelease }
+        copy.artwork = url
+        updateNewSingleRelease(copy)
+    }
+
+    const HandleNewBundleChange = (url) => {
+        const copy = { ...newBundleRelease }
+        copy.artwork = url
+        updateNewBundleRelease(copy)
+    }
+
+    const HandleSingleEditChange = (url) => {
+        setSingleEditURL("")
+        const copy = { ...singleEdit }
+        copy.artwork = url
+        updateSingleEdit(copy)
+    }
+
+    const HandleBundleEditChange = (url) => {
+        setBundleEditURL("")
+        const copy = { ...bundleEdit }
+        copy.artwork = url
+        updateBundleEdit(copy)
+    }
+
 
 
 
@@ -790,13 +867,11 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Artwork:
-                                    <input type="url" id="artwork" onChange={
-                                        (evt) => {
-                                            const copy = { ...newSingleRelease }
-                                            copy.artwork = evt.target.value
-                                            updateNewSingleRelease(copy)
-                                        }
-                                    } />
+
+                                    {url === "" ? ""
+                                        : <img src={url} alt="artwork" />}
+
+                                    <UploadFile onUpload={handleOnUpload} />
                                 </div>
                                 <div>Uploaded to Distro:
                                     <input type="checkbox"
@@ -813,10 +888,12 @@ export const Releases = () => {
                                     singleSaveButtonClick(clickEvent)
                                     openSingleReleaseForm(false)
                                     setEventType(0)
+                                    setURL("")
                                 }}>Save</button>
                                 <button className="cancelItem" onClick={() => {
                                     openSingleReleaseForm(false)
                                     setEventType(0)
+                                    setURL("")
                                 }}>Cancel</button>
                             </fieldset>
                         </form>
@@ -945,6 +1022,13 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Artwork:
+                                    {singleEditURL === "" ? ""
+                                        : <img src={singleEditURL} alt="artwork" />}
+                                    {url === "" ? ""
+                                        : <img src={url} alt="artwork" />}
+                                    <ReplaceFile onUpload={handleOnUpload} />
+                                </div>
+                                <div>Artwork:
                                     <input type="url" id="artwork" placeholder={singleEdit.artwork} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
@@ -1067,13 +1151,9 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Artwork:
-                                    <input type="url" id="artwork" onChange={
-                                        (evt) => {
-                                            const copy = { ...newBundleRelease }
-                                            copy.artwork = evt.target.value
-                                            updateNewBundleRelease(copy)
-                                        }
-                                    } />
+                                    {url === "" ? ""
+                                        : <img src={url} alt="artwork" />}
+                                    <UploadFile onUpload={handleOnUpload} />
                                 </div>
                                 <div>Uploaded to Distro:
                                     <input type="checkbox"
@@ -1090,10 +1170,12 @@ export const Releases = () => {
                                     bundleSaveButtonClick(clickEvent)
                                     openBundleReleaseForm(false)
                                     setEventType(0)
+                                    setURL("")
                                 }}>Save</button>
                                 <button className="cancelItem" onClick={() => {
                                     openBundleReleaseForm(false)
                                     setEventType(0)
+                                    setURL("")
                                 }}>Cancel</button>
                             </fieldset>
                         </form>
@@ -1184,13 +1266,11 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Artwork:
-                                    <input type="url" id="artwork" placeholder={bundleEdit.artwork} onChange={
-                                        (evt) => {
-                                            const copy = { ...bundleEdit }
-                                            copy.artwork = evt.target.value
-                                            updateBundleEdit(copy)
-                                        }
-                                    } />
+                                    {bundleEditURL === "" ? ""
+                                        : <img src={bundleEditURL} alt="artwork" />}
+                                    {url === "" ? ""
+                                        : <img src={url} alt="artwork" />}
+                                    <ReplaceFile onUpload={handleOnUpload} />
                                 </div>
                                 <div>Uploaded to Distro:
                                     <input type="checkbox"
