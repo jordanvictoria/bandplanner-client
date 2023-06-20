@@ -25,8 +25,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/pressclipping" element={<PressClipping  />} />
       <Route path="/medialist" element={<MediaList  />} />
       <Route path="/profile" element={<ViewProfile  />} />
-      <Route path="/editprofile" element={<ProfileEdit  />} />
-      lists/:listId/edit
+      <Route path="/profile/:profileId/edit" element={<ProfileEdit  />} />
       </Route>
     </Routes>
   </>

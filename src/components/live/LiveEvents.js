@@ -4,7 +4,8 @@ import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Modal from "react-bootstrap/Modal";
-import { ImageUploader } from 'cloudinary-react';
+import { UploadFile } from "../cloudinary/UploadFile"
+import { ReplaceFile } from "../cloudinary/ReplaceFile"
 import "./live.css"
 // import '@fullcalendar/common/main.css';
 // import '@fullcalendar/daygrid/main.css';
@@ -15,6 +16,13 @@ export const LiveEvents = () => {
     const [events, setEvents] = useState([])
     const [event, setEvent] = useState({});
     const [eventType, setEventType] = useState(0)
+    const [flierURL, setFlierURL] = useState("")
+    const [stagePlotURL, setStagePlotURL] = useState("")
+    const [inputListURL, setInputListURL] = useState("")
+    const [flierEditURL, setFlierEditURL] = useState("")
+    const [stagePlotEditURL, setStagePlotEditURL] = useState("")
+    const [inputListEditURL, setInputListEditURL] = useState("")
+    const [error, updateError] = useState("")
     const [listSelected, setListSelected] = useState(true);
     const [calendarSelected, setCalendarSelected] = useState(false);
     const [eventListId, setEventListId] = useState(0)
@@ -215,6 +223,9 @@ export const LiveEvents = () => {
         if (gigId) {
             getGigById(gigId).then((res) => {
                 updateGigEdit(res)
+                setFlierEditURL(res.flier)
+                setStagePlotEditURL(res.stage_plot)
+                setInputListEditURL(res.input_list)
             })
         }
     }, [rehearsalId, gigId])
@@ -266,6 +277,131 @@ export const LiveEvents = () => {
     }, [eventListId, rehearsals, gigs]);
 
 
+    useEffect(
+        () => {
+            if (gigForm) {
+                if (flierURL !== "") {
+                    HandleNewFlierChange(flierURL)
+                }
+                if (stagePlotURL !== "") {
+                    HandleNewStagePlotChange(stagePlotURL)
+                }
+                if (inputListURL !== "") {
+                    HandleNewInputListChange(inputListURL)
+                }
+            }
+            if (gigEditForm) {
+                if (flierURL !== "") {
+                    HandleFlierEditChange(flierURL)
+                }
+                if (stagePlotURL !== "") {
+                    HandleStagePlotEditChange(stagePlotURL)
+                }
+                if (inputListURL !== "") {
+                    HandleInputListEditChange(inputListURL)
+                }
+            }
+        }, [flierURL, stagePlotURL, inputListURL])
+
+
+
+
+
+
+
+    // CLOUDINARY
+
+    function handleFlierUpload(error, result, widget) {
+        if (error) {
+            updateError(error);
+            widget.close({
+                quiet: true
+            });
+            return;
+        }
+        setFlierURL(result?.info?.secure_url)
+    }
+
+    function handleStagePlotUpload(error, result, widget) {
+        if (error) {
+            updateError(error);
+            widget.close({
+                quiet: true
+            });
+            return;
+        }
+        setStagePlotURL(result?.info?.secure_url)
+    }
+
+    function handleInputListUpload(error, result, widget) {
+        if (error) {
+            updateError(error);
+            widget.close({
+                quiet: true
+            });
+            return;
+        }
+        setInputListURL(result?.info?.secure_url)
+    }
+
+
+
+
+
+
+
+
+
+
+
+    const HandleNewFlierChange = (url) => {
+        const copy = { ...newGig }
+        copy.flier = url
+        updateNewGig(copy)
+    }
+
+    const HandleNewStagePlotChange = (url) => {
+        const copy = { ...newGig }
+        copy.stage_plot = url
+        updateNewGig(copy)
+    }
+
+    const HandleNewInputListChange = (url) => {
+        const copy = { ...gigEdit }
+        copy.input_list = url
+        updateNewGig(copy)
+    }
+
+
+    const HandleFlierEditChange = (url) => {
+        setFlierEditURL("")
+        const copy = { ...gigEdit }
+        copy.flier = url
+        updateGigEdit(copy)
+    }
+
+    const HandleStagePlotEditChange = (url) => {
+        setStagePlotEditURL("")
+        const copy = { ...gigEdit }
+        copy.stage_plot = url
+        updateGigEdit(copy)
+    }
+
+    const HandleInputListEditChange = (url) => {
+        setInputListEditURL("")
+        const copy = { ...gigEdit }
+        copy.input_list = url
+        updateGigEdit(copy)
+    }
+
+
+
+
+
+
+
+
+
 
 
     // TOGGLE
@@ -280,6 +416,7 @@ export const LiveEvents = () => {
             setCalendarSelected(true);
         }
     };
+
 
 
 
@@ -476,6 +613,11 @@ export const LiveEvents = () => {
 
 
 
+
+
+
+
+
     // POST REHEARSAL
 
     const rehearsalSaveButtonClick = async (event) => {
@@ -538,6 +680,9 @@ export const LiveEvents = () => {
 
         const newEvents = await getEvents()
         setAllEvents(newEvents)
+
+        const newRehearsals = await getRehearsals()
+        setRehearsals(newRehearsals)
     }
 
     // POST GIG
@@ -580,6 +725,9 @@ export const LiveEvents = () => {
 
         const newEvents = await getEvents()
         setAllEvents(newEvents)
+
+        const newGigs = await getGigs()
+        setGigs(newGigs)
     }
 
 
@@ -619,6 +767,9 @@ export const LiveEvents = () => {
 
         const newEvents = await getEvents()
         setAllEvents(newEvents)
+
+        const newGigs = await getGigs()
+        setGigs(newGigs)
     }
 
 
@@ -1087,40 +1238,40 @@ export const LiveEvents = () => {
                                         } />
                                 </div>
                                 <div>Flier:
-                                    <input type="url" id="flier" onChange={
-                                        (evt) => {
-                                            const copy = { ...newGig }
-                                            copy.flier = evt.target.value
-                                            updateNewGig(copy)
-                                        }
-                                    } />
+
+                                    {flierURL === "" ? ""
+                                        : <img src={flierURL} alt="flier" />}
+
+                                    <UploadFile onUpload={handleFlierUpload} />
                                 </div>
                                 <div>Stage Plot:
-                                    <input type="url" id="stage_plot" onChange={
-                                        (evt) => {
-                                            const copy = { ...newGig }
-                                            copy.stage_plot = evt.target.value
-                                            updateNewGig(copy)
-                                        }
-                                    } />
+
+                                    {stagePlotURL === "" ? ""
+                                        : <img src={stagePlotURL} alt="stage plot" />}
+
+                                    <UploadFile onUpload={handleStagePlotUpload} />
                                 </div>
                                 <div>Input List:
-                                    <input type="url" id="input_list" onChange={
-                                        (evt) => {
-                                            const copy = { ...newGig }
-                                            copy.input_list = evt.target.value
-                                            updateNewGig(copy)
-                                        }
-                                    } />
+
+                                    {inputListURL === "" ? ""
+                                        : <img src={inputListURL} alt="input list" />}
+
+                                    <UploadFile onUpload={handleInputListUpload} />
                                 </div>
                                 <button onClick={(clickEvent) => {
                                     gigSaveButtonClick(clickEvent)
                                     openGigForm(false)
                                     setEventType(0)
+                                    setFlierURL("")
+                                    setStagePlotURL("")
+                                    setInputListURL("")
                                 }}>Save</button>
                                 <button className="cancelItem" onClick={() => {
                                     openGigForm(false)
                                     setEventType(0)
+                                    setFlierURL("")
+                                    setStagePlotURL("")
+                                    setInputListURL("")
                                 }}>Cancel</button>
                             </fieldset>
                         </form>
@@ -1265,48 +1416,55 @@ export const LiveEvents = () => {
                                         } />
                                 </div>
                                 <div>Flier:
-                                    <input type="url" id="flier" placeholder={gigEdit.flier} onChange={
-                                        (evt) => {
-                                            const copy = { ...gigEdit }
-                                            copy.flier = evt.target.value
-                                            updateGigEdit(copy)
-                                        }
-                                    } />
+
+                                    {flierEditURL === "" ? ""
+                                        : <img src={flierEditURL} alt="flier" />}
+                                    {flierURL === "" ? ""
+                                        : <img src={flierURL} alt="flier" />}
+
+                                    <ReplaceFile onUpload={handleFlierUpload} />
                                 </div>
                                 <div>Stage Plot:
-                                    <input type="url" id="stage_plot" placeholder={gigEdit.stage_plot} onChange={
-                                        (evt) => {
-                                            const copy = { ...gigEdit }
-                                            copy.stage_plot = evt.target.value
-                                            updateGigEdit(copy)
-                                        }
-                                    } />
+
+                                    {stagePlotEditURL === "" ? ""
+                                        : <img src={stagePlotEditURL} alt="stage plot" />}
+                                    {stagePlotURL === "" ? ""
+                                        : <img src={stagePlotURL} alt="stage plot" />}
+
+                                    <ReplaceFile onUpload={handleStagePlotUpload} />
                                 </div>
                                 <div>Input List:
-                                    <input type="url" id="input_list" placeholder={gigEdit.input_list} onChange={
-                                        (evt) => {
-                                            const copy = { ...gigEdit }
-                                            copy.input_list = evt.target.value
-                                            updateGigEdit(copy)
-                                        }
-                                    } />
+
+                                    {inputListEditURL === "" ? ""
+                                        : <img src={inputListEditURL} alt="input list" />}
+                                    {inputListURL === "" ? ""
+                                        : <img src={inputListURL} alt="input list" />}
+
+                                    <ReplaceFile onUpload={handleInputListUpload} />
                                 </div>
                                 <button onClick={(clickEvent) => {
                                     gigEditButtonClick(clickEvent)
                                     openGigEditForm(false)
                                     setGigId(0)
                                     setEventId(0)
+                                    setFlierURL("")
+                                    setStagePlotURL("")
+                                    setInputListURL("")
                                 }}>Save</button>
                                 <button className="cancelItem" onClick={() => {
                                     openGigEditForm(false)
                                     setGigId(0)
                                     setEventId(0)
+                                    setFlierURL("")
+                                    setStagePlotURL("")
+                                    setInputListURL("")
                                 }}>Cancel</button>
                             </fieldset>
                         </form>
                     </div>
                 )
             }
+
 
         </div >
 
@@ -1382,6 +1540,7 @@ export const LiveEvents = () => {
                                     await deleteEvent(parseInt(matchedRehearsal.event.id));
                                     const newEvents = await getEvents();
                                     setAllEvents(newEvents);
+                                    setViewMatchedRehearsal(false)
                                 }}>Delete</button>
                                 <button onClick={() => {
                                     setViewMatchedRehearsal(false)
@@ -1416,6 +1575,7 @@ export const LiveEvents = () => {
                                     await deleteEvent(parseInt(matchedGig.event.id));
                                     const newEvents = await getEvents();
                                     setAllEvents(newEvents);
+                                    setViewMatchedGig(false)
                                 }}>Delete</button>
                                 <button onClick={() => {
                                     setViewMatchedGig(false)

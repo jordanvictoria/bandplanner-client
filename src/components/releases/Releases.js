@@ -7,7 +7,6 @@ import Modal from "react-bootstrap/Modal";
 import { UploadFile } from "../cloudinary/UploadFile"
 import { ReplaceFile } from "../cloudinary/ReplaceFile"
 import "./releases.css"
-import cloudinary from 'cloudinary-core';
 // import '@fullcalendar/common/main.css';
 // import '@fullcalendar/daygrid/main.css';
 
@@ -430,6 +429,8 @@ export const Releases = () => {
         setURL(result?.info?.secure_url)
     }
 
+    
+
     const HandleNewSingleChange = (url) => {
         const copy = { ...newSingleRelease }
         copy.artwork = url
@@ -540,6 +541,9 @@ export const Releases = () => {
 
         const newEvents = await getEvents()
         setAllEvents(newEvents)
+
+        const newSingleReleases = await getSingleReleases()
+        setSingleReleases(newSingleReleases)
     }
 
     // POST BUNDLE
@@ -576,6 +580,9 @@ export const Releases = () => {
 
         const newEvents = await getEvents()
         setAllEvents(newEvents)
+
+        const newBundleReleases = await getBundleReleases()
+        setBundleReleases(newBundleReleases)
     }
 
 
@@ -609,6 +616,9 @@ export const Releases = () => {
 
         const newEvents = await getEvents()
         setAllEvents(newEvents)
+
+        const newBundleReleases = await getBundleReleases()
+        setBundleReleases(newBundleReleases)
     }
 
 
@@ -1028,15 +1038,6 @@ export const Releases = () => {
                                         : <img src={url} alt="artwork" />}
                                     <ReplaceFile onUpload={handleOnUpload} />
                                 </div>
-                                <div>Artwork:
-                                    <input type="url" id="artwork" placeholder={singleEdit.artwork} onChange={
-                                        (evt) => {
-                                            const copy = { ...singleEdit }
-                                            copy.artwork = evt.target.value
-                                            updateSingleEdit(copy)
-                                        }
-                                    } />
-                                </div>
                                 <div>Uploaded to Distro:
                                     <input type="checkbox"
                                         value={singleEdit.uploaded_to_distro}
@@ -1053,11 +1054,14 @@ export const Releases = () => {
                                     openSingleReleaseEditForm(false)
                                     setSingleReleaseId(0)
                                     setEventId(0)
+                                    setURL("")
+                                    
                                 }}>Save</button>
                                 <button className="cancelItem" onClick={() => {
                                     openSingleReleaseEditForm(false)
                                     setSingleReleaseId(0)
                                     setEventId(0)
+                                    setURL("")
                                 }}>Cancel</button>
                             </fieldset>
                         </form>
@@ -1288,11 +1292,13 @@ export const Releases = () => {
                                     openBundleReleaseEditForm(false)
                                     setBundleReleaseId(0)
                                     setEventId(0)
+                                    setURL("")
                                 }}>Save</button>
                                 <button className="cancelItem" onClick={() => {
                                     openBundleReleaseEditForm(false)
                                     setBundleReleaseId(0)
                                     setEventId(0)
+                                    setURL("")
                                 }}>Cancel</button>
                             </fieldset>
                         </form>
