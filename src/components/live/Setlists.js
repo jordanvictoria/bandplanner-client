@@ -7,7 +7,7 @@ import "./live.css"
 
 export const Setlists = () => {
     const localUser = localStorage.getItem("userId");
-    const [bandUserObj, setBandUserOb] = useState({})
+    const [bandUserObj, setBandUserObj] = useState({})
     const [setlists, setSetlists] = useState([])
     const [songs, setSongs] = useState([])
     const [setlistSongs, setSetlistSongs] = useState([])
@@ -72,7 +72,7 @@ export const Setlists = () => {
         () => {
             getBandUsers().then((userArr) => {
                 const matchedUser = userArr.find(user => user.user === parseInt(localUser))
-                setBandUserOb(matchedUser)
+                setBandUserObj(matchedUser)
             })
         }, []
     )

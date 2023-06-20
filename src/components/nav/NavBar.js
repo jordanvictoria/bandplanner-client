@@ -9,6 +9,7 @@ export const NavBar = ({ token, setToken }) => {
   const hamburger = useRef();
   const [isReleaseDropdownVisible, setReleaseDropdownVisible] = useState(false);
   const [isLiveDropdownVisible, setLiveDropdownVisible] = useState(false);
+  const [isPressDropdownVisible, setPressDropdownVisible] = useState(false);
 
   const showMobileNavbar = () => {
     hamburger.current.classList.toggle("is-active");
@@ -21,6 +22,10 @@ export const NavBar = ({ token, setToken }) => {
 
   const handleLiveDropdownToggle = () => {
     setLiveDropdownVisible(!isLiveDropdownVisible);
+  };
+
+  const handlePressDropdownToggle = () => {
+    setPressDropdownVisible(!isPressDropdownVisible);
   };
 
   return (
@@ -62,26 +67,6 @@ export const NavBar = ({ token, setToken }) => {
               ""
             )}
           </div>
-          <div onMouseEnter={handleReleaseDropdownToggle} onMouseLeave={handleReleaseDropdownToggle}>{token ? (
-            <>
-              <Link to="/releases" className="navbar-item">
-                Releases
-              </Link>
-              {isReleaseDropdownVisible && (
-                <div className="dropdown-content">
-                  <li>
-                    <Link to="/releases">Release Schedule</Link>
-                  </li>
-                  <li>
-                    <Link to="/releasechecklist">Promo Checklist</Link>
-                  </li>
-                </div>
-              )}
-            </>
-          ) : (
-            ""
-          )}
-          </div>
           <div onMouseEnter={handleLiveDropdownToggle} onMouseLeave={handleLiveDropdownToggle}>{token ? (
             <>
               <Link to="/live" className="navbar-item">
@@ -105,27 +90,49 @@ export const NavBar = ({ token, setToken }) => {
             ""
           )}
           </div>
-          <div>
-            {token ? (
-              <Link to="/categories" className="navbar-item">
+          <div onMouseEnter={handleReleaseDropdownToggle} onMouseLeave={handleReleaseDropdownToggle}>{token ? (
+            <>
+              <Link to="/releases" className="navbar-item">
+                Releases
+              </Link>
+              {isReleaseDropdownVisible && (
+                <div className="dropdown-content">
+                  <li>
+                    <Link to="/releases">Release Schedule</Link>
+                  </li>
+                  <li>
+                    <Link to="/releasechecklist">Promo Checklist</Link>
+                  </li>
+                </div>
+              )}
+            </>
+          ) : (
+            ""
+          )}
+          </div>
+          <div onMouseEnter={handlePressDropdownToggle} onMouseLeave={handlePressDropdownToggle}>{token ? (
+            <>
+              <Link to="/pressclipping" className="navbar-item">
                 Press
               </Link>
-            ) : (
-              ""
-            )}
+              {isPressDropdownVisible && (
+                <div className="dropdown-content">
+                  <li>
+                    <Link to="/pressclipping">Press Coverage</Link>
+                  </li>
+                  <li>
+                    <Link to="/medialist">Media List</Link>
+                  </li>
+                </div>
+              )}
+            </>
+          ) : (
+            ""
+          )}
           </div>
           <div>
             {token ? (
-              <Link to="/tags" className="navbar-item">
-                Notes
-              </Link>
-            ) : (
-              ""
-            )}
-          </div>
-          <div>
-            {token ? (
-              <Link to="/users" className="navbar-item">
+              <Link to="/profile" className="navbar-item">
                 Profile
               </Link>
             ) : (
