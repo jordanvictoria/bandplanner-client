@@ -429,7 +429,7 @@ export const Setlists = () => {
                             <form onSubmit={handleSubmit}>
                                 <fieldset>
                                     <div>Title:
-                                        <input type="text" id="title" placeholder={setlistEdit.title} onChange={
+                                        <input type="text" id="title" placeholder={setlistEdit.title} value={setlistEdit.title} onChange={
                                             (evt) => {
                                                 const copy = { ...setlistEdit }
                                                 copy.title = evt.target.value
@@ -438,7 +438,7 @@ export const Setlists = () => {
                                         } />
                                     </div>
                                     <div>Description:
-                                        <input type="text" id="notes" placeholder={setlistEdit.notes} onChange={
+                                        <input type="text" id="notes" placeholder={setlistEdit.notes} value={setlistEdit.notes} onChange={
                                             (evt) => {
                                                 const copy = { ...setlistEdit }
                                                 copy.notes = evt.target.value

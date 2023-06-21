@@ -157,7 +157,9 @@ export const PressClipping = () => {
                     <section>{formattedListDate}</section>
                     <section>{clipping.author}</section>
                     <section>{clipping.description}</section>
-                    <section>{clipping.link}</section>
+                    <section> 
+                      <a href={clipping.link} target="_blank" rel="noopener noreferrer">{clipping.link}</a>
+                      </section>
                     <button onClick={() => {
                       setPressClippingId(clipping.id)
                     }}>Edit</button>
@@ -242,7 +244,7 @@ export const PressClipping = () => {
               <form className="relativeForm">
                 <fieldset>
                   <div>Title:
-                    <input type="text" id="title" placeholder={pressClippingEdit.title} onChange={
+                    <input type="text" id="title" placeholder={pressClippingEdit.title} value={pressClippingEdit.title} onChange={
                       (evt) => {
                         const copy = { ...pressClippingEdit }
                         copy.title = evt.target.value
@@ -260,7 +262,7 @@ export const PressClipping = () => {
                     } />
                   </div>
                   <div>Author:
-                    <input type="text" id="author" placeholder={pressClippingEdit.author} onChange={
+                    <input type="text" id="author" placeholder={pressClippingEdit.author} value={pressClippingEdit.author} onChange={
                       (evt) => {
                         const copy = { ...pressClippingEdit }
                         copy.author = evt.target.value
@@ -269,7 +271,7 @@ export const PressClipping = () => {
                     } />
                   </div>
                   <div>Description:
-                    <input type="text" id="description" placeholder={pressClippingEdit.description} onChange={
+                    <input type="text" id="description" placeholder={pressClippingEdit.description} value={pressClippingEdit.description} onChange={
                       (evt) => {
                         const copy = { ...pressClippingEdit }
                         copy.description = evt.target.value
@@ -278,7 +280,7 @@ export const PressClipping = () => {
                     } />
                   </div>
                   <div>Link:
-                    <input type="url" id="link" placeholder={pressClippingEdit.link} onChange={
+                    <input type="url" id="link" placeholder={pressClippingEdit.link} value={pressClippingEdit.link} onChange={
                       (evt) => {
                         const copy = { ...pressClippingEdit }
                         copy.link = evt.target.value

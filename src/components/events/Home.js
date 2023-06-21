@@ -8,7 +8,6 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Modal from "react-bootstrap/Modal";
 import { UploadFile } from "../cloudinary/UploadFile"
-import { ReplaceFile } from "../cloudinary/ReplaceFile"
 import "./event.css"
 
 export const Home = () => {
@@ -1173,7 +1172,7 @@ export const Home = () => {
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title}  onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -1182,7 +1181,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Date:
-                                    <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                    <input type={dateInputType} id="date" placeholder={eventEdit.date}  onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.date = evt.target.value
@@ -1202,7 +1201,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value
@@ -1214,7 +1213,7 @@ export const Home = () => {
                             <h3>Single Release</h3>
                             <fieldset>
                                 <div>Song Title:
-                                    <input type="text" id="song_title" placeholder={singleEdit.song_title} onChange={
+                                    <input type="text" id="song_title" placeholder={singleEdit.song_title} value={singleEdit.song_title} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.song_title = evt.target.value
@@ -1223,7 +1222,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Genre:
-                                    <input type="text" id="genre" placeholder={singleEdit.genre} onChange={
+                                    <input type="text" id="genre" placeholder={singleEdit.genre} value={singleEdit.genre} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.genre = evt.target.value
@@ -1232,7 +1231,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>UPC:
-                                    <input type="number" id="upc" placeholder={singleEdit.upc} onChange={
+                                    <input type="number" id="upc" placeholder={singleEdit.upc} value={singleEdit.upc} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.upc = evt.target.value
@@ -1241,7 +1240,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>ISRC:
-                                    <input type="number" id="isrc" placeholder={singleEdit.isrc} onChange={
+                                    <input type="number" id="isrc" placeholder={singleEdit.isrc} value={singleEdit.isrc}  onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.isrc = evt.target.value
@@ -1250,7 +1249,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Composer:
-                                    <input type="text" id="composer" placeholder={singleEdit.composer} onChange={
+                                    <input type="text" id="composer" placeholder={singleEdit.composer} value={singleEdit.composer} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.composer = evt.target.value
@@ -1259,7 +1258,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Producer:
-                                    <input type="text" id="producer" placeholder={singleEdit.producer} onChange={
+                                    <input type="text" id="producer" placeholder={singleEdit.producer} value={singleEdit.producer} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.producer = evt.target.value
@@ -1279,7 +1278,7 @@ export const Home = () => {
                                         } />
                                 </div>
                                 <div>Audio:
-                                    <input type="url" id="audio_url" placeholder={singleEdit.audio_url} onChange={
+                                    <input type="url" id="audio_url" placeholder={singleEdit.audio_url} value={singleEdit.audio_url} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.audio_url = evt.target.value
@@ -1292,7 +1291,7 @@ export const Home = () => {
                                         : <img src={singleEditURL} alt="artwork" />}
                                     {singleURL === "" ? ""
                                         : <img src={singleURL} alt="artwork" />}
-                                    <ReplaceFile onUpload={handleSingleUpload} />
+                                    <UploadFile onUpload={handleSingleUpload} />
                                 </div>
                                 <div>Uploaded to Distro:
                                     <input type="checkbox"
@@ -1449,7 +1448,7 @@ export const Home = () => {
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -1478,7 +1477,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value
@@ -1490,7 +1489,7 @@ export const Home = () => {
                             <h3>Bundle Release</h3>
                             <fieldset>
                                 <div>Bundle Title:
-                                    <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} onChange={
+                                    <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} value={bundleEdit.bundle_title} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
                                             copy.bundle_title = evt.target.value
@@ -1499,7 +1498,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Genre:
-                                    <input type="text" id="genre" placeholder={bundleEdit.genre} onChange={
+                                    <input type="text" id="genre" placeholder={bundleEdit.genre} value={bundleEdit.genre} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
                                             copy.genre = evt.target.value
@@ -1508,7 +1507,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>UPC:
-                                    <input type="number" id="upc" placeholder={bundleEdit.upc} onChange={
+                                    <input type="number" id="upc" placeholder={bundleEdit.upc} value={bundleEdit.upc} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
                                             copy.upc = evt.target.value
@@ -1517,7 +1516,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Audio:
-                                    <input type="url" id="audio_url" placeholder={bundleEdit.audio_url} onChange={
+                                    <input type="url" id="audio_url" placeholder={bundleEdit.audio_url} value={bundleEdit.audio_url} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
                                             copy.audio_url = evt.target.value
@@ -1530,7 +1529,7 @@ export const Home = () => {
                                         : <img src={bundleEditURL} alt="artwork" />}
                                     {bundleURL === "" ? ""
                                         : <img src={bundleURL} alt="artwork" />}
-                                    <ReplaceFile onUpload={handleBundleUpload} />
+                                    <UploadFile onUpload={handleBundleUpload} />
                                 </div>
                                 <div>Uploaded to Distro:
                                     <input type="checkbox"
@@ -1649,7 +1648,7 @@ export const Home = () => {
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -1678,7 +1677,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value
@@ -1690,7 +1689,7 @@ export const Home = () => {
                             <h3>Rehearsal</h3>
                             <fieldset>
                                 <div>Location:
-                                    <input type="text" id="location" placeholder={rehearsalEdit.location} onChange={
+                                    <input type="text" id="location" placeholder={rehearsalEdit.location} value={rehearsalEdit.location} onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
                                             copy.location = evt.target.value
@@ -1699,7 +1698,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Band Members:
-                                    <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} onChange={
+                                    <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} value={rehearsalEdit.band_info}  onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
                                             copy.band_info = evt.target.value
@@ -1911,7 +1910,7 @@ export const Home = () => {
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -1940,7 +1939,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value
@@ -1952,7 +1951,7 @@ export const Home = () => {
                             <h3>Gig</h3>
                             <fieldset>
                                 <div>City/State:
-                                    <input type="text" id="city_state" placeholder={gigEdit.city_state} onChange={
+                                    <input type="text" id="city_state" placeholder={gigEdit.city_state} value={gigEdit.city_state}  onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.city_state = evt.target.value
@@ -1961,7 +1960,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Venue:
-                                    <input type="text" id="venue" placeholder={gigEdit.venue} onChange={
+                                    <input type="text" id="venue" placeholder={gigEdit.venue} value={gigEdit.venue}  onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.venue = evt.target.value
@@ -1970,7 +1969,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Band members:
-                                    <input type="number" id="band_info" placeholder={gigEdit.band_info} onChange={
+                                    <input type="number" id="band_info" placeholder={gigEdit.band_info} value={gigEdit.band_info} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.band_info = evt.target.value
@@ -1993,7 +1992,7 @@ export const Home = () => {
                                     </select>
                                 </div>
                                 <div>Ticket Price:
-                                    <input type="number" id="ticket_price" placeholder={gigEdit.ticket_price} onChange={
+                                    <input type="number" id="ticket_price" placeholder={gigEdit.ticket_price} value={gigEdit.ticket_price} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.ticket_price = evt.target.value
@@ -2002,7 +2001,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Ticket Link:
-                                    <input type="url" id="ticket_link" placeholder={gigEdit.ticket_link} onChange={
+                                    <input type="url" id="ticket_link" placeholder={gigEdit.ticket_link} value={gigEdit.ticket_link} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.ticket_link = evt.target.value
@@ -2011,7 +2010,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Guarantee:
-                                    <input type="number" id="guarantee" placeholder={gigEdit.guarantee} onChange={
+                                    <input type="number" id="guarantee" placeholder={gigEdit.guarantee} value={gigEdit.guarantee} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.guarantee = evt.target.value
@@ -2048,7 +2047,7 @@ export const Home = () => {
                                     {flierURL === "" ? ""
                                         : <img src={flierURL} alt="flier" />}
 
-                                    <ReplaceFile onUpload={handleFlierUpload} />
+                                    <UploadFile onUpload={handleFlierUpload} />
                                 </div>
                                 <div>Stage Plot:
 
@@ -2057,7 +2056,7 @@ export const Home = () => {
                                     {stagePlotURL === "" ? ""
                                         : <img src={stagePlotURL} alt="stage plot" />}
 
-                                    <ReplaceFile onUpload={handleStagePlotUpload} />
+                                    <UploadFile onUpload={handleStagePlotUpload} />
                                 </div>
                                 <div>Input List:
 
@@ -2066,7 +2065,7 @@ export const Home = () => {
                                     {inputListURL === "" ? ""
                                         : <img src={inputListURL} alt="input list" />}
 
-                                    <ReplaceFile onUpload={handleInputListUpload} />
+                                    <UploadFile onUpload={handleInputListUpload} />
                                 </div>
                                 <button onClick={(clickEvent) => {
                                     gigEditButtonClick(clickEvent)
@@ -2157,7 +2156,7 @@ export const Home = () => {
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -2166,7 +2165,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Date:
-                                    <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                    <input type={dateInputType} id="date" placeholder={eventEdit.date}  onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.date = evt.target.value
@@ -2186,7 +2185,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value

@@ -5,7 +5,6 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Modal from "react-bootstrap/Modal";
 import { UploadFile } from "../cloudinary/UploadFile"
-import { ReplaceFile } from "../cloudinary/ReplaceFile"
 import "./releases.css"
 // import '@fullcalendar/common/main.css';
 // import '@fullcalendar/daygrid/main.css';
@@ -429,7 +428,7 @@ export const Releases = () => {
         setURL(result?.info?.secure_url)
     }
 
-    
+
 
     const HandleNewSingleChange = (url) => {
         const copy = { ...newSingleRelease }
@@ -916,8 +915,8 @@ export const Releases = () => {
                     <div className="pop_up_rehearsal">
                         <form className="relativeForm">
                             <fieldset>
-                                <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                            <div>Title:
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -946,7 +945,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value
@@ -958,7 +957,7 @@ export const Releases = () => {
                             <h3>Rehearsal</h3>
                             <fieldset>
                                 <div>Song Title:
-                                    <input type="text" id="song_title" placeholder={singleEdit.song_title} onChange={
+                                    <input type="text" id="song_title" placeholder={singleEdit.song_title} value={singleEdit.song_title} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.song_title = evt.target.value
@@ -967,7 +966,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Genre:
-                                    <input type="text" id="genre" placeholder={singleEdit.genre} onChange={
+                                    <input type="text" id="genre" placeholder={singleEdit.genre} value={singleEdit.genre} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.genre = evt.target.value
@@ -976,7 +975,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>UPC:
-                                    <input type="number" id="upc" placeholder={singleEdit.upc} onChange={
+                                    <input type="number" id="upc" placeholder={singleEdit.upc} value={singleEdit.upc} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.upc = evt.target.value
@@ -985,7 +984,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>ISRC:
-                                    <input type="number" id="isrc" placeholder={singleEdit.isrc} onChange={
+                                    <input type="number" id="isrc" placeholder={singleEdit.isrc} value={singleEdit.isrc} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.isrc = evt.target.value
@@ -994,7 +993,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Composer:
-                                    <input type="text" id="composer" placeholder={singleEdit.composer} onChange={
+                                    <input type="text" id="composer" placeholder={singleEdit.composer} value={singleEdit.composer} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.composer = evt.target.value
@@ -1003,30 +1002,10 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Producer:
-                                    <input type="text" id="producer" placeholder={singleEdit.producer} onChange={
+                                    <input type="text" id="producer" placeholder={singleEdit.producer} value={singleEdit.producer} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.producer = evt.target.value
-                                            updateSingleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Explicit:
-                                    <input type="checkbox"
-                                        value={singleEdit.explicit}
-                                        onChange={
-                                            (evt) => {
-                                                const copy = { ...singleEdit }
-                                                copy.explicit = evt.target.checked
-                                                updateSingleEdit(copy)
-                                            }
-                                        } />
-                                </div>
-                                <div>Audio:
-                                    <input type="url" id="audio_url" placeholder={singleEdit.audio_url} onChange={
-                                        (evt) => {
-                                            const copy = { ...singleEdit }
-                                            copy.audio_url = evt.target.value
                                             updateSingleEdit(copy)
                                         }
                                     } />
@@ -1036,7 +1015,7 @@ export const Releases = () => {
                                         : <img src={singleEditURL} alt="artwork" />}
                                     {url === "" ? ""
                                         : <img src={url} alt="artwork" />}
-                                    <ReplaceFile onUpload={handleOnUpload} />
+                                    <UploadFile onUpload={handleOnUpload} />
                                 </div>
                                 <div>Uploaded to Distro:
                                     <input type="checkbox"
@@ -1055,7 +1034,7 @@ export const Releases = () => {
                                     setSingleReleaseId(0)
                                     setEventId(0)
                                     setURL("")
-                                    
+
                                 }}>Save</button>
                                 <button className="cancelItem" onClick={() => {
                                     openSingleReleaseEditForm(false)
@@ -1192,8 +1171,8 @@ export const Releases = () => {
                     <div className="pop_up_gig">
                         <form className="relativeForm">
                             <fieldset>
-                                <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                            <div>Title:
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -1222,7 +1201,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value
@@ -1233,8 +1212,8 @@ export const Releases = () => {
                             </fieldset>
                             <h3>Bundle Release</h3>
                             <fieldset>
-                                <div>Bundle Title:
-                                    <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} onChange={
+                            <div>Bundle Title:
+                                    <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} value={bundleEdit.bundle_title} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
                                             copy.bundle_title = evt.target.value
@@ -1243,7 +1222,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Genre:
-                                    <input type="text" id="genre" placeholder={bundleEdit.genre} onChange={
+                                    <input type="text" id="genre" placeholder={bundleEdit.genre} value={bundleEdit.genre} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
                                             copy.genre = evt.target.value
@@ -1252,7 +1231,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>UPC:
-                                    <input type="number" id="upc" placeholder={bundleEdit.upc} onChange={
+                                    <input type="number" id="upc" placeholder={bundleEdit.upc} value={bundleEdit.upc} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
                                             copy.upc = evt.target.value
@@ -1261,7 +1240,7 @@ export const Releases = () => {
                                     } />
                                 </div>
                                 <div>Audio:
-                                    <input type="url" id="audio_url" placeholder={bundleEdit.audio_url} onChange={
+                                    <input type="url" id="audio_url" placeholder={bundleEdit.audio_url} value={bundleEdit.audio_url} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
                                             copy.audio_url = evt.target.value
@@ -1274,7 +1253,7 @@ export const Releases = () => {
                                         : <img src={bundleEditURL} alt="artwork" />}
                                     {url === "" ? ""
                                         : <img src={url} alt="artwork" />}
-                                    <ReplaceFile onUpload={handleOnUpload} />
+                                    <UploadFile onUpload={handleOnUpload} />
                                 </div>
                                 <div>Uploaded to Distro:
                                     <input type="checkbox"
@@ -1374,7 +1353,9 @@ export const Releases = () => {
                                 <div>Composer: {matchedSingle.composer}</div>
                                 <div>Producer: {matchedSingle.producer}</div>
                                 <div>Explicit: {matchedSingle.explicit ? 'Yes' : 'No'}</div>
-                                <div>Audio URL: {matchedSingle.audio_url}</div>
+                                <div>Audio URL: 
+                                <a href={matchedSingle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedSingle.audio_url}</a>
+                                </div>
                                 <div>Artwork: {matchedSingle.artwork}</div>
                                 <div>Ready for Distribution: {matchedSingle.uploaded_to_distro ? 'Yes' : 'No'}</div>
                                 <button className="btn btn-secondary" onClick={async () => {
@@ -1402,7 +1383,9 @@ export const Releases = () => {
                                 <h3>Title: {matchedBundle.bundle_title}</h3>
                                 <div>Genre: {matchedBundle.genre}</div>
                                 <div>UPC: {matchedBundle.upc}</div>
-                                <div>Audio URL: {matchedBundle.audio_url}</div>
+                                <div>Audio URL: 
+                                <a href={matchedBundle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedBundle.audio_url}</a>
+                                </div>
                                 <div>Artwork: {matchedBundle.artwork}</div>
                                 <div>Ready for Distribution: {matchedBundle.uploaded_to_distro ? 'Yes' : 'No'}</div>
                                 <button onClick={() => {
@@ -1492,7 +1475,7 @@ export const Releases = () => {
                                                 <h3>Bundle Song</h3>
                                                 <fieldset>
                                                     <div>Song Title:
-                                                        <input type="text" id="song_title" placeholder={bundleSongEdit.song_title} onChange={
+                                                        <input type="text" id="song_title" placeholder={bundleSongEdit.song_title} value={bundleSongEdit.song_title} onChange={
                                                             (evt) => {
                                                                 const copy = { ...bundleSongEdit }
                                                                 copy.song_title = evt.target.value
@@ -1501,7 +1484,7 @@ export const Releases = () => {
                                                         } />
                                                     </div>
                                                     <div>Genre:
-                                                        <input type="text" id="genre" placeholder={bundleSongEdit.genre} onChange={
+                                                        <input type="text" id="genre" placeholder={bundleSongEdit.genre} value={bundleSongEdit.genre} onChange={
                                                             (evt) => {
                                                                 const copy = { ...bundleSongEdit }
                                                                 copy.genre = evt.target.value
@@ -1510,7 +1493,7 @@ export const Releases = () => {
                                                         } />
                                                     </div>
                                                     <div>ISRC:
-                                                        <input type="number" id="isrc" placeholder={bundleSongEdit.isrc} onChange={
+                                                        <input type="number" id="isrc" placeholder={bundleSongEdit.isrc} value={bundleSongEdit.isrc} onChange={
                                                             (evt) => {
                                                                 const copy = { ...bundleSongEdit }
                                                                 copy.isrc = evt.target.value
@@ -1519,7 +1502,7 @@ export const Releases = () => {
                                                         } />
                                                     </div>
                                                     <div>Composer:
-                                                        <input type="text" id="composer" placeholder={bundleSongEdit.composer} onChange={
+                                                        <input type="text" id="composer" placeholder={bundleSongEdit.composer} value={bundleSongEdit.composer} onChange={
                                                             (evt) => {
                                                                 const copy = { ...bundleSongEdit }
                                                                 copy.composer = evt.target.value
@@ -1528,7 +1511,7 @@ export const Releases = () => {
                                                         } />
                                                     </div>
                                                     <div>Producer:
-                                                        <input type="text" id="producer" placeholder={bundleSongEdit.producer} onChange={
+                                                        <input type="text" id="producer" placeholder={bundleSongEdit.producer} value={bundleSongEdit.producer} onChange={
                                                             (evt) => {
                                                                 const copy = { ...bundleSongEdit }
                                                                 copy.producer = evt.target.value

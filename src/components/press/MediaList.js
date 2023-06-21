@@ -244,7 +244,8 @@ export const MediaList = () => {
                     <section>Company: {media.organization}</section>
                     <section>Location: {media.location}</section>
                     <section>Email: {media.email}</section>
-                    <section>Website: {media.website}</section>
+                    <section>Website: 
+                      <a href={media.website} target="_blank" rel="noopener noreferrer"></a>{media.website}</section>
                     <section>Notes: {media.notes}</section>
                     <button onClick={() => {
                       setMediaContactId(media.id)
@@ -377,7 +378,7 @@ export const MediaList = () => {
                     </select>
                   </div>
                   <div>Name:
-                    <input type="text" id="contact" placeholder={mediaContactEdit.contact} onChange={
+                    <input type="text" id="contact" placeholder={mediaContactEdit.contact} value={mediaContactEdit.contact} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
                         copy.contact = evt.target.value
@@ -386,7 +387,7 @@ export const MediaList = () => {
                     } />
                   </div>
                   <div>Role:
-                    <input type="text" id="role" placeholder={mediaContactEdit.role} onChange={
+                    <input type="text" id="role" placeholder={mediaContactEdit.role} value={mediaContactEdit.role} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
                         copy.role = evt.target.value
@@ -395,7 +396,7 @@ export const MediaList = () => {
                     } />
                   </div>
                   <div>Company:
-                    <input type="text" id="organization" placeholder={mediaContactEdit.organization} onChange={
+                    <input type="text" id="organization" placeholder={mediaContactEdit.organization} value={mediaContactEdit.organization} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
                         copy.organization = evt.target.value
@@ -404,7 +405,7 @@ export const MediaList = () => {
                     } />
                   </div>
                   <div>Location:
-                    <input type="text" id="location" placeholder={mediaContactEdit.location} onChange={
+                    <input type="text" id="location" placeholder={mediaContactEdit.location} value={mediaContactEdit.location} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
                         copy.location = evt.target.value
@@ -413,7 +414,7 @@ export const MediaList = () => {
                     } />
                   </div>
                   <div>Email:
-                    <input type="email" id="email" placeholder={mediaContactEdit.email} onChange={
+                    <input type="email" id="email" placeholder={mediaContactEdit.email} value={mediaContactEdit.email} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
                         copy.email = evt.target.value
@@ -422,7 +423,7 @@ export const MediaList = () => {
                     } />
                   </div>
                   <div>Website:
-                    <input type="url" id="website" onChange={
+                    <input type="url" id="website" value={mediaContactEdit.website} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
                         copy.website = evt.target.value
@@ -431,7 +432,7 @@ export const MediaList = () => {
                     } />
                   </div>
                   <div>Notes:
-                    <input type="text" id="notes" onChange={
+                    <input type="text" id="notes" value={mediaContactEdit.notes} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
                         copy.notes = evt.target.value

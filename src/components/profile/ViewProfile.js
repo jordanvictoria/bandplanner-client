@@ -30,12 +30,24 @@ export const ViewProfile = () => {
                 </div>
                 <div>Artist: {bandUserObj.project_title}</div>
                 <div>Bio: {bandUserObj.bio}</div>
-                <div>Link to Streaming: {bandUserObj.streaming}</div>
-                <div>Website: {bandUserObj.website}</div>
-                <div>Instagram: {bandUserObj.instagram}</div>
-                <div>Twitter: {bandUserObj.twitter}</div>
-                <div>Facebook: {bandUserObj.facebook}</div>
-                <div>Tiktok: {bandUserObj.tiktok}</div>
+                <div>Link to Streaming: 
+                <a href={bandUserObj.streaming} target="_blank" rel="noopener noreferrer"> {bandUserObj.streaming}</a>
+                </div>
+                <div>Website: 
+                <a href={bandUserObj.website} target="_blank" rel="noopener noreferrer"> {bandUserObj.website}</a>
+                    </div>
+                <div>Instagram: 
+                <a href={bandUserObj.instagram} target="_blank" rel="noopener noreferrer"> {bandUserObj.instagram}</a>
+                </div>
+                <div>Twitter: 
+                <a href={bandUserObj.twitter} target="_blank" rel="noopener noreferrer"> {bandUserObj.twitter}</a>
+                </div>
+                <div>Facebook: 
+                <a href={bandUserObj.facebook} target="_blank" rel="noopener noreferrer"> {bandUserObj.facebook}</a>
+                </div>
+                <div>Tiktok: 
+                <a href={bandUserObj.tiktok} target="_blank" rel="noopener noreferrer"> {bandUserObj.tiktok}</a>
+                </div>
                 <div>
                     <Link to={`/profile/${parseInt(bandUserObj.id)}/edit`}>
                         <button className="editProfile"

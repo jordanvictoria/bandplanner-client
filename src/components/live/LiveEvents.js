@@ -5,7 +5,6 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Modal from "react-bootstrap/Modal";
 import { UploadFile } from "../cloudinary/UploadFile"
-import { ReplaceFile } from "../cloudinary/ReplaceFile"
 import "./live.css"
 // import '@fullcalendar/common/main.css';
 // import '@fullcalendar/daygrid/main.css';
@@ -1023,7 +1022,7 @@ export const LiveEvents = () => {
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -1052,7 +1051,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value
@@ -1063,8 +1062,8 @@ export const LiveEvents = () => {
                             </fieldset>
                             <h3>Rehearsal</h3>
                             <fieldset>
-                                <div>Location:
-                                    <input type="text" id="location" placeholder={rehearsalEdit.location} onChange={
+                            <div>Location:
+                                    <input type="text" id="location" placeholder={rehearsalEdit.location} value={rehearsalEdit.location} onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
                                             copy.location = evt.target.value
@@ -1073,7 +1072,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div>Band Members:
-                                    <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} onChange={
+                                    <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} value={rehearsalEdit.band_info}  onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
                                             copy.band_info = evt.target.value
@@ -1285,7 +1284,7 @@ export const LiveEvents = () => {
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
-                                    <input type="text" id="title" placeholder={eventEdit.title} onChange={
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -1314,7 +1313,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} onChange={
+                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.description = evt.target.value
@@ -1325,8 +1324,8 @@ export const LiveEvents = () => {
                             </fieldset>
                             <h3>Gig</h3>
                             <fieldset>
-                                <div>City/State:
-                                    <input type="text" id="city_state" placeholder={gigEdit.city_state} onChange={
+                            <div>City/State:
+                                    <input type="text" id="city_state" placeholder={gigEdit.city_state} value={gigEdit.city_state}  onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.city_state = evt.target.value
@@ -1335,7 +1334,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div>Venue:
-                                    <input type="text" id="venue" placeholder={gigEdit.venue} onChange={
+                                    <input type="text" id="venue" placeholder={gigEdit.venue} value={gigEdit.venue}  onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.venue = evt.target.value
@@ -1344,7 +1343,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div>Band members:
-                                    <input type="number" id="band_info" placeholder={gigEdit.band_info} onChange={
+                                    <input type="number" id="band_info" placeholder={gigEdit.band_info} value={gigEdit.band_info} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.band_info = evt.target.value
@@ -1367,7 +1366,7 @@ export const LiveEvents = () => {
                                     </select>
                                 </div>
                                 <div>Ticket Price:
-                                    <input type="number" id="ticket_price" placeholder={gigEdit.ticket_price} onChange={
+                                    <input type="number" id="ticket_price" placeholder={gigEdit.ticket_price} value={gigEdit.ticket_price} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.ticket_price = evt.target.value
@@ -1376,7 +1375,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div>Ticket Link:
-                                    <input type="url" id="ticket_link" placeholder={gigEdit.ticket_link} onChange={
+                                    <input type="url" id="ticket_link" placeholder={gigEdit.ticket_link} value={gigEdit.ticket_link} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.ticket_link = evt.target.value
@@ -1385,7 +1384,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div>Guarantee:
-                                    <input type="number" id="guarantee" placeholder={gigEdit.guarantee} onChange={
+                                    <input type="number" id="guarantee" placeholder={gigEdit.guarantee} value={gigEdit.guarantee} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.guarantee = evt.target.value
@@ -1422,7 +1421,7 @@ export const LiveEvents = () => {
                                     {flierURL === "" ? ""
                                         : <img src={flierURL} alt="flier" />}
 
-                                    <ReplaceFile onUpload={handleFlierUpload} />
+                                    <UploadFile onUpload={handleFlierUpload} />
                                 </div>
                                 <div>Stage Plot:
 
@@ -1431,7 +1430,7 @@ export const LiveEvents = () => {
                                     {stagePlotURL === "" ? ""
                                         : <img src={stagePlotURL} alt="stage plot" />}
 
-                                    <ReplaceFile onUpload={handleStagePlotUpload} />
+                                    <UploadFile onUpload={handleStagePlotUpload} />
                                 </div>
                                 <div>Input List:
 
@@ -1440,7 +1439,7 @@ export const LiveEvents = () => {
                                     {inputListURL === "" ? ""
                                         : <img src={inputListURL} alt="input list" />}
 
-                                    <ReplaceFile onUpload={handleInputListUpload} />
+                                    <UploadFile onUpload={handleInputListUpload} />
                                 </div>
                                 <button onClick={(clickEvent) => {
                                     gigEditButtonClick(clickEvent)
@@ -1557,7 +1556,9 @@ export const LiveEvents = () => {
                                 <div>Band Members: {matchedGig.band_info}</div>
                                 <div>Age Requirement: {matchedGig.age_requirement}</div>
                                 <div>Ticket Price: {matchedGig.ticket_price}</div>
-                                <div>Ticket Link: {matchedGig.ticket_link}</div>
+                                <div>Ticket Link: 
+                                <a href={matchedGig.ticket_link} target="_blank" rel="noopener noreferrer"> {matchedGig.ticket_link}</a>
+                                </div>
                                 <div>Guarantee: {matchedGig.guarantee}</div>
                                 <div>Sold out: {matchedGig.sold_out ? 'Yes' : 'No'}</div>
                                 <div>Announced: {matchedGig.announced ? 'Yes' : 'No'}</div>

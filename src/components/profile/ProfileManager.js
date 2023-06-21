@@ -11,3 +11,14 @@ export const getBandUsers = () => {
   };
 
 
+  export const editProfile = (newProfile) => {
+    return fetch(`http://localhost:8000/bandusers/${newProfile.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Token ${localStorage.getItem("band_token")}`
+      },
+      body: JSON.stringify(newProfile)
+    })
+  }
