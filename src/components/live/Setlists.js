@@ -23,6 +23,7 @@ export const Setlists = () => {
         date_created: "",
         last_edited: ""
     })
+
     const [editSetlistId, setEditSetlistId] = useState(0)
     const [editSetlistForm, openEditSetlistForm] = useState(false)
     const [setlistEdit, updateSetlistEdit] = useState({
@@ -115,6 +116,12 @@ export const Setlists = () => {
             }
         }, [editSetlistId, setlistSongs]
     )
+
+
+
+
+
+
 
 
 
@@ -218,6 +225,14 @@ export const Setlists = () => {
 
 
 
+    const formatDateDisplay = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
+        return formattedDate;
+    };
+
+
+
 
 
 
@@ -258,7 +273,7 @@ export const Setlists = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         await setlistEditButtonClick(event);
-        
+
         openEditSetlistForm(false);
 
         // Update the order of filteredSetlistSongs
@@ -311,7 +326,7 @@ export const Setlists = () => {
 
 
 
-    
+
 
 
 
@@ -319,42 +334,46 @@ export const Setlists = () => {
 
     return <>
 
-        <div className="setlistContainer">
-            <div className="setListBandName">
-                {bandUserObj.project_title}'s Setlists
-            </div>
-            <div className="setlistBoxContainer">
-                {
-                    setlists.map(setlist => {
-                        const matchedSongs = setlistSongs.filter(song => song.setlist.id === setlist.id)
-                        const numberOfSongs = matchedSongs.length;
-                        return (
-                            <div key={setlist.id} className="setlistBox" onClick={() => {
-                                setSetlistId(parseInt(setlist.id))
-                                setViewSetlist(true)
-                            }} >
-                                <h3>{setlist.title}</h3>
-                                <h6>{numberOfSongs} songs</h6>
-                                <h6>Last edited on -date-</h6>
-                            </div>
-                        )
-                    })
-                }
-                <div className="setlistBox" onClick={() => {
-                    openNewSetlistForm(true)
-                }}>
-                    Add New Setlist
+        <div className="site-background hero is-fullheight">
+            <div className="setlistContainer">
+                <div className="setlistBoxContainer">
+                    <div className="setListBandName">
+                        {bandUserObj.project_title}'s Setlists
+                    </div>
+                    {
+                        setlists.map(setlist => {
+                            const matchedSongs = setlistSongs.filter(song => song.setlist.id === setlist.id)
+                            const numberOfSongs = matchedSongs.length;
+                            const dateDisplay = formatDateDisplay(setlist.last_edited)
+                            return (
+                                <div key={setlist.id} className="setlistBox" onClick={() => {
+                                    setSetlistId(parseInt(setlist.id))
+                                    setViewSetlist(true)
+                                }} >
+                                    <h3>{setlist.title}</h3>
+                                    <div className="fontStyles">
+                                        <h6>- {numberOfSongs} songs</h6>
+                                        <h6>- Last edited on {dateDisplay}</h6>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                    <div className="addSetlist" onClick={() => {
+                        openNewSetlistForm(true)
+                    }}>
+                        Add New Setlist
+                    </div>
                 </div>
             </div>
             {
                 viewSetlist && (
                     <div className="viewContainer">
-                        <div className="setlistView">
-                            <h2 className="color">{setlistViewObj.title}</h2>
-                            <h3 className="color">Description: {setlistViewObj.notes}</h3>
-                            <ul className="color">
+                            <h2>{setlistViewObj.title}</h2>
+                            <h3>Description: {setlistViewObj.notes}</h3>
+                            <ol className="customList">
                                 {
-                                    filteredSetlistSongs.map(song => {
+                                    filteredSetlistSongs.map((song, index) => {
                                         return (
                                             <li key={song.id} value={song.id} className="setlistSong">
                                                 {song.song.name}
@@ -362,24 +381,25 @@ export const Setlists = () => {
                                         )
                                     })
                                 }
-                            </ul>
-                            <button onClick={() => {
+                            </ol>
+                            <div className="button_group">
+                            <button className="edit_button" onClick={() => {
                                 setEditSetlistId(setlistViewObj.id)
                                 setSetlistId(0)
                                 setViewSetlist(false)
                                 openEditSetlistForm(true)
                             }}>Edit</button>
-                            <button onClick={async () => {
+                            <button className="delete_button" onClick={async () => {
                                 await deleteSetlist(setlistViewObj.id)
                                 const newSetlists = await getSetlists();
                                 setSetlists(newSetlists);
                                 setViewSetlist(false)
                             }}>Delete</button>
-                            <button onClick={() => {
+                            </div>
+                            <button className="close_button" onClick={() => {
                                 setSetlistId(0)
                                 setViewSetlist(false)
                             }}>Close</button>
-                        </div>
                     </div>
                 )
             }
