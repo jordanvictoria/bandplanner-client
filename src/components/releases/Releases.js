@@ -760,886 +760,886 @@ export const Releases = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                )
-            }
-
-
-
-
-
-            {
-                isOpen && (
-                    <div className="pop_up">
-                        <div>
-                            <select onChange={
-                                (evt) => {
-                                    setEventType(parseInt(evt.target.value))
-                                    setIsOpen(false)
-                                }
-                            } >
-                                <option value="0">Select Event Type...</option>
-                                <option value="1">Single Release</option>
-                                <option value="2">Bundle Release</option>
-                            </select>
-                        </div>
-                        <button onClick={() => setIsOpen(false)}>
-                            Cancel
-                        </button>
-                    </div>
-                )
-            }
-
-            {/* SINGLE FORMS */}
-
-            {
-                singleReleaseForm && (
-                    <div className="pop_up_rehearsal">
-                        <form className="relativeForm">
-                            <fieldset>
-                                <div>Title:
-                                    <input type="text" id="title" onChange={
-                                        (evt) => {
-                                            const copy = { ...newEvent }
-                                            copy.title = evt.target.value
-                                            updateNewEvent(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Date:
-                                    <input type="date" id="date" onChange={
-                                        (evt) => {
-                                            const copy = { ...newEvent }
-                                            copy.date = evt.target.value
-                                            updateNewEvent(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Time:
-                                    <input type="time" id="time" onChange={
-                                        (evt) => {
-                                            const copy = { ...newEvent }
-                                            const unformattedTime = evt.target.value
-                                            const formattedTime = unformattedTime.slice(0, 5) + ":00"
-                                            copy.time = formattedTime
-                                            updateNewEvent(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Description:
-                                    <input type="text" id="description" onChange={
-                                        (evt) => {
-                                            const copy = { ...newEvent }
-                                            copy.description = evt.target.value
-                                            updateNewEvent(copy)
-                                        }
-                                    } />
-                                </div>
-                            </fieldset>
-                            <h3>Single Release</h3>
-                            <fieldset>
-                                <div>Song Title:
-                                    <input type="text" id="song_title" onChange={
-                                        (evt) => {
-                                            const copy = { ...newSingleRelease }
-                                            copy.song_title = evt.target.value
-                                            updateNewSingleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Genre:
-                                    <input type="text" id="genre" onChange={
-                                        (evt) => {
-                                            const copy = { ...newSingleRelease }
-                                            copy.genre = evt.target.value
-                                            updateNewSingleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>UPC:
-                                    <input type="number" id="upc" onChange={
-                                        (evt) => {
-                                            const copy = { ...newSingleRelease }
-                                            copy.upc = evt.target.value
-                                            updateNewSingleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>ISRC:
-                                    <input type="number" id="isrc" onChange={
-                                        (evt) => {
-                                            const copy = { ...newSingleRelease }
-                                            copy.isrc = evt.target.value
-                                            updateNewSingleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Composer:
-                                    <input type="text" id="composer" onChange={
-                                        (evt) => {
-                                            const copy = { ...newSingleRelease }
-                                            copy.composer = evt.target.value
-                                            updateNewSingleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Producer:
-                                    <input type="text" id="producer" onChange={
-                                        (evt) => {
-                                            const copy = { ...newSingleRelease }
-                                            copy.producer = evt.target.value
-                                            updateNewSingleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Explicit:
-                                    <input type="checkbox"
-                                        value={newSingleRelease.explicit}
-                                        onChange={
-                                            (evt) => {
-                                                const copy = { ...newSingleRelease }
-                                                copy.explicit = evt.target.checked
-                                                updateNewSingleRelease(copy)
-                                            }
-                                        } />
-                                </div>
-                                <div>Audio:
-                                    <input type="url" id="audio_url" onChange={
-                                        (evt) => {
-                                            const copy = { ...newSingleRelease }
-                                            copy.audio_url = evt.target.value
-                                            updateNewSingleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Artwork:
-
-                                    {url === "" ? ""
-                                        : <img src={url} alt="artwork" />}
-
-                                    <UploadFile onUpload={handleOnUpload} />
-                                </div>
-                                <div>Uploaded to Distro:
-                                    <input type="checkbox"
-                                        value={newSingleRelease.uploaded_to_distro}
-                                        onChange={
-                                            (evt) => {
-                                                const copy = { ...newSingleRelease }
-                                                copy.uploaded_to_distro = evt.target.checked
-                                                updateNewSingleRelease(copy)
-                                            }
-                                        } />
-                                </div>
-                                <button onClick={(clickEvent) => {
-                                    singleSaveButtonClick(clickEvent)
-                                    openSingleReleaseForm(false)
-                                    setEventType(0)
-                                    setURL("")
-                                }}>Save</button>
-                                <button className="cancelItem" onClick={() => {
-                                    openSingleReleaseForm(false)
-                                    setEventType(0)
-                                    setURL("")
-                                }}>Cancel</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                )
-            }
-
-            {
-                singleReleaseEditForm && (
-                    <div className="pop_up_rehearsal">
-                        <form className="relativeForm">
-                            <fieldset>
-                                <div>Title:
-                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
-                                        (evt) => {
-                                            const copy = { ...eventEdit }
-                                            copy.title = evt.target.value
-                                            updateEventEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Date:
-                                    <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
-                                        (evt) => {
-                                            const copy = { ...eventEdit }
-                                            copy.date = evt.target.value
-                                            updateEventEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Time:
-                                    <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
-                                        (evt) => {
-                                            const copy = { ...eventEdit }
-                                            const unformattedTime = evt.target.value
-                                            const formattedTime = unformattedTime.slice(0, 5) + ":00"
-                                            copy.time = formattedTime
-                                            updateEventEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
-                                        (evt) => {
-                                            const copy = { ...eventEdit }
-                                            copy.description = evt.target.value
-                                            updateEventEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                            </fieldset>
-                            <h3>Rehearsal</h3>
-                            <fieldset>
-                                <div>Song Title:
-                                    <input type="text" id="song_title" placeholder={singleEdit.song_title} value={singleEdit.song_title} onChange={
-                                        (evt) => {
-                                            const copy = { ...singleEdit }
-                                            copy.song_title = evt.target.value
-                                            updateSingleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Genre:
-                                    <input type="text" id="genre" placeholder={singleEdit.genre} value={singleEdit.genre} onChange={
-                                        (evt) => {
-                                            const copy = { ...singleEdit }
-                                            copy.genre = evt.target.value
-                                            updateSingleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>UPC:
-                                    <input type="number" id="upc" placeholder={singleEdit.upc} value={singleEdit.upc} onChange={
-                                        (evt) => {
-                                            const copy = { ...singleEdit }
-                                            copy.upc = evt.target.value
-                                            updateSingleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>ISRC:
-                                    <input type="number" id="isrc" placeholder={singleEdit.isrc} value={singleEdit.isrc} onChange={
-                                        (evt) => {
-                                            const copy = { ...singleEdit }
-                                            copy.isrc = evt.target.value
-                                            updateSingleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Composer:
-                                    <input type="text" id="composer" placeholder={singleEdit.composer} value={singleEdit.composer} onChange={
-                                        (evt) => {
-                                            const copy = { ...singleEdit }
-                                            copy.composer = evt.target.value
-                                            updateSingleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Producer:
-                                    <input type="text" id="producer" placeholder={singleEdit.producer} value={singleEdit.producer} onChange={
-                                        (evt) => {
-                                            const copy = { ...singleEdit }
-                                            copy.producer = evt.target.value
-                                            updateSingleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Artwork:
-                                    {singleEditURL === "" ? ""
-                                        : <img src={singleEditURL} alt="artwork" />}
-                                    {url === "" ? ""
-                                        : <img src={url} alt="artwork" />}
-                                    <UploadFile onUpload={handleOnUpload} />
-                                </div>
-                                <div>Uploaded to Distro:
-                                    <input type="checkbox"
-                                        value={singleEdit.uploaded_to_distro}
-                                        onChange={
-                                            (evt) => {
-                                                const copy = { ...singleEdit }
-                                                copy.uploaded_to_distro = evt.target.checked
-                                                updateSingleEdit(copy)
-                                            }
-                                        } />
-                                </div>
-                                <button onClick={(clickEvent) => {
-                                    singleEditButtonClick(clickEvent)
-                                    openSingleReleaseEditForm(false)
-                                    setSingleReleaseId(0)
-                                    setEventId(0)
-                                    setURL("")
-
-                                }}>Save</button>
-                                <button className="cancelItem" onClick={() => {
-                                    openSingleReleaseEditForm(false)
-                                    setSingleReleaseId(0)
-                                    setEventId(0)
-                                    setURL("")
-                                }}>Cancel</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                )
-            }
-
-            {/* BUNDLE FORMS */}
-
-
-            {
-                bundleReleaseForm && (
-                    <div className="pop_up_gig">
-                        <form className="relativeForm">
-                            <fieldset>
-                                <div>Title:
-                                    <input type="text" id="title" onChange={
-                                        (evt) => {
-                                            const copy = { ...newEvent }
-                                            copy.title = evt.target.value
-                                            updateNewEvent(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Date:
-                                    <input type="date" id="date" onChange={
-                                        (evt) => {
-                                            const copy = { ...newEvent }
-                                            copy.date = evt.target.value
-                                            updateNewEvent(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Time:
-                                    <input type="time" id="time" onChange={
-                                        (evt) => {
-                                            const copy = { ...newEvent }
-                                            const unformattedTime = evt.target.value
-                                            const formattedTime = unformattedTime.slice(0, 5) + ":00"
-                                            copy.time = formattedTime
-                                            updateNewEvent(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Description:
-                                    <input type="text" id="description" onChange={
-                                        (evt) => {
-                                            const copy = { ...newEvent }
-                                            copy.description = evt.target.value
-                                            updateNewEvent(copy)
-                                        }
-                                    } />
-                                </div>
-                            </fieldset>
-                            <h3>Bundle Release</h3>
-                            <fieldset>
-                                <div>Bundle Title:
-                                    <input type="text" id="bundle_title" onChange={
-                                        (evt) => {
-                                            const copy = { ...newBundleRelease }
-                                            copy.bundle_title = evt.target.value
-                                            updateNewBundleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Genre:
-                                    <input type="text" id="genre" onChange={
-                                        (evt) => {
-                                            const copy = { ...newBundleRelease }
-                                            copy.genre = evt.target.value
-                                            updateNewBundleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>UPC:
-                                    <input type="number" id="upc" onChange={
-                                        (evt) => {
-                                            const copy = { ...newBundleRelease }
-                                            copy.upc = evt.target.value
-                                            updateNewBundleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Audio:
-                                    <input type="url" id="audio_url" onChange={
-                                        (evt) => {
-                                            const copy = { ...newBundleRelease }
-                                            copy.audio_url = evt.target.value
-                                            updateNewBundleRelease(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Artwork:
-                                    {url === "" ? ""
-                                        : <img src={url} alt="artwork" />}
-                                    <UploadFile onUpload={handleOnUpload} />
-                                </div>
-                                <div>Uploaded to Distro:
-                                    <input type="checkbox"
-                                        value={newBundleRelease.uploaded_to_distro}
-                                        onChange={
-                                            (evt) => {
-                                                const copy = { ...newBundleRelease }
-                                                copy.uploaded_to_distro = evt.target.checked
-                                                updateNewBundleRelease(copy)
-                                            }
-                                        } />
-                                </div>
-                                <button onClick={(clickEvent) => {
-                                    bundleSaveButtonClick(clickEvent)
-                                    openBundleReleaseForm(false)
-                                    setEventType(0)
-                                    setURL("")
-                                }}>Save</button>
-                                <button className="cancelItem" onClick={() => {
-                                    openBundleReleaseForm(false)
-                                    setEventType(0)
-                                    setURL("")
-                                }}>Cancel</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                )
-            }
-
-            {
-                bundleReleaseEditForm && (
-                    <div className="pop_up_gig">
-                        <form className="relativeForm">
-                            <fieldset>
-                                <div>Title:
-                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
-                                        (evt) => {
-                                            const copy = { ...eventEdit }
-                                            copy.title = evt.target.value
-                                            updateEventEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Date:
-                                    <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
-                                        (evt) => {
-                                            const copy = { ...eventEdit }
-                                            copy.date = evt.target.value
-                                            updateEventEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Time:
-                                    <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
-                                        (evt) => {
-                                            const copy = { ...eventEdit }
-                                            const unformattedTime = evt.target.value
-                                            const formattedTime = unformattedTime.slice(0, 5) + ":00"
-                                            copy.time = formattedTime
-                                            updateEventEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Description:
-                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
-                                        (evt) => {
-                                            const copy = { ...eventEdit }
-                                            copy.description = evt.target.value
-                                            updateEventEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                            </fieldset>
-                            <h3>Bundle Release</h3>
-                            <fieldset>
-                                <div>Bundle Title:
-                                    <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} value={bundleEdit.bundle_title} onChange={
-                                        (evt) => {
-                                            const copy = { ...bundleEdit }
-                                            copy.bundle_title = evt.target.value
-                                            updateBundleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Genre:
-                                    <input type="text" id="genre" placeholder={bundleEdit.genre} value={bundleEdit.genre} onChange={
-                                        (evt) => {
-                                            const copy = { ...bundleEdit }
-                                            copy.genre = evt.target.value
-                                            updateBundleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>UPC:
-                                    <input type="number" id="upc" placeholder={bundleEdit.upc} value={bundleEdit.upc} onChange={
-                                        (evt) => {
-                                            const copy = { ...bundleEdit }
-                                            copy.upc = evt.target.value
-                                            updateBundleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Audio:
-                                    <input type="url" id="audio_url" placeholder={bundleEdit.audio_url} value={bundleEdit.audio_url} onChange={
-                                        (evt) => {
-                                            const copy = { ...bundleEdit }
-                                            copy.audio_url = evt.target.value
-                                            updateBundleEdit(copy)
-                                        }
-                                    } />
-                                </div>
-                                <div>Artwork:
-                                    {bundleEditURL === "" ? ""
-                                        : <img src={bundleEditURL} alt="artwork" />}
-                                    {url === "" ? ""
-                                        : <img src={url} alt="artwork" />}
-                                    <UploadFile onUpload={handleOnUpload} />
-                                </div>
-                                <div>Uploaded to Distro:
-                                    <input type="checkbox"
-                                        value={bundleEdit.uploaded_to_distro}
-                                        onChange={
-                                            (evt) => {
-                                                const copy = { ...bundleEdit }
-                                                copy.uploaded_to_distro = evt.target.checked
-                                                updateBundleEdit(copy)
-                                            }
-                                        } />
-                                </div>
-                                <button onClick={(clickEvent) => {
-                                    bundleEditButtonClick(clickEvent)
-                                    openBundleReleaseEditForm(false)
-                                    setBundleReleaseId(0)
-                                    setEventId(0)
-                                    setURL("")
-                                }}>Save</button>
-                                <button className="cancelItem" onClick={() => {
-                                    openBundleReleaseEditForm(false)
-                                    setBundleReleaseId(0)
-                                    setEventId(0)
-                                    setURL("")
-                                }}>Cancel</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                )
-            }
-        </div >
-
-        <div>
-            <Modal
-                show={showModal}
-                onHide={handleCloseModal}
-                backdrop="static"
-                keyboard={false}
-                dialogClassName="square-modal"
-            >
-                <Modal.Header closeButton={false} className="modal-header">
-                    <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="modal-body">
-                    <p>{event?.extendedProps?.description}</p>
-                </Modal.Body>
-                <Modal.Footer className="modal-footer">
-                    <button className="left-buttons" onClick={async () => {
-                        setEventId(parseInt(event.id));
-                        await handleCloseModal();
-                    }}>
-                        Edit
-                    </button>
-                    <button className="left-buttons" onClick={async () => {
-                        await deleteEvent(event.id);
-                        const newEvents = await getEvents();
-                        setEvents(newEvents);
-                        handleCloseModal();
-                    }}>Delete</button>
-                    <button className="right-button" onClick={handleCloseModal}>
-                        Close
-                    </button>
-                </Modal.Footer>
-            </Modal>
-        </div>
-
-
-        {
-            listSelected && (
-                <div className="listViewContainer">
-                    <ul>
-                        {
-                            events.map((event) => {
-                                const formattedListDate = formatDate(event.date)
-                                return (
-                                    <li className="eventCard" key={event.id} value={event.id}>
-                                        <div>
-                                            <h3>{event.title}</h3>
-                                            <section>{formattedListDate}</section>
-                                            <section>{event.description}</section>
-                                            <button onClick={() => { setEventListId(event.id) }}>View Details</button>
-                                        </div>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                    {
-                        viewMatchedSingle && (
-                            <div className="pop_up_single">
-                                <h3>Title: {matchedSingle.song_title}</h3>
-                                <div>Genre: {matchedSingle.genre}</div>
-                                <div>UPC: {matchedSingle.upc}</div>
-                                <div>ISRC: {matchedSingle.isrc}</div>
-                                <div>Composer: {matchedSingle.composer}</div>
-                                <div>Producer: {matchedSingle.producer}</div>
-                                <div>Explicit: {matchedSingle.explicit ? 'Yes' : 'No'}</div>
-                                <div>Audio URL:
-                                    <a href={matchedSingle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedSingle.audio_url}</a>
-                                </div>
-                                <div>Artwork: {matchedSingle.artwork}</div>
-                                <div>Ready for Distribution: {matchedSingle.uploaded_to_distro ? 'Yes' : 'No'}</div>
-                                <button className="btn btn-secondary" onClick={async () => {
-                                    setViewMatchedSingle(false)
-                                    setEventListId(0)
-                                    setEventId(parseInt(matchedSingle.event.id));
-                                }}>
-                                    Edit
-                                </button>
-                                <button className="btn btn-secondary" onClick={async () => {
-                                    await deleteEvent(parseInt(matchedSingle.event.id));
-                                    const newEvents = await getEvents();
-                                    setAllEvents(newEvents);
-                                }}>Delete</button>
-                                <button onClick={() => {
-                                    setViewMatchedSingle(false)
-                                    setEventListId(0)
-                                }}>Close</button>
                             </div>
-                        )
-                    }
-                    {
-                        viewMatchedBundle && (
-                            <div className="pop_up_gig">
-                                <h3>Title: {matchedBundle.bundle_title}</h3>
-                                <div>Genre: {matchedBundle.genre}</div>
-                                <div>UPC: {matchedBundle.upc}</div>
-                                <div>Audio URL:
-                                    <a href={matchedBundle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedBundle.audio_url}</a>
-                                </div>
-                                <div>Artwork: {matchedBundle.artwork}</div>
-                                <div>Ready for Distribution: {matchedBundle.uploaded_to_distro ? 'Yes' : 'No'}</div>
-                                <button onClick={() => {
-                                    setBundleId(matchedBundle.id)
-                                    openBundleSongForm(true)
-                                }}>Add Song to Bundle Release</button>
-                                {
-                                    bundleSongForm && (
-                                        <div className="pop_up_rehearsal">
-                                            <form className="relativeForm">
-                                                <h3>Bundle Song</h3>
-                                                <fieldset>
-                                                    <div>Song Title:
-                                                        <input type="text" id="song_title" onChange={
-                                                            (evt) => {
-                                                                const copy = { ...newBundleSong }
-                                                                copy.song_title = evt.target.value
-                                                                updateNewBundleSong(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>Genre:
-                                                        <input type="text" id="genre" onChange={
-                                                            (evt) => {
-                                                                const copy = { ...newBundleSong }
-                                                                copy.genre = evt.target.value
-                                                                updateNewBundleSong(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>ISRC:
-                                                        <input type="number" id="isrc" onChange={
-                                                            (evt) => {
-                                                                const copy = { ...newBundleSong }
-                                                                copy.isrc = evt.target.value
-                                                                updateNewBundleSong(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>Composer:
-                                                        <input type="text" id="composer" onChange={
-                                                            (evt) => {
-                                                                const copy = { ...newBundleSong }
-                                                                copy.composer = evt.target.value
-                                                                updateNewBundleSong(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>Producer:
-                                                        <input type="text" id="producer" onChange={
-                                                            (evt) => {
-                                                                const copy = { ...newBundleSong }
-                                                                copy.producer = evt.target.value
-                                                                updateNewBundleSong(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>Explicit:
-                                                        <input type="checkbox"
-                                                            value={newBundleSong.explicit}
-                                                            onChange={
-                                                                (evt) => {
-                                                                    const copy = { ...newBundleSong }
-                                                                    copy.explicit = evt.target.checked
-                                                                    updateNewBundleSong(copy)
-                                                                }
-                                                            } />
-                                                    </div>
-                                                    <button onClick={(clickEvent) => {
-                                                        bundleSongSaveButtonClick(clickEvent)
-                                                        openBundleSongForm(false)
-                                                        setBundleId(0)
-                                                    }}>Save</button>
-                                                    <button className="cancelItem" onClick={() => {
-                                                        openBundleSongForm(false)
-                                                        setBundleId(0)
-                                                    }}>Cancel</button>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    )
-                                }
-                                {
-                                    bundleSongEditForm && (
-                                        <div className="pop_up_rehearsal">
-                                            <form className="relativeForm">
-                                                <h3>Bundle Song</h3>
-                                                <fieldset>
-                                                    <div>Song Title:
-                                                        <input type="text" id="song_title" placeholder={bundleSongEdit.song_title} value={bundleSongEdit.song_title} onChange={
-                                                            (evt) => {
-                                                                const copy = { ...bundleSongEdit }
-                                                                copy.song_title = evt.target.value
-                                                                updateBundleSongEdit(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>Genre:
-                                                        <input type="text" id="genre" placeholder={bundleSongEdit.genre} value={bundleSongEdit.genre} onChange={
-                                                            (evt) => {
-                                                                const copy = { ...bundleSongEdit }
-                                                                copy.genre = evt.target.value
-                                                                updateBundleSongEdit(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>ISRC:
-                                                        <input type="number" id="isrc" placeholder={bundleSongEdit.isrc} value={bundleSongEdit.isrc} onChange={
-                                                            (evt) => {
-                                                                const copy = { ...bundleSongEdit }
-                                                                copy.isrc = evt.target.value
-                                                                updateBundleSongEdit(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>Composer:
-                                                        <input type="text" id="composer" placeholder={bundleSongEdit.composer} value={bundleSongEdit.composer} onChange={
-                                                            (evt) => {
-                                                                const copy = { ...bundleSongEdit }
-                                                                copy.composer = evt.target.value
-                                                                updateBundleSongEdit(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>Producer:
-                                                        <input type="text" id="producer" placeholder={bundleSongEdit.producer} value={bundleSongEdit.producer} onChange={
-                                                            (evt) => {
-                                                                const copy = { ...bundleSongEdit }
-                                                                copy.producer = evt.target.value
-                                                                updateBundleSongEdit(copy)
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    <div>Explicit:
-                                                        <input type="checkbox"
-                                                            value={bundleSongEdit.explicit}
-                                                            onChange={
-                                                                (evt) => {
-                                                                    const copy = { ...bundleSongEdit }
-                                                                    copy.explicit = evt.target.checked
-                                                                    updateBundleSongEdit(copy)
-                                                                }
-                                                            } />
-                                                    </div>
-                                                    <button onClick={(clickEvent) => {
-                                                        bundleSongEditButtonClick(clickEvent)
-                                                        openBundleSongEditForm(false)
-                                                        setBundleSongId(0)
-                                                    }}>Save</button>
-                                                    <button className="cancelItem" onClick={() => {
-                                                        openBundleSongEditForm(false)
-                                                        setBundleSongId(0)
-                                                    }}>Cancel</button>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    )
-                                }
-                                {
-                                    matchedBundleSongs ? (
-                                        <div className="matched_bundle_songs">
-                                            {
-                                                matchedBundleSongs.map(song => {
-                                                    return <>
-                                                        <li key={song.id} value={song.id}>
-                                                            <h3>Title: {song.song_title}</h3>
-                                                            <div>Genre: {song.genre}</div>
-                                                            <div>ISRC: {song.isrc}</div>
-                                                            <div>Composer: {song.composer}</div>
-                                                            <div>Producer: {song.producer}</div>
-                                                            <div>Explicit: {song.explicit ? 'Yes' : 'No'}</div>
-                                                            <button className="btn btn-secondary" onClick={async () => {
-                                                                setBundleSongId(song.id)
-                                                            }}>
-                                                                Edit
-                                                            </button>
-                                                            <button className="btn btn-secondary" onClick={async () => {
-                                                                await deleteBundleSong(parseInt(song.id));
-                                                                const newBundleSongs = await getBundleSongs();
-                                                                setBundleSongs(newBundleSongs);
-                                                            }}>Delete</button>
-                                                        </li>
-                                                    </>
-                                                })
-                                            }
-                                        </div>
-                                    )
-                                        :
-                                        ""
-                                }
-                                <div>
-                                    <button className="btn btn-secondary" onClick={async () => {
-                                        setViewMatchedBundle(false)
-                                        setEventListId(0)
-                                        setEventId(parseInt(matchedBundle.event.id));
-                                    }}>
-                                        Edit
-                                    </button>
-                                    <button className="btn btn-secondary" onClick={async () => {
-                                        await deleteEvent(parseInt(matchedBundle.event.id));
-                                        const newEvents = await getEvents();
-                                        setAllEvents(newEvents);
-                                    }}>Delete</button>
-                                    <button onClick={() => {
-                                        setViewMatchedBundle(false)
-                                        setEventListId(0)
-                                    }}>Close</button>
-                                </div>
                             </div>
-                        )
-                    }
-                </div>
-            )
+                            )
         }
 
 
 
 
 
-    </>;
+                            {
+                                isOpen && (
+                                    <div className="pop_up">
+                                        <div>
+                                            <select onChange={
+                                                (evt) => {
+                                                    setEventType(parseInt(evt.target.value))
+                                                    setIsOpen(false)
+                                                }
+                                            } >
+                                                <option value="0">Select Event Type...</option>
+                                                <option value="1">Single Release</option>
+                                                <option value="2">Bundle Release</option>
+                                            </select>
+                                        </div>
+                                        <button onClick={() => setIsOpen(false)}>
+                                            Cancel
+                                        </button>
+                                    </div>
+                                )
+                            }
+
+                            {/* SINGLE FORMS */}
+
+                            {
+                                singleReleaseForm && (
+                                    <div className="pop_up_rehearsal">
+                                        <form className="relativeForm">
+                                            <fieldset>
+                                                <div>Title:
+                                                    <input type="text" id="title" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newEvent }
+                                                            copy.title = evt.target.value
+                                                            updateNewEvent(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Date:
+                                                    <input type="date" id="date" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newEvent }
+                                                            copy.date = evt.target.value
+                                                            updateNewEvent(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Time:
+                                                    <input type="time" id="time" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newEvent }
+                                                            const unformattedTime = evt.target.value
+                                                            const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                                            copy.time = formattedTime
+                                                            updateNewEvent(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Description:
+                                                    <input type="text" id="description" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newEvent }
+                                                            copy.description = evt.target.value
+                                                            updateNewEvent(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                            </fieldset>
+                                            <h3>Single Release</h3>
+                                            <fieldset>
+                                                <div>Song Title:
+                                                    <input type="text" id="song_title" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newSingleRelease }
+                                                            copy.song_title = evt.target.value
+                                                            updateNewSingleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Genre:
+                                                    <input type="text" id="genre" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newSingleRelease }
+                                                            copy.genre = evt.target.value
+                                                            updateNewSingleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>UPC:
+                                                    <input type="number" id="upc" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newSingleRelease }
+                                                            copy.upc = evt.target.value
+                                                            updateNewSingleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>ISRC:
+                                                    <input type="number" id="isrc" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newSingleRelease }
+                                                            copy.isrc = evt.target.value
+                                                            updateNewSingleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Composer:
+                                                    <input type="text" id="composer" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newSingleRelease }
+                                                            copy.composer = evt.target.value
+                                                            updateNewSingleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Producer:
+                                                    <input type="text" id="producer" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newSingleRelease }
+                                                            copy.producer = evt.target.value
+                                                            updateNewSingleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Explicit:
+                                                    <input type="checkbox"
+                                                        value={newSingleRelease.explicit}
+                                                        onChange={
+                                                            (evt) => {
+                                                                const copy = { ...newSingleRelease }
+                                                                copy.explicit = evt.target.checked
+                                                                updateNewSingleRelease(copy)
+                                                            }
+                                                        } />
+                                                </div>
+                                                <div>Audio:
+                                                    <input type="url" id="audio_url" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newSingleRelease }
+                                                            copy.audio_url = evt.target.value
+                                                            updateNewSingleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Artwork:
+
+                                                    {url === "" ? ""
+                                                        : <img src={url} alt="artwork" />}
+
+                                                    <UploadFile onUpload={handleOnUpload} />
+                                                </div>
+                                                <div>Uploaded to Distro:
+                                                    <input type="checkbox"
+                                                        value={newSingleRelease.uploaded_to_distro}
+                                                        onChange={
+                                                            (evt) => {
+                                                                const copy = { ...newSingleRelease }
+                                                                copy.uploaded_to_distro = evt.target.checked
+                                                                updateNewSingleRelease(copy)
+                                                            }
+                                                        } />
+                                                </div>
+                                                <button onClick={(clickEvent) => {
+                                                    singleSaveButtonClick(clickEvent)
+                                                    openSingleReleaseForm(false)
+                                                    setEventType(0)
+                                                    setURL("")
+                                                }}>Save</button>
+                                                <button className="cancelItem" onClick={() => {
+                                                    openSingleReleaseForm(false)
+                                                    setEventType(0)
+                                                    setURL("")
+                                                }}>Cancel</button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                )
+                            }
+
+                            {
+                                singleReleaseEditForm && (
+                                    <div className="pop_up_rehearsal">
+                                        <form className="relativeForm">
+                                            <fieldset>
+                                                <div>Title:
+                                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...eventEdit }
+                                                            copy.title = evt.target.value
+                                                            updateEventEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Date:
+                                                    <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...eventEdit }
+                                                            copy.date = evt.target.value
+                                                            updateEventEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Time:
+                                                    <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...eventEdit }
+                                                            const unformattedTime = evt.target.value
+                                                            const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                                            copy.time = formattedTime
+                                                            updateEventEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Description:
+                                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...eventEdit }
+                                                            copy.description = evt.target.value
+                                                            updateEventEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                            </fieldset>
+                                            <h3>Rehearsal</h3>
+                                            <fieldset>
+                                                <div>Song Title:
+                                                    <input type="text" id="song_title" placeholder={singleEdit.song_title} value={singleEdit.song_title} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...singleEdit }
+                                                            copy.song_title = evt.target.value
+                                                            updateSingleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Genre:
+                                                    <input type="text" id="genre" placeholder={singleEdit.genre} value={singleEdit.genre} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...singleEdit }
+                                                            copy.genre = evt.target.value
+                                                            updateSingleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>UPC:
+                                                    <input type="number" id="upc" placeholder={singleEdit.upc} value={singleEdit.upc} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...singleEdit }
+                                                            copy.upc = evt.target.value
+                                                            updateSingleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>ISRC:
+                                                    <input type="number" id="isrc" placeholder={singleEdit.isrc} value={singleEdit.isrc} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...singleEdit }
+                                                            copy.isrc = evt.target.value
+                                                            updateSingleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Composer:
+                                                    <input type="text" id="composer" placeholder={singleEdit.composer} value={singleEdit.composer} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...singleEdit }
+                                                            copy.composer = evt.target.value
+                                                            updateSingleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Producer:
+                                                    <input type="text" id="producer" placeholder={singleEdit.producer} value={singleEdit.producer} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...singleEdit }
+                                                            copy.producer = evt.target.value
+                                                            updateSingleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Artwork:
+                                                    {singleEditURL === "" ? ""
+                                                        : <img src={singleEditURL} alt="artwork" />}
+                                                    {url === "" ? ""
+                                                        : <img src={url} alt="artwork" />}
+                                                    <UploadFile onUpload={handleOnUpload} />
+                                                </div>
+                                                <div>Uploaded to Distro:
+                                                    <input type="checkbox"
+                                                        value={singleEdit.uploaded_to_distro}
+                                                        onChange={
+                                                            (evt) => {
+                                                                const copy = { ...singleEdit }
+                                                                copy.uploaded_to_distro = evt.target.checked
+                                                                updateSingleEdit(copy)
+                                                            }
+                                                        } />
+                                                </div>
+                                                <button onClick={(clickEvent) => {
+                                                    singleEditButtonClick(clickEvent)
+                                                    openSingleReleaseEditForm(false)
+                                                    setSingleReleaseId(0)
+                                                    setEventId(0)
+                                                    setURL("")
+
+                                                }}>Save</button>
+                                                <button className="cancelItem" onClick={() => {
+                                                    openSingleReleaseEditForm(false)
+                                                    setSingleReleaseId(0)
+                                                    setEventId(0)
+                                                    setURL("")
+                                                }}>Cancel</button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                )
+                            }
+
+                            {/* BUNDLE FORMS */}
+
+
+                            {
+                                bundleReleaseForm && (
+                                    <div className="pop_up_gig">
+                                        <form className="relativeForm">
+                                            <fieldset>
+                                                <div>Title:
+                                                    <input type="text" id="title" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newEvent }
+                                                            copy.title = evt.target.value
+                                                            updateNewEvent(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Date:
+                                                    <input type="date" id="date" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newEvent }
+                                                            copy.date = evt.target.value
+                                                            updateNewEvent(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Time:
+                                                    <input type="time" id="time" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newEvent }
+                                                            const unformattedTime = evt.target.value
+                                                            const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                                            copy.time = formattedTime
+                                                            updateNewEvent(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Description:
+                                                    <input type="text" id="description" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newEvent }
+                                                            copy.description = evt.target.value
+                                                            updateNewEvent(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                            </fieldset>
+                                            <h3>Bundle Release</h3>
+                                            <fieldset>
+                                                <div>Bundle Title:
+                                                    <input type="text" id="bundle_title" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newBundleRelease }
+                                                            copy.bundle_title = evt.target.value
+                                                            updateNewBundleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Genre:
+                                                    <input type="text" id="genre" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newBundleRelease }
+                                                            copy.genre = evt.target.value
+                                                            updateNewBundleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>UPC:
+                                                    <input type="number" id="upc" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newBundleRelease }
+                                                            copy.upc = evt.target.value
+                                                            updateNewBundleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Audio:
+                                                    <input type="url" id="audio_url" onChange={
+                                                        (evt) => {
+                                                            const copy = { ...newBundleRelease }
+                                                            copy.audio_url = evt.target.value
+                                                            updateNewBundleRelease(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Artwork:
+                                                    {url === "" ? ""
+                                                        : <img src={url} alt="artwork" />}
+                                                    <UploadFile onUpload={handleOnUpload} />
+                                                </div>
+                                                <div>Uploaded to Distro:
+                                                    <input type="checkbox"
+                                                        value={newBundleRelease.uploaded_to_distro}
+                                                        onChange={
+                                                            (evt) => {
+                                                                const copy = { ...newBundleRelease }
+                                                                copy.uploaded_to_distro = evt.target.checked
+                                                                updateNewBundleRelease(copy)
+                                                            }
+                                                        } />
+                                                </div>
+                                                <button onClick={(clickEvent) => {
+                                                    bundleSaveButtonClick(clickEvent)
+                                                    openBundleReleaseForm(false)
+                                                    setEventType(0)
+                                                    setURL("")
+                                                }}>Save</button>
+                                                <button className="cancelItem" onClick={() => {
+                                                    openBundleReleaseForm(false)
+                                                    setEventType(0)
+                                                    setURL("")
+                                                }}>Cancel</button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                )
+                            }
+
+                            {
+                                bundleReleaseEditForm && (
+                                    <div className="pop_up_gig">
+                                        <form className="relativeForm">
+                                            <fieldset>
+                                                <div>Title:
+                                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...eventEdit }
+                                                            copy.title = evt.target.value
+                                                            updateEventEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Date:
+                                                    <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...eventEdit }
+                                                            copy.date = evt.target.value
+                                                            updateEventEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Time:
+                                                    <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...eventEdit }
+                                                            const unformattedTime = evt.target.value
+                                                            const formattedTime = unformattedTime.slice(0, 5) + ":00"
+                                                            copy.time = formattedTime
+                                                            updateEventEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Description:
+                                                    <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...eventEdit }
+                                                            copy.description = evt.target.value
+                                                            updateEventEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                            </fieldset>
+                                            <h3>Bundle Release</h3>
+                                            <fieldset>
+                                                <div>Bundle Title:
+                                                    <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} value={bundleEdit.bundle_title} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...bundleEdit }
+                                                            copy.bundle_title = evt.target.value
+                                                            updateBundleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Genre:
+                                                    <input type="text" id="genre" placeholder={bundleEdit.genre} value={bundleEdit.genre} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...bundleEdit }
+                                                            copy.genre = evt.target.value
+                                                            updateBundleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>UPC:
+                                                    <input type="number" id="upc" placeholder={bundleEdit.upc} value={bundleEdit.upc} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...bundleEdit }
+                                                            copy.upc = evt.target.value
+                                                            updateBundleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Audio:
+                                                    <input type="url" id="audio_url" placeholder={bundleEdit.audio_url} value={bundleEdit.audio_url} onChange={
+                                                        (evt) => {
+                                                            const copy = { ...bundleEdit }
+                                                            copy.audio_url = evt.target.value
+                                                            updateBundleEdit(copy)
+                                                        }
+                                                    } />
+                                                </div>
+                                                <div>Artwork:
+                                                    {bundleEditURL === "" ? ""
+                                                        : <img src={bundleEditURL} alt="artwork" />}
+                                                    {url === "" ? ""
+                                                        : <img src={url} alt="artwork" />}
+                                                    <UploadFile onUpload={handleOnUpload} />
+                                                </div>
+                                                <div>Uploaded to Distro:
+                                                    <input type="checkbox"
+                                                        value={bundleEdit.uploaded_to_distro}
+                                                        onChange={
+                                                            (evt) => {
+                                                                const copy = { ...bundleEdit }
+                                                                copy.uploaded_to_distro = evt.target.checked
+                                                                updateBundleEdit(copy)
+                                                            }
+                                                        } />
+                                                </div>
+                                                <button onClick={(clickEvent) => {
+                                                    bundleEditButtonClick(clickEvent)
+                                                    openBundleReleaseEditForm(false)
+                                                    setBundleReleaseId(0)
+                                                    setEventId(0)
+                                                    setURL("")
+                                                }}>Save</button>
+                                                <button className="cancelItem" onClick={() => {
+                                                    openBundleReleaseEditForm(false)
+                                                    setBundleReleaseId(0)
+                                                    setEventId(0)
+                                                    setURL("")
+                                                }}>Cancel</button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                )
+                            }
+                        </div >
+
+                        <div>
+                            <Modal
+                                show={showModal}
+                                onHide={handleCloseModal}
+                                backdrop="static"
+                                keyboard={false}
+                                dialogClassName="square-modal"
+                            >
+                                <Modal.Header closeButton={false} className="modal-header">
+                                    <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body className="modal-body">
+                                    <p>{event?.extendedProps?.description}</p>
+                                </Modal.Body>
+                                <Modal.Footer className="modal-footer">
+                                    <button className="left-buttons" onClick={async () => {
+                                        setEventId(parseInt(event.id));
+                                        await handleCloseModal();
+                                    }}>
+                                        Edit
+                                    </button>
+                                    <button className="left-buttons" onClick={async () => {
+                                        await deleteEvent(event.id);
+                                        const newEvents = await getEvents();
+                                        setEvents(newEvents);
+                                        handleCloseModal();
+                                    }}>Delete</button>
+                                    <button className="right-button" onClick={handleCloseModal}>
+                                        Close
+                                    </button>
+                                </Modal.Footer>
+                            </Modal>
+                        </div>
+
+
+                        {
+                            listSelected && (
+                                <div className="listViewContainer">
+                                    <ul>
+                                        {
+                                            events.map((event) => {
+                                                const formattedListDate = formatDate(event.date)
+                                                return (
+                                                    <li className="eventCard" key={event.id} value={event.id}>
+                                                        <div>
+                                                            <h3>{event.title}</h3>
+                                                            <section>{formattedListDate}</section>
+                                                            <section>{event.description}</section>
+                                                            <button onClick={() => { setEventListId(event.id) }}>View Details</button>
+                                                        </div>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                    {
+                                        viewMatchedSingle && (
+                                            <div className="pop_up_single">
+                                                <h3>Title: {matchedSingle.song_title}</h3>
+                                                <div>Genre: {matchedSingle.genre}</div>
+                                                <div>UPC: {matchedSingle.upc}</div>
+                                                <div>ISRC: {matchedSingle.isrc}</div>
+                                                <div>Composer: {matchedSingle.composer}</div>
+                                                <div>Producer: {matchedSingle.producer}</div>
+                                                <div>Explicit: {matchedSingle.explicit ? 'Yes' : 'No'}</div>
+                                                <div>Audio URL:
+                                                    <a href={matchedSingle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedSingle.audio_url}</a>
+                                                </div>
+                                                <div>Artwork: {matchedSingle.artwork}</div>
+                                                <div>Ready for Distribution: {matchedSingle.uploaded_to_distro ? 'Yes' : 'No'}</div>
+                                                <button className="btn btn-secondary" onClick={async () => {
+                                                    setViewMatchedSingle(false)
+                                                    setEventListId(0)
+                                                    setEventId(parseInt(matchedSingle.event.id));
+                                                }}>
+                                                    Edit
+                                                </button>
+                                                <button className="btn btn-secondary" onClick={async () => {
+                                                    await deleteEvent(parseInt(matchedSingle.event.id));
+                                                    const newEvents = await getEvents();
+                                                    setAllEvents(newEvents);
+                                                }}>Delete</button>
+                                                <button onClick={() => {
+                                                    setViewMatchedSingle(false)
+                                                    setEventListId(0)
+                                                }}>Close</button>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        viewMatchedBundle && (
+                                            <div className="pop_up_gig">
+                                                <h3>Title: {matchedBundle.bundle_title}</h3>
+                                                <div>Genre: {matchedBundle.genre}</div>
+                                                <div>UPC: {matchedBundle.upc}</div>
+                                                <div>Audio URL:
+                                                    <a href={matchedBundle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedBundle.audio_url}</a>
+                                                </div>
+                                                <div>Artwork: {matchedBundle.artwork}</div>
+                                                <div>Ready for Distribution: {matchedBundle.uploaded_to_distro ? 'Yes' : 'No'}</div>
+                                                <button onClick={() => {
+                                                    setBundleId(matchedBundle.id)
+                                                    openBundleSongForm(true)
+                                                }}>Add Song to Bundle Release</button>
+                                                {
+                                                    bundleSongForm && (
+                                                        <div className="pop_up_rehearsal">
+                                                            <form className="relativeForm">
+                                                                <h3>Bundle Song</h3>
+                                                                <fieldset>
+                                                                    <div>Song Title:
+                                                                        <input type="text" id="song_title" onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...newBundleSong }
+                                                                                copy.song_title = evt.target.value
+                                                                                updateNewBundleSong(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>Genre:
+                                                                        <input type="text" id="genre" onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...newBundleSong }
+                                                                                copy.genre = evt.target.value
+                                                                                updateNewBundleSong(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>ISRC:
+                                                                        <input type="number" id="isrc" onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...newBundleSong }
+                                                                                copy.isrc = evt.target.value
+                                                                                updateNewBundleSong(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>Composer:
+                                                                        <input type="text" id="composer" onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...newBundleSong }
+                                                                                copy.composer = evt.target.value
+                                                                                updateNewBundleSong(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>Producer:
+                                                                        <input type="text" id="producer" onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...newBundleSong }
+                                                                                copy.producer = evt.target.value
+                                                                                updateNewBundleSong(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>Explicit:
+                                                                        <input type="checkbox"
+                                                                            value={newBundleSong.explicit}
+                                                                            onChange={
+                                                                                (evt) => {
+                                                                                    const copy = { ...newBundleSong }
+                                                                                    copy.explicit = evt.target.checked
+                                                                                    updateNewBundleSong(copy)
+                                                                                }
+                                                                            } />
+                                                                    </div>
+                                                                    <button onClick={(clickEvent) => {
+                                                                        bundleSongSaveButtonClick(clickEvent)
+                                                                        openBundleSongForm(false)
+                                                                        setBundleId(0)
+                                                                    }}>Save</button>
+                                                                    <button className="cancelItem" onClick={() => {
+                                                                        openBundleSongForm(false)
+                                                                        setBundleId(0)
+                                                                    }}>Cancel</button>
+                                                                </fieldset>
+                                                            </form>
+                                                        </div>
+                                                    )
+                                                }
+                                                {
+                                                    bundleSongEditForm && (
+                                                        <div className="pop_up_rehearsal">
+                                                            <form className="relativeForm">
+                                                                <h3>Bundle Song</h3>
+                                                                <fieldset>
+                                                                    <div>Song Title:
+                                                                        <input type="text" id="song_title" placeholder={bundleSongEdit.song_title} value={bundleSongEdit.song_title} onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...bundleSongEdit }
+                                                                                copy.song_title = evt.target.value
+                                                                                updateBundleSongEdit(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>Genre:
+                                                                        <input type="text" id="genre" placeholder={bundleSongEdit.genre} value={bundleSongEdit.genre} onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...bundleSongEdit }
+                                                                                copy.genre = evt.target.value
+                                                                                updateBundleSongEdit(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>ISRC:
+                                                                        <input type="number" id="isrc" placeholder={bundleSongEdit.isrc} value={bundleSongEdit.isrc} onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...bundleSongEdit }
+                                                                                copy.isrc = evt.target.value
+                                                                                updateBundleSongEdit(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>Composer:
+                                                                        <input type="text" id="composer" placeholder={bundleSongEdit.composer} value={bundleSongEdit.composer} onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...bundleSongEdit }
+                                                                                copy.composer = evt.target.value
+                                                                                updateBundleSongEdit(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>Producer:
+                                                                        <input type="text" id="producer" placeholder={bundleSongEdit.producer} value={bundleSongEdit.producer} onChange={
+                                                                            (evt) => {
+                                                                                const copy = { ...bundleSongEdit }
+                                                                                copy.producer = evt.target.value
+                                                                                updateBundleSongEdit(copy)
+                                                                            }
+                                                                        } />
+                                                                    </div>
+                                                                    <div>Explicit:
+                                                                        <input type="checkbox"
+                                                                            value={bundleSongEdit.explicit}
+                                                                            onChange={
+                                                                                (evt) => {
+                                                                                    const copy = { ...bundleSongEdit }
+                                                                                    copy.explicit = evt.target.checked
+                                                                                    updateBundleSongEdit(copy)
+                                                                                }
+                                                                            } />
+                                                                    </div>
+                                                                    <button onClick={(clickEvent) => {
+                                                                        bundleSongEditButtonClick(clickEvent)
+                                                                        openBundleSongEditForm(false)
+                                                                        setBundleSongId(0)
+                                                                    }}>Save</button>
+                                                                    <button className="cancelItem" onClick={() => {
+                                                                        openBundleSongEditForm(false)
+                                                                        setBundleSongId(0)
+                                                                    }}>Cancel</button>
+                                                                </fieldset>
+                                                            </form>
+                                                        </div>
+                                                    )
+                                                }
+                                                {
+                                                    matchedBundleSongs ? (
+                                                        <div className="matched_bundle_songs">
+                                                            {
+                                                                matchedBundleSongs.map(song => {
+                                                                    return <>
+                                                                        <li key={song.id} value={song.id}>
+                                                                            <h3>Title: {song.song_title}</h3>
+                                                                            <div>Genre: {song.genre}</div>
+                                                                            <div>ISRC: {song.isrc}</div>
+                                                                            <div>Composer: {song.composer}</div>
+                                                                            <div>Producer: {song.producer}</div>
+                                                                            <div>Explicit: {song.explicit ? 'Yes' : 'No'}</div>
+                                                                            <button className="btn btn-secondary" onClick={async () => {
+                                                                                setBundleSongId(song.id)
+                                                                            }}>
+                                                                                Edit
+                                                                            </button>
+                                                                            <button className="btn btn-secondary" onClick={async () => {
+                                                                                await deleteBundleSong(parseInt(song.id));
+                                                                                const newBundleSongs = await getBundleSongs();
+                                                                                setBundleSongs(newBundleSongs);
+                                                                            }}>Delete</button>
+                                                                        </li>
+                                                                    </>
+                                                                })
+                                                            }
+                                                        </div>
+                                                    )
+                                                        :
+                                                        ""
+                                                }
+                                                <div>
+                                                    <button className="btn btn-secondary" onClick={async () => {
+                                                        setViewMatchedBundle(false)
+                                                        setEventListId(0)
+                                                        setEventId(parseInt(matchedBundle.event.id));
+                                                    }}>
+                                                        Edit
+                                                    </button>
+                                                    <button className="btn btn-secondary" onClick={async () => {
+                                                        await deleteEvent(parseInt(matchedBundle.event.id));
+                                                        const newEvents = await getEvents();
+                                                        setAllEvents(newEvents);
+                                                    }}>Delete</button>
+                                                    <button onClick={() => {
+                                                        setViewMatchedBundle(false)
+                                                        setEventListId(0)
+                                                    }}>Close</button>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                            )
+                        }
+
+
+
+
+
+                    </>;
 }

@@ -29,6 +29,9 @@ export const LiveEvents = () => {
     const [viewMatchedRehearsal, setViewMatchedRehearsal] = useState(false);
     const [matchedGig, setMatchedGig] = useState({});
     const [viewMatchedGig, setViewMatchedGig] = useState(false);
+    const [showFlierPopup, setShowFlierPopup] = useState(false);
+    const [showStagePlotPopup, setShowStagePlotPopup] = useState(false);
+    const [showInputListPopup, setShowInputListPopup] = useState(false);
     const [eventsFromAPI, setEventsFromAPI] = useState([])
     const [searchOption, setSearchOption] = useState('');
     const [startSearch, setStartSearch] = useState(false);
@@ -428,6 +431,32 @@ export const LiveEvents = () => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return date.toLocaleDateString(undefined, options);
     }
+
+
+
+    const openFlierPopup = () => {
+        setShowFlierPopup(true);
+    };
+
+    const openStagePlotPopup = () => {
+        setShowStagePlotPopup(true);
+    };
+
+    const openInputListPopup = () => {
+        setShowInputListPopup(true);
+    };
+
+    const closeFlierPopup = () => {
+        setShowFlierPopup(false);
+    };
+
+    const closeStagePlotPopup = () => {
+        setShowStagePlotPopup(false);
+    };
+
+    const closeInputListPopup = () => {
+        setShowInputListPopup(false);
+    };
 
 
 
@@ -934,10 +963,10 @@ export const LiveEvents = () => {
                             viewMatchedRehearsal && (
                                 <div className="pop_up_rehearsal">
                                     <div className="listItem">
-                                    <div className="listKey">Location:</div> <div className="listValue">{matchedRehearsal.location}</div>
+                                        <div className="listKey">Location:</div> <div className="listValue">{matchedRehearsal.location}</div>
                                     </div>
                                     <div className="listItem">
-                                    <div className="listKey">Band Members:</div> <div className="listValue"> {matchedRehearsal.band_info}</div>
+                                        <div className="listKey">Band Members:</div> <div className="listValue"> {matchedRehearsal.band_info}</div>
                                     </div>
                                     <div className="button_group">
                                         <button className="edit_button" onClick={async () => {
@@ -963,38 +992,108 @@ export const LiveEvents = () => {
                         }
                         {
                             viewMatchedGig && (
-                                <div className="pop_up_single">
-                                    <h3>City/State: {matchedGig.song_city_state}</h3>
-                                    <div>Venue: {matchedGig.venue}</div>
-                                    <div>Band Members: {matchedGig.band_info}</div>
-                                    <div>Age Requirement: {matchedGig.age_requirement}</div>
-                                    <div>Ticket Price: {matchedGig.ticket_price}</div>
-                                    <div>Ticket Link:
-                                        <a href={matchedGig.ticket_link} target="_blank" rel="noopener noreferrer"> {matchedGig.ticket_link}</a>
+                                <div className="pop_up_gig">
+                                    <div className="listItem">
+                                        <div className="listKey">City/State: </div><div className="listValue">{matchedGig.song_city_state}</div>
                                     </div>
-                                    <div>Guarantee: {matchedGig.guarantee}</div>
-                                    <div>Sold out: {matchedGig.sold_out ? 'Yes' : 'No'}</div>
-                                    <div>Announced: {matchedGig.announced ? 'Yes' : 'No'}</div>
-                                    <div>Flier: {matchedGig.flier}</div>
-                                    <div>Stage Plot: {matchedGig.stage_plot}</div>
-                                    <div>Input List: {matchedGig.input_list}</div>
-                                    <button className="btn btn-secondary" onClick={async () => {
-                                        setViewMatchedGig(false)
-                                        setEventListId(0)
-                                        setEventId(parseInt(matchedGig.event.id));
-                                    }}>
-                                        Edit
-                                    </button>
-                                    <button className="btn btn-secondary" onClick={async () => {
-                                        await deleteEvent(parseInt(matchedGig.event.id));
-                                        const newEvents = await getEvents();
-                                        setAllEvents(newEvents);
-                                        setViewMatchedGig(false)
-                                    }}>Delete</button>
-                                    <button onClick={() => {
+                                    <div className="listItem">
+                                        <div className="listKey">Venue:</div><div className="listValue"> {matchedGig.venue}</div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Band Members:</div><div className="listValue"> {matchedGig.band_info}</div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Age Requirement: </div><div className="listValue">{matchedGig.age_requirement}</div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Ticket Price:</div><div className="listValue"> {matchedGig.ticket_price}</div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Ticket Link: </div><div className="listValue">
+                                            <a href={matchedGig.ticket_link} target="_blank" rel="noopener noreferrer"> {matchedGig.ticket_link}</a>
+                                        </div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Guarantee:</div><div className="listValue"> {matchedGig.guarantee}</div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Sold out:</div><div className="listValue"> {matchedGig.sold_out ? 'Yes' : 'No'}</div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Announced:</div><div className="listValue"> {matchedGig.announced ? 'Yes' : 'No'}</div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Flier: </div>
+                                        <div className="listValue">
+                                            <button className="viewImageBtn" onClick={openFlierPopup}>
+                                                View Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Stage Plot: </div>
+                                        <div className="listValue">
+                                            <button className="viewImageBtn" onClick={openStagePlotPopup}>
+                                                View Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="listItem">
+                                        <div className="listKey">Input List:</div>
+                                        <div className="listValue">
+                                            <button className="viewImageBtn" onClick={openInputListPopup}>
+                                                View Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="button_group">
+                                        <button className="edit_button" onClick={async () => {
+                                            setViewMatchedGig(false)
+                                            setEventListId(0)
+                                            setEventId(parseInt(matchedGig.event.id));
+                                        }}>
+                                            Edit
+                                        </button>
+                                        <button className="delete_button" onClick={async () => {
+                                            await deleteEvent(parseInt(matchedGig.event.id));
+                                            const newEvents = await getEvents();
+                                            setAllEvents(newEvents);
+                                            setViewMatchedGig(false)
+                                        }}>Delete</button>
+                                    </div>
+                                    <button className="close_button" onClick={() => {
                                         setViewMatchedGig(false)
                                         setEventListId(0)
                                     }}>Close</button>
+                                    {/* Flier Pop-up */}
+                                    {showFlierPopup && (
+                                        <div className="imagePopup">
+                                            <img src={matchedGig.flier} alt="flier" />
+                                            <button className="closePopupBtn" onClick={closeFlierPopup}>
+                                                Close
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {/* Stage Plot Pop-up */}
+                                    {showStagePlotPopup && (
+                                        <div className="imagePopup">
+                                            <img src={matchedGig.stage_plot} alt="stage_plot" />
+                                            <button className="closePopupBtn" onClick={closeStagePlotPopup}>
+                                                Close
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {/* Input List Pop-up */}
+                                    {showInputListPopup && (
+                                        <div className="imagePopup">
+                                            <img src={matchedGig.input_list} alt="input_list" />
+                                            <button className="closePopupBtn" onClick={closeInputListPopup}>
+                                                Close
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             )
                         }

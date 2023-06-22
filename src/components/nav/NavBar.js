@@ -7,7 +7,6 @@ export const NavBar = ({ token, setToken }) => {
   const navigate = useNavigate();
   const navbar = useRef();
   const hamburger = useRef();
-  const [isReleaseDropdownVisible, setReleaseDropdownVisible] = useState(false);
   const [isLiveDropdownVisible, setLiveDropdownVisible] = useState(false);
   const [isPressDropdownVisible, setPressDropdownVisible] = useState(false);
 
@@ -16,10 +15,7 @@ export const NavBar = ({ token, setToken }) => {
     navbar.current.classList.toggle("is-active");
   };
 
-  const handleReleaseDropdownToggle = () => {
-    setReleaseDropdownVisible(!isReleaseDropdownVisible);
-  };
-
+  
   const handleLiveDropdownToggle = () => {
     setLiveDropdownVisible(!isLiveDropdownVisible);
   };
@@ -36,7 +32,7 @@ export const NavBar = ({ token, setToken }) => {
     >
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          <img src={Logo} height="3rem"  alt="Bandplanner Logo" />{" "}
+          <img src={Logo} height="3rem" alt="Bandplanner Logo" />{" "}
           <h1 className="title is-4 custom-font" style={{ marginLeft: '1rem' }}> Bandplanner</h1>
         </a>
 
@@ -80,9 +76,6 @@ export const NavBar = ({ token, setToken }) => {
                   <li className="dropdown-item">
                     <Link to="/setlist">Setlists</Link>
                   </li>
-                  <li className="dropdown-item">
-                    <Link to="/showchecklist">Promo Checklist</Link>
-                  </li>
                 </div>
               )}
             </>
@@ -90,26 +83,18 @@ export const NavBar = ({ token, setToken }) => {
             ""
           )}
           </div>
-          <div className="is-success dropdown-wrapper" onMouseEnter={handleReleaseDropdownToggle} onMouseLeave={handleReleaseDropdownToggle}>{token ? (
-            <>
+          <div >
+            {token ? (
+
               <Link to="/releases" className="navbar-item">
                 Releases
               </Link>
-              {isReleaseDropdownVisible && (
-                <div className="dropdown-content">
-                  <li className="dropdown-item">
-                    <Link to="/releases">Release Schedule</Link>
-                  </li>
-                  <li className="dropdown-item">
-                    <Link to="/releasechecklist">Promo Checklist</Link>
-                  </li>
-                </div>
-              )}
-            </>
-          ) : (
-            ""
-          )}
+
+            ) : (
+              ""
+            )}
           </div>
+
           <div className="is-success dropdown-wrapper" onMouseEnter={handlePressDropdownToggle} onMouseLeave={handlePressDropdownToggle}>{token ? (
             <>
               <Link to="/pressclipping" className="navbar-item">

@@ -200,9 +200,10 @@
 
 
 
+
+
+
 .listViewContainer {
-
-
     margin-top: 10px;
 }
 
@@ -233,7 +234,7 @@
 
 
 
-.pop_up {
+/* .pop_up {
     position: fixed;
     top: 20%;
     left: 50%;
@@ -241,21 +242,89 @@
     z-index: 9999;
     background-color: whitesmoke;
     border: 2px solid black;
-    /* Ensure the pop-up is in front of other content */
-    /* Add additional styles for the pop-up */
-}
+} */
+
+
+
+
+
 
 .pop_up_gig {
     position: fixed;
     top: 45%;
     left: 50%;
+    height: 90%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+
+.pop_up_gig .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pop_up_gig .listKey {
+    font-weight: bold;
+    width: 30%; /* Set the width to 30% */
+}
+
+.pop_up_gig .listValue {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 70%; /* Set the width to 70% */
+  }
+
+  .pop_up_gig .listValue div {
+    width: 100%; /* Ensure the text takes full width */
+  }
+
+
+  .imagePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50vh;
+    height: 50vh;
     transform: translate(-50%, -50%);
     z-index: 9999;
     background-color: whitesmoke;
     border: 2px solid black;
-    /* Ensure the pop-up is in front of other content */
-    /* Add additional styles for the pop-up */
-}
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+  flex-direction: column;
+  }
+
+  .imagePopup img {
+    max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  }
+  
+  .imagePopup .closePopupBtn {
+    margin-top: auto;
+    align-self: flex-end;
+  }
+
+
+
+
+
+
+
+
+
+
+
 .pop_up_rehearsal {
     position: fixed;
     height: 200px;
@@ -263,26 +332,33 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: whitesmoke;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
     border: 2px solid black;
     padding: 10px;
-  }
-  
-  .pop_up_rehearsal .listItem {
+}
+
+.pop_up_rehearsal .listItem {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
-  }
-  
-  .pop_up_rehearsal .listKey {
+}
+
+.pop_up_rehearsal .listKey {
     font-weight: bold;
-    width: 100px;
-  }
-  
-  .pop_up_rehearsal .listValue {
+    width: 30%; /* Set the width to 30% */
+}
+
+.pop_up_rehearsal .listValue {
+    display: flex;
+    align-items: center;
     margin-left: 10px;
+    width: 70%; /* Set the width to 70% */
   }
-  
+
+  .pop_up_rehearsal .listValue div {
+    width: 100%; /* Ensure the text takes full width */
+  }
 
 
 .button_group {
