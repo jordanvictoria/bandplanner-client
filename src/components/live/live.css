@@ -1,0 +1,568 @@
+.site-background {
+    background-image: url('../nav/bandplannerlogo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.add-event-button {
+    position: absolute;
+    top: 80px;
+    /* Adjust the top position as needed */
+    left: 365px;
+    /* Adjust the right position as needed */
+    padding: 5px 5px;
+    /* Adjust the padding as needed */
+    font-size: 14px;
+    /* Adjust the font size as needed */
+}
+
+.custom-button {
+    background-color: rgb(125, 128, 128);
+    /* Replace "red" with the desired color */
+    color: white;
+    /* Replace "white" with the desired font color */
+    border-radius: 5px;
+    border: 2px solid white;
+}
+
+
+.button-view-container {
+    position: absolute;
+    top: 75px;
+    right: 25%;
+    transform: translateY(50%);
+}
+
+.react-calendar {
+    margin-top: 10px;
+    background-color: antiquewhite;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 5px darkcyan solid;
+    overflow: auto;
+}
+
+
+
+
+.filterBox {
+    border: 2px solid black;
+    margin-left: 15px;
+    padding: 2px;
+    background-color: antiquewhite !important;
+    position: absolute !important;
+    top: 130px !important;
+    /* Adjust the top position as needed */
+    width: 250px !important;
+    right: 50px !important;
+}
+
+
+
+
+
+
+
+
+
+
+.modal {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform: translate(50%, 50%);
+}
+
+.modal-content {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    background-color: #5454ff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 50% ; */
+    height: 50%;
+}
+
+.modal-body {
+    /* width: 30%; */
+    height: 30%;
+}
+
+.modal-footer {
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 20%; */
+    height: 20%;
+}
+
+
+.left-buttons {
+    display: flex;
+    align-items: center;
+    margin: 2px
+}
+
+.right-button {
+    margin-left: auto;
+    margin-right: 2px;
+
+}
+
+.square-modal .modal-content {
+    width: 30vw;
+    /* Set the desired width as a percentage of the viewport width */
+    height: 10vw;
+    /* Set the same height as the width */
+    max-width: 400px;
+    /* Set a maximum width if needed */
+    max-height: 400px;
+    /* Set a maximum height if needed */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.API {
+    position: sticky;
+    top: 120px;
+    left: 45px;
+    width: 20%;
+    border: 2px solid black;
+    background-color: antiquewhite;
+    border-radius: .5rem;
+    padding-left: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fullHeight {
+    height: 420px;
+}
+
+.thirtyPercentHeight {
+    height: 110px;
+}
+
+
+
+.scrollable {
+    height: 300px;
+    /* Set the desired height for the scrollable div */
+    overflow: auto;
+    /* Enable scrolling */
+}
+
+
+.searchBox {
+    padding: 5px;
+}
+
+.radioButtons {
+    display: flex;
+    gap: 10px;
+    /* Adjust the value as per your preference */
+    margin: 10px 0;
+    /* Add margin around the radio buttons */
+}
+
+
+.APIcard {
+    border: 2px solid black;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+
+
+
+
+
+
+
+
+.listViewContainer {
+    margin-top: 10px;
+}
+
+
+
+.listViewItem {
+    background-color: #f59e9e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    border: 5px darkcyan solid;
+    padding: 5px;
+}
+
+.smallerFont {
+    font-size: smaller;
+    font-style: italic;
+}
+
+.greenButton {
+    background-color: #64b37d;
+}
+
+
+
+
+
+
+
+
+
+/* .pop_up {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+} */
+
+
+
+
+
+
+.pop_up_gig {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    height: 90%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+
+.pop_up_gig .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pop_up_gig .listKey {
+    font-weight: bold;
+    width: 30%; /* Set the width to 30% */
+}
+
+.pop_up_gig .listValue {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 70%; /* Set the width to 70% */
+  }
+
+  .pop_up_gig .listValue div {
+    width: 100%; /* Ensure the text takes full width */
+  }
+
+
+  .imagePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50vh;
+    height: 50vh;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+  flex-direction: column;
+  }
+
+  .imagePopup img {
+    max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  }
+  
+  .imagePopup .closePopupBtn {
+    margin-top: auto;
+    align-self: flex-end;
+  }
+
+
+
+
+
+
+
+
+
+
+
+.pop_up_rehearsal {
+    position: fixed;
+    height: 200px;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.pop_up_rehearsal .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pop_up_rehearsal .listKey {
+    font-weight: bold;
+    width: 30%; /* Set the width to 30% */
+}
+
+.pop_up_rehearsal .listValue {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 70%; /* Set the width to 70% */
+  }
+
+  .pop_up_rehearsal .listValue div {
+    width: 100%; /* Ensure the text takes full width */
+  }
+
+
+.button_group {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.edit_button,
+.delete_button {
+    margin-right: 10px;
+}
+
+.close_button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SETLISTS */
+
+
+
+
+
+
+.setlistContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* Adjust the height as needed */
+}
+
+
+.setlistBoxContainer {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.setListBandName {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.setlistBox {
+    width: 200px;
+    /* Adjust the width to your desired size */
+    height: 200px;
+    /* Adjust the height to your desired size */
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+}
+
+.setlistBox h3 {
+    margin-top: 0;
+}
+
+.setlistBox h6 {
+    margin-bottom: 5px;
+}
+
+
+
+
+
+
+/* VIEW SETLIST */
+
+
+
+.viewContainer {
+    position: absolute;
+    width: 60%;
+    height: 85%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+
+.setlistView {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    width: 70%;
+    height: 70%;
+    z-index: 9999;
+    background-color: rgb(142, 182, 187);
+    border: 2px solid black;
+}
+
+
+
+
+/* POST SETLIST */
+
+
+
+
+.newSetlistContainer {
+    position: absolute;
+    width: 60%;
+    height: 85%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+
+.newSetlistForm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    width: 70%;
+    height: 70%;
+    z-index: 9999;
+    background-color: rgb(142, 182, 187);
+    border: 2px solid black;
+}
+
+
+
+
+
+/* EDIT SETLIST */
+
+.editSetlistContainer {
+    position: absolute;
+    width: 60%;
+    height: 85%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+
+.editSetlistForm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    width: 70%;
+    height: 70%;
+    z-index: 9999;
+    background-color: rgb(142, 182, 187);
+    border: 2px solid black;
+}
+
+.buttonDiv {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+}

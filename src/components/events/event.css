@@ -1,38 +1,130 @@
-.react-calendar { 
-  /* width: 400px; */
- }
 
- .modal {
+
+
+.site-background {
+  background-image: url('../nav/bandplannerlogo.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.add-event-button {
   position: absolute;
-  /* top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto; */
+  top: 80px; /* Adjust the top position as needed */
+  left: 365px; /* Adjust the right position as needed */
+  padding: 5px 5px; /* Adjust the padding as needed */
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
+.custom-button {
+  background-color: rgb(125, 128, 128); /* Replace "red" with the desired color */
+  color: white; /* Replace "white" with the desired font color */
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+
+
+
+  .react-calendar { 
+    background-color: antiquewhite;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 5px darkcyan solid;
+    overflow: auto;
+   }
+
+ 
+
+
+.filterBox {
+  border: 2px solid black;
+  margin-left: 15px;
+  padding: 2px;
+  background-color: antiquewhite !important;
+  position: absolute;
+  top: 80px; /* Adjust the top position as needed */
+  width: 250px;
+  right: -30px;
+
+}
+
+
+
+
+
+
+
+
+
+
+.modal {
+  position: absolute;
   width: 50%;
   height: 50%;
   transform: translate(50%, 50%);
-}
-
-
+ }
  
  .modal-content {
-  background-color: #f7f7f7;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+   background-color: #f7f7f7;
+   border-radius: 10px;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+ }
+ 
+ .modal-header {
+  background-color: #5454ff !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 50% ; */
+  height: 50%;
+ }
+ 
+ .modal-body {
+   /* width: 30%; */
+  height: 30%;
+ }
+ 
+ .modal-footer {
+   background-color: #f7f7f7;
+   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 20%; */
+  height: 20%;
+ }
+
+
+ .left-buttons {
+  display: flex;
+  align-items: center;
+  margin: 2px
 }
 
-.modal-header {
-  background-color: #333;
-  color: #fff;
+ .right-button {
+  margin-left: auto;
+  margin-right: 2px;
+
 }
 
-.modal-body {
-  font-size: 16px;
+.square-modal .modal-content {
+  width: 30vw; /* Set the desired width as a percentage of the viewport width */
+  height: 10vw; /* Set the same height as the width */
+  max-width: 400px; /* Set a maximum width if needed */
+  max-height: 400px; /* Set a maximum height if needed */
 }
 
-.modal-footer {
-  background-color: #f7f7f7;
-}
+
+
+
+
+
+
+
+
+
+
+
 
   
