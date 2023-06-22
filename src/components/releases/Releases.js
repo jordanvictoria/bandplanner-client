@@ -409,6 +409,21 @@ export const Releases = () => {
         });
     };
 
+    const formatTime = (time) => {
+        if (!time) {
+            return ''; // Return empty string or some default value if time is undefined
+        }
+
+        const [hours, minutes] = time.split(':');
+        const date = new Date();
+        date.setHours(hours);
+        date.setMinutes(minutes);
+
+        return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+            .replace(/^(\d+:\d+)(:\d+)?\s*(AM|PM)$/, '$1$3');
+    };
+
+
 
 
 
@@ -690,27 +705,11 @@ export const Releases = () => {
 
     return <>
 
-        <div className="container">
+        <div className="site-background hero is-fullheight">
 
-            <div className="button-checkbox-container">
-                <button onClick={() => setIsOpen(true)}>
-                    Add New Event
-                </button>
-                <span className="filterBox">
-                    <span className="releaseFilterOne">
-                        Show All <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
-                            onClick={() => setFilteredByType(0)} />
-                    </span>
-                    <span className="releaseFilterThree">
-                        Show Single Releases <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
-                            onClick={() => setFilteredByType(1)} />
-                    </span>
-                    <span className="releaseFilterFour">
-                        Show Bundle Releases <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
-                            onClick={() => setFilteredByType(2)} />
-                    </span>
-                </span>
-            </div>
+            <button className="add-event-button custom-button" onClick={() => setIsOpen(true)}>
+                Add New Release
+            </button>
             <div className="button-view-container">
                 <button
                     onClick={() => handleOptionClick(1)}
@@ -729,6 +728,45 @@ export const Releases = () => {
                     Calendar View
                 </button>
             </div>
+            {
+                calendarSelected && (
+                    <div className="columns is-gapless">
+                        <div className="column is-three-quarters">
+                            <div className="react-calendar">
+                                <FullCalendar
+                                    themeSystem="Simplex"
+                                    plugins={[dayGridPlugin]}
+                                    events={events}
+                                    eventClick={(info) => {
+                                        setEvent(info.event);
+                                        handleShowModal();
+                                    }} />
+                            </div>
+                        </div>
+                        <div className="column">
+                            <div className="card filterBox">
+                                <div className="card-content">
+                                    <div className="releaseFilterOne">
+                                        Show All <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
+                                            onClick={() => setFilteredByType(0)} />
+                                    </div>
+                                    <div className="releaseFilterThree">
+                                        Show Single Releases <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
+                                            onClick={() => setFilteredByType(1)} />
+                                    </div>
+                                    <div className="releaseFilterFour">
+                                        Show Bundle Releases <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
+                                            onClick={() => setFilteredByType(2)} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+
+
 
 
             {
@@ -915,7 +953,7 @@ export const Releases = () => {
                     <div className="pop_up_rehearsal">
                         <form className="relativeForm">
                             <fieldset>
-                            <div>Title:
+                                <div>Title:
                                     <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1171,7 +1209,7 @@ export const Releases = () => {
                     <div className="pop_up_gig">
                         <form className="relativeForm">
                             <fieldset>
-                            <div>Title:
+                                <div>Title:
                                     <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1212,7 +1250,7 @@ export const Releases = () => {
                             </fieldset>
                             <h3>Bundle Release</h3>
                             <fieldset>
-                            <div>Bundle Title:
+                                <div>Bundle Title:
                                     <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} value={bundleEdit.bundle_title} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
@@ -1292,34 +1330,32 @@ export const Releases = () => {
                 onHide={handleCloseModal}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="square-modal"
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>{event.title}</Modal.Title>
+                <Modal.Header closeButton={false} className="modal-header">
+                    <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <p>Time: {event?.extendedProps?.time}</p>
-                    <p>Description: {event?.extendedProps?.description}</p>
+                <Modal.Body className="modal-body">
+                    <p>{event?.extendedProps?.description}</p>
                 </Modal.Body>
-                <Modal.Footer>
-                    <button className="btn btn-secondary" onClick={handleCloseModal}>
-                        Close
-                    </button>
-                    <button className="btn btn-secondary" onClick={async () => {
+                <Modal.Footer className="modal-footer">
+                    <button className="left-buttons" onClick={async () => {
                         setEventId(parseInt(event.id));
                         await handleCloseModal();
                     }}>
                         Edit
                     </button>
-                    <button className="btn btn-secondary" onClick={async () => {
+                    <button className="left-buttons" onClick={async () => {
                         await deleteEvent(event.id);
                         const newEvents = await getEvents();
-                        setAllEvents(newEvents);
+                        setEvents(newEvents);
                         handleCloseModal();
                     }}>Delete</button>
-
+                    <button className="right-button" onClick={handleCloseModal}>
+                        Close
+                    </button>
                 </Modal.Footer>
             </Modal>
-
         </div>
 
 
@@ -1353,8 +1389,8 @@ export const Releases = () => {
                                 <div>Composer: {matchedSingle.composer}</div>
                                 <div>Producer: {matchedSingle.producer}</div>
                                 <div>Explicit: {matchedSingle.explicit ? 'Yes' : 'No'}</div>
-                                <div>Audio URL: 
-                                <a href={matchedSingle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedSingle.audio_url}</a>
+                                <div>Audio URL:
+                                    <a href={matchedSingle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedSingle.audio_url}</a>
                                 </div>
                                 <div>Artwork: {matchedSingle.artwork}</div>
                                 <div>Ready for Distribution: {matchedSingle.uploaded_to_distro ? 'Yes' : 'No'}</div>
@@ -1383,8 +1419,8 @@ export const Releases = () => {
                                 <h3>Title: {matchedBundle.bundle_title}</h3>
                                 <div>Genre: {matchedBundle.genre}</div>
                                 <div>UPC: {matchedBundle.upc}</div>
-                                <div>Audio URL: 
-                                <a href={matchedBundle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedBundle.audio_url}</a>
+                                <div>Audio URL:
+                                    <a href={matchedBundle.audio_url} target="_blank" rel="noopener noreferrer"> {matchedBundle.audio_url}</a>
                                 </div>
                                 <div>Artwork: {matchedBundle.artwork}</div>
                                 <div>Ready for Distribution: {matchedBundle.uploaded_to_distro ? 'Yes' : 'No'}</div>
@@ -1602,28 +1638,7 @@ export const Releases = () => {
         }
 
 
-        {
-            calendarSelected && (
 
-                <div className="react-calendar">
-                    <FullCalendar
-                        // defaultView="dayGridMonth"
-                        // header={{
-                        //     left: "prev,next",
-                        //     center: "title",
-                        //     right: "dayGridMonth,timeGridWeek,timeGridDay",
-                        //     height: "auto"
-                        // }}
-                        themeSystem="Simplex"
-                        plugins={[dayGridPlugin]}
-                        events={events}
-                        eventClick={(info) => {
-                            setEvent(info.event);
-                            handleShowModal();
-                        }} />
-                </div>
-            )
-        }
 
 
     </>;

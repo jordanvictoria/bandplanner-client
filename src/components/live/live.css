@@ -1,27 +1,235 @@
-
-
-
-
-.container {
-    position: relative;
+.site-background {
+    background-image: url('../nav/bandplannerlogo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
+
+.add-event-button {
+    position: absolute;
+    top: 80px;
+    /* Adjust the top position as needed */
+    left: 365px;
+    /* Adjust the right position as needed */
+    padding: 5px 5px;
+    /* Adjust the padding as needed */
+    font-size: 14px;
+    /* Adjust the font size as needed */
+}
+
+.custom-button {
+    background-color: rgb(125, 128, 128);
+    /* Replace "red" with the desired color */
+    color: white;
+    /* Replace "white" with the desired font color */
+    border-radius: 5px;
+    border: 2px solid white;
+}
+
+
+.button-view-container {
+    position: absolute;
+    top: 75px;
+    right: 25%;
+    transform: translateY(50%);
+}
+
+.react-calendar {
+    margin-top: 10px;
+    background-color: antiquewhite;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 5px darkcyan solid;
+    overflow: auto;
+}
+
+
+
+
+.filterBox {
+    border: 2px solid black;
+    margin-left: 15px;
+    padding: 2px;
+    background-color: antiquewhite !important;
+    position: absolute !important;
+    top: 130px !important;
+    /* Adjust the top position as needed */
+    width: 250px !important;
+    right: 50px !important;
+}
+
+
+
+
+
+
+
+
+
+
+.modal {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform: translate(50%, 50%);
+}
+
+.modal-content {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    background-color: #5454ff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 50% ; */
+    height: 50%;
+}
+
+.modal-body {
+    /* width: 30%; */
+    height: 30%;
+}
+
+.modal-footer {
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 20%; */
+    height: 20%;
+}
+
+
+.left-buttons {
+    display: flex;
+    align-items: center;
+    margin: 2px
+}
+
+.right-button {
+    margin-left: auto;
+    margin-right: 2px;
+
+}
+
+.square-modal .modal-content {
+    width: 30vw;
+    /* Set the desired width as a percentage of the viewport width */
+    height: 10vw;
+    /* Set the same height as the width */
+    max-width: 400px;
+    /* Set a maximum width if needed */
+    max-height: 400px;
+    /* Set a maximum height if needed */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .API {
     position: sticky;
-    top: 0;
+    top: 120px;
+    left: 45px;
     width: 20%;
-    height: 100%;
     border: 2px solid black;
-    /* transform: translateY(20%); */
+    background-color: antiquewhite;
+    border-radius: .5rem;
+    padding-left: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fullHeight {
+    height: 420px;
+}
+
+.thirtyPercentHeight {
+    height: 110px;
 }
 
 
 
 .scrollable {
-    height: 300px; /* Set the desired height for the scrollable div */
-    overflow: auto; /* Enable scrolling */
+    height: 300px;
+    /* Set the desired height for the scrollable div */
+    overflow: auto;
+    /* Enable scrolling */
 }
+
+
+.searchBox {
+    padding: 5px;
+}
+
+.radioButtons {
+    display: flex;
+    gap: 10px;
+    /* Adjust the value as per your preference */
+    margin: 10px 0;
+    /* Add margin around the radio buttons */
+}
+
+
+.APIcard {
+    border: 2px solid black;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+
+
+
+
+
+.listViewContainer {
+
+
+    margin-top: 10px;
+}
+
+
+
+.listViewItem {
+    background-color: #f59e9e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    border: 5px darkcyan solid;
+    padding: 5px;
+}
+
+.smallerFont {
+    font-size: smaller;
+    font-style: italic;
+}
+
+.greenButton {
+    background-color: #64b37d;
+}
+
+
+
+
+
+
 
 
 
@@ -37,105 +245,76 @@
     /* Add additional styles for the pop-up */
 }
 
-.pop_up_rehearsal {
-    position: fixed;
-    top: 28%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: whitesmoke;
-    border: 2px solid black;
-     /* Ensure the pop-up is in front of other content */
-    /* Add additional styles for the pop-up */
-}
-
 .pop_up_gig {
     position: fixed;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: whitesmoke; 
+    background-color: whitesmoke;
     border: 2px solid black;
     /* Ensure the pop-up is in front of other content */
     /* Add additional styles for the pop-up */
 }
-
-
-
-
-
-.button-checkbox-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateY(50%);
-}
-
-.react-calendar {
-    position: absolute;
-    position: absolute;
-    top: 50%;
+.pop_up_rehearsal {
+    position: fixed;
+    height: 200px;
+    top: 100px;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 70%;
-}
-
-
-.modal {
-    position: absolute;
-    /* top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto; */
-    width: 50%;
-    height: 50%;
-    transform: translate(50%, 50%);
-}
-
-
-
-.modal-content {
-    background-color: #f7f7f7;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
-
-.modal-header {
-    background-color: #333;
-    color: #fff;
-}
-
-.modal-body {
-    font-size: 16px;
-}
-
-.modal-footer {
-    background-color: #f7f7f7;
-}
-
-.filterBox {
+    z-index: 9999;
+    background-color: whitesmoke;
     border: 2px solid black;
-    margin-left: 15px;
-    padding: 2px;
+    padding: 10px;
+  }
+  
+  .pop_up_rehearsal .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .pop_up_rehearsal .listKey {
+    font-weight: bold;
+    width: 100px;
+  }
+  
+  .pop_up_rehearsal .listValue {
+    margin-left: 10px;
+  }
+  
+
+
+.button_group {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
 
-.liveFilterOne {
-    margin-right: 5px;
-    font-size: small;
+.edit_button,
+.delete_button {
+    margin-right: 10px;
 }
 
-.liveFilterThree {
-    margin-right: 5px;
-    font-size: small;
+.close_button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
-.liveFilterFour {
-    /* margin-left: 5px; */
-    font-size: small;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -158,9 +337,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Adjust the height as needed */
-  }
-  
+    height: 100vh;
+    /* Adjust the height as needed */
+}
+
 
 .setlistBoxContainer {
     width: 60%;
@@ -170,19 +350,21 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
-  }
-  
-  .setListBandName {
+}
+
+.setListBandName {
     width: 100%;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-  }
-  
-  .setlistBox {
-    width: 200px; /* Adjust the width to your desired size */
-    height: 200px; /* Adjust the height to your desired size */
+}
+
+.setlistBox {
+    width: 200px;
+    /* Adjust the width to your desired size */
+    height: 200px;
+    /* Adjust the height to your desired size */
     margin: 10px;
     padding: 20px;
     text-align: center;
@@ -192,17 +374,17 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
-    
-  }
-  
-  .setlistBox h3 {
+
+
+}
+
+.setlistBox h3 {
     margin-top: 0;
-  }
-  
-  .setlistBox h6 {
+}
+
+.setlistBox h6 {
     margin-bottom: 5px;
-  }
+}
 
 
 
@@ -220,11 +402,11 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    
+
 }
 
 
-  .setlistView {
+.setlistView {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -253,11 +435,11 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    
+
 }
 
 
-  .newSetlistForm {
+.newSetlistForm {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -284,11 +466,11 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    
+
 }
 
 
-  .editSetlistForm {
+.editSetlistForm {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -307,7 +489,4 @@
     bottom: 0;
     right: 0;
     margin: 10px;
-  }
-
-
-
+}

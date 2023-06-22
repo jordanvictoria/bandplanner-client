@@ -460,7 +460,7 @@ export const Home = () => {
         copy.artwork = url
         updateNewSingleRelease(copy)
     }
-    
+
     const HandleNewBundleChange = (url) => {
         const copy = { ...newBundleRelease }
         copy.artwork = url
@@ -581,8 +581,19 @@ export const Home = () => {
 
 
 
-
-
+    const formatTime = (time) => {
+        if (!time) {
+          return ''; // Return empty string or some default value if time is undefined
+        }
+    
+        const [hours, minutes] = time.split(':');
+        const date = new Date();
+        date.setHours(hours);
+        date.setMinutes(minutes);
+    
+        return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+          .replace(/^(\d+:\d+)(:\d+)?\s*(AM|PM)$/, '$1$3');
+      };
 
 
 
@@ -955,33 +966,56 @@ export const Home = () => {
 
     return <>
 
-        <div>
+        <div className="site-background hero is-fullheight">
 
-            <button onClick={() => setIsOpen(true)}>
+            <button className="add-event-button custom-button" onClick={() => setIsOpen(true)}>
                 Add New Event
             </button>
-            <span className="filterBox">
-                <span className="filterOne">
-                    Show All <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
-                        onClick={() => setFilteredByType(0)} />
-                </span>
-                <span className="filterOne">
-                    Show Single Releases Only <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
-                        onClick={() => setFilteredByType(1)} />
-                </span>
-                <span className="filterTwo">
-                    Show Bundle Releases Only <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
-                        onClick={() => setFilteredByType(2)} />
-                </span>
-                <span className="filterThree">
-                    Show Rehearsals Only <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
-                        onClick={() => setFilteredByType(3)} />
-                </span>
-                <span className="filterFour">
-                    Show Gigs Only <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
-                        onClick={() => setFilteredByType(4)} />
-                </span>
-            </span>
+            
+                <div className="columns is-gapless">
+                    <div className="column is-three-quarters">
+                        <div className="react-calendar">
+                            <FullCalendar
+                                themeSystem="Simplex"
+                                plugins={[dayGridPlugin]}
+                                events={events}
+                                eventClick={(info) => {
+                                    setEvent(info.event);
+                                    handleShowModal();
+                                }} />
+                        </div>
+                    </div>
+                    <div className="column">
+                        <div className="card filterBox">
+                            <div className="card-content">
+                                
+                                    <div >
+                                        <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
+                                            onClick={() => setFilteredByType(0)} /> Show All 
+                                    </div>
+                                    <div >
+                                        <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
+                                            onClick={() => setFilteredByType(1)} /> Show Single Releases  
+                                    </div>
+                                    <div >
+                                        <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
+                                            onClick={() => setFilteredByType(2)} /> Show Bundle Releases 
+                                    </div>
+                                    <div >
+                                        <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
+                                            onClick={() => setFilteredByType(3)} /> Show Rehearsals  
+                                    </div>
+                                    <div >
+                                         <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
+                                            onClick={() => setFilteredByType(4)} /> Show Gigs 
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
 
             {
                 isOpen && (
@@ -1172,7 +1206,7 @@ export const Home = () => {
                         <form className="relativeForm">
                             <fieldset>
                                 <div>Title:
-                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title}  onChange={
+                                    <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.title = evt.target.value
@@ -1181,7 +1215,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Date:
-                                    <input type={dateInputType} id="date" placeholder={eventEdit.date}  onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                    <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.date = evt.target.value
@@ -1240,7 +1274,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>ISRC:
-                                    <input type="number" id="isrc" placeholder={singleEdit.isrc} value={singleEdit.isrc}  onChange={
+                                    <input type="number" id="isrc" placeholder={singleEdit.isrc} value={singleEdit.isrc} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
                                             copy.isrc = evt.target.value
@@ -1698,7 +1732,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Band Members:
-                                    <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} value={rehearsalEdit.band_info}  onChange={
+                                    <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} value={rehearsalEdit.band_info} onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
                                             copy.band_info = evt.target.value
@@ -1951,7 +1985,7 @@ export const Home = () => {
                             <h3>Gig</h3>
                             <fieldset>
                                 <div>City/State:
-                                    <input type="text" id="city_state" placeholder={gigEdit.city_state} value={gigEdit.city_state}  onChange={
+                                    <input type="text" id="city_state" placeholder={gigEdit.city_state} value={gigEdit.city_state} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.city_state = evt.target.value
@@ -1960,7 +1994,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Venue:
-                                    <input type="text" id="venue" placeholder={gigEdit.venue} value={gigEdit.venue}  onChange={
+                                    <input type="text" id="venue" placeholder={gigEdit.venue} value={gigEdit.venue} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
                                             copy.venue = evt.target.value
@@ -2165,7 +2199,7 @@ export const Home = () => {
                                     } />
                                 </div>
                                 <div>Date:
-                                    <input type={dateInputType} id="date" placeholder={eventEdit.date}  onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                                    <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
                                             copy.date = evt.target.value
@@ -2216,55 +2250,38 @@ export const Home = () => {
                 onHide={handleCloseModal}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="square-modal"
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>{event.title}</Modal.Title>
+                <Modal.Header closeButton={false} className="modal-header">
+                    <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <p>Time: {event?.extendedProps?.time}</p>
-                    <p>Description: {event?.extendedProps?.description}</p>
+                <Modal.Body className="modal-body">
+                    <p>{event?.extendedProps?.description}</p>
                 </Modal.Body>
-                <Modal.Footer>
-                    <button className="btn btn-secondary" onClick={handleCloseModal}>
-                        Close
-                    </button>
-                    <button className="btn btn-secondary" onClick={async () => {
+                <Modal.Footer className="modal-footer">
+                    <button className="left-buttons" onClick={async () => {
                         setEventId(parseInt(event.id));
                         await handleCloseModal();
                     }}>
                         Edit
                     </button>
-                    <button className="btn btn-secondary" onClick={async () => {
+                    <button className="left-buttons" onClick={async () => {
                         await deleteEvent(event.id);
                         const newEvents = await getEvents();
                         setEvents(newEvents);
                         handleCloseModal();
                     }}>Delete</button>
-
+                    <button className="right-button" onClick={handleCloseModal}>
+                        Close
+                    </button>
                 </Modal.Footer>
             </Modal>
-
-        </div>
-
-        <div className="react-calendar">
-            <FullCalendar
-                // defaultView="dayGridMonth"
-                // header={{
-                //     left: "prev,next",
-                //     center: "title",
-                //     right: "dayGridMonth,timeGridWeek,timeGridDay",
-                //     height: "auto"
-                // }}
-                themeSystem="Simplex"
-                plugins={[dayGridPlugin]}
-                events={events}
-                eventClick={(info) => {
-                    setEvent(info.event);
-                    handleShowModal();
-                }} />
         </div>
     </>;
 }
+
+
+
 
 
 

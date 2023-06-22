@@ -1,6 +1,8 @@
 import { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "./AuthManager"
+import "./auth.css"
+
 
 export const Login = ({ setToken }) => {
   const username = useRef()
@@ -27,38 +29,47 @@ export const Login = ({ setToken }) => {
     })
   }
 
+
+
   return (
-    <section className="columns is-centered">
-      <form className="column is-two-thirds" onSubmit={handleLogin}>
-        <h1 className="title">Bandplanner</h1>
-        <p className="subtitle">Please sign in</p>
+    <section className="custom-background hero is-fullheight">
+      <div className="hero-body">
+        <div className="container ">
+          <div className="columns">
+            <div className="column is-4 is-offset-4" style={{ marginTop: '-30vh' }}>
+              <form className=" p-5 rounded-form" style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }} onSubmit={handleLogin}>
+                <p className="subtitle">Please sign in</p>
 
-        <div className="field">
-          <label className="label">Username</label>
-          <div className="control">
-            <input className="input" type="text" ref={username} />
+                <div className="field">
+                  <label className="label">Username</label>
+                  <div className="control">
+                    <input className="input" type="text" ref={username} />
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label className="label">Password</label>
+                  <div className="control">
+                    <input className="input" type="password" ref={password} />
+                  </div>
+                </div>
+
+                <div className="field is-grouped">
+                  <div className="control">
+                    <button className="button is-link is-success" type="submit" >Submit</button>
+                  </div>
+                  <div className="control">
+                    <Link to="/register" className="button is-link is-light">Cancel</Link>
+                  </div>
+                </div>
+                {
+                  isUnsuccessful ? <p className="help is-danger">Username or password not valid</p> : ''
+                }
+              </form>
+            </div>
           </div>
         </div>
-
-        <div className="field">
-          <label className="label">Password</label>
-          <div className="control">
-            <input className="input" type="password" ref={password} />
-          </div>
-        </div>
-
-        <div className="field is-grouped">
-          <div className="control">
-            <button className="button is-link" type="submit" >Submit</button>
-          </div>
-          <div className="control">
-            <Link to="/register" className="button is-link is-light">Cancel</Link>
-          </div>
-        </div>
-        {
-          isUnsuccessful ? <p className="help is-danger">Username or password not valid</p> : ''
-        }
-      </form>
+      </div>
     </section>
   )
 }

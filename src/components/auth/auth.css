@@ -1,0 +1,12 @@
+.custom-background {
+    background-image: url('./loginbackground.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .rounded-form {
+    border-radius: 10px !important;
+  }
+
+  
+  
