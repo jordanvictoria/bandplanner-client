@@ -138,8 +138,11 @@
 
 
 
-.listViewContainer {
-    position: absolute;
+
+
+.releaseContainer {
+  margin: 10px;
+  position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -147,8 +150,21 @@
     height: 70%;
 }
 
-.eventCard {
-    border: 2px solid black;
+.releaseItem {
+  background-color: #f59e9e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    border: 5px darkcyan solid;
+    padding: 5px;
+}
+
+.releaseFont {
+  font-size: smaller;
+    font-style: italic;
+}
+
+.releaseButton {
+  background-color: #64b37d;
 }
 
 
@@ -161,8 +177,7 @@
 
 
 
-
-/* CALENDAR */
+/* BAD CSS */
 
 
 .react-calendar {
@@ -216,7 +231,7 @@
 /* POP UPs */
 
 
-
+/* 
 .pop_up {
     position: fixed;
     top: 20%;
@@ -225,31 +240,233 @@
     z-index: 9999;
     background-color: whitesmoke;
     border: 2px solid black;
-    /* Ensure the pop-up is in front of other content */
-    /* Add additional styles for the pop-up */
-}
+} */
 
 
 
 
 .pop_up_single {
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: whitesmoke;
-    border: 2px solid black;
-    /* Ensure the pop-up is in front of other content */
-    /* Add additional styles for the pop-up */
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  height: 90%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgb(139, 167, 227);
+  color: rgb(4, 4, 4);
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.pop_up_single .listItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.pop_up_single .listKey {
+  font-weight: bold;
+  width: 30%; /* Set the width to 30% */
+}
+
+.pop_up_single .listValue {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  width: 70%; /* Set the width to 70% */
+}
+
+.pop_up_single .listValue div {
+  width: 100%; /* Ensure the text takes full width */
+}
+
+
+.singleImagePopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50vh;
+  height: 50vh;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: whitesmoke;
+  border: 2px solid black;
+  padding: 10px;
+  overflow: auto;
+  display: flex;
+flex-direction: column;
+}
+
+.singleImagePopup img {
+  max-width: 100%;
+height: auto;
+object-fit: contain;
+}
+
+.singleImagePopup .closeSinglePopupBtn {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.button_release_group {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.edit_release_button,
+.delete_release_button {
+  margin-right: 10px;
+}
+
+.close_release_button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.pop_up_bundle {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  height: 90%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgb(139, 167, 227);
+  color: rgb(4, 4, 4);
+  border: 2px solid black;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pop_up_bundle .listItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.pop_up_bundle .listKey {
+  font-weight: bold;
+  width: 30%; /* Set the width to 30% */
+}
+
+.pop_up_bundle .listValue {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  width: 70%; /* Set the width to 70% */
+}
+
+.pop_up_bundle .listValue div {
+  width: 100%; /* Ensure the text takes full width */
+}
+
+
+.bundleImagePopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50vh;
+  height: 50vh;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: whitesmoke;
+  border: 2px solid black;
+  padding: 10px;
+  overflow: auto;
+  display: flex;
+flex-direction: column;
+}
+
+.bundleImagePopup img {
+  max-width: 100%;
+height: auto;
+object-fit: contain;
+}
+
+.bundleImagePopup .closeBundlePopupBtn {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.button_release_group {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.edit_release_button,
+.delete_release_button {
+  margin-right: 10px;
+}
+
+.close_release_button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.pop_up_bundle .bundle-songs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pop_up_bundle .bundle-songs-header h3 {
+  margin: 0;
+  border: 2px black solid; 
+  border-radius: 2rem;
+  padding: 10px;
+  background-color: black;
+  color: whitesmoke;
+}
+
+.pop_up_bundle .bundle-songs-header button {
+  margin-left: 10px;
+}
+
+
+
+
+.buttonWrapper {
+  margin-top: 25px;
 }
 
 
 
 
 .matched_bundle_songs {
-    height: 300px;
-    /* Set the desired height for the scrollable div */
-    overflow: auto;
-    /* Enable scrolling */
+  margin-top: 5px;
+  flex-grow: 1;
+  overflow: auto;
+  border: 5px solid black;
+  padding: 3px;
 }
+
+.bundleItem {
+  border-bottom: 2px solid black;
+}
+
+.bundleButtons {
+  display: flex;
+  justify-content: end;
+}
+
+.bundleButtons button {
+  margin: 2px;
+}
+
