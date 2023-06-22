@@ -191,76 +191,78 @@ export const MediaList = () => {
 
 
   return <>
-    <div className="container">
-      <div className="mediaContactBandName">
-        {bandUserObj.project_title}'s Media List
-      </div>
-      <div className="contactContainer">
-        <button onClick={() => openMediaContactForm(true)}>
-          Add New Media Contact
+    <div className="site-background hero is-fullheight">
+      <button className="add-event-button custom-button" onClick={() => openMediaContactForm(true)}>
+        Add New Media Contact
+      </button>
+      <div className="button-view-container">
+        <button
+          onClick={() => handleOptionClick(1)}
+          style={{
+            backgroundColor: blogSelected ? 'green' : 'white',
+          }}
+        >
+          Blog
         </button>
-        <div className="button-view-container">
-          <button
-            onClick={() => handleOptionClick(1)}
-            style={{
-              backgroundColor: blogSelected ? 'green' : 'white',
-            }}
-          >
-            Blog
-          </button>
-          <button
-            onClick={() => handleOptionClick(2)}
-            style={{
-              backgroundColor: magazineSelected ? 'green' : 'white',
-            }}
-          >
-            Magazine
-          </button>
-          <button
-            onClick={() => handleOptionClick(3)}
-            style={{
-              backgroundColor: newspaperSelected ? 'green' : 'white',
-            }}
-          >
-            Newspaper
-          </button>
-          <button
-            onClick={() => handleOptionClick(4)}
-            style={{
-              backgroundColor: radioSelected ? 'green' : 'white',
-            }}
-          >
-            Radio
-          </button>
-        </div>
-        <ul>
-          {
-            mediaContacts.map((media) => {
-              return (
-                <li className="contactCard" key={media.id} value={media.id}>
-                  <div>
-                    <h3>Name: {media.contact}</h3>
-                    <section>Role: {media.role}</section>
-                    <section>Company: {media.organization}</section>
-                    <section>Location: {media.location}</section>
-                    <section>Email: {media.email}</section>
-                    <section>Website: 
-                      <a href={media.website} target="_blank" rel="noopener noreferrer"></a>{media.website}</section>
-                    <section>Notes: {media.notes}</section>
-                    <button onClick={() => {
-                      setMediaContactId(media.id)
-                    }}>Edit</button>
-                    <button onClick={async () => {
-                      await deleteMediaContact(media.id);
-                      const newMediaContacts = await getMediaContacts()
-                      setFilteredContacts(newMediaContacts)
-                    }}>Delete</button>
-                  </div>
-                </li>
-              )
-            })
-          }
-        </ul>
+        <button
+          onClick={() => handleOptionClick(2)}
+          style={{
+            backgroundColor: magazineSelected ? 'green' : 'white',
+          }}
+        >
+          Magazine
+        </button>
+        <button
+          onClick={() => handleOptionClick(3)}
+          style={{
+            backgroundColor: newspaperSelected ? 'green' : 'white',
+          }}
+        >
+          Newspaper
+        </button>
+        <button
+          onClick={() => handleOptionClick(4)}
+          style={{
+            backgroundColor: radioSelected ? 'green' : 'white',
+          }}
+        >
+          Radio
+        </button>
+      </div>
+      <div className="contactViewContainer">
+        {
+          mediaContacts.map((media) => {
+            return (
+              <li className="contactCard" key={media.id} value={media.id}>
+                <div>
+                  <h3><b>Name</b>: {media.contact}</h3>
+                  <section><b>Role</b>: {media.role}</section>
+                  <section><b>Company</b>: {media.organization}</section>
+                  <section><b>Location</b>: {media.location}</section>
+                  <section><b>Email</b>: {media.email}</section>
+                  <section>
+                    <b>Website</b>:
+                    <></>
+                    {media.website ? (
+                      <a href={media.website} target="_blank" rel="noopener noreferrer">Open in New Tab</a>
+                    ) : (
+                      ""
+                    )}
+                  </section>
+                  <section><b>Notes</b>: {media.notes}</section>
+                  <button onClick={() => {
+                    setMediaContactId(media.id)
+                  }}>Edit</button>
+                  <button onClick={async () => {
+                    await deleteMediaContact(media.id);
+                    const newMediaContacts = await getMediaContacts()
+                    setFilteredContacts(newMediaContacts)
+                  }}>Delete</button>
+                </div>
+              </li>
+            )
+          })
+        }
         {
           mediaContactForm && (
             <div className="pop_up_rehearsal">

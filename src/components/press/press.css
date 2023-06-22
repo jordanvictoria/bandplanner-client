@@ -1,0 +1,64 @@
+.pressCoverageBandName {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 2px solid grey;
+    padding: 10px;
+}
+
+.site-background {
+    background-image: url('../nav/bandplannerlogo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.clippingViewContainer {
+    margin-top: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 70%;
+}
+
+.clippingCard {
+    background-color: #f59e9e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    border: 5px darkcyan solid;
+    padding: 5px;
+}
+
+
+
+
+
+
+.contactViewContainer {
+    margin-top: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 70%;
+}
+
+
+.contactCard {
+    background-color: #f59e9e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    border: 5px darkcyan solid;
+    padding: 5px;
+}
+
+
+
+
+
+
+
