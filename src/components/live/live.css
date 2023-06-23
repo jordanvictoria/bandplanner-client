@@ -240,15 +240,29 @@
 
 
 
-/* .pop_up {
+.pop_up {
     position: fixed;
-    top: 20%;
+    height: 10%;
+    width: 15%;
+    top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: whitesmoke;
+    background-color: rgb(139, 167, 227);
     border: 2px solid black;
-} */
+    padding: 10px;
+    justify-content: center;
+}
+
+.pop_up select {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pop_up button {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 
 
@@ -334,6 +348,63 @@
 
 
 
+
+.gigForm {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    height: 77%;
+    width: 25%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+}
+
+.gigForm button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.compressedImg {
+    max-width: 100px; /* Set the maximum width you want the image to take */
+    max-height: 100px; /* Set the maximum height you want the image to take */
+    object-fit: cover; /* Maintain aspect ratio and fill the container */
+    margin-right: 5px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .pop_up_rehearsal {
     position: fixed;
     height: 200px;
@@ -389,6 +460,70 @@
     bottom: 10px;
     right: 10px;
 }
+
+
+
+
+
+
+
+
+
+.rehearsal_form {
+    position: fixed;
+    height: 44%;
+    top: 295px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rehearsal_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+
+
+
+
+.formRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .formRow label {
+    width: 100px; /* Adjust the width as needed */
+    margin-right: 10px;
+  }
+  
+  .formRow input {
+    margin-left: auto;
+  }
+
+  .formRow button {
+    margin-left: auto;
+  }
+
+  .formRow select {
+    margin-left: auto;
+  }
+
+  .formRow img {
+    margin-left: auto;
+  }
+
+  .formButtons {
+    display: flex;
+    justify-content: flex-end;
+  }
 
 
 
@@ -589,7 +724,138 @@
 
 
 
-.newSetlistContainer {
+.setlist_form {
+    position: fixed;
+    height: 20%;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.setlist_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.edit_setlist {
+    position: fixed;
+    height: 44%;
+    width: 25%;
+    top: 295px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+}
+
+.edit_setlist button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.edit_setlist .customList {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-left: 20px;
+    counter-reset: item;
+}
+
+.edit_setlist .customList li {
+    counter-increment: item;
+    list-style: none;
+}
+
+.edit_setlist .customList li:before {
+    content: counter(item) ".";
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em;
+}
+
+
+
+.edit_setlist .setlist-songs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+  }
+  
+  .edit_setlist .setlist-songs-header h3 {
+    margin: 0;
+    border: 2px black solid; 
+    border-radius: 2rem;
+    padding: 10px;
+    background-color: black;
+    color: whitesmoke;
+  }
+  
+  .edit_setlist .setlist-songs-header button {
+    margin-left: 10px;
+    background-color: #f59e9e;
+  }
+
+
+  .edit_setlist .setlist_songs {
+    height: 50%;
+    overflow: auto;
+    margin-top: 10px;
+    border-top: 2px solid black;
+  }
+
+  .unchosen {
+    margin-left: 15px;
+}
+
+
+.edit_setlist  button {
+    background-color: rgb(189, 186, 186);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+.song_form {
+    position: fixed;
+    height: 44%;
+    top: 295px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.song_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+/* .newSetlistContainer {
     position: absolute;
     width: 60%;
     height: 85%;
@@ -612,7 +878,13 @@
     z-index: 9999;
     background-color: rgb(142, 182, 187);
     border: 2px solid black;
-}
+} */
+
+
+
+
+
+
 
 
 
@@ -651,3 +923,4 @@
     right: 0;
     margin: 10px;
 }
+

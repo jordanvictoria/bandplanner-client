@@ -880,11 +880,10 @@ export const Releases = () => {
                                     </div>
                                     {
                                         bundleSongForm && (
-                                            <div className="pop_up_rehearsal">
-                                                <form className="relativeForm">
-                                                    <h3>Bundle Song</h3>
+                                            <div className="pop_up_bs">
+                                                <form>
                                                     <fieldset>
-                                                        <div>Song Title:
+                                                        <div className="formRow">Song Title:
                                                             <input type="text" id="song_title" onChange={
                                                                 (evt) => {
                                                                     const copy = { ...newBundleSong }
@@ -893,7 +892,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>Genre:
+                                                        <div className="formRow">Genre:
                                                             <input type="text" id="genre" onChange={
                                                                 (evt) => {
                                                                     const copy = { ...newBundleSong }
@@ -902,7 +901,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>ISRC:
+                                                        <div className="formRow">ISRC:
                                                             <input type="number" id="isrc" onChange={
                                                                 (evt) => {
                                                                     const copy = { ...newBundleSong }
@@ -911,7 +910,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>Composer:
+                                                        <div className="formRow">Composer:
                                                             <input type="text" id="composer" onChange={
                                                                 (evt) => {
                                                                     const copy = { ...newBundleSong }
@@ -920,7 +919,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>Producer:
+                                                        <div className="formRow">Producer:
                                                             <input type="text" id="producer" onChange={
                                                                 (evt) => {
                                                                     const copy = { ...newBundleSong }
@@ -929,7 +928,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>Explicit:
+                                                        <div className="formRow">Explicit:
                                                             <input type="checkbox"
                                                                 value={newBundleSong.explicit}
                                                                 onChange={
@@ -940,6 +939,8 @@ export const Releases = () => {
                                                                     }
                                                                 } />
                                                         </div>
+                                                        <div className="formButtons">
+
                                                         <button onClick={(clickEvent) => {
                                                             bundleSongSaveButtonClick(clickEvent)
                                                             openBundleSongForm(false)
@@ -949,6 +950,7 @@ export const Releases = () => {
                                                             openBundleSongForm(false)
                                                             setBundleId(0)
                                                         }}>Cancel</button>
+                                                        </div>
                                                     </fieldset>
                                                 </form>
                                             </div>
@@ -956,11 +958,10 @@ export const Releases = () => {
                                     }
                                     {
                                         bundleSongEditForm && (
-                                            <div className="pop_up_rehearsal">
-                                                <form className="relativeForm">
-                                                    <h3>Bundle Song</h3>
+                                            <div className="pop_up_bs">
+                                                <form>
                                                     <fieldset>
-                                                        <div>Song Title:
+                                                        <div className="formRow">Song Title:
                                                             <input type="text" id="song_title" placeholder={bundleSongEdit.song_title} value={bundleSongEdit.song_title} onChange={
                                                                 (evt) => {
                                                                     const copy = { ...bundleSongEdit }
@@ -969,7 +970,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>Genre:
+                                                        <div className="formRow">Genre:
                                                             <input type="text" id="genre" placeholder={bundleSongEdit.genre} value={bundleSongEdit.genre} onChange={
                                                                 (evt) => {
                                                                     const copy = { ...bundleSongEdit }
@@ -978,7 +979,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>ISRC:
+                                                        <div className="formRow">ISRC:
                                                             <input type="number" id="isrc" placeholder={bundleSongEdit.isrc} value={bundleSongEdit.isrc} onChange={
                                                                 (evt) => {
                                                                     const copy = { ...bundleSongEdit }
@@ -987,7 +988,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>Composer:
+                                                        <div className="formRow">Composer:
                                                             <input type="text" id="composer" placeholder={bundleSongEdit.composer} value={bundleSongEdit.composer} onChange={
                                                                 (evt) => {
                                                                     const copy = { ...bundleSongEdit }
@@ -996,7 +997,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>Producer:
+                                                        <div className="formRow">Producer:
                                                             <input type="text" id="producer" placeholder={bundleSongEdit.producer} value={bundleSongEdit.producer} onChange={
                                                                 (evt) => {
                                                                     const copy = { ...bundleSongEdit }
@@ -1005,7 +1006,7 @@ export const Releases = () => {
                                                                 }
                                                             } />
                                                         </div>
-                                                        <div>Explicit:
+                                                        <div className="formRow">Explicit:
                                                             <input type="checkbox"
                                                                 value={bundleSongEdit.explicit}
                                                                 onChange={
@@ -1016,6 +1017,8 @@ export const Releases = () => {
                                                                     }
                                                                 } />
                                                         </div>
+                                                        <div className="formButtons">
+
                                                         <button onClick={(clickEvent) => {
                                                             bundleSongEditButtonClick(clickEvent)
                                                             openBundleSongEditForm(false)
@@ -1025,12 +1028,13 @@ export const Releases = () => {
                                                             openBundleSongEditForm(false)
                                                             setBundleSongId(0)
                                                         }}>Cancel</button>
+                                                        </div>
                                                     </fieldset>
                                                 </form>
                                             </div>
                                         )
                                     }
-                                    
+
                                     {
                                         matchedBundleSongs ? (
                                             <div className="matched_bundle_songs">
@@ -1045,16 +1049,16 @@ export const Releases = () => {
                                                                 <div>Producer: {song.producer}</div>
                                                                 <div>Explicit: {song.explicit ? 'Yes' : 'No'}</div>
                                                                 <div className="bundleButtons">
-                                                                <button className="btn btn-secondary" onClick={async () => {
-                                                                    setBundleSongId(song.id)
-                                                                }}>
-                                                                    Edit
-                                                                </button>
-                                                                <button className="btn btn-secondary" onClick={async () => {
-                                                                    await deleteBundleSong(parseInt(song.id));
-                                                                    const newBundleSongs = await getBundleSongs();
-                                                                    setBundleSongs(newBundleSongs);
-                                                                }}>Delete</button>
+                                                                    <button className="btn btn-secondary" onClick={async () => {
+                                                                        setBundleSongId(song.id)
+                                                                    }}>
+                                                                        Edit
+                                                                    </button>
+                                                                    <button className="btn btn-secondary" onClick={async () => {
+                                                                        await deleteBundleSong(parseInt(song.id));
+                                                                        const newBundleSongs = await getBundleSongs();
+                                                                        setBundleSongs(newBundleSongs);
+                                                                    }}>Delete</button>
                                                                 </div>
                                                             </li>
                                                         </>
@@ -1066,24 +1070,24 @@ export const Releases = () => {
                                             ""
                                     }
                                     <div className="buttonWrapper">
-                                    <div className="button_release_group">
-                                        <button className="edit_release_button" onClick={async () => {
+                                        <div className="button_release_group">
+                                            <button className="edit_release_button" onClick={async () => {
+                                                setViewMatchedBundle(false)
+                                                setEventListId(0)
+                                                setEventId(parseInt(matchedBundle.event.id));
+                                            }}>
+                                                Edit
+                                            </button>
+                                            <button className="delete_release_button" onClick={async () => {
+                                                await deleteEvent(parseInt(matchedBundle.event.id));
+                                                const newEvents = await getEvents();
+                                                setAllEvents(newEvents);
+                                            }}>Delete</button>
+                                        </div>
+                                        <button className="close_release_button" onClick={() => {
                                             setViewMatchedBundle(false)
                                             setEventListId(0)
-                                            setEventId(parseInt(matchedBundle.event.id));
-                                        }}>
-                                            Edit
-                                        </button>
-                                        <button className="delete_release_button" onClick={async () => {
-                                            await deleteEvent(parseInt(matchedBundle.event.id));
-                                            const newEvents = await getEvents();
-                                            setAllEvents(newEvents);
-                                        }}>Delete</button>
-                                    </div>
-                                    <button className="close_release_button" onClick={() => {
-                                        setViewMatchedBundle(false)
-                                        setEventListId(0)
-                                    }}>Close</button>
+                                        }}>Close</button>
                                     </div>
                                 </div>
                             )
@@ -1158,10 +1162,10 @@ export const Releases = () => {
 
             {
                 singleReleaseForm && (
-                    <div className="pop_up_rehearsal">
-                        <form className="relativeForm">
+                    <div className="single_form">
+                        <form>
                             <fieldset>
-                                <div>Title:
+                                <div className="formRow">Title:
                                     <input type="text" id="title" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1170,7 +1174,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Date:
+                                <div className="formRow">Date:
                                     <input type="date" id="date" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1179,7 +1183,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Time:
+                                <div className="formRow">Time:
                                     <input type="time" id="time" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1190,7 +1194,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Description:
+                                <div className="formRow">Description:
                                     <input type="text" id="description" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1199,10 +1203,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                            </fieldset>
-                            <h3>Single Release</h3>
-                            <fieldset>
-                                <div>Song Title:
+                                <div className="formRow">Song Title:
                                     <input type="text" id="song_title" onChange={
                                         (evt) => {
                                             const copy = { ...newSingleRelease }
@@ -1211,7 +1212,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Genre:
+                                <div className="formRow">Genre:
                                     <input type="text" id="genre" onChange={
                                         (evt) => {
                                             const copy = { ...newSingleRelease }
@@ -1220,7 +1221,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>UPC:
+                                <div className="formRow">UPC:
                                     <input type="number" id="upc" onChange={
                                         (evt) => {
                                             const copy = { ...newSingleRelease }
@@ -1229,7 +1230,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>ISRC:
+                                <div className="formRow">ISRC:
                                     <input type="number" id="isrc" onChange={
                                         (evt) => {
                                             const copy = { ...newSingleRelease }
@@ -1238,7 +1239,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Composer:
+                                <div className="formRow">Composer:
                                     <input type="text" id="composer" onChange={
                                         (evt) => {
                                             const copy = { ...newSingleRelease }
@@ -1247,7 +1248,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Producer:
+                                <div className="formRow">Producer:
                                     <input type="text" id="producer" onChange={
                                         (evt) => {
                                             const copy = { ...newSingleRelease }
@@ -1256,7 +1257,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Explicit:
+                                <div className="formRow">Explicit:
                                     <input type="checkbox"
                                         value={newSingleRelease.explicit}
                                         onChange={
@@ -1267,7 +1268,7 @@ export const Releases = () => {
                                             }
                                         } />
                                 </div>
-                                <div>Audio:
+                                <div className="formRow">Audio:
                                     <input type="url" id="audio_url" onChange={
                                         (evt) => {
                                             const copy = { ...newSingleRelease }
@@ -1276,14 +1277,14 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Artwork:
+                                <div className="formRow">Artwork:
 
                                     {url === "" ? ""
-                                        : <img src={url} alt="artwork" />}
+                                        : <img className="compressedImg" src={url} alt="artwork" />}
 
                                     <UploadFile onUpload={handleOnUpload} />
                                 </div>
-                                <div>Uploaded to Distro:
+                                <div className="formRow">Uploaded to Distro:
                                     <input type="checkbox"
                                         value={newSingleRelease.uploaded_to_distro}
                                         onChange={
@@ -1294,17 +1295,20 @@ export const Releases = () => {
                                             }
                                         } />
                                 </div>
-                                <button onClick={(clickEvent) => {
-                                    singleSaveButtonClick(clickEvent)
-                                    openSingleReleaseForm(false)
-                                    setEventType(0)
-                                    setURL("")
-                                }}>Save</button>
-                                <button className="cancelItem" onClick={() => {
-                                    openSingleReleaseForm(false)
-                                    setEventType(0)
-                                    setURL("")
-                                }}>Cancel</button>
+                                <div className="formButtons">
+
+                                    <button onClick={(clickEvent) => {
+                                        singleSaveButtonClick(clickEvent)
+                                        openSingleReleaseForm(false)
+                                        setEventType(0)
+                                        setURL("")
+                                    }}>Save</button>
+                                    <button className="cancelItem" onClick={() => {
+                                        openSingleReleaseForm(false)
+                                        setEventType(0)
+                                        setURL("")
+                                    }}>Cancel</button>
+                                </div>
                             </fieldset>
                         </form>
                     </div>
@@ -1313,10 +1317,10 @@ export const Releases = () => {
 
             {
                 singleReleaseEditForm && (
-                    <div className="pop_up_rehearsal">
-                        <form className="relativeForm">
+                    <div className="single_form">
+                        <form>
                             <fieldset>
-                                <div>Title:
+                                <div className="formRow">Title:
                                     <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1325,7 +1329,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Date:
+                                <div className="formRow">Date:
                                     <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1334,7 +1338,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Time:
+                                <div className="formRow">Time:
                                     <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1345,7 +1349,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Description:
+                                <div className="formRow">Description:
                                     <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1354,10 +1358,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                            </fieldset>
-                            <h3>Rehearsal</h3>
-                            <fieldset>
-                                <div>Song Title:
+                                <div className="formRow">Song Title:
                                     <input type="text" id="song_title" placeholder={singleEdit.song_title} value={singleEdit.song_title} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
@@ -1366,7 +1367,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Genre:
+                                <div className="formRow">Genre:
                                     <input type="text" id="genre" placeholder={singleEdit.genre} value={singleEdit.genre} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
@@ -1375,7 +1376,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>UPC:
+                                <div className="formRow">UPC:
                                     <input type="number" id="upc" placeholder={singleEdit.upc} value={singleEdit.upc} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
@@ -1384,7 +1385,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>ISRC:
+                                <div className="formRow">ISRC:
                                     <input type="number" id="isrc" placeholder={singleEdit.isrc} value={singleEdit.isrc} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
@@ -1393,7 +1394,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Composer:
+                                <div className="formRow">Composer:
                                     <input type="text" id="composer" placeholder={singleEdit.composer} value={singleEdit.composer} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
@@ -1402,7 +1403,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Producer:
+                                <div className="formRow">Producer:
                                     <input type="text" id="producer" placeholder={singleEdit.producer} value={singleEdit.producer} onChange={
                                         (evt) => {
                                             const copy = { ...singleEdit }
@@ -1411,14 +1412,14 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Artwork:
+                                <div className="formRow">Artwork:
                                     {singleEditURL === "" ? ""
-                                        : <img src={singleEditURL} alt="artwork" />}
+                                        : <img className="compressedImg" src={singleEditURL} alt="artwork" />}
                                     {url === "" ? ""
-                                        : <img src={url} alt="artwork" />}
+                                        : <img className="compressedImg" src={url} alt="artwork" />}
                                     <UploadFile onUpload={handleOnUpload} />
                                 </div>
-                                <div>Uploaded to Distro:
+                                <div className="formRow">Uploaded to Distro:
                                     <input type="checkbox"
                                         value={singleEdit.uploaded_to_distro}
                                         onChange={
@@ -1429,20 +1430,23 @@ export const Releases = () => {
                                             }
                                         } />
                                 </div>
-                                <button onClick={(clickEvent) => {
-                                    singleEditButtonClick(clickEvent)
-                                    openSingleReleaseEditForm(false)
-                                    setSingleReleaseId(0)
-                                    setEventId(0)
-                                    setURL("")
+                                <div className="formButtons">
 
-                                }}>Save</button>
-                                <button className="cancelItem" onClick={() => {
-                                    openSingleReleaseEditForm(false)
-                                    setSingleReleaseId(0)
-                                    setEventId(0)
-                                    setURL("")
-                                }}>Cancel</button>
+                                    <button onClick={(clickEvent) => {
+                                        singleEditButtonClick(clickEvent)
+                                        openSingleReleaseEditForm(false)
+                                        setSingleReleaseId(0)
+                                        setEventId(0)
+                                        setURL("")
+
+                                    }}>Save</button>
+                                    <button className="cancelItem" onClick={() => {
+                                        openSingleReleaseEditForm(false)
+                                        setSingleReleaseId(0)
+                                        setEventId(0)
+                                        setURL("")
+                                    }}>Cancel</button>
+                                </div>
                             </fieldset>
                         </form>
                     </div>
@@ -1454,10 +1458,10 @@ export const Releases = () => {
 
             {
                 bundleReleaseForm && (
-                    <div className="pop_up_gig">
-                        <form className="relativeForm">
+                    <div className="bundle_form">
+                        <form >
                             <fieldset>
-                                <div>Title:
+                                <div className="formRow">Title:
                                     <input type="text" id="title" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1466,7 +1470,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Date:
+                                <div className="formRow">Date:
                                     <input type="date" id="date" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1475,7 +1479,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Time:
+                                <div className="formRow">Time:
                                     <input type="time" id="time" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1486,7 +1490,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Description:
+                                <div className="formRow">Description:
                                     <input type="text" id="description" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1495,10 +1499,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                            </fieldset>
-                            <h3>Bundle Release</h3>
-                            <fieldset>
-                                <div>Bundle Title:
+                                <div className="formRow">Bundle Title:
                                     <input type="text" id="bundle_title" onChange={
                                         (evt) => {
                                             const copy = { ...newBundleRelease }
@@ -1507,7 +1508,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Genre:
+                                <div className="formRow">Genre:
                                     <input type="text" id="genre" onChange={
                                         (evt) => {
                                             const copy = { ...newBundleRelease }
@@ -1516,7 +1517,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>UPC:
+                                <div className="formRow">UPC:
                                     <input type="number" id="upc" onChange={
                                         (evt) => {
                                             const copy = { ...newBundleRelease }
@@ -1525,7 +1526,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Audio:
+                                <div className="formRow">Audio:
                                     <input type="url" id="audio_url" onChange={
                                         (evt) => {
                                             const copy = { ...newBundleRelease }
@@ -1534,12 +1535,12 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Artwork:
+                                <div className="formRow">Artwork:
                                     {url === "" ? ""
-                                        : <img src={url} alt="artwork" />}
+                                        : <img className="compressedImg" src={url} alt="artwork" />}
                                     <UploadFile onUpload={handleOnUpload} />
                                 </div>
-                                <div>Uploaded to Distro:
+                                <div className="formRow">Uploaded to Distro:
                                     <input type="checkbox"
                                         value={newBundleRelease.uploaded_to_distro}
                                         onChange={
@@ -1550,17 +1551,20 @@ export const Releases = () => {
                                             }
                                         } />
                                 </div>
-                                <button onClick={(clickEvent) => {
-                                    bundleSaveButtonClick(clickEvent)
-                                    openBundleReleaseForm(false)
-                                    setEventType(0)
-                                    setURL("")
-                                }}>Save</button>
-                                <button className="cancelItem" onClick={() => {
-                                    openBundleReleaseForm(false)
-                                    setEventType(0)
-                                    setURL("")
-                                }}>Cancel</button>
+                                <div className="formButtons">
+
+                                    <button onClick={(clickEvent) => {
+                                        bundleSaveButtonClick(clickEvent)
+                                        openBundleReleaseForm(false)
+                                        setEventType(0)
+                                        setURL("")
+                                    }}>Save</button>
+                                    <button className="cancelItem" onClick={() => {
+                                        openBundleReleaseForm(false)
+                                        setEventType(0)
+                                        setURL("")
+                                    }}>Cancel</button>
+                                </div>
                             </fieldset>
                         </form>
                     </div>
@@ -1569,10 +1573,10 @@ export const Releases = () => {
 
             {
                 bundleReleaseEditForm && (
-                    <div className="pop_up_gig">
-                        <form className="relativeForm">
+                    <div className="bundle_form">
+                        <form>
                             <fieldset>
-                                <div>Title:
+                                <div className="formRow">Title:
                                     <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1581,7 +1585,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Date:
+                                <div className="formRow">Date:
                                     <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1590,7 +1594,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Time:
+                                <div className="formRow">Time:
                                     <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1601,7 +1605,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Description:
+                                <div className="formRow">Description:
                                     <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1610,10 +1614,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                            </fieldset>
-                            <h3>Bundle Release</h3>
-                            <fieldset>
-                                <div>Bundle Title:
+                                <div className="formRow">Bundle Title:
                                     <input type="text" id="bundle_title" placeholder={bundleEdit.bundle_title} value={bundleEdit.bundle_title} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
@@ -1622,7 +1623,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Genre:
+                                <div className="formRow">Genre:
                                     <input type="text" id="genre" placeholder={bundleEdit.genre} value={bundleEdit.genre} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
@@ -1631,7 +1632,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>UPC:
+                                <div className="formRow">UPC:
                                     <input type="number" id="upc" placeholder={bundleEdit.upc} value={bundleEdit.upc} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
@@ -1640,7 +1641,7 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Audio:
+                                <div className="formRow">Audio:
                                     <input type="url" id="audio_url" placeholder={bundleEdit.audio_url} value={bundleEdit.audio_url} onChange={
                                         (evt) => {
                                             const copy = { ...bundleEdit }
@@ -1649,14 +1650,14 @@ export const Releases = () => {
                                         }
                                     } />
                                 </div>
-                                <div>Artwork:
+                                <div className="formRow">Artwork:
                                     {bundleEditURL === "" ? ""
-                                        : <img src={bundleEditURL} alt="artwork" />}
+                                        : <img className="compressedImg" src={bundleEditURL} alt="artwork" />}
                                     {url === "" ? ""
-                                        : <img src={url} alt="artwork" />}
+                                        : <img className="compressedImg" src={url} alt="artwork" />}
                                     <UploadFile onUpload={handleOnUpload} />
                                 </div>
-                                <div>Uploaded to Distro:
+                                <div className="formRow">Uploaded to Distro:
                                     <input type="checkbox"
                                         value={bundleEdit.uploaded_to_distro}
                                         onChange={
@@ -1667,19 +1668,22 @@ export const Releases = () => {
                                             }
                                         } />
                                 </div>
-                                <button onClick={(clickEvent) => {
-                                    bundleEditButtonClick(clickEvent)
-                                    openBundleReleaseEditForm(false)
-                                    setBundleReleaseId(0)
-                                    setEventId(0)
-                                    setURL("")
-                                }}>Save</button>
-                                <button className="cancelItem" onClick={() => {
-                                    openBundleReleaseEditForm(false)
-                                    setBundleReleaseId(0)
-                                    setEventId(0)
-                                    setURL("")
-                                }}>Cancel</button>
+                                <div className="formButtons">
+
+                                    <button onClick={(clickEvent) => {
+                                        bundleEditButtonClick(clickEvent)
+                                        openBundleReleaseEditForm(false)
+                                        setBundleReleaseId(0)
+                                        setEventId(0)
+                                        setURL("")
+                                    }}>Save</button>
+                                    <button className="cancelItem" onClick={() => {
+                                        openBundleReleaseEditForm(false)
+                                        setBundleReleaseId(0)
+                                        setEventId(0)
+                                        setURL("")
+                                    }}>Cancel</button>
+                                </div>
                             </fieldset>
                         </form>
                     </div>
