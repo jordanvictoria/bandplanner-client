@@ -520,6 +520,10 @@
     margin-left: auto;
   }
 
+  .formRow div {
+    margin-left: auto;
+  }
+
   .formButtons {
     display: flex;
     justify-content: flex-end;

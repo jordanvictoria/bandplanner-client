@@ -265,10 +265,10 @@ export const MediaList = () => {
         }
         {
           mediaContactForm && (
-            <div className="pop_up_rehearsal">
-              <form className="relativeForm">
+            <div className="contact_form">
+              <form >
                 <fieldset>
-                  <div>Media Type:
+                  <div className="formRow">Media Type:
                     <select className="mediaSelect" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -284,7 +284,7 @@ export const MediaList = () => {
                       }
                     </select>
                   </div>
-                  <div>Name:
+                  <div className="formRow">Name:
                     <input type="text" id="contact" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -293,7 +293,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Role:
+                  <div className="formRow">Role:
                     <input type="text" id="role" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -302,7 +302,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Company:
+                  <div className="formRow">Company:
                     <input type="text" id="organization" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -311,7 +311,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Location:
+                  <div className="formRow">Location:
                     <input type="text" id="location" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -320,7 +320,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Email:
+                  <div className="formRow">Email:
                     <input type="email" id="email" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -329,7 +329,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Website:
+                  <div className="formRow">Website:
                     <input type="url" id="link" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -338,7 +338,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Notes:
+                  <div className="formRow">Notes:
                     <input type="text" id="notes" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -347,13 +347,15 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <button onClick={(clickEvent) => {
-                    contactSaveButtonClick(clickEvent)
-                    openMediaContactForm(false)
-                  }}>Save</button>
-                  <button className="cancelItem" onClick={() => {
-                    openMediaContactForm(false)
-                  }}>Cancel</button>
+                  <div className="formButtons">
+                    <button onClick={(clickEvent) => {
+                      contactSaveButtonClick(clickEvent)
+                      openMediaContactForm(false)
+                    }}>Save</button>
+                    <button className="cancelItem" onClick={() => {
+                      openMediaContactForm(false)
+                    }}>Cancel</button>
+                  </div>
                 </fieldset>
               </form>
             </div>
@@ -362,10 +364,10 @@ export const MediaList = () => {
 
         {
           mediaContactEditForm && (
-            <div className="pop_up_rehearsal">
-              <form className="relativeForm">
+            <div className="contact_form">
+              <form >
                 <fieldset>
-                  <div>Media Type:
+                  <div className="formRow">Media Type:
                     <select className="mediaSelect" onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -379,7 +381,7 @@ export const MediaList = () => {
                         })}
                     </select>
                   </div>
-                  <div>Name:
+                  <div className="formRow">Name:
                     <input type="text" id="contact" placeholder={mediaContactEdit.contact} value={mediaContactEdit.contact} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -388,7 +390,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Role:
+                  <div className="formRow">Role:
                     <input type="text" id="role" placeholder={mediaContactEdit.role} value={mediaContactEdit.role} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -397,7 +399,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Company:
+                  <div className="formRow">Company:
                     <input type="text" id="organization" placeholder={mediaContactEdit.organization} value={mediaContactEdit.organization} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -406,7 +408,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Location:
+                  <div className="formRow">Location:
                     <input type="text" id="location" placeholder={mediaContactEdit.location} value={mediaContactEdit.location} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -415,7 +417,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Email:
+                  <div className="formRow">Email:
                     <input type="email" id="email" placeholder={mediaContactEdit.email} value={mediaContactEdit.email} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -424,7 +426,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Website:
+                  <div className="formRow">Website:
                     <input type="url" id="website" value={mediaContactEdit.website} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -433,7 +435,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div>Notes:
+                  <div className="formRow">Notes:
                     <input type="text" id="notes" value={mediaContactEdit.notes} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -442,15 +444,18 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <button onClick={(clickEvent) => {
-                    contactEditButtonClick(clickEvent)
-                    openMediaContactEditForm(false)
-                    setMediaContactId(0)
-                  }}>Save</button>
-                  <button className="cancelItem" onClick={() => {
-                    openMediaContactEditForm(false)
-                    setMediaContactId(0)
-                  }}>Cancel</button>
+                  <div className="formButtons">
+
+                    <button onClick={(clickEvent) => {
+                      contactEditButtonClick(clickEvent)
+                      openMediaContactEditForm(false)
+                      setMediaContactId(0)
+                    }}>Save</button>
+                    <button className="cancelItem" onClick={() => {
+                      openMediaContactEditForm(false)
+                      setMediaContactId(0)
+                    }}>Cancel</button>
+                  </div>
                 </fieldset>
               </form>
             </div>

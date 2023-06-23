@@ -182,10 +182,10 @@ export const PressClipping = () => {
       </div>
       {
         pressClippingForm && (
-          <div className="pop_up_rehearsal">
-            <form className="relativeForm">
+          <div className="clipping_form">
+            <form>
               <fieldset>
-                <div>Title:
+                <div className="formRow">Title:
                   <input type="text" id="title" onChange={
                     (evt) => {
                       const copy = { ...newPressClipping }
@@ -194,7 +194,7 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
-                <div>Date:
+                <div className="formRow">Date:
                   <input type="date" id="date" onChange={
                     (evt) => {
                       const copy = { ...newPressClipping }
@@ -203,7 +203,7 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
-                <div>Author:
+                <div className="formRow">Author:
                   <input type="text" id="author" onChange={
                     (evt) => {
                       const copy = { ...newPressClipping }
@@ -212,7 +212,7 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
-                <div>Description:
+                <div className="formRow">Description:
                   <input type="text" id="description" onChange={
                     (evt) => {
                       const copy = { ...newPressClipping }
@@ -221,7 +221,7 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
-                <div>Link:
+                <div className="formRow">Link:
                   <input type="url" id="link" onChange={
                     (evt) => {
                       const copy = { ...newPressClipping }
@@ -230,6 +230,8 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
+                <div className="formButtons">
+
                 <button onClick={(clickEvent) => {
                   clippingSaveButtonClick(clickEvent)
                   openPressClippingForm(false)
@@ -237,6 +239,7 @@ export const PressClipping = () => {
                 <button className="cancelItem" onClick={() => {
                   openPressClippingForm(false)
                 }}>Cancel</button>
+                </div>
               </fieldset>
             </form>
           </div>
@@ -245,10 +248,10 @@ export const PressClipping = () => {
 
       {
         pressClippingEditForm && (
-          <div className="pop_up_rehearsal">
-            <form className="relativeForm">
+          <div className="clipping_form">
+            <form>
               <fieldset>
-                <div>Title:
+                <div className="formRow">Title:
                   <input type="text" id="title" placeholder={pressClippingEdit.title} value={pressClippingEdit.title} onChange={
                     (evt) => {
                       const copy = { ...pressClippingEdit }
@@ -257,7 +260,7 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
-                <div>Date:
+                <div className="formRow">Date:
                   <input type={dateInputType} id="date" placeholder={pressClippingEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                     (evt) => {
                       const copy = { ...pressClippingEdit }
@@ -266,7 +269,7 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
-                <div>Author:
+                <div className="formRow">Author:
                   <input type="text" id="author" placeholder={pressClippingEdit.author} value={pressClippingEdit.author} onChange={
                     (evt) => {
                       const copy = { ...pressClippingEdit }
@@ -275,7 +278,7 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
-                <div>Description:
+                <div className="formRow">Description:
                   <input type="text" id="description" placeholder={pressClippingEdit.description} value={pressClippingEdit.description} onChange={
                     (evt) => {
                       const copy = { ...pressClippingEdit }
@@ -284,7 +287,7 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
-                <div>Link:
+                <div className="formRow">Link:
                   <input type="url" id="link" placeholder={pressClippingEdit.link} value={pressClippingEdit.link} onChange={
                     (evt) => {
                       const copy = { ...pressClippingEdit }
@@ -293,6 +296,8 @@ export const PressClipping = () => {
                     }
                   } />
                 </div>
+                <div className="formButtons">
+
                 <button onClick={(clickEvent) => {
                   clippingEditButtonClick(clickEvent)
                   openPressClippingEditForm(false)
@@ -302,6 +307,7 @@ export const PressClipping = () => {
                   openPressClippingEditForm(false)
                   setPressClippingId(0)
                 }}>Cancel</button>
+                </div>
               </fieldset>
             </form>
           </div>
