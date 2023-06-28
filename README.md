@@ -1,9 +1,9 @@
 # Welcome to Bandplanner
 
 > A tool that helps independent musicians stay organized, focused and inspired <br>
-01:43 ━━━━●───── 03:50
-⇆ㅤ ㅤ◁ㅤ ❚❚ ㅤ▷ ㅤㅤ↻﻿
-               ılıılıılıılıılıılı
+01:43 ━━━━●───── 03:50 <br>
+⇆ㅤ ㅤ◁ㅤ ❚❚ ㅤ▷ ㅤㅤ↻﻿<br>
+               ılıılıılıılıılıılı<br>
 ᴠᴏʟᴜᴍᴇ : ▮▮▮▮▮▮▮▮▮▮  
 
 ### Application Overview
