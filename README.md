@@ -19,10 +19,10 @@ Features include:
 * Users can search for live music events by artist name, location, and venue name via an external API
 * Users can upload photos to their user profile with a Cloudinary widget
 
-<!--## ERD
-<img src="src/components/images/pantryERD.png">
+## ERD
+<img src="src/components/nav/erd-bp.png">
 
-
+<!--
  ##Video Walkthrough
 
 
