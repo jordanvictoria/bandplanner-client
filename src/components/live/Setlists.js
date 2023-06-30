@@ -482,7 +482,7 @@ export const Setlists = () => {
                                             <div className="customList" {...provided.droppableProps} ref={provided.innerRef}>
                                                 {
                                                     filteredSetlistSongs.map((song, index) => (
-                                                        <Draggable key={song.id} draggableId={String(song.id)} index={index}>
+                                                        <Draggable className="dragged-item" key={song.id} draggableId={String(song.id)} index={index}>
                                                             {(provided) => (
                                                                 <li
                                                                     ref={provided.innerRef}
