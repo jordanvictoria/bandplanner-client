@@ -191,84 +191,82 @@ export const MediaList = () => {
 
 
   return <>
-    <div className="site-background hero is-fullheight">
-      <button className="add-event-button custom-button" onClick={() => openMediaContactForm(true)}>
-        Add New Media Contact
-      </button>
-      <div className="button-view-container">
-        <button
-          onClick={() => handleOptionClick(1)}
-          style={{
-            backgroundColor: blogSelected ? 'green' : 'white',
-          }}
-        >
-          Blog
-        </button>
-        <button
-          onClick={() => handleOptionClick(2)}
-          style={{
-            backgroundColor: magazineSelected ? 'green' : 'white',
-          }}
-        >
-          Magazine
-        </button>
-        <button
-          onClick={() => handleOptionClick(3)}
-          style={{
-            backgroundColor: newspaperSelected ? 'green' : 'white',
-          }}
-        >
-          Newspaper
-        </button>
-        <button
-          onClick={() => handleOptionClick(4)}
-          style={{
-            backgroundColor: radioSelected ? 'green' : 'white',
-          }}
-        >
-          Radio
-        </button>
+    <div className="container">
+      <div className="mediaContactBandName">
+        {bandUserObj.project_title}'s Media List
       </div>
-      <div className="contactViewContainer">
-        {
-          mediaContacts.map((media) => {
-            return (
-              <li className="contactCard" key={media.id} value={media.id}>
-                <div>
-                  <h3><b>Name</b>: {media.contact}</h3>
-                  <section><b>Role</b>: {media.role}</section>
-                  <section><b>Company</b>: {media.organization}</section>
-                  <section><b>Location</b>: {media.location}</section>
-                  <section><b>Email</b>: {media.email}</section>
-                  <section>
-                    <b>Website</b>:
-                    <></>
-                    {media.website ? (
-                      <a href={media.website} target="_blank" rel="noopener noreferrer">Open in New Tab</a>
-                    ) : (
-                      ""
-                    )}
-                  </section>
-                  <section><b>Notes</b>: {media.notes}</section>
-                  <button onClick={() => {
-                    setMediaContactId(media.id)
-                  }}>Edit</button>
-                  <button onClick={async () => {
-                    await deleteMediaContact(media.id);
-                    const newMediaContacts = await getMediaContacts()
-                    setFilteredContacts(newMediaContacts)
-                  }}>Delete</button>
-                </div>
-              </li>
-            )
-          })
-        }
+      <div className="contactContainer">
+        <button onClick={() => openMediaContactForm(true)}>
+          Add New Media Contact
+        </button>
+        <div className="button-view-container">
+          <button
+            onClick={() => handleOptionClick(1)}
+            style={{
+              backgroundColor: blogSelected ? 'green' : 'white',
+            }}
+          >
+            Blog
+          </button>
+          <button
+            onClick={() => handleOptionClick(2)}
+            style={{
+              backgroundColor: magazineSelected ? 'green' : 'white',
+            }}
+          >
+            Magazine
+          </button>
+          <button
+            onClick={() => handleOptionClick(3)}
+            style={{
+              backgroundColor: newspaperSelected ? 'green' : 'white',
+            }}
+          >
+            Newspaper
+          </button>
+          <button
+            onClick={() => handleOptionClick(4)}
+            style={{
+              backgroundColor: radioSelected ? 'green' : 'white',
+            }}
+          >
+            Radio
+          </button>
+        </div>
+        <ul>
+          {
+            mediaContacts.map((media) => {
+              return (
+                <li className="contactCard" key={media.id} value={media.id}>
+                  <div>
+                    <h3>Name: {media.contact}</h3>
+                    <section>Role: {media.role}</section>
+                    <section>Company: {media.organization}</section>
+                    <section>Location: {media.location}</section>
+                    <section>Email: {media.email}</section>
+                    <section>Website: 
+                      <a href={media.website} target="_blank" rel="noopener noreferrer"></a>{media.website}</section>
+                    <section>Notes: {media.notes}</section>
+                    <button onClick={() => {
+                      setMediaContactId(media.id)
+                    }}>Edit</button>
+                    <button onClick={async () => {
+                      await deleteMediaContact(media.id);
+                      const newMediaContacts = await getMediaContacts()
+                      setFilteredContacts(newMediaContacts)
+                    }}>Delete</button>
+                  </div>
+                </li>
+              )
+            })
+          }
+        </ul>
         {
           mediaContactForm && (
-            <div className="contact_form">
-              <form >
+            <div className="pop_up_rehearsal">
+              <form className="relativeForm">
                 <fieldset>
-                  <div className="formRow">Media Type:
+                  <div>Media Type:
                     <select className="mediaSelect" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -284,7 +282,7 @@ export const MediaList = () => {
                       }
                     </select>
                   </div>
-                  <div className="formRow">Name:
+                  <div>Name:
                     <input type="text" id="contact" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -293,7 +291,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Role:
+                  <div>Role:
                     <input type="text" id="role" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -302,7 +300,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Company:
+                  <div>Company:
                     <input type="text" id="organization" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -311,7 +309,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Location:
+                  <div>Location:
                     <input type="text" id="location" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -320,7 +318,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Email:
+                  <div>Email:
                     <input type="email" id="email" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -329,7 +327,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Website:
+                  <div>Website:
                     <input type="url" id="link" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -338,7 +336,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Notes:
+                  <div>Notes:
                     <input type="text" id="notes" onChange={
                       (evt) => {
                         const copy = { ...newMediaContact }
@@ -347,15 +345,13 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formButtons">
-                    <button onClick={(clickEvent) => {
-                      contactSaveButtonClick(clickEvent)
-                      openMediaContactForm(false)
-                    }}>Save</button>
-                    <button className="cancelItem" onClick={() => {
-                      openMediaContactForm(false)
-                    }}>Cancel</button>
-                  </div>
+                  <button onClick={(clickEvent) => {
+                    contactSaveButtonClick(clickEvent)
+                    openMediaContactForm(false)
+                  }}>Save</button>
+                  <button className="cancelItem" onClick={() => {
+                    openMediaContactForm(false)
+                  }}>Cancel</button>
                 </fieldset>
               </form>
             </div>
@@ -364,10 +360,10 @@ export const MediaList = () => {
 
         {
           mediaContactEditForm && (
-            <div className="contact_form">
-              <form >
+            <div className="pop_up_rehearsal">
+              <form className="relativeForm">
                 <fieldset>
-                  <div className="formRow">Media Type:
+                  <div>Media Type:
                     <select className="mediaSelect" onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -381,7 +377,7 @@ export const MediaList = () => {
                         })}
                     </select>
                   </div>
-                  <div className="formRow">Name:
+                  <div>Name:
                     <input type="text" id="contact" placeholder={mediaContactEdit.contact} value={mediaContactEdit.contact} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -390,7 +386,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Role:
+                  <div>Role:
                     <input type="text" id="role" placeholder={mediaContactEdit.role} value={mediaContactEdit.role} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -399,7 +395,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Company:
+                  <div>Company:
                     <input type="text" id="organization" placeholder={mediaContactEdit.organization} value={mediaContactEdit.organization} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -408,7 +404,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Location:
+                  <div>Location:
                     <input type="text" id="location" placeholder={mediaContactEdit.location} value={mediaContactEdit.location} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -417,7 +413,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Email:
+                  <div>Email:
                     <input type="email" id="email" placeholder={mediaContactEdit.email} value={mediaContactEdit.email} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -426,7 +422,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Website:
+                  <div>Website:
                     <input type="url" id="website" value={mediaContactEdit.website} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -435,7 +431,7 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formRow">Notes:
+                  <div>Notes:
                     <input type="text" id="notes" value={mediaContactEdit.notes} onChange={
                       (evt) => {
                         const copy = { ...mediaContactEdit }
@@ -444,18 +440,15 @@ export const MediaList = () => {
                       }
                     } />
                   </div>
-                  <div className="formButtons">
-
-                    <button onClick={(clickEvent) => {
-                      contactEditButtonClick(clickEvent)
-                      openMediaContactEditForm(false)
-                      setMediaContactId(0)
-                    }}>Save</button>
-                    <button className="cancelItem" onClick={() => {
-                      openMediaContactEditForm(false)
-                      setMediaContactId(0)
-                    }}>Cancel</button>
-                  </div>
+                  <button onClick={(clickEvent) => {
+                    contactEditButtonClick(clickEvent)
+                    openMediaContactEditForm(false)
+                    setMediaContactId(0)
+                  }}>Save</button>
+                  <button className="cancelItem" onClick={() => {
+                    openMediaContactEditForm(false)
+                    setMediaContactId(0)
+                  }}>Cancel</button>
                 </fieldset>
               </form>
             </div>

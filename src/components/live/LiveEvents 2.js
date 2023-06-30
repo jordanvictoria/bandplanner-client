@@ -949,7 +949,7 @@ export const LiveEvents = () => {
                                     return (
                                         <li key={event.id} value={event.id}>
                                             <div className="listViewItem">
-                                                <h3><b>{event.title}</b></h3>
+                                                <h3>{event.title}</h3>
                                                 <section>{formattedListDate}</section>
                                                 <section className="smallerFont">{event.description}</section>
                                                 <button className="greenButton" onClick={() => { setEventListId(event.id) }}>View Details</button>
@@ -1169,11 +1169,10 @@ export const LiveEvents = () => {
 
             {
                 rehearsalForm && (
-                    <div className="rehearsal_form">
-                        <form>
+                    <div className="pop_up_rehearsal">
+                        <form className="relativeForm">
                             <fieldset>
-                                <div className="formRow">
-                                    <div className="label">Title:</div>
+                                <div>Title:
                                     <input type="text" id="title" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1182,8 +1181,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Date:</div>
+                                <div>Date:
                                     <input type="date" id="date" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1192,8 +1190,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Time:</div>
+                                <div>Time:
                                     <input type="time" id="time" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1204,8 +1201,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Description:</div>
+                                <div>Description:
                                     <input type="text" id="description" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1214,9 +1210,10 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-
-                                <div className="formRow">
-                                    <div className="label">Location:</div>
+                            </fieldset>
+                            <h3>Rehearsal</h3>
+                            <fieldset>
+                                <div>Location:
                                     <input type="text" id="location" onChange={
                                         (evt) => {
                                             const copy = { ...newRehearsal }
@@ -1225,8 +1222,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Band Members:</div>
+                                <div>Band Members:
                                     <input type="text" id="band_info" onChange={
                                         (evt) => {
                                             const copy = { ...newRehearsal }
@@ -1235,17 +1231,15 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formButtons">
-                                    <button onClick={(clickEvent) => {
-                                        rehearsalSaveButtonClick(clickEvent)
-                                        openRehearsalForm(false)
-                                        setEventType(0)
-                                    }}>Save</button>
-                                    <button className="cancelItem" onClick={() => {
-                                        openRehearsalForm(false)
-                                        setEventType(0)
-                                    }}>Cancel</button>
-                                </div>
+                                <button onClick={(clickEvent) => {
+                                    rehearsalSaveButtonClick(clickEvent)
+                                    openRehearsalForm(false)
+                                    setEventType(0)
+                                }}>Save</button>
+                                <button className="cancelItem" onClick={() => {
+                                    openRehearsalForm(false)
+                                    setEventType(0)
+                                }}>Cancel</button>
                             </fieldset>
                         </form>
                     </div>
@@ -1254,11 +1248,10 @@ export const LiveEvents = () => {
 
             {
                 rehearsalEditForm && (
-                    <div className="rehearsal_form">
-                        <form>
+                    <div className="pop_up_rehearsal">
+                        <form className="relativeForm">
                             <fieldset>
-                                <div className="formRow">
-                                    <div className="label">Title:</div>
+                                <div>Title:
                                     <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1267,8 +1260,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Date:</div>
+                                <div>Date:
                                     <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1277,8 +1269,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Time:</div>
+                                <div>Time:
                                     <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1289,8 +1280,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Description:</div>
+                                <div>Description:
                                     <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1299,8 +1289,10 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Location:</div>
+                            </fieldset>
+                            <h3>Rehearsal</h3>
+                            <fieldset>
+                                <div>Location:
                                     <input type="text" id="location" placeholder={rehearsalEdit.location} value={rehearsalEdit.location} onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
@@ -1309,8 +1301,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">
-                                    <div className="label">Band Members:</div>
+                                <div>Band Members:
                                     <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} value={rehearsalEdit.band_info} onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
@@ -1319,19 +1310,17 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formButtons">
-                                    <button onClick={(clickEvent) => {
-                                        rehearsalEditButtonClick(clickEvent)
-                                        openRehearsalEditForm(false)
-                                        setRehearsalId(0)
-                                        setEventId(0)
-                                    }}>Save</button>
-                                    <button className="cancelItem" onClick={() => {
-                                        openRehearsalEditForm(false)
-                                        setRehearsalId(0)
-                                        setEventId(0)
-                                    }}>Cancel</button>
-                                </div>
+                                <button onClick={(clickEvent) => {
+                                    rehearsalEditButtonClick(clickEvent)
+                                    openRehearsalEditForm(false)
+                                    setRehearsalId(0)
+                                    setEventId(0)
+                                }}>Save</button>
+                                <button className="cancelItem" onClick={() => {
+                                    openRehearsalEditForm(false)
+                                    setRehearsalId(0)
+                                    setEventId(0)
+                                }}>Cancel</button>
                             </fieldset>
                         </form>
                     </div>
@@ -1343,10 +1332,10 @@ export const LiveEvents = () => {
 
             {
                 gigForm && (
-                    <div className="gigForm">
-                        <form>
+                    <div className="pop_up_gig">
+                        <form className="relativeForm">
                             <fieldset>
-                                <div className="formRow">Title:
+                                <div>Title:
                                     <input type="text" id="title" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1355,7 +1344,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Date:
+                                <div>Date:
                                     <input type="date" id="date" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1364,7 +1353,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Time:
+                                <div>Time:
                                     <input type="time" id="time" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1375,7 +1364,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Description:
+                                <div>Description:
                                     <input type="text" id="description" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1384,7 +1373,10 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">City/State:
+                            </fieldset>
+                            <h3>Gig</h3>
+                            <fieldset>
+                                <div>City/State:
                                     <input type="text" id="city_state" onChange={
                                         (evt) => {
                                             const copy = { ...newGig }
@@ -1393,7 +1385,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Venue:
+                                <div>Venue:
                                     <input type="text" id="venue" onChange={
                                         (evt) => {
                                             const copy = { ...newGig }
@@ -1402,7 +1394,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Band members:
+                                <div>Band members:
                                     <input type="text" id="band_info" onChange={
                                         (evt) => {
                                             const copy = { ...newGig }
@@ -1411,7 +1403,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Age Requirement:
+                                <div>Age Requirement:
                                     <select onChange={
                                         (evt) => {
                                             const copy = { ...newGig }
@@ -1425,7 +1417,7 @@ export const LiveEvents = () => {
                                         <option value="All ages">All ages</option>
                                     </select>
                                 </div>
-                                <div className="formRow">Ticket Price:
+                                <div>Ticket Price:
                                     <input type="number" id="ticket_price" onChange={
                                         (evt) => {
                                             const copy = { ...newGig }
@@ -1434,7 +1426,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Ticket Link:
+                                <div>Ticket Link:
                                     <input type="url" id="ticket_link" onChange={
                                         (evt) => {
                                             const copy = { ...newGig }
@@ -1443,7 +1435,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Guarantee:
+                                <div>Guarantee:
                                     <input type="number" id="guarantee" onChange={
                                         (evt) => {
                                             const copy = { ...newGig }
@@ -1452,7 +1444,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Sold Out:
+                                <div>Sold Out:
                                     <input type="checkbox"
                                         value={newGig.sold_out}
                                         onChange={
@@ -1463,7 +1455,7 @@ export const LiveEvents = () => {
                                             }
                                         } />
                                 </div>
-                                <div className="formRow">Announced:
+                                <div>Announced:
                                     <input type="checkbox"
                                         value={newGig.announced}
                                         onChange={
@@ -1474,44 +1466,42 @@ export const LiveEvents = () => {
                                             }
                                         } />
                                 </div>
-                                <div className="formRow">Flier:
+                                <div>Flier:
 
                                     {flierURL === "" ? ""
-                                        : <img className="compressedImg" src={flierURL} alt="flier" />}
+                                        : <img src={flierURL} alt="flier" />}
 
-                                    <UploadFile className="upload" onUpload={handleFlierUpload} />
+                                    <UploadFile onUpload={handleFlierUpload} />
                                 </div>
-                                <div className="formRow">Stage Plot:
+                                <div>Stage Plot:
 
                                     {stagePlotURL === "" ? ""
-                                        : <img className="compressedImg" src={stagePlotURL} alt="stage plot" />}
+                                        : <img src={stagePlotURL} alt="stage plot" />}
 
-                                    <UploadFile className="upload" onUpload={handleStagePlotUpload} />
+                                    <UploadFile onUpload={handleStagePlotUpload} />
                                 </div>
-                                <div className="formRow">Input List:
+                                <div>Input List:
 
                                     {inputListURL === "" ? ""
-                                        : <img className="compressedImg" src={inputListURL} alt="input list" />}
+                                        : <img src={inputListURL} alt="input list" />}
 
-                                    <UploadFile className="upload" onUpload={handleInputListUpload} />
+                                    <UploadFile onUpload={handleInputListUpload} />
                                 </div>
-                                <div className="formButtons">
-                                    <button onClick={(clickEvent) => {
-                                        gigSaveButtonClick(clickEvent)
-                                        openGigForm(false)
-                                        setEventType(0)
-                                        setFlierURL("")
-                                        setStagePlotURL("")
-                                        setInputListURL("")
-                                    }}>Save</button>
-                                    <button className="cancelItem" onClick={() => {
-                                        openGigForm(false)
-                                        setEventType(0)
-                                        setFlierURL("")
-                                        setStagePlotURL("")
-                                        setInputListURL("")
-                                    }}>Cancel</button>
-                                </div>
+                                <button onClick={(clickEvent) => {
+                                    gigSaveButtonClick(clickEvent)
+                                    openGigForm(false)
+                                    setEventType(0)
+                                    setFlierURL("")
+                                    setStagePlotURL("")
+                                    setInputListURL("")
+                                }}>Save</button>
+                                <button className="cancelItem" onClick={() => {
+                                    openGigForm(false)
+                                    setEventType(0)
+                                    setFlierURL("")
+                                    setStagePlotURL("")
+                                    setInputListURL("")
+                                }}>Cancel</button>
                             </fieldset>
                         </form>
                     </div>
@@ -1520,10 +1510,10 @@ export const LiveEvents = () => {
 
             {
                 gigEditForm && (
-                    <div className="gigForm">
-                        <form>
+                    <div className="pop_up_gig">
+                        <form className="relativeForm">
                             <fieldset>
-                                <div className="formRow">Title:
+                                <div>Title:
                                     <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1532,7 +1522,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Date:
+                                <div>Date:
                                     <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1541,7 +1531,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Time:
+                                <div>Time:
                                     <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1552,7 +1542,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Description:
+                                <div>Description:
                                     <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1561,7 +1551,10 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">City/State:
+                            </fieldset>
+                            <h3>Gig</h3>
+                            <fieldset>
+                                <div>City/State:
                                     <input type="text" id="city_state" placeholder={gigEdit.city_state} value={gigEdit.city_state} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
@@ -1570,7 +1563,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Venue:
+                                <div>Venue:
                                     <input type="text" id="venue" placeholder={gigEdit.venue} value={gigEdit.venue} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
@@ -1579,7 +1572,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Band members:
+                                <div>Band members:
                                     <input type="number" id="band_info" placeholder={gigEdit.band_info} value={gigEdit.band_info} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
@@ -1588,7 +1581,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Age Requirement:
+                                <div>Age Requirement:
                                     <select onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
@@ -1602,7 +1595,7 @@ export const LiveEvents = () => {
                                         <option value="All ages">All ages</option>
                                     </select>
                                 </div>
-                                <div className="formRow">Ticket Price:
+                                <div>Ticket Price:
                                     <input type="number" id="ticket_price" placeholder={gigEdit.ticket_price} value={gigEdit.ticket_price} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
@@ -1611,7 +1604,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Ticket Link:
+                                <div>Ticket Link:
                                     <input type="url" id="ticket_link" placeholder={gigEdit.ticket_link} value={gigEdit.ticket_link} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
@@ -1620,7 +1613,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Guarantee:
+                                <div>Guarantee:
                                     <input type="number" id="guarantee" placeholder={gigEdit.guarantee} value={gigEdit.guarantee} onChange={
                                         (evt) => {
                                             const copy = { ...gigEdit }
@@ -1629,7 +1622,7 @@ export const LiveEvents = () => {
                                         }
                                     } />
                                 </div>
-                                <div className="formRow">Sold Out:
+                                <div>Sold Out:
                                     <input type="checkbox"
                                         value={gigEdit.sold_out}
                                         onChange={
@@ -1640,7 +1633,7 @@ export const LiveEvents = () => {
                                             }
                                         } />
                                 </div>
-                                <div className="formRow">Announced:
+                                <div>Announced:
                                     <input type="checkbox"
                                         value={gigEdit.announced}
                                         onChange={
@@ -1651,53 +1644,50 @@ export const LiveEvents = () => {
                                             }
                                         } />
                                 </div>
-                                <div className="formRow">Flier: 
+                                <div>Flier:
 
                                     {flierEditURL === "" ? ""
-                                        : <img className="compressedImg" src={flierEditURL} alt="flier" />}
+                                        : <img src={flierEditURL} alt="flier" />}
                                     {flierURL === "" ? ""
-                                        : <img className="compressedImg" src={flierURL} alt="flier" />}
+                                        : <img src={flierURL} alt="flier" />}
 
-                                    <UploadFile className="upload" onUpload={handleFlierUpload} />
+                                    <UploadFile onUpload={handleFlierUpload} />
                                 </div>
-                                <div className="formRow">Stage Plot: 
+                                <div>Stage Plot:
 
                                     {stagePlotEditURL === "" ? ""
-                                        : <img className="compressedImg" src={stagePlotEditURL} alt="stage plot" />}
+                                        : <img src={stagePlotEditURL} alt="stage plot" />}
                                     {stagePlotURL === "" ? ""
-                                        : <img className="compressedImg" src={stagePlotURL} alt="stage plot" />}
+                                        : <img src={stagePlotURL} alt="stage plot" />}
 
-                                    <UploadFile className="upload" onUpload={handleStagePlotUpload} />
+                                    <UploadFile onUpload={handleStagePlotUpload} />
                                 </div>
-                                <div className="formRow">Input List: 
+                                <div>Input List:
 
                                     {inputListEditURL === "" ? ""
-                                        : <img className="compressedImg" src={inputListEditURL} alt="input list" />}
+                                        : <img src={inputListEditURL} alt="input list" />}
                                     {inputListURL === "" ? ""
-                                        : <img className="compressedImg" src={inputListURL} alt="input list" />}
+                                        : <img src={inputListURL} alt="input list" />}
 
-                                    <UploadFile className="upload" onUpload={handleInputListUpload} />
+                                    <UploadFile onUpload={handleInputListUpload} />
                                 </div>
-                                <div className="formButtons">
-
-                                    <button onClick={(clickEvent) => {
-                                        gigEditButtonClick(clickEvent)
-                                        openGigEditForm(false)
-                                        setGigId(0)
-                                        setEventId(0)
-                                        setFlierURL("")
-                                        setStagePlotURL("")
-                                        setInputListURL("")
-                                    }}>Save</button>
-                                    <button className="cancelItem" onClick={() => {
-                                        openGigEditForm(false)
-                                        setGigId(0)
-                                        setEventId(0)
-                                        setFlierURL("")
-                                        setStagePlotURL("")
-                                        setInputListURL("")
-                                    }}>Cancel</button>
-                                </div>
+                                <button onClick={(clickEvent) => {
+                                    gigEditButtonClick(clickEvent)
+                                    openGigEditForm(false)
+                                    setGigId(0)
+                                    setEventId(0)
+                                    setFlierURL("")
+                                    setStagePlotURL("")
+                                    setInputListURL("")
+                                }}>Save</button>
+                                <button className="cancelItem" onClick={() => {
+                                    openGigEditForm(false)
+                                    setGigId(0)
+                                    setEventId(0)
+                                    setFlierURL("")
+                                    setStagePlotURL("")
+                                    setInputListURL("")
+                                }}>Cancel</button>
                             </fieldset>
                         </form>
                     </div>

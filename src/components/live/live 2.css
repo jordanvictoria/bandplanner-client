@@ -1,8 +1,3 @@
-
-.dragged-item {
-    opacity: 0.5; /* Adjust the opacity value as needed */
-  }
-
 .site-background {
     background-image: url('../nav/bandplannerlogo.jpeg');
     background-size: cover;
@@ -210,12 +205,6 @@
 
 .listViewContainer {
     margin-top: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 70%;
 }
 
 
@@ -245,29 +234,15 @@
 
 
 
-.pop_up {
+/* .pop_up {
     position: fixed;
-    height: 10%;
-    width: 15%;
-    top: 22%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: rgb(139, 167, 227);
+    background-color: whitesmoke;
     border: 2px solid black;
-    padding: 10px;
-    justify-content: center;
-}
-
-.pop_up select {
-
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.pop_up button {
-
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+} */
 
 
 
@@ -298,25 +273,22 @@
 
 .pop_up_gig .listKey {
     font-weight: bold;
-    width: 30%;
-    /* Set the width to 30% */
+    width: 30%; /* Set the width to 30% */
 }
 
 .pop_up_gig .listValue {
     display: flex;
     align-items: center;
     margin-left: 10px;
-    width: 70%;
-    /* Set the width to 70% */
-}
+    width: 70%; /* Set the width to 70% */
+  }
 
-.pop_up_gig .listValue div {
-    width: 100%;
-    /* Ensure the text takes full width */
-}
+  .pop_up_gig .listValue div {
+    width: 100%; /* Ensure the text takes full width */
+  }
 
 
-.imagePopup {
+  .imagePopup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -329,76 +301,19 @@
     padding: 10px;
     overflow: auto;
     display: flex;
-    flex-direction: column;
-}
-
-.imagePopup img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-.imagePopup .closePopupBtn {
-    margin-top: auto;
-    align-self: flex-end;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.gigForm {
-    position: fixed;
-    top: 55%;
-    left: 50%;
-    height: 77%;
-    width: 25%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: auto;
-}
-
-.gigForm button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.compressedImg {
-    max-width: 100px; /* Set the maximum width you want the image to take */
-    max-height: 100px; /* Set the maximum height you want the image to take */
-    object-fit: cover; /* Maintain aspect ratio and fill the container */
-    margin-right: 5px;
+  flex-direction: column;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .imagePopup img {
+    max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  }
+  
+  .imagePopup .closePopupBtn {
+    margin-top: auto;
+    align-self: flex-end;
+  }
 
 
 
@@ -431,22 +346,19 @@
 
 .pop_up_rehearsal .listKey {
     font-weight: bold;
-    width: 30%;
-    /* Set the width to 30% */
+    width: 30%; /* Set the width to 30% */
 }
 
 .pop_up_rehearsal .listValue {
     display: flex;
     align-items: center;
     margin-left: 10px;
-    width: 70%;
-    /* Set the width to 70% */
-}
+    width: 70%; /* Set the width to 70% */
+  }
 
-.pop_up_rehearsal .listValue div {
-    width: 100%;
-    /* Ensure the text takes full width */
-}
+  .pop_up_rehearsal .listValue div {
+    width: 100%; /* Ensure the text takes full width */
+  }
 
 
 .button_group {
@@ -465,74 +377,6 @@
     bottom: 10px;
     right: 10px;
 }
-
-
-
-
-
-
-
-
-
-.rehearsal_form {
-    position: fixed;
-    height: 44%;
-    top: 295px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.rehearsal_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-
-
-
-
-
-.formRow {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .formRow label {
-    width: 100px; /* Adjust the width as needed */
-    margin-right: 10px;
-  }
-  
-  .formRow input {
-    margin-left: auto;
-  }
-
-  .formRow button {
-    margin-left: auto;
-  }
-
-  .formRow select {
-    margin-left: auto;
-  }
-
-  .formRow img {
-    margin-left: auto;
-  }
-
-  .formRow div {
-    margin-left: auto;
-  }
-
-  .formButtons {
-    display: flex;
-    justify-content: flex-end;
-  }
 
 
 
@@ -561,18 +405,7 @@
 
 
 
-.addSetlist {
-    position: absolute;
-    left: 43%;
-    top: 65px;
-    font-size: 14px;
-    background-color: rgb(125, 128, 128);
-    color: white;
-    border-radius: 5px;
-    border: 2px solid white;
-    margin-bottom: 30px;
-    padding: 2px;
-}
+
 
 
 .setlistContainer {
@@ -580,27 +413,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 70%;
-    background-color: #f59e9e;
-    border-radius: 1rem;
+    height: 100vh;
+    /* Adjust the height as needed */
 }
 
 
 .setlistBoxContainer {
-    width: 100%;
+    width: 60%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
-    padding: 0 20px;
 }
 
 .setListBandName {
@@ -609,16 +434,14 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-    border-bottom: 2px solid grey;
-    padding: 10px;
 }
 
 .setlistBox {
     width: 200px;
     /* Adjust the width to your desired size */
-    height: 175px;
+    height: 200px;
     /* Adjust the height to your desired size */
-    margin: 30px 10px 0 10px;
+    margin: 10px;
     padding: 20px;
     text-align: center;
     background-color: #f2f2f2;
@@ -626,29 +449,18 @@
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    background-color: grey;
-    color: black;
+    justify-content: space-between;
 
 
 }
 
 .setlistBox h3 {
-    font-weight: bold;
-
-
+    margin-top: 0;
 }
 
-
-.fontStyles {
-    font-size: smaller;
-    font-style: italic;
+.setlistBox h6 {
+    margin-bottom: 5px;
 }
-
-
-
-
-
-
 
 
 
@@ -660,70 +472,29 @@
 
 
 .viewContainer {
-    position: fixed;
-    top: 41%;
-    left: 50%;
-    height: 50%;
-    width: 25%;
-    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 60%;
+    height: 85%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+
+.setlistView {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    width: 70%;
+    height: 70%;
     z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
+    background-color: rgb(142, 182, 187);
     border: 2px solid black;
-    padding: 10px;
-    text-align: center;
 }
-
-.viewContainer h2 {
-    font-weight: bold;
-}
-
-.viewContainer h3 {
-    font-style: italic;
-    font-size: smaller;
-}
-
-
-
-.viewContainer .customList {
-    text-align: left;
-    margin-left: 20px;
-    margin-top: 10px;
-    padding-left: 20px;
-    counter-reset: item;
-}
-
-.viewContainer .customList li {
-    counter-increment: item;
-    list-style: none;
-}
-
-.viewContainer .customList li:before {
-    content: counter(item) ".";
-    display: inline-block;
-    width: 1em;
-    margin-left: -1.5em;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -733,139 +504,7 @@
 
 
 
-.setlist_form {
-    position: fixed;
-    height: 20%;
-    top: 26%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.setlist_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-
-.edit_setlist {
-    position: fixed;
-    height: 44%;
-    width: 25%;
-    top: 295px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: auto;
-}
-
-.edit_setlist button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.edit_setlist .customList {
-    text-align: left;
-    margin-left: 20px;
-    margin-top: 10px;
-    padding-left: 20px;
-    counter-reset: item;
-}
-
-.edit_setlist .customList li {
-    counter-increment: item;
-    list-style: none;
-}
-
-.edit_setlist .customList li:before {
-    content: counter(item) ".";
-    display: inline-block;
-    width: 1em;
-    margin-left: -1.5em;
-}
-
-
-
-.edit_setlist .setlist-songs-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px 0;
-  }
-  
-  .edit_setlist .setlist-songs-header h3 {
-    margin: 0;
-    border: 2px black solid; 
-    border-radius: 2rem;
-    padding: 10px;
-    background-color: black;
-    color: whitesmoke;
-  }
-  
-  .edit_setlist .setlist-songs-header button {
-    margin-left: 10px;
-    background-color: #f59e9e;
-  }
-
-
-  .edit_setlist .setlist_songs {
-    height: 65%;
-    overflow: auto;
-    margin-top: 10px;
-    border: 2px solid black;
-    padding: 2px;
-  }
-
-  .unchosen {
-    margin-left: 15px;
-}
-
-
-.edit_setlist  button {
-    background-color: rgb(189, 186, 186);
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-.song_form {
-    position: fixed;
-    height: 44%;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: #f59e9e;
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.song_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-
-/* .newSetlistContainer {
+.newSetlistContainer {
     position: absolute;
     width: 60%;
     height: 85%;
@@ -888,13 +527,7 @@
     z-index: 9999;
     background-color: rgb(142, 182, 187);
     border: 2px solid black;
-} */
-
-
-
-
-
-
+}
 
 
 
@@ -928,6 +561,8 @@
 }
 
 .buttonDiv {
-    margin-left: 235px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
 }
-

@@ -17,7 +17,7 @@
 }
 
 .custom-button {
-  background-color: rgb(125, 128, 128); /* Replace "red" with the desired color */
+  background-color: rgb(50, 112, 245); /* Replace "red" with the desired color */
   color: white; /* Replace "white" with the desired font color */
   border-radius: 5px;
   border: 2px solid white;
@@ -113,6 +113,101 @@
   height: 10vw; /* Set the same height as the width */
   max-width: 400px; /* Set a maximum width if needed */
   max-height: 400px; /* Set a maximum height if needed */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pop_up {
+  position: fixed;
+  height: 10%;
+  width: 15%;
+  top: 22%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgb(139, 167, 227);
+  border: 2px solid black;
+  padding: 10px;
+  justify-content: center;
+}
+
+.pop_up select {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pop_up button {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rehearsal_form {
+  position: fixed;
+  height: 44%;
+  top: 295px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgb(139, 167, 227);
+  color: rgb(4, 4, 4);
+  border: 2px solid black;
+  padding: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rehearsal_form button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.formRow label {
+  width: 100px; /* Adjust the width as needed */
+  margin-right: 10px;
+}
+
+.formRow input {
+  margin-left: auto;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+.event_form {
+
+    position: fixed;
+    height: 25%;
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.event_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 

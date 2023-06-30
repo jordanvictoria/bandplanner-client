@@ -7,8 +7,6 @@ export const ProfileEdit = () => {
     const localUser = localStorage.getItem("userId");
     const navigate = useNavigate()
     const { userId } = useParams()
-    const [photoUpload, setPhotoUpload] = useState(true)
-    const [saveProfile, setSaveProfile] = useState(false)
     const [error, updateError] = useState("")
     const [url, setURL] = useState("")
     const [profileEditURL, setProfileEditURL] = useState("")
@@ -38,12 +36,10 @@ export const ProfileEdit = () => {
 
     useEffect(
         () => {
-            if (photoUpload === true) {
+            if (profile) {
                 setProfileEditURL(profile.photo)
-            } else {
-                setProfileEditURL("")
             }
-        }, [photoUpload])
+        }, [profile])
 
     useEffect(
         () => {
@@ -51,14 +47,6 @@ export const ProfileEdit = () => {
                 HandlePhotoChange(url)
             }
         }, [url])
-
-    useEffect(
-        () => {
-            if (saveProfile) {
-                navigate(`/profile`)
-            }
-        }, [saveProfile])
-    
 
 
     function handleOnUpload(error, result, widget) {
@@ -74,11 +62,10 @@ export const ProfileEdit = () => {
 
 
     const HandlePhotoChange = (url) => {
-        setPhotoUpload(false)
+        setProfileEditURL("")
         const copy = { ...profile }
         copy.photo = url
         updateProfile(copy)
-        
     }
 
 
@@ -100,16 +87,16 @@ export const ProfileEdit = () => {
             tiktok: profile.tiktok
         })
 
-        setSaveProfile(true)
+        // const newBandUsers = await getBandUsers()
+        // setBandUsers(newBandUsers)
     }
 
 
     return <>
-        <div className="site-background hero is-fullheight">
-            <form className="profile_form">
-
+        <div className="editProfileContainer">
+            <form className="editProfileForm">
                 <fieldset>
-                    <div className="formRow">Artist Title:
+                    <div>Artist Title:
                         <input required autoFocus type="text" id="project_title" placeholder={profile.project_title} value={profile.project_title} onChange={
                             (evt) => {
                                 const copy = { ...profile }
@@ -118,18 +105,15 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formRow">Photo:
-                        <div className="editPhoto" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-                            {profileEditURL === "" ? ""
-                                : <img className="compressedImg" src={profileEditURL} alt="artist photo" />
+                    <div>Photo:
+                        {profileEditURL === "" ? ""
+                            : <img src={profileEditURL} alt="artist photo" />
                             }
-                            {url === "" ? ""
-                                : <img className="compressedImg" src={url} alt="artist photo" />}
-                            <UploadFile onUpload={handleOnUpload} />
-                        </div>
+                        {url === "" ? ""
+                            : <img src={url} alt="artist photo" />}
+                        <UploadFile onUpload={handleOnUpload} />
                     </div>
-                    <div className="formRow">Bio:
+                    <div>Bio:
                         <input type="text" id="bio" placeholder={profile.bio} value={profile.bio} onChange={
                             (evt) => {
                                 const copy = { ...profile }
@@ -138,7 +122,7 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formRow">Link to Streaming:
+                    <div>Link to Streaming:
                         <input type="url" id="streaming" placeholder={profile.streaming} value={profile.streaming} onChange={
                             (evt) => {
                                 const copy = { ...profile }
@@ -147,7 +131,7 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formRow">Website:
+                    <div>Website:
                         <input type="url" id="website" placeholder={profile.website} value={profile.website} onChange={
                             (evt) => {
                                 const copy = { ...profile }
@@ -156,7 +140,7 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formRow">Instagram:
+                    <div>Instagram:
                         <input type="url" id="instagram" placeholder={profile.instagram} value={profile.instagram} onChange={
                             (evt) => {
                                 const copy = { ...profile }
@@ -165,7 +149,7 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formRow">Twitter:
+                    <div>Twitter:
                         <input type="url" id="twitter" placeholder={profile.twitter} value={profile.twitter} onChange={
                             (evt) => {
                                 const copy = { ...profile }
@@ -174,7 +158,7 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formRow">Facebook:
+                    <div>Facebook:
                         <input type="url" id="facebook" placeholder={profile.facebook} value={profile.facebook} onChange={
                             (evt) => {
                                 const copy = { ...profile }
@@ -183,7 +167,7 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formRow">Tiktok:
+                    <div>Tiktok:
                         <input type="url" id="tiktok" placeholder={profile.tiktok} value={profile.tiktok} onChange={
                             (evt) => {
                                 const copy = { ...profile }
@@ -192,13 +176,11 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formButtons">
-
-                        <button onClick={(clickEvent) => {
-                            profileEditButtonClick(clickEvent)
-                        }}>Save</button>
-                        <button className="cancelEdit" onClick={() => { navigate(`/profile`) }}>Cancel</button>
-                    </div>
+                    <button onClick={(clickEvent) => {
+                        profileEditButtonClick(clickEvent)
+                        navigate(`/profile`)
+                    }}>Save</button>
+                    <button className="cancelEdit" onClick={() => { navigate(`/profile`) }}>Cancel</button>
                 </fieldset>
             </form>
         </div>
