@@ -1,3 +1,7 @@
+
+
+
+
 # Welcome to Bandplanner
 
 > A tool that helps independent musicians stay organized, focused and inspired <br>
@@ -25,7 +29,9 @@ Features include:
 
 ## Video Walkthrough
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pgajnk7rkog" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Video Walkthrough](https://img.youtube.com/vi/pgajnk7rkog/0.jpg)](https://www.youtube.com/watch?v=pgajnk7rkog)
+
+
 
 
 
