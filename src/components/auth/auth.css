@@ -1,8 +1,8 @@
-.custom-background {
-    background-image: url('./loginbackground.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+.site-background {
+  background-image: url('../nav/bandplannerlogo.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
   .rounded-form {
     border-radius: 10px !important;
