@@ -22,11 +22,15 @@ Features include:
 ## ERD
 <img src="src/components/nav/erd-bp.png">
 
+
+## Video Walkthrough
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pgajnk7rkog" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+
+
 <!--
- ##Video Walkthrough
-
-
-
 
 
 ## Public Link

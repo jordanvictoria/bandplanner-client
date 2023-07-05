@@ -3,11 +3,11 @@
     opacity: 0.5; /* Adjust the opacity value as needed */
   }
 
-.site-background {
+  .site-background {
     background-image: url('../nav/bandplannerlogo.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
-}
+  }
 
 
 .add-event-button {
@@ -413,6 +413,7 @@
 .pop_up_rehearsal {
     position: fixed;
     height: 200px;
+    width: 400px;
     top: 100px;
     left: 50%;
     transform: translate(-50%, -50%);

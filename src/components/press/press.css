@@ -12,16 +12,21 @@
     background-image: url('../nav/bandplannerlogo.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
-}
+  }
 
 .clippingViewContainer {
     margin-top: 10px;
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
-    height: 70%;
+    height: 600px;
+    overflow-y: scroll;
+    background-attachment: fixed;
+    border: 10px solid rgb(224, 219, 219);
+    border-radius: 2rem;
+    
 }
 
 .clippingCard {
