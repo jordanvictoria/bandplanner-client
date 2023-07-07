@@ -1,5 +1,5 @@
 .site-background {
-  background-image: url('../nav/bandplannerlogo.jpeg');
+  background-image: url('./loginbackground.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
 }
