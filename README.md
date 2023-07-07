@@ -34,17 +34,12 @@ Features include:
 
 
 
-
-
-<!--
-
-
 ## Public Link
 
+https://band-planner-9b2a3c99e7e8.herokuapp.com/
 
 
-
- Use the provided login credentials<br>*OR*<br>Create your own user profile -->
+ Use the provided login credentials<br>*OR*<br>Create your own user profile
 
 
 ## Author
