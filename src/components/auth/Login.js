@@ -9,13 +9,15 @@ export const Login = ({ setToken }) => {
   const password = useRef()
   const navigate = useNavigate()
   const [isUnsuccessful, setisUnsuccessful] = useState(false)
+  const [defaultUsername, setDefaultUsername] = useState("jv")
+  const [defaultPassword, setDefaultPassword] = useState("7914142Bby.")
 
   const handleLogin = (e) => {
     e.preventDefault()
 
     const user = {
-      username: username.current.value,
-      password: password.current.value
+      username: username.current.value || defaultUsername,
+      password: password.current.value || defaultPassword
     }
 
     loginUser(user).then(res => {
@@ -43,14 +45,26 @@ export const Login = ({ setToken }) => {
                 <div className="field">
                   <label className="label">Username</label>
                   <div className="control">
-                    <input className="input" type="text" ref={username} />
+                    <input 
+                    className="input" 
+                    type="text" 
+                    ref={username} 
+                    value={defaultUsername}
+                    onChange={e => setDefaultUsername(e.target.value)}
+                    required="required" />
                   </div>
                 </div>
 
                 <div className="field">
                   <label className="label">Password</label>
                   <div className="control">
-                    <input className="input" type="password" ref={password} />
+                    <input 
+                    className="input"
+                    type="password"
+                    ref={password}
+                    value={defaultPassword}
+                    onChange={e => setDefaultPassword(e.target.value)}
+                    required="required" />
                   </div>
                 </div>
 
