@@ -337,9 +337,12 @@ export const Setlists = () => {
         <div className="site-background hero is-fullheight">
             <div className="setlistContainer">
                 <div className="setlistBoxContainer">
-                    <div className="setListBandName">
-                        {bandUserObj.project_title}'s Setlists
-                    </div>
+                    {bandUserObj.project_title ? (
+                        <div className="setListBandName">
+                            {bandUserObj.project_title}'s Setlists
+                        </div>
+                    ) : <div>Setlists</div>}
+
                     {
                         setlists.map(setlist => {
                             const matchedSongs = setlistSongs.filter(song => song.setlist.id === setlist.id)
@@ -547,7 +550,7 @@ export const Setlists = () => {
                                 unchosenSongs.map(song => {
                                     return (
                                         <li key={song.id} value={song.id} >
-                                            <div className="unchosen" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',  }}>
+                                            <div className="unchosen" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
                                                 {song.name}
                                                 <div style={{ display: 'flex' }}>
 

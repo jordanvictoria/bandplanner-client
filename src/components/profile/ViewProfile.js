@@ -30,11 +30,30 @@ export const ViewProfile = () => {
             <div className="profileContainer">
                 <div className="profileContent">
                     <div className="profileInfo">
-                        <div className="artistName"><b>Artist:</b> {bandUserObj.project_title}</div>
-                        <div className="artistBio"><b>Bio:</b> {bandUserObj.bio}</div>
+                        <div className="artistName">
+                            <b>Artist:</b>
+                            {bandUserObj.project_title ? (
+                                <>{bandUserObj.project_title}</>
+                            ) : (
+                                ""
+                            )}
+                            {bandUserObj.project_title}</div>
+                        <div className="artistBio">
+                            <b>Bio:</b>
+                            {bandUserObj.bio ? (
+                                <>{bandUserObj.bio}</>
+                            ) : (
+                                ""
+                            )}
+                        </div>
                     </div>
                     <div className="profilePhoto">
-                        <img src={bandUserObj.photo} alt="profile photo" />
+                        {bandUserObj.photo ? (
+
+                            <img src={bandUserObj.photo} alt="profile photo" />
+                        ) : (
+                            ""
+                        )}
                     </div>
                 </div>
                 <div className="profileLinks">
