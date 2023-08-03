@@ -337,11 +337,13 @@ export const Setlists = () => {
         <div className="site-background hero is-fullheight">
             <div className="setlistContainer">
                 <div className="setlistBoxContainer">
-                    {bandUserObj.project_title ? (
-                        <div className="setListBandName">
-                            {bandUserObj.project_title}'s Setlists
-                        </div>
-                    ) : <div>Setlists</div>}
+                    <div className="setListBandName">
+                        {bandUserObj ? (
+                            <>{bandUserObj.project_title}'s Setlists</>
+                        ) : (
+                        <>Setlists</>
+                            )}
+                    </div>
 
                     {
                         setlists.map(setlist => {
