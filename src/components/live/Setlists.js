@@ -338,7 +338,7 @@ export const Setlists = () => {
             <div className="setlistContainer">
                 <div className="setlistBoxContainer">
                     <div className="setListBandName">
-                        {bandUserObj ? (
+                        {bandUserObj.project_title ? (
                             <>{bandUserObj.project_title}'s Setlists</>
                         ) : (
                         <>Setlists</>
