@@ -1010,7 +1010,11 @@ export const LiveEvents = () => {
                                     </div>
                                     <div className="listItem">
                                         <div className="listKey">Ticket Link: </div><div className="listValue">
-                                            <a href={matchedGig.ticket_link} target="_blank" rel="noopener noreferrer"> {matchedGig.ticket_link}</a>
+                                            {matchedGig.ticket_link ? (
+                                                <a href={matchedGig.ticket_link} target="_blank" rel="noopener noreferrer"> Open in New Tab</a>
+                                            ) : (
+                                                ""
+                                            )}
                                         </div>
                                     </div>
                                     <div className="listItem">
@@ -1068,30 +1072,30 @@ export const LiveEvents = () => {
                                     {/* Flier Pop-up */}
                                     {showFlierPopup && (
                                         <div className="imagePopup">
-                                            <img src={matchedGig.flier} alt="flier" />
                                             <button className="closePopupBtn" onClick={closeFlierPopup}>
-                                                Close
+                                                x
                                             </button>
+                                            <img src={matchedGig.flier} alt="flier" />
                                         </div>
                                     )}
 
                                     {/* Stage Plot Pop-up */}
                                     {showStagePlotPopup && (
                                         <div className="imagePopup">
-                                            <img src={matchedGig.stage_plot} alt="stage_plot" />
                                             <button className="closePopupBtn" onClick={closeStagePlotPopup}>
-                                                Close
+                                                x
                                             </button>
+                                            <img src={matchedGig.stage_plot} alt="stage_plot" />
                                         </div>
                                     )}
 
                                     {/* Input List Pop-up */}
                                     {showInputListPopup && (
                                         <div className="imagePopup">
-                                            <img src={matchedGig.input_list} alt="input_list" />
                                             <button className="closePopupBtn" onClick={closeInputListPopup}>
-                                                Close
+                                                x
                                             </button>
+                                            <img src={matchedGig.input_list} alt="input_list" />
                                         </div>
                                     )}
                                 </div>
@@ -1651,7 +1655,7 @@ export const LiveEvents = () => {
                                             }
                                         } />
                                 </div>
-                                <div className="formRow">Flier: 
+                                <div className="formRow">Flier:
 
                                     {flierEditURL === "" ? ""
                                         : <img className="compressedImg" src={flierEditURL} alt="flier" />}
@@ -1660,7 +1664,7 @@ export const LiveEvents = () => {
 
                                     <UploadFile className="upload" onUpload={handleFlierUpload} />
                                 </div>
-                                <div className="formRow">Stage Plot: 
+                                <div className="formRow">Stage Plot:
 
                                     {stagePlotEditURL === "" ? ""
                                         : <img className="compressedImg" src={stagePlotEditURL} alt="stage plot" />}
@@ -1669,7 +1673,7 @@ export const LiveEvents = () => {
 
                                     <UploadFile className="upload" onUpload={handleStagePlotUpload} />
                                 </div>
-                                <div className="formRow">Input List: 
+                                <div className="formRow">Input List:
 
                                     {inputListEditURL === "" ? ""
                                         : <img className="compressedImg" src={inputListEditURL} alt="input list" />}
@@ -1688,6 +1692,9 @@ export const LiveEvents = () => {
                                         setFlierURL("")
                                         setStagePlotURL("")
                                         setInputListURL("")
+                                        setFlierEditURL("")
+                                        setStagePlotEditURL("")
+                                        setInputListEditURL("")
                                     }}>Save</button>
                                     <button className="cancelItem" onClick={() => {
                                         openGigEditForm(false)
@@ -1696,6 +1703,9 @@ export const LiveEvents = () => {
                                         setFlierURL("")
                                         setStagePlotURL("")
                                         setInputListURL("")
+                                        setFlierEditURL("")
+                                        setStagePlotEditURL("")
+                                        setInputListEditURL("")
                                     }}>Cancel</button>
                                 </div>
                             </fieldset>

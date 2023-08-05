@@ -1,5 +1,5 @@
 export const loginUser = (user) => {
-  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/login", {
+  return fetch("http://localhost:8000/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -13,7 +13,7 @@ export const loginUser = (user) => {
 }
 
 export const registerUser = (newUser) => {
-  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/register", {
+  return fetch("http://localhost:8000/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
