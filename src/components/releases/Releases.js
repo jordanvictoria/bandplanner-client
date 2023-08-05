@@ -794,6 +794,7 @@ export const Releases = () => {
                                     </div>
                                     <div className="listItem">
                                         <div className="listKey">Audio URL:</div><div className="listValue">
+                                            
                                             <a href={matchedSingle.audio_url} target="_blank" rel="noopener noreferrer">Open in New Tab</a>
                                         </div>
                                     </div>
@@ -827,10 +828,10 @@ export const Releases = () => {
                                     }}>Close</button>
                                     {showSingleArtPopup && (
                                         <div className="singleImagePopup">
-                                            <img src={matchedSingle.artwork} alt="artwork" />
                                             <button className="closeSinglePopupBtn" onClick={closeSingleArtPopup}>
-                                                Close
+                                                X
                                             </button>
+                                            <img src={matchedSingle.artwork} alt="artwork" />
                                         </div>
                                     )}
                                 </div>
@@ -865,10 +866,10 @@ export const Releases = () => {
                                     </div>
                                     {showBundleArtPopup && (
                                         <div className="bundleImagePopup">
-                                            <img src={matchedBundle.artwork} alt="artwork" />
                                             <button className="closeBundlePopupBtn" onClick={closeBundleArtPopup}>
-                                                Close
+                                                X
                                             </button>
+                                            <img src={matchedBundle.artwork} alt="artwork" />
                                         </div>
                                     )}
                                     <div className="bundle-songs-header">
@@ -1438,13 +1439,14 @@ export const Releases = () => {
                                         setSingleReleaseId(0)
                                         setEventId(0)
                                         setURL("")
-
+                                        setSingleEditURL("")
                                     }}>Save</button>
                                     <button className="cancelItem" onClick={() => {
                                         openSingleReleaseEditForm(false)
                                         setSingleReleaseId(0)
                                         setEventId(0)
                                         setURL("")
+                                        setSingleEditURL("")
                                     }}>Cancel</button>
                                 </div>
                             </fieldset>
@@ -1676,12 +1678,14 @@ export const Releases = () => {
                                         setBundleReleaseId(0)
                                         setEventId(0)
                                         setURL("")
+                                        setBundleEditURL("")
                                     }}>Save</button>
                                     <button className="cancelItem" onClick={() => {
                                         openBundleReleaseEditForm(false)
                                         setBundleReleaseId(0)
                                         setEventId(0)
                                         setURL("")
+                                        setBundleEditURL("")
                                     }}>Cancel</button>
                                 </div>
                             </fieldset>

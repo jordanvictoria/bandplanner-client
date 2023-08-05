@@ -320,8 +320,10 @@ object-fit: contain;
 }
 
 .singleImagePopup .closeSinglePopupBtn {
-  margin-top: auto;
   align-self: flex-end;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .button_release_group {
