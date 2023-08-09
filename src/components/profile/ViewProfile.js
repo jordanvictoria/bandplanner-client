@@ -37,7 +37,7 @@ export const ViewProfile = () => {
                             ) : (
                                 ""
                             )}
-                            {bandUserObj.project_title}</div>
+                            </div>
                         <div className="artistBio">
                             <b>Bio:</b>
                             {bandUserObj.bio ? (
