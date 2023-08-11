@@ -966,15 +966,20 @@ export const Home = () => {
 
     return <>
 
-        <div className="site-background hero is-fullheight">
+        <div className="site-background">
+            <div className="header">
+                <div className="button-wrap">
 
-            <button className="add-event-button custom-button" onClick={() => setIsOpen(true)}>
-                Add New Event
-            </button>
+                    <button className="new-add-event-button new-custom-button" onClick={() => setIsOpen(true)}>
+                        Add New Event
+                    </button>
+                </div>
+            </div>
 
-            <div className="columns is-gapless">
-                <div className="column is-three-quarters">
-                    <div className="react-calendar">
+
+            <div className="content">
+                <div className="calendar-wrapper">
+                    <div className="new-react-calendar">
                         <FullCalendar
                             themeSystem="Simplex"
                             plugins={[dayGridPlugin]}
@@ -985,31 +990,27 @@ export const Home = () => {
                             }} />
                     </div>
                 </div>
-                <div className="column">
-                    <div className="card filterBox">
-                        <div className="card-content">
-
-                            <div >
-                                <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
-                                    onClick={() => setFilteredByType(0)} /> Show All
-                            </div>
-                            <div >
-                                <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
-                                    onClick={() => setFilteredByType(1)} /> Show Single Releases
-                            </div>
-                            <div >
-                                <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
-                                    onClick={() => setFilteredByType(2)} /> Show Bundle Releases
-                            </div>
-                            <div >
-                                <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
-                                    onClick={() => setFilteredByType(3)} /> Show Rehearsals
-                            </div>
-                            <div >
-                                <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
-                                    onClick={() => setFilteredByType(4)} /> Show Gigs
-                            </div>
-
+                <div className="filter-wrapper">
+                    <div className="new-filter-box">
+                        <div>
+                            <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
+                                onClick={() => setFilteredByType(0)} /> Show All
+                        </div>
+                        <div >
+                            <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
+                                onClick={() => setFilteredByType(1)} /> Show Single Releases
+                        </div>
+                        <div >
+                            <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
+                                onClick={() => setFilteredByType(2)} /> Show Bundle Releases
+                        </div>
+                        <div >
+                            <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
+                                onClick={() => setFilteredByType(3)} /> Show Rehearsals
+                        </div>
+                        <div >
+                            <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
+                                onClick={() => setFilteredByType(4)} /> Show Gigs
                         </div>
                     </div>
                 </div>
