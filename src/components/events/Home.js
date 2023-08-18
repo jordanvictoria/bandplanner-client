@@ -992,25 +992,40 @@ export const Home = () => {
                 </div>
                 <div className="filter-wrapper">
                     <div className="new-filter-box">
-                        <div>
-                            <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
-                                onClick={() => setFilteredByType(0)} /> Show All
+                        <div className="new-filters">
+                            <label>
+
+                                <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
+                                    onClick={() => setFilteredByType(0)} /> Show All
+                            </label>
                         </div>
-                        <div >
-                            <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
-                                onClick={() => setFilteredByType(1)} /> Show Single Releases
+                        <div className="new-filters" >
+                            <label>
+
+                                <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
+                                    onClick={() => setFilteredByType(1)} /> Show Single Releases
+                            </label>
                         </div>
-                        <div >
-                            <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
-                                onClick={() => setFilteredByType(2)} /> Show Bundle Releases
+                        <div className="new-filters" >
+                            <label>
+
+                                <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
+                                    onClick={() => setFilteredByType(2)} /> Show Bundle Releases
+                            </label>
                         </div>
-                        <div >
-                            <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
-                                onClick={() => setFilteredByType(3)} /> Show Rehearsals
+                        <div className="new-filters" >
+                            <label>
+
+                                <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
+                                    onClick={() => setFilteredByType(3)} /> Show Rehearsals
+                            </label>
                         </div>
-                        <div >
-                            <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
-                                onClick={() => setFilteredByType(4)} /> Show Gigs
+                        <div className="new-filters" >
+                            <label>
+
+                                <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
+                                    onClick={() => setFilteredByType(4)} /> Show Gigs
+                            </label>
                         </div>
                     </div>
                 </div>
