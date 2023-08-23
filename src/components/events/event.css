@@ -373,27 +373,25 @@
   }
 
   .header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: flex-start;
-    margin-top: 5%;
-    margin-bottom: 2%;
-    padding: 2%;
-    width: 100%;
-    height: 2%;
+    align-items: center;
+    margin-top: 20%;
+    margin-bottom: 4%;
+    padding-right: 5%;
+    padding-left: 5%;
   }
 
   .button-wrap {
-    grid-column: 2 / 3;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     height: 100%;
   }
 
   .new-add-event-button {
+    width: 100%;
+    height: 100%;
     padding: 1% 2%;
-    font-size: 1vw;
+    font-size: 2vw;
     background-color: rgb(50, 112, 245);
     color: white;
     border-radius: 5px;
@@ -408,7 +406,8 @@
   .content {
     display: flex;
     flex-direction: column-reverse;
-    padding: 5%;
+    padding-right: 5%;
+    padding-left: 5%;
   }
 
 
@@ -426,8 +425,7 @@
     justify-content: center;
     width: 100%;
     height: 10%;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-bottom: 4%;
   }
 
   .new-react-calendar {
@@ -495,19 +493,21 @@ input[type="checkbox"] {
 }
 
 .fc .fc-daygrid-day-frame {
-  height: 40px;
+  height: 20px;
 }
 
 .fc-h-event {
-
   border: 0px;
-
 }
 
 .fc td {
   padding: 0px;
   height: 0px;
   width: 0px;
+}
+
+.fc .fc-scroller-liquid-absolute {
+  inset: 0px;
 }
 
 
