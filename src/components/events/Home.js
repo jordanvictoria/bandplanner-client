@@ -1036,7 +1036,7 @@ export const Home = () => {
 
             {
                 isOpen && (
-                    <div className="pop_up">
+                    <div className="new_pop_up">
                         <div>
                             <select onChange={
                                 (evt) => {

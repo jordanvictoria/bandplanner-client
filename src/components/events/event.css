@@ -401,7 +401,7 @@
 
 
 
-  
+
 
   .content {
     display: flex;
@@ -443,7 +443,7 @@
     padding: 1%;
     background-color: antiquewhite !important;
     width: 100%;
-    height: auto; 
+    height: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto;
@@ -452,63 +452,66 @@
 
   .new-filters {
     font-size: x-small;
-   
+
   }
 
   label {
     display: flex;
-    align-items: center; /* Align checkbox and text vertically */
-    margin-bottom: 2%; /* Add some vertical spacing between items */
-}
+    align-items: center;
+    /* Align checkbox and text vertically */
+    margin-bottom: 2%;
+    /* Add some vertical spacing between items */
+  }
 
-input[type="checkbox"] {
-    margin-right: 5%; /* Add some spacing between checkbox and text */
-}
-
-
-
-
-
+  input[type="checkbox"] {
+    margin-right: 5%;
+    /* Add some spacing between checkbox and text */
+  }
 
 
-.fc .fc-toolbar.fc-header-toolbar {
-  margin-bottom: 0;
-  max-height: 5%;
-}
 
 
-.fc .fc-toolbar {
-  max-height: 5%;
-}
 
-.fc .fc-toolbar-chunk {
- display: flex;
-}
 
-.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
-  margin: 0;
-  padding: 0;
-  height: 0%;
-  width: 0%;
-}
 
-.fc .fc-daygrid-day-frame {
-  height: 20px;
-}
+  .fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0;
+    max-height: 5%;
+  }
 
-.fc-h-event {
-  border: 0px;
-}
 
-.fc td {
-  padding: 0px;
-  height: 0px;
-  width: 0px;
-}
+  .fc .fc-toolbar {
+    max-height: 5%;
+  }
 
-.fc .fc-scroller-liquid-absolute {
-  inset: 0px;
-}
+  .fc .fc-toolbar-chunk {
+    display: flex;
+  }
+
+  .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+    margin: 0;
+    padding: 0;
+    height: 0%;
+    width: 0%;
+  }
+
+  .fc .fc-daygrid-day-frame {
+    height: 20px;
+  }
+
+  .fc-h-event {
+    border: 0px;
+  }
+
+  .fc td {
+    padding: 0px;
+    height: 0px;
+    width: 0px;
+  }
+
+  .fc .fc-scroller-liquid-absolute {
+    inset: 0px;
+  }
 
 
 
@@ -589,18 +592,27 @@ input[type="checkbox"] {
 
 
 
-  .pop_up {
-    position: fixed;
+  .new_pop_up {
+    /* 
     height: 10%;
     width: 15%;
     top: 22%;
     left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 9999;
+    transform: translate(-50%, -50%);
+    */
+    position: fixed;
     background-color: rgb(139, 167, 227);
     border: 2px solid black;
     padding: 10px;
-    justify-content: center;
+    justify-content: center; 
+    align-items: center;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 10%;
+    z-index: 9999;
   }
 
   .pop_up select {
