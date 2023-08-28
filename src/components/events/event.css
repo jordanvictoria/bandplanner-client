@@ -111,7 +111,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     /* Three equal columns */
     align-items: flex-start;
-    height: 50%;
+    height: 60%;
   }
 
 
@@ -160,6 +160,22 @@
     /* Align content to the top */
     overflow: auto;
   }
+
+
+
+
+
+  .content table tbody tr:last-child td {
+    padding: 0;
+  }
+
+
+
+  .fc-direction-ltr {
+    height: 100%;
+  }
+
+
 
 
 
@@ -605,7 +621,7 @@
     background-color: rgb(139, 167, 227);
     border: 2px solid black;
     padding: 10px;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     top: 16%;
     left: 50%;
