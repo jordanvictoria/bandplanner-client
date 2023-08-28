@@ -258,11 +258,11 @@
 
 
 
-  .pop_up {
+  .new_pop_up {
     position: fixed;
     height: 10%;
     width: 15%;
-    top: 22%;
+    top: 26%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
