@@ -6,6 +6,7 @@
 
   .rounded-form {
     border-radius: 10px !important;
+    overflow: auto;
   }
 
   
