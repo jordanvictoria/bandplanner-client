@@ -731,8 +731,8 @@
   .event_form {
 
     position: fixed;
-    height: 25%;
-    top: 29%;
+    height: 27%;
+    top: 28%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
