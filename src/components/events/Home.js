@@ -1064,7 +1064,7 @@ export const Home = () => {
 
             {
                 singleForm && (
-                    <div className="single_form">
+                    <div className="new_single_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1380,7 +1380,7 @@ export const Home = () => {
 
             {
                 bundleForm && (
-                    <div className="bundle_form">
+                    <div className="new_bundle_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1616,7 +1616,7 @@ export const Home = () => {
 
             {
                 rehearsalForm && (
-                    <div className="rehearsal_form">
+                    <div className="new_rehearsal_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">
@@ -1791,7 +1791,7 @@ export const Home = () => {
 
             {
                 gigForm && (
-                    <div className="gigForm">
+                    <div className="newGigForm">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
