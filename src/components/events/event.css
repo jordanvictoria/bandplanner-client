@@ -208,9 +208,19 @@
     height: 50%;
   }
 
+  .modal-title {
+    text-align: center; /* Center align the text */
+    flex: 1; /* Allow the title to expand and take available space */
+  }
+
+
   .modal-body {
-    /* width: 30%; */
     height: 30%;
+  }
+
+  .modal-body p {
+    text-align: center; /* Center align the text */
+    flex: 1; /* Allow the title to expand and take available space */
   }
 
   .modal-footer {
@@ -235,7 +245,7 @@
 
   }
 
-  .square-modal .modal-content {
+  .new-square-modal .modal-content {
     width: 30vw;
     /* Set the desired width as a percentage of the viewport width */
     height: 10vw;
@@ -609,6 +619,11 @@
   }
 
 
+  .modal-title {
+    text-align: center; /* Center align the text */
+    flex: 1; /* Allow the title to expand and take available space */
+  }
+
 
   .modal-body {
     height: 30%;
@@ -616,6 +631,8 @@
 
   .modal-body p {
     font-size: small;
+    text-align: center; /* Center align the text */
+    flex: 1; /* Allow the title to expand and take available space */
   }
 
   .modal-footer {

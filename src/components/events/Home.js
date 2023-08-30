@@ -2287,7 +2287,7 @@ export const Home = () => {
                 dialogClassName="new-square-modal"
             >
                 <Modal.Header closeButton={false} className="modal-header">
-                    <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
+                    <Modal.Title className="modal-title">{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="modal-body">
                     <p>{event?.extendedProps?.description}</p>
