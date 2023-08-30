@@ -790,10 +790,9 @@
 
 .newGigForm {
   position: fixed;
-  top: 55%;
+  height: 70%;
+  top: 47%;
   left: 50%;
-  height: 77%;
-  width: 25%;
   transform: translate(-50%, -50%);
   z-index: 9999;
   background-color: rgb(139, 167, 227);
