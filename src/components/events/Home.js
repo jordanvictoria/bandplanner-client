@@ -2284,7 +2284,7 @@ export const Home = () => {
                 onHide={handleCloseModal}
                 backdrop="static"
                 keyboard={false}
-                dialogClassName="square-modal"
+                dialogClassName="new-square-modal"
             >
                 <Modal.Header closeButton={false} className="modal-header">
                     <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
