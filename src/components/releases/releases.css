@@ -1,19 +1,65 @@
 
-.site-background {
-  background-image: url('../nav/bandplannerlogo.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
   
   
-  .add-event-button {
-    position: absolute;
-    top: 80px; /* Adjust the top position as needed */
-    left: 365px; /* Adjust the right position as needed */
-    padding: 5px 5px; /* Adjust the padding as needed */
-    font-size: 14px; /* Adjust the font size as needed */
+  
+  
+  
+@media screen and (min-width:769px) {
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
   }
-  
+
+
+  .site-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../nav/bandplannerlogo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* Three equal columns */
+    align-items: flex-start;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding: 2%;
+    width: 100%;
+    height: 2%;
+  }
+
+  .button-wrap {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+
+
+  .new-add-event-button {
+    padding: 1% 2%;
+    font-size: 1vw;
+    background-color: rgb(50, 112, 245);
+    color: white;
+    border-radius: 5px;
+    border: 0.2vw solid white;
+  }
+
   .custom-button {
     background-color: rgb(125, 128, 128); /* Replace "red" with the desired color */
     color: white; /* Replace "white" with the desired font color */
@@ -22,41 +68,80 @@
   }
 
 
-  .button-view-container {
-    position: absolute;
-    top: 75px;
-    right: 25%;
-    transform: translateY(50%);
-}
-  
-    .react-calendar { 
-      background-color: antiquewhite;
-      width: 100%;
-      height: 100%;
-      padding: 10px;
-      border: 5px darkcyan solid;
-      overflow: auto;
-     }
-  
-   
-  
-  
-  .filterBox {
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: flex-start;
+    height: 60%;
+  }
+
+
+  .calendar-wrapper {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .filter-wrapper {
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .new-react-calendar {
+    background-color: antiquewhite;
+    padding: 2%;
+    border: 0.5vw darkcyan solid;
+    overflow: auto;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .new-filter-box {
     border: 2px solid black;
     margin-left: 15px;
-    padding: 2px;
+    padding: 10px;
+    /* Add padding for spacing */
     background-color: antiquewhite !important;
-    position: absolute;
-    top: 80px; /* Adjust the top position as needed */
-    width: 250px;
-    right: -30px;
-  
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align content to the top */
+    justify-content: flex-start;
+    /* Align content to the top */
+    overflow: auto;
   }
-  
-  
-  
-  
-  
+
+
+  .content table tbody tr:last-child td {
+    padding: 0;
+  }
+
+  .fc-direction-ltr {
+    height: 100%;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   
   
   
@@ -559,6 +644,7 @@ object-fit: contain;
 
 
 
+
 .pop_up_bs {
   position: fixed;
   height: 60%;
@@ -575,4 +661,8 @@ object-fit: contain;
 
 .pop_up_bs button {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
 }

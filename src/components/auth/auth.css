@@ -11,3 +11,6 @@
 
   
   
+.navbar-menu.is-active {
+  background-color: rgb(253, 128, 136);
+}

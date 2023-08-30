@@ -341,9 +341,6 @@
     object-fit: contain;
 }
 .imagePopup .closePopupBtn {
-    /* Update the margin-top and margin-right to position the button */
-    /* margin-top: -10px;
-    margin-right: -10px; */
     align-self: flex-end;
     position: absolute;
     top: 0;

@@ -725,29 +725,39 @@ export const Releases = () => {
 
     return <>
 
-        <div className="site-background hero is-fullheight">
+        <div className="site-background">
+            <div className="header">
+                <div className="button-wrap">
+                    <button className="new-add-event-button custom-button" onClick={() => setIsOpen(true)}>
+                        Add New Release
+                    </button>
 
-            <button className="add-event-button custom-button" onClick={() => setIsOpen(true)}>
-                Add New Release
-            </button>
-            <div className="button-view-container">
-                <button
-                    onClick={() => handleOptionClick(1)}
-                    style={{
-                        backgroundColor: listSelected ? 'green' : 'white',
-                    }}
-                >
-                    List View
-                </button>
-                <button
-                    onClick={() => handleOptionClick(2)}
-                    style={{
-                        backgroundColor: calendarSelected ? 'green' : 'white',
-                    }}
-                >
-                    Calendar View
-                </button>
+                    <div className="new-button-view-container">
+                        <button
+                            onClick={() => handleOptionClick(1)}
+                            style={{
+                                backgroundColor: listSelected ? 'green' : 'white',
+                            }}
+                        >
+                            List View
+                        </button>
+                        <button
+                            onClick={() => handleOptionClick(2)}
+                            style={{
+                                backgroundColor: calendarSelected ? 'green' : 'white',
+                            }}
+                        >
+                            Calendar View
+                        </button>
+                    </div>
+                </div>
             </div>
+
+
+
+
+
+
             {
                 listSelected && (
                     <div className="releaseContainer">
@@ -794,7 +804,7 @@ export const Releases = () => {
                                     </div>
                                     <div className="listItem">
                                         <div className="listKey">Audio URL:</div><div className="listValue">
-                                            
+
                                             <a href={matchedSingle.audio_url} target="_blank" rel="noopener noreferrer">Open in New Tab</a>
                                         </div>
                                     </div>
@@ -942,15 +952,15 @@ export const Releases = () => {
                                                         </div>
                                                         <div className="formButtons">
 
-                                                        <button onClick={(clickEvent) => {
-                                                            bundleSongSaveButtonClick(clickEvent)
-                                                            openBundleSongForm(false)
-                                                            setBundleId(0)
-                                                        }}>Save</button>
-                                                        <button className="cancelItem" onClick={() => {
-                                                            openBundleSongForm(false)
-                                                            setBundleId(0)
-                                                        }}>Cancel</button>
+                                                            <button onClick={(clickEvent) => {
+                                                                bundleSongSaveButtonClick(clickEvent)
+                                                                openBundleSongForm(false)
+                                                                setBundleId(0)
+                                                            }}>Save</button>
+                                                            <button className="cancelItem" onClick={() => {
+                                                                openBundleSongForm(false)
+                                                                setBundleId(0)
+                                                            }}>Cancel</button>
                                                         </div>
                                                     </fieldset>
                                                 </form>
@@ -1020,15 +1030,15 @@ export const Releases = () => {
                                                         </div>
                                                         <div className="formButtons">
 
-                                                        <button onClick={(clickEvent) => {
-                                                            bundleSongEditButtonClick(clickEvent)
-                                                            openBundleSongEditForm(false)
-                                                            setBundleSongId(0)
-                                                        }}>Save</button>
-                                                        <button className="cancelItem" onClick={() => {
-                                                            openBundleSongEditForm(false)
-                                                            setBundleSongId(0)
-                                                        }}>Cancel</button>
+                                                            <button onClick={(clickEvent) => {
+                                                                bundleSongEditButtonClick(clickEvent)
+                                                                openBundleSongEditForm(false)
+                                                                setBundleSongId(0)
+                                                            }}>Save</button>
+                                                            <button className="cancelItem" onClick={() => {
+                                                                openBundleSongEditForm(false)
+                                                                setBundleSongId(0)
+                                                            }}>Cancel</button>
                                                         </div>
                                                     </fieldset>
                                                 </form>
@@ -1098,9 +1108,9 @@ export const Releases = () => {
             }
             {
                 calendarSelected && (
-                    <div className="columns is-gapless">
-                        <div className="column is-three-quarters">
-                            <div className="react-calendar">
+                    <div className="content">
+                        <div className="calendar-wrapper">
+                            <div className="new-react-calendar">
                                 <FullCalendar
                                     themeSystem="Simplex"
                                     plugins={[dayGridPlugin]}
@@ -1111,25 +1121,35 @@ export const Releases = () => {
                                     }} />
                             </div>
                         </div>
-                        <div className="column">
-                            <div className="card filterBox">
-                                <div className="card-content">
-                                    <div className="releaseFilterOne">
-                                        Show All <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
-                                            onClick={() => setFilteredByType(0)} />
+
+                        <div className="filter-wrapper">
+                            <div className="new-filter-box">
+                                <div className="new-filters">
+                                    <div className="new-filters">
+                                        <label>
+                                            <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
+                                                onClick={() => setFilteredByType(0)} /> Show All
+                                        </label>
                                     </div>
-                                    <div className="releaseFilterThree">
-                                        Show Single Releases <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
-                                            onClick={() => setFilteredByType(1)} />
+                                    <div className="new-filters">
+                                        <label>
+                                            <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
+                                                onClick={() => setFilteredByType(1)} /> Show Single Releases
+                                        </label>
                                     </div>
-                                    <div className="releaseFilterFour">
-                                        Show Bundle Releases <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
-                                            onClick={() => setFilteredByType(2)} />
+                                    <div className="new-filters">
+                                        <label>
+
+                                            <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
+                                                onClick={() => setFilteredByType(2)} /> Show Bundle Releases
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 )
             }
 
@@ -1734,7 +1754,7 @@ export const Releases = () => {
 
 
 
-
         </div>
+
     </>;
 }
