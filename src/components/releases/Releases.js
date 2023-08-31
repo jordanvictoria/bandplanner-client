@@ -1345,7 +1345,7 @@ export const Releases = () => {
 
             {
                 singleReleaseEditForm && (
-                    <div className="single_form">
+                    <div className="single_edit_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1602,7 +1602,7 @@ export const Releases = () => {
 
             {
                 bundleReleaseEditForm && (
-                    <div className="new_bundle_form">
+                    <div className="bundle_edit_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
