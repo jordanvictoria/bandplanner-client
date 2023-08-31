@@ -1158,7 +1158,7 @@ export const Releases = () => {
 
             {
                 isOpen && (
-                    <div className="pop_up">
+                    <div className="new_pop_up">
                         <div>
                             <select onChange={
                                 (evt) => {
@@ -1182,7 +1182,7 @@ export const Releases = () => {
 
             {
                 singleReleaseForm && (
-                    <div className="single_form">
+                    <div className="new_single_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1337,7 +1337,7 @@ export const Releases = () => {
 
             {
                 singleReleaseEditForm && (
-                    <div className="single_form">
+                    <div className="new_single_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1479,7 +1479,7 @@ export const Releases = () => {
 
             {
                 bundleReleaseForm && (
-                    <div className="bundle_form">
+                    <div className="new_bundle_form">
                         <form >
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1594,7 +1594,7 @@ export const Releases = () => {
 
             {
                 bundleReleaseEditForm && (
-                    <div className="bundle_form">
+                    <div className="new_bundle_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
