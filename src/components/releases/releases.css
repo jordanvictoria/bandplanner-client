@@ -357,10 +357,8 @@
 
   .pop_up_single {
     position: fixed;
-    top: 45%;
+    top: 47%;
     left: 50%;
-    height: 90%;
-    width: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     background-color: rgb(139, 167, 227);
@@ -377,13 +375,15 @@
 
   .pop_up_single .listKey {
     font-weight: bold;
-    width: 30%;
+    width: 28%;
+    margin-right: 2%;
     /* Set the width to 30% */
   }
 
   .pop_up_single .listValue {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: flex-end;
     margin-left: 10px;
     width: 70%;
     /* Set the width to 70% */
@@ -394,6 +394,8 @@
     /* Ensure the text takes full width */
   }
 
+
+ 
 
   .singleImagePopup {
     position: fixed;
@@ -424,22 +426,29 @@
     right: 0;
   }
 
-  .button_release_group {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+  .new_button_release_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
   }
 
-  .edit_release_button,
-  .delete_release_button {
-    margin-right: 10px;
+  .group_one {
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: flex-start;
   }
 
-  .close_release_button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+  .group_two {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
   }
+
+ 
+  .new_delete_release_button {
+   margin-left: 2%;
+  }
+
 
 
 
@@ -600,9 +609,7 @@
 
   .single_form {
     position: fixed;
-    height: 68%;
-    width: 30%;
-    top: 51%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
@@ -639,8 +646,7 @@
 
   .bundle_form {
     position: fixed;
-    height: 50%;
-    top: 42%;
+    top: 46%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
