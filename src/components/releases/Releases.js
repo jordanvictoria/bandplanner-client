@@ -760,6 +760,7 @@ export const Releases = () => {
 
             {
                 listSelected && (
+                <div className="content">
                     <div className="releaseContainer">
                         <ul>
                             {
@@ -1103,7 +1104,9 @@ export const Releases = () => {
                                 </div>
                             )
                         }
+                        </div>
                     </div>
+                    
                 )
             }
             {
