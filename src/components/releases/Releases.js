@@ -728,7 +728,7 @@ export const Releases = () => {
         <div className="site-background">
             <div className="header">
                 <div className="button-wrap">
-                    <button className="new-add-event-button custom-button" onClick={() => setIsOpen(true)}>
+                    <button className="new-add-release-button custom-button" onClick={() => setIsOpen(true)}>
                         Add New Release
                     </button>
 
@@ -1123,8 +1123,8 @@ export const Releases = () => {
                         </div>
 
                         <div className="filter-wrapper">
-                            <div className="new-filter-box">
-                                <div className="new-filters">
+                            <div className="release-filter-box">
+                                <div className="release-filters">
                                     <div className="new-filters">
                                         <label>
                                             <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
@@ -1139,7 +1139,6 @@ export const Releases = () => {
                                     </div>
                                     <div className="new-filters">
                                         <label>
-
                                             <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
                                                 onClick={() => setFilteredByType(2)} /> Show Bundle Releases
                                         </label>
@@ -1721,7 +1720,7 @@ export const Releases = () => {
                     onHide={handleCloseModal}
                     backdrop="static"
                     keyboard={false}
-                    dialogClassName="square-modal"
+                    dialogClassName="new-square-modal"
                 >
                     <Modal.Header closeButton={false} className="modal-header">
                         <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>

@@ -1,9 +1,3 @@
-
-  
-  
-  
-  
-  
 @media screen and (min-width:769px) {
 
   html,
@@ -51,7 +45,7 @@
 
 
 
-  .new-add-event-button {
+  .new-add-release-button {
     padding: 1% 2%;
     font-size: 1vw;
     background-color: rgb(50, 112, 245);
@@ -61,8 +55,10 @@
   }
 
   .custom-button {
-    background-color: rgb(125, 128, 128); /* Replace "red" with the desired color */
-    color: white; /* Replace "white" with the desired font color */
+    background-color: rgb(125, 128, 128);
+    /* Replace "red" with the desired color */
+    color: white;
+    /* Replace "white" with the desired font color */
     border-radius: 5px;
     border: 2px solid white;
   }
@@ -106,7 +102,7 @@
   }
 
 
-  .new-filter-box {
+  .release-filter-box {
     border: 2px solid black;
     margin-left: 15px;
     padding: 10px;
@@ -142,65 +138,69 @@
 
 
 
-  
-  
-  
-  
-  
+
+
+
+
+
   .modal {
     position: absolute;
     width: 50%;
     height: 50%;
     transform: translate(50%, 50%);
-   }
-   
-   .modal-content {
-     background-color: #f7f7f7;
-     border-radius: 10px;
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-   }
-   
-   .modal-header {
+  }
+
+  .modal-content {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-header {
     background-color: #5454ff !important;
     display: flex;
     justify-content: center;
     align-items: center;
     /* width: 50% ; */
     height: 50%;
-   }
-   
-   .modal-body {
-     /* width: 30%; */
+  }
+
+  .modal-body {
+    /* width: 30%; */
     height: 30%;
-   }
-   
-   .modal-footer {
-     background-color: #f7f7f7;
-     display: flex;
+  }
+
+  .modal-footer {
+    background-color: #f7f7f7;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     /* width: 20%; */
     height: 20%;
-   }
-  
-  
-   .left-buttons {
+  }
+
+
+  .left-buttons {
     display: flex;
     align-items: center;
     margin: 2px
   }
-  
-   .right-button {
+
+  .right-button {
     margin-left: auto;
     margin-right: 2px;
-  
+
   }
-  
+
   .square-modal .modal-content {
-    width: 30vw; /* Set the desired width as a percentage of the viewport width */
-    height: 10vw; /* Set the same height as the width */
-    max-width: 400px; /* Set a maximum width if needed */
-    max-height: 400px; /* Set a maximum height if needed */
+    width: 30vw;
+    /* Set the desired width as a percentage of the viewport width */
+    height: 10vw;
+    /* Set the same height as the width */
+    max-width: 400px;
+    /* Set a maximum width if needed */
+    max-height: 400px;
+    /* Set a maximum height if needed */
   }
 
 
@@ -219,63 +219,63 @@
 
 
 
-/* LIST VIEW */
+  /* LIST VIEW */
 
 
 
 
 
-.releaseContainer {
-  margin: 10px;
-  position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 70%;
-}
-
-.releaseItem {
-  background-color: #f59e9e;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 5px;
-    border: 5px darkcyan solid;
-    padding: 5px;
-}
-
-.releaseFont {
-  font-size: smaller;
-    font-style: italic;
-}
-
-.releaseButton {
-  background-color: #64b37d;
-}
-
-
-
-
-
-
-
-
-
-
-
-/* BAD CSS */
-
-
-.react-calendar {
+  .releaseContainer {
+    margin: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
     height: 70%;
-}
+  }
+
+  .releaseItem {
+    background-color: #f59e9e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    border: 5px darkcyan solid;
+    padding: 5px;
+  }
+
+  .releaseFont {
+    font-size: smaller;
+    font-style: italic;
+  }
+
+  .releaseButton {
+    background-color: #64b37d;
+  }
 
 
-.modal {
+
+
+
+
+
+
+
+
+
+  /* BAD CSS */
+
+
+  .react-calendar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 70%;
+  }
+
+
+  .modal {
     position: absolute;
     /* top: 0;
     left: 0;
@@ -285,28 +285,28 @@
     width: 50%;
     height: 50%;
     transform: translate(50%, 50%);
-}
+  }
 
 
 
-.modal-content {
+  .modal-content {
     background-color: #f7f7f7;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
+  }
 
-.modal-header {
+  .modal-header {
     background-color: #333;
     color: #fff;
-}
+  }
 
-.modal-body {
+  .modal-body {
     font-size: 16px;
-}
+  }
 
-.modal-footer {
+  .modal-footer {
     background-color: #f7f7f7;
-}
+  }
 
 
 
@@ -314,355 +314,658 @@
 
 
 
-/* POP UPs */
+  /* POP UPs */
 
 
-.pop_up {
-  position: fixed;
-  height: 10%;
-  width: 15%;
-  top: 22%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: rgb(139, 167, 227);
-  border: 2px solid black;
-  padding: 10px;
-  justify-content: center;
-}
+  .pop_up {
+    position: fixed;
+    height: 10%;
+    width: 15%;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    border: 2px solid black;
+    padding: 10px;
+    justify-content: center;
+  }
 
-.pop_up select {
+  .pop_up select {
 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-.pop_up button {
+  .pop_up button {
 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
 
 
-.pop_up_single {
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  height: 90%;
-  width: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: rgb(139, 167, 227);
-  color: rgb(4, 4, 4);
-  border: 2px solid black;
-  padding: 10px;
-}
-
-.pop_up_single .listItem {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.pop_up_single .listKey {
-  font-weight: bold;
-  width: 30%; /* Set the width to 30% */
-}
-
-.pop_up_single .listValue {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  width: 70%; /* Set the width to 70% */
-}
-
-.pop_up_single .listValue div {
-  width: 100%; /* Ensure the text takes full width */
-}
 
 
-.singleImagePopup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 50vh;
-  height: 50vh;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: whitesmoke;
-  border: 2px solid black;
-  padding: 10px;
-  overflow: auto;
-  display: flex;
-flex-direction: column;
-}
+  .pop_up_single {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    height: 90%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+  }
 
-.singleImagePopup img {
-  max-width: 100%;
-height: auto;
-object-fit: contain;
-}
+  .pop_up_single .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
 
-.singleImagePopup .closeSinglePopupBtn {
-  align-self: flex-end;
+  .pop_up_single .listKey {
+    font-weight: bold;
+    width: 30%;
+    /* Set the width to 30% */
+  }
+
+  .pop_up_single .listValue {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 70%;
+    /* Set the width to 70% */
+  }
+
+  .pop_up_single .listValue div {
+    width: 100%;
+    /* Ensure the text takes full width */
+  }
+
+
+  .singleImagePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50vh;
+    height: 50vh;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .singleImagePopup img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .singleImagePopup .closeSinglePopupBtn {
+    align-self: flex-end;
     position: absolute;
     top: 0;
     right: 0;
+  }
+
+  .button_release_group {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .edit_release_button,
+  .delete_release_button {
+    margin-right: 10px;
+  }
+
+  .close_release_button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  .pop_up_bundle {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    height: 90%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pop_up_bundle .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .pop_up_bundle .listKey {
+    font-weight: bold;
+    width: 30%;
+    /* Set the width to 30% */
+  }
+
+  .pop_up_bundle .listValue {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 70%;
+    /* Set the width to 70% */
+  }
+
+  .pop_up_bundle .listValue div {
+    width: 100%;
+    /* Ensure the text takes full width */
+  }
+
+
+  .bundleImagePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50vh;
+    height: 50vh;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bundleImagePopup img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .bundleImagePopup .closeBundlePopupBtn {
+    margin-top: auto;
+    align-self: flex-end;
+  }
+
+  .button_release_group {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .edit_release_button,
+  .delete_release_button {
+    margin-right: 10px;
+  }
+
+  .close_release_button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .pop_up_bundle .bundle-songs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pop_up_bundle .bundle-songs-header h3 {
+    margin: 0;
+    border: 2px black solid;
+    border-radius: 2rem;
+    padding: 10px;
+    background-color: black;
+    color: whitesmoke;
+  }
+
+  .pop_up_bundle .bundle-songs-header button {
+    margin-left: 10px;
+  }
+
+
+
+
+
+
+
+  .buttonWrapper {
+    margin-top: 25px;
+  }
+
+
+
+
+  .matched_bundle_songs {
+    margin-top: 5px;
+    flex-grow: 1;
+    overflow: auto;
+    border: 5px solid black;
+    padding: 3px;
+  }
+
+  .bundleItem {
+    border-bottom: 2px solid black;
+  }
+
+  .bundleButtons {
+    display: flex;
+    justify-content: end;
+  }
+
+  .bundleButtons button {
+    margin: 2px;
+  }
+
+
+
+
+
+
+
+
+  .single_form {
+    position: fixed;
+    height: 68%;
+    width: 30%;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+  }
+
+  .single_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .bundle_form {
+    position: fixed;
+    height: 50%;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+  }
+
+  .bundle_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+
+
+
+
+
+  .pop_up_bs {
+    position: fixed;
+    height: 60%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: #f59e9e;
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .pop_up_bs button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+
+
 }
 
-.button_release_group {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
-
-.edit_release_button,
-.delete_release_button {
-  margin-right: 10px;
-}
-
-.close_release_button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
 
 
+@media screen and (max-width: 575px) {
+
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+
+  .site-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../nav/bandplannerlogo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    align-items: center;
+    margin-top: 20%;
+    margin-bottom: 4%;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+
+
+  .button-wrap {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .new-add-release-button {
+    background-color: rgb(50, 112, 245);
+    color: white;
+    border-radius: 5px;
+    border: 0.2vw solid white;
+  }
+
+  .custom-button {
+    background-color: rgb(125, 128, 128);
+    /* Replace "red" with the desired color */
+    color: white;
+    /* Replace "white" with the desired font color */
+    border-radius: 5px;
+    border: 2px solid white;
+  }
 
 
 
 
 
+  .content {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
 
 
+  .calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .filter-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 2%;
+  }
+
+  .new-react-calendar {
+    background-color: antiquewhite;
+    padding: 2% 2% 0 2%;
+    border: 0.5vw darkcyan solid;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+  }
 
 
+  .release-filter-box {
+    border: 2px solid black;
+    padding: 1%;
+    background-color: antiquewhite !important;
+    width: 100%;
+    height: auto;
+    
+  }
 
-.pop_up_bundle {
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  height: 90%;
-  width: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: rgb(139, 167, 227);
-  color: rgb(4, 4, 4);
-  border: 2px solid black;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.pop_up_bundle .listItem {
-  display: flex;
+  .release-filters {
+    display: flex;
+  /* flex-direction: column; */ /* Remove this line */
+  justify-content: space-around;
   align-items: center;
-  margin-bottom: 5px;
-}
-
-.pop_up_bundle .listKey {
-  font-weight: bold;
-  width: 30%; /* Set the width to 30% */
-}
-
-.pop_up_bundle .listValue {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  width: 70%; /* Set the width to 70% */
-}
-
-.pop_up_bundle .listValue div {
-  width: 100%; /* Ensure the text takes full width */
-}
-
+  font-size: x-small;
 
-.bundleImagePopup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 50vh;
-  height: 50vh;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: whitesmoke;
-  border: 2px solid black;
-  padding: 10px;
-  overflow: auto;
-  display: flex;
-flex-direction: column;
-}
+  }
 
-.bundleImagePopup img {
-  max-width: 100%;
-height: auto;
-object-fit: contain;
-}
+  .release-filters label {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    margin-bottom: 2%;
+  }
 
-.bundleImagePopup .closeBundlePopupBtn {
-  margin-top: auto;
-  align-self: flex-end;
-}
+  .release-filters input[type="checkbox"] {
+    margin-right: 3%;
+    /* Add some spacing between checkbox and text */
+  }
 
-.button_release_group {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
 
-.edit_release_button,
-.delete_release_button {
-  margin-right: 10px;
-}
 
-.close_release_button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
+  .fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0;
+    max-height: 5%;
+  }
 
-.pop_up_bundle .bundle-songs-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.pop_up_bundle .bundle-songs-header h3 {
-  margin: 0;
-  border: 2px black solid; 
-  border-radius: 2rem;
-  padding: 10px;
-  background-color: black;
-  color: whitesmoke;
-}
+  .fc .fc-toolbar {
+    max-height: 5%;
+  }
 
-.pop_up_bundle .bundle-songs-header button {
-  margin-left: 10px;
-}
+  .fc .fc-toolbar-chunk {
+    display: flex;
+  }
 
+  .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+    margin: 0;
+    padding: 0;
+    height: 0%;
+    width: 0%;
+  }
 
+  .fc .fc-daygrid-day-frame {
+    height: 20px;
+  }
 
+  .fc-h-event {
+    border: 0px;
+  }
 
 
 
+  .fc .fc-scroller-liquid-absolute {
+    inset: 0px;
+  }
 
-.buttonWrapper {
-  margin-top: 25px;
-}
 
+  .fc .fc-scrollgrid-section>td {
+    padding: 0px;
+  }
 
+  .fc .fc-daygrid-day-number {
+    padding: 0px;
+    font-size: xx-small;
+  }
 
+  .fc .fc-daygrid-day-top {
+    height: 50%;
 
-.matched_bundle_songs {
-  margin-top: 5px;
-  flex-grow: 1;
-  overflow: auto;
-  border: 5px solid black;
-  padding: 3px;
-}
+  }
 
-.bundleItem {
-  border-bottom: 2px solid black;
-}
+  .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 
-.bundleButtons {
-  display: flex;
-  justify-content: end;
-}
+  .fc .fc-daygrid-day-frame {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 
-.bundleButtons button {
-  margin: 2px;
-}
 
 
+  .fc .fc-daygrid-block-event .fc-event-title .fc-sticky {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
 
 
 
+  .content table td {
+    padding: 0 5% 0 0 !important;
+  }
 
+  .fc-daygrid-event {
+    font-size: xx-small;
+    width: 100%;
+    height: 100%;
+  }
 
 
-.single_form {
-  position: fixed;
-  height: 68%;
-  width: 30%;
-  top: 51%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: rgb(139, 167, 227);
-  color: rgb(4, 4, 4);
-  border: 2px solid black;
-  padding: 10px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: auto;
-}
 
-.single_form button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
 
 
 
 
+  .modal {
+    position: absolute;
+    transform: translate(50%, 50%);
+  }
 
+  .new-square-modal .modal-content {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 
 
+  .modal-header {
+    background-color: #5454ff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    font-size: small;
+  }
 
 
+  .modal-title {
+    text-align: center;
+    /* Center align the text */
+    flex: 1;
+    /* Allow the title to expand and take available space */
+  }
 
 
+  .modal-body {
+    height: 30%;
+  }
 
+  .modal-body p {
+    font-size: small;
+    text-align: center;
+    /* Center align the text */
+    flex: 1;
+    /* Allow the title to expand and take available space */
+  }
 
+  .modal-footer {
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+  }
 
 
+  .left-buttons {
+    display: flex;
+    align-items: center;
+    margin: 2px
+  }
 
+  .right-button {
+    margin-left: auto;
+    margin-right: 2px;
 
-
-
-.bundle_form {
-  position: fixed;
-  height: 50%;
-  top: 42%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: rgb(139, 167, 227);
-  color: rgb(4, 4, 4);
-  border: 2px solid black;
-  padding: 10px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: auto;
-}
-
-.bundle_form button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-
-
-
-
-.pop_up_bs {
-  position: fixed;
-  height: 60%;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: #f59e9e;
-  color: rgb(4, 4, 4);
-  border: 2px solid black;
-  padding: 10px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.pop_up_bs button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
+  }
 
 
 }
