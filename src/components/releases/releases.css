@@ -463,10 +463,9 @@
 
   .pop_up_bundle {
     position: fixed;
-    top: 45%;
+    height: 75%;
+    top: 58%;
     left: 50%;
-    height: 90%;
-    width: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     background-color: rgb(139, 167, 227);
@@ -475,6 +474,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
   }
 
   .pop_up_bundle .listItem {
@@ -582,6 +582,7 @@
   .matched_bundle_songs {
     margin-top: 5px;
     flex-grow: 1;
+    height: 40%;
     overflow: auto;
     border: 5px solid black;
     padding: 3px;
