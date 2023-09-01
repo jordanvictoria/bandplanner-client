@@ -327,29 +327,7 @@
   /* POP UPs */
 
 
-  .pop_up {
-    position: fixed;
-    height: 10%;
-    width: 15%;
-    top: 22%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    border: 2px solid black;
-    padding: 10px;
-    justify-content: center;
-  }
-
-  .pop_up select {
-
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-
-  .pop_up button {
-
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+  
 
 
 
@@ -465,8 +443,6 @@
   .new_delete_release_button {
     margin-left: 2%;
   }
-
-
 
 
 

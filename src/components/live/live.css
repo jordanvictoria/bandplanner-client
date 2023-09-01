@@ -1,69 +1,143 @@
-
+@media screen and (min-width:769px) {
 
 .dragged-item {
     opacity: 0.5; /* Adjust the opacity value as needed */
   }
 
-  .site-background {
-    background-image: url('../nav/bandplannerlogo.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
   }
 
 
-.add-event-button {
-    position: absolute;
-    top: 80px;
-    /* Adjust the top position as needed */
-    left: 365px;
-    /* Adjust the right position as needed */
-    padding: 5px 5px;
-    /* Adjust the padding as needed */
-    font-size: 14px;
-    /* Adjust the font size as needed */
-}
+  .site-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../nav/bandplannerlogo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+  }
 
-.custom-button {
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* Three equal columns */
+    align-items: flex-start;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding: 2%;
+    width: 100%;
+    height: 2%;
+  }
+
+  .button-wrap {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+
+
+  .new-add-live-button {
+    padding: 1% 2%;
+    font-size: 1vw;
+    background-color: rgb(50, 112, 245);
+    color: white;
+    border-radius: 5px;
+    border: 0.2vw solid white;
+  }
+
+  .custom-button {
     background-color: rgb(125, 128, 128);
     /* Replace "red" with the desired color */
     color: white;
     /* Replace "white" with the desired font color */
     border-radius: 5px;
     border: 2px solid white;
-}
+  }
 
 
-.button-view-container {
-    position: absolute;
-    top: 75px;
-    right: 25%;
-    transform: translateY(50%);
-}
 
-.react-calendar {
-    margin-top: 10px;
-    background-color: antiquewhite;
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: flex-start;
+    height: 60%;
+  }
+
+  .API-wrapper {
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 10px;
-    border: 5px darkcyan solid;
     overflow: auto;
-}
+  }
+
+  .calendar-wrapper {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .filter-wrapper {
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .new-react-calendar {
+    background-color: antiquewhite;
+    padding: 2%;
+    border: 0.5vw darkcyan solid;
+    overflow: auto;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+  }
 
 
-
-
-.filterBox {
+  .live-filter-box {
     border: 2px solid black;
     margin-left: 15px;
-    padding: 2px;
+    padding: 10px;
+    /* Add padding for spacing */
     background-color: antiquewhite !important;
-    position: absolute !important;
-    top: 130px !important;
-    /* Adjust the top position as needed */
-    width: 250px !important;
-    right: 50px !important;
-}
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align content to the top */
+    justify-content: flex-start;
+    /* Align content to the top */
+    overflow: auto;
+  }
+
+
+  .content table tbody tr:last-child td {
+    padding: 0;
+  }
+
+  .fc-direction-ltr {
+    height: 100%;
+  }
 
 
 
@@ -71,61 +145,66 @@
 
 
 
-    
-    
 
 
 
-.modal {
+
+
+
+
+
+
+
+  .modal {
     position: absolute;
     width: 50%;
     height: 50%;
     transform: translate(50%, 50%);
-}
+  }
 
-.modal-content {
+  .modal-content {
     background-color: #f7f7f7;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
+  }
 
-.modal-header {
+  .modal-header {
     background-color: #5454ff !important;
     display: flex;
     justify-content: center;
     align-items: center;
     /* width: 50% ; */
     height: 50%;
-}
+  }
 
-.modal-body {
+  .modal-body {
     /* width: 30%; */
     height: 30%;
-}
+  }
 
-.modal-footer {
+  .modal-footer {
     background-color: #f7f7f7;
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* width: 20%; */
     height: 20%;
-}
+  }
 
 
-.left-buttons {
+  .left-buttons {
     display: flex;
     align-items: center;
     margin: 2px
-}
+  }
 
-.right-button {
+  .right-button {
     margin-left: auto;
     margin-right: 2px;
 
-}
+  }
 
-.square-modal .modal-content {
+  .square-modal .modal-content {
     width: 30vw;
     /* Set the desired width as a percentage of the viewport width */
     height: 10vw;
@@ -134,8 +213,66 @@
     /* Set a maximum width if needed */
     max-height: 400px;
     /* Set a maximum height if needed */
-}
+  }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* LIST VIEW */
+
+
+
+
+
+  .liveContainer {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .content .liveContainer ul {
+    width: 100%;
+    margin-top: 0%;
+    margin-left: 0%;
+  }
+
+  .content .liveContainer h3 {
+    margin-bottom: 0%;
+  }
+
+  .liveItem {
+    background-color: #f59e9e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    border: 5px darkcyan solid;
+    width: 100%;
+    padding: 2%;
+  }
+
+  .liveFont {
+    font-size: smaller;
+    font-style: italic;
+  }
+
+  .liveButton {
+    background-color: #64b37d;
+  }
 
 
 
@@ -156,24 +293,15 @@
 
 
 .API {
-    position: sticky;
-    top: 120px;
-    left: 45px;
-    width: 20%;
     border: 2px solid black;
     background-color: antiquewhite;
     border-radius: .5rem;
-    padding-left: 10px;
+    padding-left: 2%;
+    padding-right: 5%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 25%;
 }
 
-.fullHeight {
-    height: 420px;
-}
-
-.thirtyPercentHeight {
-    height: 110px;
-}
 
 
 
@@ -184,10 +312,14 @@
     /* Enable scrolling */
 }
 
-
 .searchBox {
-    padding: 5px;
+    margin-top: 2%;
 }
+
+.searchButton {
+    margin-left: 6%;
+}
+
 
 .radioButtons {
     display: flex;
@@ -211,34 +343,6 @@
 
 
 
-.listViewContainer {
-    margin-top: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 70%;
-}
-
-
-
-.listViewItem {
-    background-color: #f59e9e;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 5px;
-    border: 5px darkcyan solid;
-    padding: 5px;
-}
-
-.smallerFont {
-    font-size: smaller;
-    font-style: italic;
-}
-
-.greenButton {
-    background-color: #64b37d;
-}
 
 
 
@@ -246,31 +350,47 @@
 
 
 
-
-
-.pop_up {
+.pop_up_rehearsal {
+    max-width: 25%;
     position: fixed;
-    height: 10%;
-    width: 15%;
-    top: 22%;
+    top: 29%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
     border: 2px solid black;
     padding: 10px;
-    justify-content: center;
 }
 
-.pop_up select {
 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+.pop_up_rehearsal .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
 }
 
-.pop_up button {
-
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.pop_up_rehearsal .listKey {
+    font-weight: bold;
+    width: 28%;
+    margin-right: 2%;
 }
+
+.pop_up_rehearsal .listValue {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: 10px;
+    width: 70%;
+}
+
+.pop_up_rehearsal .listValue div {
+    width: 100%;
+    /* Ensure the text takes full width */
+}
+
+
 
 
 
@@ -279,10 +399,8 @@
 
 .pop_up_gig {
     position: fixed;
-    top: 45%;
+    top: 58%;
     left: 50%;
-    height: 90%;
-    width: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     background-color: rgb(139, 167, 227);
@@ -301,16 +419,16 @@
 
 .pop_up_gig .listKey {
     font-weight: bold;
-    width: 30%;
-    /* Set the width to 30% */
+    width: 28%;
+    margin-right: 2%;
 }
 
 .pop_up_gig .listValue {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: flex-end;
     margin-left: 10px;
     width: 70%;
-    /* Set the width to 70% */
 }
 
 .pop_up_gig .listValue div {
@@ -323,31 +441,70 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 50vh;
-    height: 50vh;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 10000;
     background-color: whitesmoke;
     border: 2px solid black;
     padding: 10px;
     overflow: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* Center content horizontally */
+    justify-content: center;
+    /* Center content vertically */
+    width: 30vw;
+    /* Set a maximum width to avoid overflowing the viewport */
+    max-height: 90vh;
+    /* Set a maximum height to avoid overflowing the viewport */
 }
 
 .imagePopup img {
-    max-width: 100%;
+    width: auto;
+    /* Let the image adjust its width based on the container */
     height: auto;
+    /* Let the image adjust its height based on the container */
+    max-width: 100%;
+    /* Ensure the image doesn't exceed the container width */
+    max-height: 100%;
+    /* Ensure the image doesn't exceed the container height */
     object-fit: contain;
+    /* Maintain aspect ratio and fit within the container */
 }
 .imagePopup .closePopupBtn {
-    align-self: flex-end;
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    /* Make the close button fixed */
+    top: 10px;
+    /* Adjust the top position as needed to place it at the desired height */
+    right: 10px;
+    /* Adjust the right position as needed to place it at the desired distance from the right edge */
+    z-index: 10001;
+    /* Ensure it's above the popup content */
 }
 
 
+.new_button_live_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+  }
+
+  .group_one {
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .group_two {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+  .new_delete_live_button {
+    margin-left: 2%;
+  }
 
 
 
@@ -358,9 +515,9 @@
 
 
 
-.gigForm {
+.newGigForm {
     position: fixed;
-    top: 55%;
+    top: 59%;
     left: 50%;
     height: 77%;
     width: 25%;
@@ -374,7 +531,7 @@
     overflow: auto;
 }
 
-.gigForm button {
+.newGigForm button {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -414,75 +571,11 @@
 
 
 
-.pop_up_rehearsal {
+
+
+.new_rehearsal_form {
     position: fixed;
-    height: 200px;
-    width: 400px;
-    top: 100px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-}
-
-.pop_up_rehearsal .listItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.pop_up_rehearsal .listKey {
-    font-weight: bold;
-    width: 30%;
-    /* Set the width to 30% */
-}
-
-.pop_up_rehearsal .listValue {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    width: 70%;
-    /* Set the width to 70% */
-}
-
-.pop_up_rehearsal .listValue div {
-    width: 100%;
-    /* Ensure the text takes full width */
-}
-
-
-.button_group {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-}
-
-.edit_button,
-.delete_button {
-    margin-right: 10px;
-}
-
-.close_button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-
-
-
-
-
-
-
-
-.rehearsal_form {
-    position: fixed;
-    height: 44%;
-    top: 295px;
+    top: 37%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
@@ -493,7 +586,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.rehearsal_form button {
+.new_rehearsal_form button {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -935,4 +1028,18 @@
 .buttonDiv {
     margin-left: 235px;
 }
+
+
+
+
+
+}
+
+
+
+@media screen and (max-width: 575px) {
+
+}
+
+
 
