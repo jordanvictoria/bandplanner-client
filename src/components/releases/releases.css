@@ -1452,7 +1452,7 @@
 
   .single_edit_form {
     position: fixed;
-    top: 51%;
+    top: 57%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
@@ -1501,7 +1501,7 @@
 
   .bundle_edit_form {
     position: fixed;
-    top: 46%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
