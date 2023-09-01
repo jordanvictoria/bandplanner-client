@@ -754,6 +754,13 @@
 
 
 
+
+
+
+
+
+
+
 @media screen and (max-width: 575px) {
 
 
@@ -1046,6 +1053,490 @@
     margin-right: 2px;
 
   }
+
+
+
+
+
+  /* LIST VIEW */
+
+
+
+
+
+
+  .releaseContainer {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .content .releaseContainer ul {
+    width: 100%;
+    margin-top: 0%;
+    margin-left: 0%;
+  }
+
+  .content .releaseContainer h3 {
+    margin-bottom: 0%;
+  }
+
+  .releaseItem {
+    background-color: #f59e9e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    border: 5px darkcyan solid;
+    width: 100%;
+    padding: 2%;
+  }
+
+  .releaseFont {
+    font-size: smaller;
+    font-style: italic;
+  }
+
+  .releaseButton {
+    background-color: #64b37d;
+  }
+
+
+
+
+
+
+  /* POP UPs */
+
+
+  .pop_up {
+    position: fixed;
+    height: 10%;
+    width: 15%;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    border: 2px solid black;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .pop_up select {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .pop_up button {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+
+
+
+
+  .pop_up_single {
+    position: fixed;
+    width: 60%;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+  }
+
+  .pop_up_single .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .pop_up_single .listKey {
+    font-weight: bold;
+    width: 28%;
+    margin-right: 2%;
+    /* Set the width to 30% */
+  }
+
+  .pop_up_single .listValue {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: 10px;
+    width: 70%;
+    /* Set the width to 70% */
+  }
+
+  .pop_up_single .listValue div {
+    width: 100%;
+    /* Ensure the text takes full width */
+  }
+
+
+
+
+  .singleImagePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center content horizontally */
+    justify-content: center;
+    /* Center content vertically */
+    width: 80vw;
+    /* Set a maximum width to avoid overflowing the viewport */
+    max-height: 90vh;
+    /* Set a maximum height to avoid overflowing the viewport */
+  }
+
+  .singleImagePopup img {
+    width: auto;
+    /* Let the image adjust its width based on the container */
+    height: auto;
+    /* Let the image adjust its height based on the container */
+    max-width: 100%;
+    /* Ensure the image doesn't exceed the container width */
+    max-height: 100%;
+    /* Ensure the image doesn't exceed the container height */
+    object-fit: contain;
+    /* Maintain aspect ratio and fit within the container */
+  }
+
+  .singleImagePopup .closeSinglePopupBtn {
+    position: fixed;
+    /* Make the close button fixed */
+    top: 10px;
+    /* Adjust the top position as needed to place it at the desired height */
+    right: 10px;
+    /* Adjust the right position as needed to place it at the desired distance from the right edge */
+    z-index: 10001;
+    /* Ensure it's above the popup content */
+  }
+
+  .new_button_release_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+  }
+
+  .group_one {
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .group_two {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+  .new_delete_release_button {
+    margin-left: 2%;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .pop_up_bundle {
+    position: fixed;
+    height: 75%;
+    width: 70%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9990;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+  }
+
+  .pop_up_bundle .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .pop_up_bundle .listKey {
+    font-weight: bold;
+    width: 30%;
+    /* Set the width to 30% */
+  }
+
+  .pop_up_bundle .listValue {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: 10px;
+    width: 70%;
+    /* Set the width to 70% */
+  }
+
+  .pop_up_bundle .listValue div {
+    width: 100%;
+    /* Ensure the text takes full width */
+  }
+
+
+  .bundleImagePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center content horizontally */
+    justify-content: center;
+    /* Center content vertically */
+    width: 80vw;
+    /* Set a maximum width to avoid overflowing the viewport */
+    max-height: 90vh;
+    /* Set a maximum height to avoid overflowing the viewport */
+  }
+
+  .bundleImagePopup img {
+    width: auto;
+    /* Let the image adjust its width based on the container */
+    height: auto;
+    /* Let the image adjust its height based on the container */
+    max-width: 100%;
+    /* Ensure the image doesn't exceed the container width */
+    max-height: 100%;
+    /* Ensure the image doesn't exceed the container height */
+    object-fit: contain;
+    /* Maintain aspect ratio and fit within the container */
+  }
+
+  .bundleImagePopup .closeBundlePopupBtn {
+    position: fixed;
+    /* Make the close button fixed */
+    top: 10px;
+    /* Adjust the top position as needed to place it at the desired height */
+    right: 10px;
+    /* Adjust the right position as needed to place it at the desired distance from the right edge */
+    z-index: 10001;
+    /* Ensure it's above the popup content */
+  }
+
+  .button_release_group {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .edit_release_button,
+  .delete_release_button {
+    margin-right: 10px;
+  }
+
+  .close_release_button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .pop_up_bundle .bundle-songs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pop_up_bundle .bundle-songs-header h3 {
+    margin: 0;
+    border: 2px black solid;
+    border-radius: 2rem;
+    padding: 10px;
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+
+  }
+
+  .pop_up_bundle .bundle-songs-header button {
+    margin-left: 10px;
+  }
+
+
+
+
+
+
+
+  .buttonWrapper {
+    margin-top: 25px;
+  }
+
+
+
+
+  .matched_bundle_songs {
+    margin-top: 5px;
+    flex-grow: 1;
+    height: 40%;
+    overflow: auto;
+    border: 5px solid black;
+    padding: 3px;
+  }
+
+  .bundleItem {
+    border-bottom: 2px solid black;
+  }
+
+  .bundleButtons {
+    display: flex;
+    justify-content: end;
+  }
+
+  .bundleButtons button {
+    margin: 2px;
+  }
+
+
+
+
+
+
+
+
+  .single_form {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+  }
+
+  .single_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .single_edit_form {
+    position: fixed;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .bundle_form {
+    position: fixed;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+  }
+
+  .bundle_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .bundle_edit_form {
+    position: fixed;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+  }
+
+
+
+
+
+
+  .pop_up_bs {
+    position: fixed;
+    height: 60%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: #f59e9e;
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .pop_up_bs button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+
 
 
 }
