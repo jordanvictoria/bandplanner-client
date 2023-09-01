@@ -234,14 +234,14 @@
     overflow: auto;
   }
 
- .content .releaseContainer ul {
+  .content .releaseContainer ul {
     width: 100%;
     margin-top: 0%;
     margin-left: 0%;
   }
 
   .content .releaseContainer h3 {
-   margin-bottom: 0%;
+    margin-bottom: 0%;
   }
 
   .releaseItem {
@@ -395,35 +395,52 @@
   }
 
 
- 
+
 
   .singleImagePopup {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 50vh;
-    height: 50vh;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 10000;
     background-color: whitesmoke;
     border: 2px solid black;
     padding: 10px;
     overflow: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* Center content horizontally */
+    justify-content: center;
+    /* Center content vertically */
+    width: 30vw;
+    /* Set a maximum width to avoid overflowing the viewport */
+    max-height: 90vh;
+    /* Set a maximum height to avoid overflowing the viewport */
   }
 
   .singleImagePopup img {
-    max-width: 100%;
+    width: auto;
+    /* Let the image adjust its width based on the container */
     height: auto;
+    /* Let the image adjust its height based on the container */
+    max-width: 100%;
+    /* Ensure the image doesn't exceed the container width */
+    max-height: 100%;
+    /* Ensure the image doesn't exceed the container height */
     object-fit: contain;
+    /* Maintain aspect ratio and fit within the container */
   }
 
   .singleImagePopup .closeSinglePopupBtn {
-    align-self: flex-end;
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    /* Make the close button fixed */
+    top: 10px;
+    /* Adjust the top position as needed to place it at the desired height */
+    right: 10px;
+    /* Adjust the right position as needed to place it at the desired distance from the right edge */
+    z-index: 10001;
+    /* Ensure it's above the popup content */
   }
 
   .new_button_release_group {
@@ -444,9 +461,9 @@
     justify-content: flex-end;
   }
 
- 
+
   .new_delete_release_button {
-   margin-left: 2%;
+    margin-left: 2%;
   }
 
 
@@ -467,7 +484,7 @@
     top: 58%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 9990;
     background-color: rgb(139, 167, 227);
     color: rgb(4, 4, 4);
     border: 2px solid black;
@@ -507,27 +524,46 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 50vh;
-    height: 50vh;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 10000;
     background-color: whitesmoke;
     border: 2px solid black;
     padding: 10px;
     overflow: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* Center content horizontally */
+    justify-content: center;
+    /* Center content vertically */
+    width: 30vw;
+    /* Set a maximum width to avoid overflowing the viewport */
+    max-height: 90vh;
+    /* Set a maximum height to avoid overflowing the viewport */
   }
 
   .bundleImagePopup img {
-    max-width: 100%;
+    width: auto;
+    /* Let the image adjust its width based on the container */
     height: auto;
+    /* Let the image adjust its height based on the container */
+    max-width: 100%;
+    /* Ensure the image doesn't exceed the container width */
+    max-height: 100%;
+    /* Ensure the image doesn't exceed the container height */
     object-fit: contain;
+    /* Maintain aspect ratio and fit within the container */
   }
 
   .bundleImagePopup .closeBundlePopupBtn {
-    margin-top: auto;
-    align-self: flex-end;
+    position: fixed;
+    /* Make the close button fixed */
+    top: 10px;
+    /* Adjust the top position as needed to place it at the desired height */
+    right: 10px;
+    /* Adjust the right position as needed to place it at the desired distance from the right edge */
+    z-index: 10001;
+    /* Ensure it's above the popup content */
   }
 
   .button_release_group {

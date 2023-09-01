@@ -842,17 +842,17 @@ export const Releases = () => {
                                                 }}>Close</button>
                                             </div>
                                         </div>
-                                        {showSingleArtPopup && (
-                                            <div className="singleImagePopup">
-                                                <button className="closeSinglePopupBtn" onClick={closeSingleArtPopup}>
-                                                    X
-                                                </button>
-                                                <img src={matchedSingle.artwork} alt="artwork" />
-                                            </div>
-                                        )}
                                     </div>
                                 )
                             }
+                            {showSingleArtPopup && (
+                                <div className="singleImagePopup">
+                                    <button className="closeSinglePopupBtn" onClick={closeSingleArtPopup}>
+                                        X
+                                    </button>
+                                    <img src={matchedSingle.artwork} alt="artwork" />
+                                </div>
+                            )}
                             {
                                 viewMatchedBundle && (
                                     <div className="pop_up_bundle">
@@ -880,14 +880,7 @@ export const Releases = () => {
                                         <div className="listItem">
                                             <div className="listKey"> Ready for Distribution: </div><div className="listValue"> {matchedBundle.uploaded_to_distro ? 'Yes' : 'No'} </div>
                                         </div>
-                                        {showBundleArtPopup && (
-                                            <div className="bundleImagePopup">
-                                                <button className="closeBundlePopupBtn" onClick={closeBundleArtPopup}>
-                                                    X
-                                                </button>
-                                                <img src={matchedBundle.artwork} alt="artwork" />
-                                            </div>
-                                        )}
+
                                         <div className="bundle-songs-header">
                                             <h3>Bundle Songs</h3>
                                             <button onClick={() => {
@@ -1110,6 +1103,14 @@ export const Releases = () => {
                                 )
                             }
                         </div>
+                        {showBundleArtPopup && (
+                            <div className="bundleImagePopup">
+                                <button className="closeBundlePopupBtn" onClick={closeBundleArtPopup}>
+                                    X
+                                </button>
+                                <img src={matchedBundle.artwork} alt="artwork" />
+                            </div>
+                        )}
                     </div>
 
                 )
