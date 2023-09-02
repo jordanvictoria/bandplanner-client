@@ -1043,6 +1043,21 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 575px) {
 
 
@@ -1447,6 +1462,258 @@
   .liveButton {
     background-color: #64b37d;
   }
+
+
+
+
+
+
+
+
+
+
+  .pop_up_rehearsal {
+    width: 90%;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+
+.pop_up_rehearsal .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pop_up_rehearsal .listKey {
+    font-weight: bold;
+    width: 28%;
+    margin-right: 2%;
+}
+
+.pop_up_rehearsal .listValue {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: 10px;
+    width: 70%;
+}
+
+.pop_up_rehearsal .listValue div {
+    width: 100%;
+    /* Ensure the text takes full width */
+}
+
+
+
+
+
+
+
+
+.pop_up_gig {
+    position: fixed;
+    width: 60%;
+    height: 83%;
+    overflow: auto;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+
+.pop_up_gig .listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pop_up_gig .listKey {
+    font-weight: bold;
+    width: 28%;
+    margin-right: 2%;
+}
+
+.pop_up_gig .listValue {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: 10px;
+    width: 70%;
+}
+
+.pop_up_gig .listValue div {
+    width: 100%;
+    /* Ensure the text takes full width */
+}
+
+
+.imagePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center content horizontally */
+    justify-content: center;
+    /* Center content vertically */
+    width: 80vw;
+    /* Set a maximum width to avoid overflowing the viewport */
+    max-height: 90vh;
+    /* Set a maximum height to avoid overflowing the viewport */
+}
+
+.imagePopup img {
+    width: auto;
+    /* Let the image adjust its width based on the container */
+    height: auto;
+    /* Let the image adjust its height based on the container */
+    max-width: 100%;
+    /* Ensure the image doesn't exceed the container width */
+    max-height: 100%;
+    /* Ensure the image doesn't exceed the container height */
+    object-fit: contain;
+    /* Maintain aspect ratio and fit within the container */
+}
+
+.imagePopup .closePopupBtn {
+    position: fixed;
+    /* Make the close button fixed */
+    top: 10px;
+    /* Adjust the top position as needed to place it at the desired height */
+    right: 10px;
+    /* Adjust the right position as needed to place it at the desired distance from the right edge */
+    z-index: 10001;
+    /* Ensure it's above the popup content */
+}
+
+
+.new_button_live_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+}
+
+.group_one {
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.group_two {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.new_delete_live_button {
+    margin-left: 2%;
+}
+
+
+
+
+
+
+
+
+
+
+.newGigForm {
+    position: fixed;
+    top: 59%;
+    left: 50%;
+    height: 77%;
+    width: 25%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+}
+
+.newGigForm button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.compressedImg {
+    max-width: 100px;
+    /* Set the maximum width you want the image to take */
+    max-height: 100px;
+    /* Set the maximum height you want the image to take */
+    object-fit: cover;
+    /* Maintain aspect ratio and fill the container */
+    margin-right: 5px;
+}
+
+
+
+
+.new_pop_up {
+    position: fixed;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.new_rehearsal_form {
+    position: fixed;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.liveGigForm {
+    position: fixed;
+    height: 80%;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+}
+
 
 
 }

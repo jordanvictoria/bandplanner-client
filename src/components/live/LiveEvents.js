@@ -1088,39 +1088,40 @@ export const LiveEvents = () => {
                                                 }}>Close</button>
                                             </div>
                                         </div>
-                                        {/* Flier Pop-up */}
-                                        {showFlierPopup && (
-                                            <div className="imagePopup">
-                                                <button className="closePopupBtn" onClick={closeFlierPopup}>
-                                                    x
-                                                </button>
-                                                <img src={matchedGig.flier} alt="flier" />
-                                            </div>
-                                        )}
 
-                                        {/* Stage Plot Pop-up */}
-                                        {showStagePlotPopup && (
-                                            <div className="imagePopup">
-                                                <button className="closePopupBtn" onClick={closeStagePlotPopup}>
-                                                    x
-                                                </button>
-                                                <img src={matchedGig.stage_plot} alt="stage_plot" />
-                                            </div>
-                                        )}
-
-                                        {/* Input List Pop-up */}
-                                        {showInputListPopup && (
-                                            <div className="imagePopup">
-                                                <button className="closePopupBtn" onClick={closeInputListPopup}>
-                                                    x
-                                                </button>
-                                                <img src={matchedGig.input_list} alt="input_list" />
-                                            </div>
-                                        )}
                                     </div>
                                 )
                             }
                         </div>
+                        {/* Flier Pop-up */}
+                        {showFlierPopup && (
+                            <div className="imagePopup">
+                                <button className="closePopupBtn" onClick={closeFlierPopup}>
+                                    x
+                                </button>
+                                <img src={matchedGig.flier} alt="flier" />
+                            </div>
+                        )}
+
+                        {/* Stage Plot Pop-up */}
+                        {showStagePlotPopup && (
+                            <div className="imagePopup">
+                                <button className="closePopupBtn" onClick={closeStagePlotPopup}>
+                                    x
+                                </button>
+                                <img src={matchedGig.stage_plot} alt="stage_plot" />
+                            </div>
+                        )}
+
+                        {/* Input List Pop-up */}
+                        {showInputListPopup && (
+                            <div className="imagePopup">
+                                <button className="closePopupBtn" onClick={closeInputListPopup}>
+                                    x
+                                </button>
+                                <img src={matchedGig.input_list} alt="input_list" />
+                            </div>
+                        )}
                     </div>
                 )
             }
@@ -1463,7 +1464,7 @@ export const LiveEvents = () => {
 
             {
                 gigForm && (
-                    <div className="newGigForm">
+                    <div className="liveGigForm">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1640,7 +1641,7 @@ export const LiveEvents = () => {
 
             {
                 gigEditForm && (
-                    <div className="newGigForm">
+                    <div className="liveGigForm">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
