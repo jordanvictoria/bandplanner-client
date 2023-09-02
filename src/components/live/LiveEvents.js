@@ -868,7 +868,7 @@ export const LiveEvents = () => {
                     <div className="content">
                         <div className="API-wrapper">
                             <div className="API">
-                                <p className="searchBox">Search Live Events By: </p>
+                                <div className="searchBox">Search Live Events By: </div>
                                 <div className="radioButtons">
                                     <input
                                         type="radio"
@@ -1131,7 +1131,7 @@ export const LiveEvents = () => {
                     <div className="content">
                         <div className="API-wrapper">
                             <div className={`API ${startSearch ? 'fullHeight' : 'thirtyPercentHeight'}`}>
-                                <p className="searchBox">Search Live Events By: </p>
+                                <div className="searchBox">Search Live Events By: </div>
                                 <div className="radioButtons">
                                     <input
                                         type="radio"
@@ -1215,7 +1215,7 @@ export const LiveEvents = () => {
                             </div>
                         </div>
 
-                        <div className="calendar-wrapper">
+                        <div className="live-calendar-wrapper">
                             <div className="new-react-calendar">
                                 <FullCalendar
                                     themeSystem="Simplex"
