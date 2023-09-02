@@ -162,51 +162,51 @@
         width: 50%;
         height: 50%;
         transform: translate(50%, 50%);
-      }
-    
-      .modal-content {
+    }
+
+    .modal-content {
         background-color: #f7f7f7;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-      }
-    
-      .modal-header {
+    }
+
+    .modal-header {
         background-color: #5454ff !important;
         display: flex;
         justify-content: center;
         align-items: center;
         /* width: 50% ; */
         height: 50%;
-      }
-    
-      .modal-body {
+    }
+
+    .modal-body {
         /* width: 30%; */
         height: 30%;
-      }
-    
-      .modal-footer {
+    }
+
+    .modal-footer {
         background-color: #f7f7f7;
         display: flex;
         justify-content: space-between;
         align-items: center;
         /* width: 20%; */
         height: 20%;
-      }
-    
-    
-      .left-buttons {
+    }
+
+
+    .left-buttons {
         display: flex;
         align-items: center;
         margin: 2px
-      }
-    
-      .right-button {
+    }
+
+    .right-button {
         margin-left: auto;
         margin-right: 2px;
-    
-      }
-    
-      .live-square-modal .modal-content {
+
+    }
+
+    .live-square-modal .modal-content {
         width: 30vw;
         /* Set the desired width as a percentage of the viewport width */
         height: 10vw;
@@ -215,7 +215,7 @@
         /* Set a maximum width if needed */
         max-height: 400px;
         /* Set a maximum height if needed */
-      }
+    }
 
 
 
@@ -242,9 +242,11 @@
         grid-column: 2 / 3;
         display: flex;
         justify-content: center;
-        width: 100%;
-        height: 100%;
+        max-height: 100%;
         overflow: auto;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+        border-radius: 2rem;
     }
 
     .content .liveContainer ul {
@@ -264,6 +266,7 @@
         border: 5px darkcyan solid;
         width: 100%;
         padding: 2%;
+        border-radius: 2rem;
     }
 
     .liveFont {
@@ -1419,49 +1422,53 @@
 
 
 
-  /* LIST VIEW */
+    /* LIST VIEW */
 
 
 
 
 
 
-  .liveContainer {
-    grid-column: 2 / 3;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 70%;
-    overflow: auto;
-  }
+    .liveContainer {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: center;
+        height: 70%;
+        max-height: 70%;
+        overflow: auto;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+        border-radius: 2rem;
+    }
 
-  .content .liveContainer ul {
-    width: 100%;
-    margin-top: 0%;
-    margin-left: 0%;
-  }
+    .content .liveContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
 
-  .content .liveContainer h3 {
-    margin-bottom: 0%;
-  }
+    .content .liveContainer h3 {
+        margin-bottom: 0%;
+    }
 
-  .liveItem {
-    background-color: #f59e9e;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 5px;
-    border: 5px darkcyan solid;
-    width: 100%;
-    padding: 2%;
-  }
+    .liveItem {
+        background-color: #f59e9e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 5px;
+        border: 5px darkcyan solid;
+        width: 100%;
+        padding: 2%;
+        border-radius: 2rem;
+    }
 
-  .liveFont {
-    font-size: smaller;
-    font-style: italic;
-  }
+    .liveFont {
+        font-size: smaller;
+        font-style: italic;
+    }
 
-  .liveButton {
-    background-color: #64b37d;
-  }
+    .liveButton {
+        background-color: #64b37d;
+    }
 
 
 
@@ -1472,247 +1479,247 @@
 
 
 
-  .pop_up_rehearsal {
-    width: 90%;
-    position: fixed;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-}
+    .pop_up_rehearsal {
+        width: 90%;
+        position: fixed;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+    }
 
 
 
-.pop_up_rehearsal .listItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
+    .pop_up_rehearsal .listItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .pop_up_rehearsal .listKey {
+        font-weight: bold;
+        width: 28%;
+        margin-right: 2%;
+    }
+
+    .pop_up_rehearsal .listValue {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-left: 10px;
+        width: 70%;
+    }
+
+    .pop_up_rehearsal .listValue div {
+        width: 100%;
+        /* Ensure the text takes full width */
+    }
+
+
+
+
+
 
-.pop_up_rehearsal .listKey {
-    font-weight: bold;
-    width: 28%;
-    margin-right: 2%;
-}
 
-.pop_up_rehearsal .listValue {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    margin-left: 10px;
-    width: 70%;
-}
-
-.pop_up_rehearsal .listValue div {
-    width: 100%;
-    /* Ensure the text takes full width */
-}
-
-
-
-
-
-
-
-
-.pop_up_gig {
-    position: fixed;
-    width: 60%;
-    height: 83%;
-    overflow: auto;
-    top: 58%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-}
-
-
-
-.pop_up_gig .listItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.pop_up_gig .listKey {
-    font-weight: bold;
-    width: 28%;
-    margin-right: 2%;
-}
-
-.pop_up_gig .listValue {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    margin-left: 10px;
-    width: 70%;
-}
-
-.pop_up_gig .listValue div {
-    width: 100%;
-    /* Ensure the text takes full width */
-}
-
-
-.imagePopup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10000;
-    background-color: whitesmoke;
-    border: 2px solid black;
-    padding: 10px;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Center content horizontally */
-    justify-content: center;
-    /* Center content vertically */
-    width: 80vw;
-    /* Set a maximum width to avoid overflowing the viewport */
-    max-height: 90vh;
-    /* Set a maximum height to avoid overflowing the viewport */
-}
-
-.imagePopup img {
-    width: auto;
-    /* Let the image adjust its width based on the container */
-    height: auto;
-    /* Let the image adjust its height based on the container */
-    max-width: 100%;
-    /* Ensure the image doesn't exceed the container width */
-    max-height: 100%;
-    /* Ensure the image doesn't exceed the container height */
-    object-fit: contain;
-    /* Maintain aspect ratio and fit within the container */
-}
-
-.imagePopup .closePopupBtn {
-    position: fixed;
-    /* Make the close button fixed */
-    top: 10px;
-    /* Adjust the top position as needed to place it at the desired height */
-    right: 10px;
-    /* Adjust the right position as needed to place it at the desired distance from the right edge */
-    z-index: 10001;
-    /* Ensure it's above the popup content */
-}
-
-
-.new_button_live_group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-start;
-}
-
-.group_one {
-    grid-column: 1 / 2;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.group_two {
-    grid-column: 2 / 3;
-    display: flex;
-    justify-content: flex-end;
-}
-
-
-.new_delete_live_button {
-    margin-left: 2%;
-}
-
-
-
-
-
-
-
-
-
-
-.newGigForm {
-    position: fixed;
-    top: 59%;
-    left: 50%;
-    height: 77%;
-    width: 25%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: auto;
-}
-
-.newGigForm button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.compressedImg {
-    max-width: 100px;
-    /* Set the maximum width you want the image to take */
-    max-height: 100px;
-    /* Set the maximum height you want the image to take */
-    object-fit: cover;
-    /* Maintain aspect ratio and fill the container */
-    margin-right: 5px;
-}
-
-
-
-
-.new_pop_up {
-    position: fixed;
-    top: 22%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    border: 2px solid black;
-    padding: 10px;
-}
-
-.new_rehearsal_form {
-    position: fixed;
-    top: 37%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-.liveGigForm {
-    position: fixed;
-    height: 80%;
-    top: 57%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: auto;
-}
+
+    .pop_up_gig {
+        position: fixed;
+        width: 60%;
+        height: 83%;
+        overflow: auto;
+        top: 58%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+    }
+
+
+
+    .pop_up_gig .listItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .pop_up_gig .listKey {
+        font-weight: bold;
+        width: 28%;
+        margin-right: 2%;
+    }
+
+    .pop_up_gig .listValue {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-left: 10px;
+        width: 70%;
+    }
+
+    .pop_up_gig .listValue div {
+        width: 100%;
+        /* Ensure the text takes full width */
+    }
+
+
+    .imagePopup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+        background-color: whitesmoke;
+        border: 2px solid black;
+        padding: 10px;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center content horizontally */
+        justify-content: center;
+        /* Center content vertically */
+        width: 80vw;
+        /* Set a maximum width to avoid overflowing the viewport */
+        max-height: 90vh;
+        /* Set a maximum height to avoid overflowing the viewport */
+    }
+
+    .imagePopup img {
+        width: auto;
+        /* Let the image adjust its width based on the container */
+        height: auto;
+        /* Let the image adjust its height based on the container */
+        max-width: 100%;
+        /* Ensure the image doesn't exceed the container width */
+        max-height: 100%;
+        /* Ensure the image doesn't exceed the container height */
+        object-fit: contain;
+        /* Maintain aspect ratio and fit within the container */
+    }
+
+    .imagePopup .closePopupBtn {
+        position: fixed;
+        /* Make the close button fixed */
+        top: 10px;
+        /* Adjust the top position as needed to place it at the desired height */
+        right: 10px;
+        /* Adjust the right position as needed to place it at the desired distance from the right edge */
+        z-index: 10001;
+        /* Ensure it's above the popup content */
+    }
+
+
+    .new_button_live_group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: flex-start;
+    }
+
+    .group_one {
+        grid-column: 1 / 2;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .group_two {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+
+    .new_delete_live_button {
+        margin-left: 2%;
+    }
+
+
+
+
+
+
+
+
+
+
+    .newGigForm {
+        position: fixed;
+        top: 59%;
+        left: 50%;
+        height: 77%;
+        width: 25%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: auto;
+    }
+
+    .newGigForm button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .compressedImg {
+        max-width: 100px;
+        /* Set the maximum width you want the image to take */
+        max-height: 100px;
+        /* Set the maximum height you want the image to take */
+        object-fit: cover;
+        /* Maintain aspect ratio and fill the container */
+        margin-right: 5px;
+    }
+
+
+
+
+    .new_pop_up {
+        position: fixed;
+        top: 22%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        border: 2px solid black;
+        padding: 10px;
+    }
+
+    .new_rehearsal_form {
+        position: fixed;
+        top: 37%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+    .liveGigForm {
+        position: fixed;
+        height: 80%;
+        top: 57%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: auto;
+    }
 
 
 

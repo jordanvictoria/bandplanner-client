@@ -4,6 +4,7 @@ import "./press.css"
 
 
 
+
 export const PressClipping = () => {
   const localUser = localStorage.getItem("userId");
   const [bandUserObj, setBandUserObj] = useState({})
@@ -139,181 +140,189 @@ export const PressClipping = () => {
 
 
   return <>
-    <div className="site-background hero is-fullheight">
-     
-
-      <button className="add-event-button custom-button" onClick={() => openPressClippingForm(true)}>
-        Add New Press Clipping
-      </button>
-      <div className="clippingViewContainer">
-        {
-          pressClippings.map((clipping) => {
-            const formattedListDate = formatListDate(clipping.date)
-            return (
-              <li className="clippingCard" key={clipping.id} value={clipping.id}>
-                
-                  <h3><b>{clipping.title}</b></h3>
-                  <section><b>Date:</b> {formattedListDate}</section>
-                  <section><b>Author:</b> {clipping.author}</section>
-                  <section><b>Description:</b> {clipping.description}</section>
-                  <section>
-                    <b>Link:</b> 
-                    {clipping.link ? (
-                      <a href={clipping.link} target="_blank" rel="noopener noreferrer"> Open in New Tab</a>
-                    ) : (
-                      ""
-                    )}
-                  </section>
-                  <button onClick={() => {
-                    setPressClippingId(clipping.id)
-                  }}>Edit</button>
-                  <button onClick={async () => {
-                    await deletePressClipping(clipping.id);
-                    const newPressClippings = await getPressClippings();
-                    await newPressClippings.sort(compareDates)
-                    setPressClippings(newPressClippings);
-                  }}>Delete</button>
-              
-              </li>
-
-            )
-          })
-        }
+    <div className="site-background">
+      <div className="header">
+        <div className="button-wrap">
+          <button className="add-event-button custom-button" onClick={() => openPressClippingForm(true)}>
+            Add New Press Clipping
+          </button>
+        </div>
       </div>
-      {
-        pressClippingForm && (
-          <div className="clipping_form">
-            <form>
-              <fieldset>
-                <div className="formRow">Title:
-                  <input type="text" id="title" onChange={
-                    (evt) => {
-                      const copy = { ...newPressClipping }
-                      copy.title = evt.target.value
-                      updateNewPressClipping(copy)
-                    }
-                  } />
-                </div>
-                <div className="formRow">Date:
-                  <input type="date" id="date" onChange={
-                    (evt) => {
-                      const copy = { ...newPressClipping }
-                      copy.date = evt.target.value
-                      updateNewPressClipping(copy)
-                    }
-                  } />
-                </div>
-                <div className="formRow">Author:
-                  <input type="text" id="author" onChange={
-                    (evt) => {
-                      const copy = { ...newPressClipping }
-                      copy.author = evt.target.value
-                      updateNewPressClipping(copy)
-                    }
-                  } />
-                </div>
-                <div className="formRow">Description:
-                  <input type="text" id="description" onChange={
-                    (evt) => {
-                      const copy = { ...newPressClipping }
-                      copy.description = evt.target.value
-                      updateNewPressClipping(copy)
-                    }
-                  } />
-                </div>
-                <div className="formRow">Link:
-                  <input type="url" id="link" onChange={
-                    (evt) => {
-                      const copy = { ...newPressClipping }
-                      copy.link = evt.target.value
-                      updateNewPressClipping(copy)
-                    }
-                  } />
-                </div>
-                <div className="formButtons">
+      <div className="content">
 
-                <button onClick={(clickEvent) => {
-                  clippingSaveButtonClick(clickEvent)
-                  openPressClippingForm(false)
-                }}>Save</button>
-                <button className="cancelItem" onClick={() => {
-                  openPressClippingForm(false)
-                }}>Cancel</button>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        )
-      }
 
-      {
-        pressClippingEditForm && (
-          <div className="clipping_form">
-            <form>
-              <fieldset>
-                <div className="formRow">Title:
-                  <input type="text" id="title" placeholder={pressClippingEdit.title} value={pressClippingEdit.title} onChange={
-                    (evt) => {
-                      const copy = { ...pressClippingEdit }
-                      copy.title = evt.target.value
-                      updatePressClippingEdit(copy)
-                    }
-                  } />
-                </div>
-                <div className="formRow">Date:
-                  <input type={dateInputType} id="date" placeholder={pressClippingEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
-                    (evt) => {
-                      const copy = { ...pressClippingEdit }
-                      copy.date = evt.target.value
-                      updatePressClippingEdit(copy)
-                    }
-                  } />
-                </div>
-                <div className="formRow">Author:
-                  <input type="text" id="author" placeholder={pressClippingEdit.author} value={pressClippingEdit.author} onChange={
-                    (evt) => {
-                      const copy = { ...pressClippingEdit }
-                      copy.author = evt.target.value
-                      updatePressClippingEdit(copy)
-                    }
-                  } />
-                </div>
-                <div className="formRow">Description:
-                  <input type="text" id="description" placeholder={pressClippingEdit.description} value={pressClippingEdit.description} onChange={
-                    (evt) => {
-                      const copy = { ...pressClippingEdit }
-                      copy.description = evt.target.value
-                      updatePressClippingEdit(copy)
-                    }
-                  } />
-                </div>
-                <div className="formRow">Link:
-                  <input type="url" id="link" placeholder={pressClippingEdit.link} value={pressClippingEdit.link} onChange={
-                    (evt) => {
-                      const copy = { ...pressClippingEdit }
-                      copy.link = evt.target.value
-                      updatePressClippingEdit(copy)
-                    }
-                  } />
-                </div>
-                <div className="formButtons">
+        <div className="clippingViewContainer">
+          <ul>
+            {
+              pressClippings.map((clipping) => {
+                const formattedListDate = formatListDate(clipping.date)
+                return (
+                  <li className="clippingCard" key={clipping.id} value={clipping.id}>
 
-                <button onClick={(clickEvent) => {
-                  clippingEditButtonClick(clickEvent)
-                  openPressClippingEditForm(false)
-                  setPressClippingId(0)
-                }}>Save</button>
-                <button className="cancelItem" onClick={() => {
-                  openPressClippingEditForm(false)
-                  setPressClippingId(0)
-                }}>Cancel</button>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        )
-      }
+                    <h3><b>{clipping.title}</b></h3>
+                    <section><b>Date:</b> {formattedListDate}</section>
+                    <section><b>Author:</b> {clipping.author}</section>
+                    <section><b>Description:</b> {clipping.description}</section>
+                    <section>
+                      <b>Link:</b>
+                      {clipping.link ? (
+                        <a href={clipping.link} target="_blank" rel="noopener noreferrer"> Open in New Tab</a>
+                      ) : (
+                        ""
+                      )}
+                    </section>
+                    <button onClick={() => {
+                      setPressClippingId(clipping.id)
+                    }}>Edit</button>
+                    <button onClick={async () => {
+                      await deletePressClipping(clipping.id);
+                      const newPressClippings = await getPressClippings();
+                      await newPressClippings.sort(compareDates)
+                      setPressClippings(newPressClippings);
+                    }}>Delete</button>
 
+                  </li>
+
+                )
+              })
+            }
+          </ul>
+        </div>
+        {
+          pressClippingForm && (
+            <div className="clipping_form">
+              <form>
+                <fieldset>
+                  <div className="formRow">Title:
+                    <input type="text" id="title" onChange={
+                      (evt) => {
+                        const copy = { ...newPressClipping }
+                        copy.title = evt.target.value
+                        updateNewPressClipping(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formRow">Date:
+                    <input type="date" id="date" onChange={
+                      (evt) => {
+                        const copy = { ...newPressClipping }
+                        copy.date = evt.target.value
+                        updateNewPressClipping(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formRow">Author:
+                    <input type="text" id="author" onChange={
+                      (evt) => {
+                        const copy = { ...newPressClipping }
+                        copy.author = evt.target.value
+                        updateNewPressClipping(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formRow">Description:
+                    <input type="text" id="description" onChange={
+                      (evt) => {
+                        const copy = { ...newPressClipping }
+                        copy.description = evt.target.value
+                        updateNewPressClipping(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formRow">Link:
+                    <input type="url" id="link" onChange={
+                      (evt) => {
+                        const copy = { ...newPressClipping }
+                        copy.link = evt.target.value
+                        updateNewPressClipping(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formButtons">
+
+                    <button onClick={(clickEvent) => {
+                      clippingSaveButtonClick(clickEvent)
+                      openPressClippingForm(false)
+                    }}>Save</button>
+                    <button className="cancelItem" onClick={() => {
+                      openPressClippingForm(false)
+                    }}>Cancel</button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          )
+        }
+
+        {
+          pressClippingEditForm && (
+            <div className="clipping_form">
+              <form>
+                <fieldset>
+                  <div className="formRow">Title:
+                    <input type="text" id="title" placeholder={pressClippingEdit.title} value={pressClippingEdit.title} onChange={
+                      (evt) => {
+                        const copy = { ...pressClippingEdit }
+                        copy.title = evt.target.value
+                        updatePressClippingEdit(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formRow">Date:
+                    <input type={dateInputType} id="date" placeholder={pressClippingEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
+                      (evt) => {
+                        const copy = { ...pressClippingEdit }
+                        copy.date = evt.target.value
+                        updatePressClippingEdit(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formRow">Author:
+                    <input type="text" id="author" placeholder={pressClippingEdit.author} value={pressClippingEdit.author} onChange={
+                      (evt) => {
+                        const copy = { ...pressClippingEdit }
+                        copy.author = evt.target.value
+                        updatePressClippingEdit(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formRow">Description:
+                    <input type="text" id="description" placeholder={pressClippingEdit.description} value={pressClippingEdit.description} onChange={
+                      (evt) => {
+                        const copy = { ...pressClippingEdit }
+                        copy.description = evt.target.value
+                        updatePressClippingEdit(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formRow">Link:
+                    <input type="url" id="link" placeholder={pressClippingEdit.link} value={pressClippingEdit.link} onChange={
+                      (evt) => {
+                        const copy = { ...pressClippingEdit }
+                        copy.link = evt.target.value
+                        updatePressClippingEdit(copy)
+                      }
+                    } />
+                  </div>
+                  <div className="formButtons">
+
+                    <button onClick={(clickEvent) => {
+                      clippingEditButtonClick(clickEvent)
+                      openPressClippingEditForm(false)
+                      setPressClippingId(0)
+                    }}>Save</button>
+                    <button className="cancelItem" onClick={() => {
+                      openPressClippingEditForm(false)
+                      setPressClippingId(0)
+                    }}>Cancel</button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          )
+        }
+
+      </div>
     </div>
 
 
