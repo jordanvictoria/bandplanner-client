@@ -43,8 +43,8 @@
     background-color: #f59e9e;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-bottom: 5px;
-    border: 5px darkcyan solid;
     padding: 5px;
+    border: 5px darkcyan solid;
     border-radius: 2rem;
 }
 
@@ -101,8 +101,8 @@
     background-color: #f59e9e;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-bottom: 5px;
-    border: 5px darkcyan solid;
     padding: 5px;
+    border: 5px darkcyan solid;
     border-radius: 2rem;
 }
 
@@ -145,6 +145,7 @@
 .contact_form button {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 
 
 
