@@ -196,7 +196,7 @@ export const MediaList = () => {
         <div className="secondHeader">
 
         
-        <div className="button-wrap">
+        <div className="mediaButtonWrap">
             <button className="add-event-button custom-button" onClick={() => openMediaContactForm(true)}>
               Add New Media Contact
             </button>
