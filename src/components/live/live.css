@@ -68,7 +68,7 @@
         border: 2px solid white;
     }
 
-   
+
 
 
     .content {
@@ -296,7 +296,6 @@
 
 
 
-
     .API {
         border: 2px solid black;
         background-color: antiquewhite;
@@ -392,7 +391,6 @@
 
     .pop_up_rehearsal .listValue div {
         width: 100%;
-        /* Ensure the text takes full width */
     }
 
 
@@ -669,7 +667,7 @@
 
 
 
-   
+
 
     .setlistContainer {
         display: flex;
@@ -677,24 +675,28 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: #f59e9e;
-        border-radius: 1rem;
+        max-height: 100%;
+        overflow: auto;
+        border-radius: 2rem;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
     }
 
 
-    .setlistBoxContainer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-        align-content: flex-start;
+
+
+
+    .content .setlistContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
     }
+
+
+
 
     .setListBandName {
-        width: 100%;
         text-align: center;
-        font-size: 24px;
-        font-weight: bold;
     }
 
     .setlistBox {
@@ -744,15 +746,14 @@
         position: fixed;
         top: 41%;
         left: 50%;
-        height: 50%;
-        width: 25%;
         transform: translate(-50%, -50%);
         z-index: 9999;
         background-color: rgb(139, 167, 227);
         color: rgb(4, 4, 4);
         border: 2px solid black;
-        padding: 10px;
+        padding: 1%;
         text-align: center;
+        width: 25%;
     }
 
     .viewContainer h2 {
@@ -764,13 +765,16 @@
         font-size: smaller;
     }
 
+    .setlist-button-group {
+        display: flex;
+        justify-content: space-between;
+    }
+
 
 
     .viewContainer .customList {
         text-align: left;
-        margin-left: 20px;
-        margin-top: 10px;
-        padding-left: 20px;
+        margin: 5% 0 5% 10%;
         counter-reset: item;
     }
 
@@ -816,15 +820,14 @@
 
     .setlist_form {
         position: fixed;
-        height: 20%;
-        top: 26%;
+        top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 9999;
         background-color: rgb(139, 167, 227);
         color: rgb(4, 4, 4);
         border: 2px solid black;
-        padding: 10px;
+        padding: 2%;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
@@ -836,10 +839,9 @@
 
     .edit_setlist {
         position: fixed;
-        height: 44%;
-        width: 25%;
-        top: 295px;
+        top: 50%;
         left: 50%;
+        max-height: 60%;
         transform: translate(-50%, -50%);
         z-index: 9999;
         background-color: rgb(139, 167, 227);
@@ -852,6 +854,10 @@
 
     .edit_setlist button {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .edit_setlist .buttonDiv button {
+        background-color: #64b37d;
     }
 
     .edit_setlist .customList {
@@ -928,7 +934,6 @@
 
     .song_form {
         position: fixed;
-        height: 44%;
         top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -1094,6 +1099,7 @@
         /* Replace "white" with the desired font color */
         border-radius: 5px;
         border: 2px solid white;
+        padding: 1%;
     }
 
 
@@ -1695,6 +1701,305 @@
         overflow: auto;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    /* SETLISTS */
+
+
+
+
+
+    .setlistContainer {
+        display: flex;
+        grid-column: 2 / 3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-height: 100%;
+        overflow: auto;
+        border-radius: 2rem;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+    }
+
+
+
+
+
+    .content .setlistContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+
+
+
+
+    .setListBandName {
+        text-align: center;
+    }
+
+    .setlistBox {
+        width: 40%;
+        height: 50%;
+        margin: 2%;
+        text-align: center;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        background-color: grey;
+        color: black;
+
+
+    }
+
+    .setlistBox h3 {
+        font-weight: bold;
+
+
+    }
+
+
+    .fontStyles {
+        font-size: smaller;
+        font-style: italic;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /* VIEW SETLIST */
+
+
+
+    .viewContainer {
+        position: fixed;
+        top: 41%;
+        left: 50%;
+        width: 80%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 1%;
+        text-align: center;
+    }
+
+    .viewContainer h2 {
+        font-weight: bold;
+    }
+
+    .viewContainer h3 {
+        font-style: italic;
+        font-size: smaller;
+    }
+
+    .setlist-button-group {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+
+    .viewContainer .customList {
+        text-align: left;
+        margin: 5% 0 5% 10%;
+        counter-reset: item;
+    }
+
+    .viewContainer .customList li {
+        counter-increment: item;
+        list-style: none;
+    }
+
+    .viewContainer .customList li:before {
+        content: counter(item) ".";
+        display: inline-block;
+        width: 1em;
+        margin-left: -1.5em;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* POST SETLIST */
+
+
+
+
+    .setlist_form {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 2%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .setlist_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+
+    .edit_setlist {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        max-height: 60%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: auto;
+    }
+
+    .edit_setlist button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .edit_setlist .buttonDiv button {
+        background-color: #64b37d;
+    }
+
+    .edit_setlist .customList {
+        text-align: left;
+        margin-left: 20px;
+        margin-top: 10px;
+        padding-left: 20px;
+        counter-reset: item;
+    }
+
+    .edit_setlist .customList li {
+        counter-increment: item;
+        list-style: none;
+    }
+
+    .edit_setlist .customList li:before {
+        content: counter(item) ".";
+        display: inline-block;
+        width: 1em;
+        margin-left: -1.5em;
+    }
+
+
+
+    .edit_setlist .setlist-songs-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0;
+    }
+
+    .edit_setlist .setlist-songs-header h3 {
+        margin: 0;
+        border: 2px black solid;
+        border-radius: 2rem;
+        padding: 10px;
+        background-color: black;
+        color: whitesmoke;
+    }
+
+    .edit_setlist .setlist-songs-header button {
+        margin-left: 10px;
+        background-color: #f59e9e;
+    }
+
+
+    .edit_setlist .setlist_songs {
+        height: 65%;
+        overflow: auto;
+        margin-top: 10px;
+        border: 2px solid black;
+        padding: 2px;
+    }
+
+    .unchosen {
+        margin-left: 5%;
+        max-height: 5%;
+    }
+
+   
+
+
+    .edit_setlist button {
+        background-color: rgb(189, 186, 186);
+    }
+
+
+
+formRow
+
+
+
+
+
+
+
+
+    .song_form {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #f59e9e;
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .song_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
 
 }

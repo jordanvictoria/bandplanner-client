@@ -337,23 +337,25 @@ export const Setlists = () => {
         <div className="site-background">
             <div className="header">
                 <div className="button-wrap">
-                <div className="new-add-live-button custom-button" onClick={() => {
-                            openNewSetlistForm(true)
-                        }}>
-                            Add New Setlist
-                        </div>
+                    <div className="new-add-live-button custom-button" onClick={() => {
+                        openNewSetlistForm(true)
+                    }}>
+                        Add New Setlist
+                    </div>
                 </div>
             </div>
             <div className="content">
                 <div className="setlistContainer">
-                    <div className="setlistBoxContainer">
-                        <div className="setListBandName">
+                    <h3 className="setListBandName">
+                        <b>
                             {bandUserObj.project_title ? (
                                 <>{bandUserObj.project_title}'s Setlists</>
                             ) : (
                                 <>Setlists</>
                             )}
-                        </div>
+                        </b>
+                    </h3>
+                    <ul>
 
                         {
                             setlists.map(setlist => {
@@ -361,21 +363,20 @@ export const Setlists = () => {
                                 const numberOfSongs = matchedSongs.length;
                                 const dateDisplay = formatDateDisplay(setlist.last_edited)
                                 return (
-                                    <div key={setlist.id} className="setlistBox" onClick={() => {
-                                        setSetlistId(parseInt(setlist.id))
-                                        setViewSetlist(true)
-                                    }} >
-                                        <h3>{setlist.title}</h3>
-                                        <div className="fontStyles">
-                                            <h6>- {numberOfSongs} songs</h6>
-                                            <h6>- Last edited on {dateDisplay}</h6>
+                                    <li key={setlist.id} value={setlist.id}>
+                                        <div key={setlist.id} className="liveItem" onClick={() => {
+                                            setSetlistId(parseInt(setlist.id))
+                                            setViewSetlist(true)
+                                        }} >
+                                            <h3><b>{setlist.title}</b></h3>
+                                            <section>- {numberOfSongs} songs</section>
+                                            <section>- Last edited on {dateDisplay}</section>
                                         </div>
-                                    </div>
+                                    </li>
                                 )
                             })
                         }
-                    
-                    </div>
+                    </ul>
                 </div>
             </div>
             {
@@ -394,24 +395,28 @@ export const Setlists = () => {
                                 })
                             }
                         </ol>
-                        <div className="button_group">
-                            <button className="edit_button" onClick={() => {
-                                setEditSetlistId(setlistViewObj.id)
-                                setSetlistId(0)
-                                setViewSetlist(false)
-                                openEditSetlistForm(true)
-                            }}>Edit</button>
-                            <button className="delete_button" onClick={async () => {
-                                await deleteSetlist(setlistViewObj.id)
-                                const newSetlists = await getSetlists();
-                                setSetlists(newSetlists);
-                                setViewSetlist(false)
-                            }}>Delete</button>
+                        <div className="setlist-button-group">
+                            <div className="buttonOne">
+                                <button className="edit_button" onClick={() => {
+                                    setEditSetlistId(setlistViewObj.id)
+                                    setSetlistId(0)
+                                    setViewSetlist(false)
+                                    openEditSetlistForm(true)
+                                }}>Edit</button>
+                                <button className="delete_button" onClick={async () => {
+                                    await deleteSetlist(setlistViewObj.id)
+                                    const newSetlists = await getSetlists();
+                                    setSetlists(newSetlists);
+                                    setViewSetlist(false)
+                                }}>Delete</button>
+                            </div>
+                            <div>
+                                <button className="close_button" onClick={() => {
+                                    setSetlistId(0)
+                                    setViewSetlist(false)
+                                }}>Close</button>
+                            </div>
                         </div>
-                        <button className="close_button" onClick={() => {
-                            setSetlistId(0)
-                            setViewSetlist(false)
-                        }}>Close</button>
                     </div>
                 )
             }
@@ -558,7 +563,7 @@ export const Setlists = () => {
                             {
                                 unchosenSongs.map(song => {
                                     return (
-                                        <li key={song.id} value={song.id} >
+                                        <li className="unchosenRow" key={song.id} value={song.id} >
                                             <div className="unchosen" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
                                                 {song.name}
                                                 <div style={{ display: 'flex' }}>
