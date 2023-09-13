@@ -237,7 +237,7 @@ export const MediaList = () => {
           </div>
           </div>
       </div>
-      <div className="content">
+      <div className="press-content">
 
 
         <div className="contactViewContainer">
@@ -264,10 +264,10 @@ export const MediaList = () => {
                         )}
                       </section>
                       <section><b>Notes</b>: {media.notes}</section>
-                      <button onClick={() => {
+                      <button className="green-button" onClick={() => {
                         setMediaContactId(media.id)
                       }}>Edit</button>
-                      <button onClick={async () => {
+                      <button className="green-button" onClick={async () => {
                         await deleteMediaContact(media.id);
                         const newMediaContacts = await getMediaContacts()
                         setFilteredContacts(newMediaContacts)

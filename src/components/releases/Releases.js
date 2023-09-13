@@ -727,7 +727,7 @@ export const Releases = () => {
 
         <div className="site-background">
             <div className="header">
-                <div className="button-wrap">
+                <div className="release-button-wrap">
                     <button className="new-add-release-button custom-button" onClick={() => setIsOpen(true)}>
                         Add New Release
                     </button>

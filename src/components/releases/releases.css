@@ -8,6 +8,8 @@
     overflow: hidden;
   }
 
+  
+
 
   .site-background {
     position: fixed;
@@ -35,7 +37,7 @@
     height: 2%;
   }
 
-  .button-wrap {
+  .release-button-wrap {
     grid-column: 2 / 3;
     display: flex;
     justify-content: space-between;
@@ -775,7 +777,7 @@
 
 
 
-  .button-wrap {
+  .release-button-wrap {
     grid-column: 2 / 3;
     display: flex;
     justify-content: space-between;

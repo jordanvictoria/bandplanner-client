@@ -334,40 +334,47 @@ export const Setlists = () => {
 
     return <>
 
-        <div className="site-background hero is-fullheight">
-            <div className="setlistContainer">
-                <div className="setlistBoxContainer">
-                    <div className="setListBandName">
-                        {bandUserObj.project_title ? (
-                            <>{bandUserObj.project_title}'s Setlists</>
-                        ) : (
-                        <>Setlists</>
+        <div className="site-background">
+            <div className="header">
+                <div className="button-wrap">
+                <div className="new-add-live-button custom-button" onClick={() => {
+                            openNewSetlistForm(true)
+                        }}>
+                            Add New Setlist
+                        </div>
+                </div>
+            </div>
+            <div className="content">
+                <div className="setlistContainer">
+                    <div className="setlistBoxContainer">
+                        <div className="setListBandName">
+                            {bandUserObj.project_title ? (
+                                <>{bandUserObj.project_title}'s Setlists</>
+                            ) : (
+                                <>Setlists</>
                             )}
-                    </div>
+                        </div>
 
-                    {
-                        setlists.map(setlist => {
-                            const matchedSongs = setlistSongs.filter(song => song.setlist.id === setlist.id)
-                            const numberOfSongs = matchedSongs.length;
-                            const dateDisplay = formatDateDisplay(setlist.last_edited)
-                            return (
-                                <div key={setlist.id} className="setlistBox" onClick={() => {
-                                    setSetlistId(parseInt(setlist.id))
-                                    setViewSetlist(true)
-                                }} >
-                                    <h3>{setlist.title}</h3>
-                                    <div className="fontStyles">
-                                        <h6>- {numberOfSongs} songs</h6>
-                                        <h6>- Last edited on {dateDisplay}</h6>
+                        {
+                            setlists.map(setlist => {
+                                const matchedSongs = setlistSongs.filter(song => song.setlist.id === setlist.id)
+                                const numberOfSongs = matchedSongs.length;
+                                const dateDisplay = formatDateDisplay(setlist.last_edited)
+                                return (
+                                    <div key={setlist.id} className="setlistBox" onClick={() => {
+                                        setSetlistId(parseInt(setlist.id))
+                                        setViewSetlist(true)
+                                    }} >
+                                        <h3>{setlist.title}</h3>
+                                        <div className="fontStyles">
+                                            <h6>- {numberOfSongs} songs</h6>
+                                            <h6>- Last edited on {dateDisplay}</h6>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        })
-                    }
-                    <div className="addSetlist" onClick={() => {
-                        openNewSetlistForm(true)
-                    }}>
-                        Add New Setlist
+                                )
+                            })
+                        }
+                    
                     </div>
                 </div>
             </div>

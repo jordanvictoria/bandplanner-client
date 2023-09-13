@@ -837,7 +837,7 @@ export const LiveEvents = () => {
 
         <div className="site-background">
             <div className="header">
-                <div className="button-wrap">
+                <div className="live-button-wrap">
                     <button className="new-add-live-button custom-button" onClick={() => setIsOpen(true)}>
                         Add Live Event
                     </button>

@@ -148,7 +148,7 @@ export const PressClipping = () => {
           </button>
         </div>
       </div>
-      <div className="content">
+      <div className="press-content">
 
 
         <div className="clippingViewContainer">
@@ -171,10 +171,10 @@ export const PressClipping = () => {
                         ""
                       )}
                     </section>
-                    <button onClick={() => {
+                    <button className="green-button" onClick={() => {
                       setPressClippingId(clipping.id)
                     }}>Edit</button>
-                    <button onClick={async () => {
+                    <button className="green-button" onClick={async () => {
                       await deletePressClipping(clipping.id);
                       const newPressClippings = await getPressClippings();
                       await newPressClippings.sort(compareDates)

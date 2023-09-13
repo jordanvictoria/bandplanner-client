@@ -1,206 +1,9 @@
 @media screen and (min-width:769px) {
 
+    .green-button {
+        background-color: #64b37d;
+    }
 
-
-.pressCoverageBandName {
-    width: 100%;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    border-bottom: 2px solid grey;
-    padding: 10px;
-}
-
-
-
-
-
-
-  .content .clippingViewContainer ul {
-    width: 100%;
-    margin-top: 0%;
-    margin-left: 0%;
-  }
-
-
-
-
-
-.clippingViewContainer {
-    grid-column: 2 / 3;
-    display: flex;
-    justify-content: center;
-    max-height: 100%;
-    overflow: auto;
-    background-color: rgb(224, 219, 219);
-    border: 10px solid rgb(224, 219, 219);
-    border-radius: 2rem;
-    
-}
-
-.clippingCard {
-    background-color: #f59e9e;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 5px;
-    padding: 5px;
-    border: 5px darkcyan solid;
-    border-radius: 2rem;
-}
-
-
-
-
-.contactHeader {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    /* Three equal columns */
-    align-items: flex-start;
-    margin-top: 5%;
-    margin-bottom: 2%;
-    padding: 2%;
-    width: 100%;
-    height: 2%;
-}
-
-.secondHeader {
-    grid-column: 2 / 3;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
-}
-
-
-
-
-
-
-.content .contactViewContainer ul {
-    width: 100%;
-    margin-top: 0%;
-    margin-left: 0%;
-  }
-
-
-
-
-.contactViewContainer {
-    grid-column: 2 / 3;
-    display: flex;
-    justify-content: center;
-    max-height: 100%;
-    overflow: auto;
-    background-color: rgb(224, 219, 219);
-    border: 10px solid rgb(224, 219, 219);
-    border-radius: 2rem;
-}
-
-
-.contactCard {
-    background-color: #f59e9e;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 5px;
-    padding: 5px;
-    border: 5px darkcyan solid;
-    border-radius: 2rem;
-}
-
-
-
-
-
-
-
-.clipping_form {
-    position: fixed;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.clipping_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.contact_form {
-    position: fixed;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.contact_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-
-
-}
-
-
-
-@media screen and (max-width: 575px) {
-
-    .contactHeader {
-        align-items: center;
-        margin-top: 15%;
-        margin-bottom: 10%;
-        padding-right: 5%;
-        padding-left: 5%;
-      }
-    
-    
-    
-      .button-wrap {
-        grid-column: 2 / 3;
-        display: flex;
-        justify-content: flex-start;
-        width: 100%;
-        height: 100%;
-      }
-    
-    
-      .new-add-release-button {
-        background-color: rgb(50, 112, 245);
-        color: white;
-        border-radius: 5px;
-        border: 0.2vw solid white;
-      }
-    
-      .custom-button {
-        background-color: rgb(125, 128, 128);
-        /* Replace "red" with the desired color */
-        color: white;
-        /* Replace "white" with the desired font color */
-        border-radius: 5px;
-        border: 2px solid white;
-      }
-
-
-   
-    
- 
-    
-
-
-.content {
-    height: 80%;
-    max-height: 80%;
-}
 
     .pressCoverageBandName {
         width: 100%;
@@ -211,42 +14,110 @@
         border-bottom: 2px solid grey;
         padding: 10px;
     }
-    
-    
-    
-    
-    
-    
-      .content .clippingViewContainer ul {
+
+    .press-content {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: flex-start;
+        height: 60%;
+    }
+
+    .press-content .clippingViewContainer ul {
         width: 100%;
         margin-top: 0%;
         margin-left: 0%;
-      }
-    
-    
-    
-    
-    
+    }
+
+
+
+
+
     .clippingViewContainer {
         grid-column: 2 / 3;
         display: flex;
         justify-content: center;
+        max-height: 100%;
+        overflow: auto;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+        border-radius: 2rem;
+
+    }
+
+    .clippingCard {
+        background-color: #f59e9e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 5px;
+        padding: 5px;
+        border: 5px darkcyan solid;
+        border-radius: 2rem;
+    }
+
+
+
+
+    .contactHeader {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* Three equal columns */
+        align-items: flex-start;
+        margin-top: 5%;
+        margin-bottom: 2%;
+        padding: 2%;
+        width: 100%;
+        height: 2%;
+    }
+
+    .secondHeader {
+        grid-column: 2 / 3;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+    }
+
+
+
+
+
+
+    .press-content .contactViewContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+
+
+
+
+    .contactViewContainer {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: center;
+        max-height: 100%;
         overflow: auto;
         background-color: rgb(224, 219, 219);
         border: 10px solid rgb(224, 219, 219);
         border-radius: 2rem;
     }
-    
-    .clippingCard {
+
+
+    .contactCard {
         background-color: #f59e9e;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin-bottom: 5px;
-        border: 5px darkcyan solid;
         padding: 5px;
+        border: 5px darkcyan solid;
         border-radius: 2rem;
     }
-    
-    
+
+
+
+
+
+
+
     .clipping_form {
         position: fixed;
         top: 35%;
@@ -259,7 +130,147 @@
         padding: 10px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    
+
+    .clipping_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .contact_form {
+        position: fixed;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .contact_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+
+
+}
+
+
+
+@media screen and (max-width: 575px) {
+
+    .green-button {
+        background-color: #64b37d;
+    }
+
+    .contactHeader {
+        align-items: center;
+        margin-top: 15%;
+        margin-bottom: 10%;
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+
+
+    .button-wrap {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .new-add-release-button {
+        background-color: rgb(50, 112, 245);
+        color: white;
+        border-radius: 5px;
+        border: 0.2vw solid white;
+    }
+
+    .custom-button {
+        background-color: rgb(125, 128, 128);
+        /* Replace "red" with the desired color */
+        color: white;
+        /* Replace "white" with the desired font color */
+        border-radius: 5px;
+        border: 2px solid white;
+    }
+
+
+
+
+
+
+
+
+    .press-content {
+        height: 80%;
+        max-height: 80%;
+    }
+
+    .pressCoverageBandName {
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        border-bottom: 2px solid grey;
+        padding: 10px;
+    }
+
+
+
+
+
+
+    .press-content .clippingViewContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+
+
+
+
+
+    .clippingViewContainer {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: center;
+        overflow: auto;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+        border-radius: 2rem;
+        max-height: 100%;
+    }
+
+    .clippingCard {
+        background-color: #f59e9e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 5px;
+        border: 5px darkcyan solid;
+        padding: 5px;
+        border-radius: 2rem;
+    }
+
+
+    .clipping_form {
+        position: fixed;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     .clipping_form button {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
@@ -268,74 +279,71 @@
 
 
 
-  
+
 
     .contactHeader {
-       margin-bottom: 0%;
+        margin-bottom: 0%;
     }
-    
-    .secondHeader {
-        
-    }
+
 
     .four-buttons {
         display: flex;
         justify-content: center;
         margin-top: 5%;
     }
-    
 
 
 
 
-.content .contactViewContainer ul {
-    width: 100%;
-    margin-top: 0%;
-    margin-left: 0%;
-  }
+
+    .press-content .contactViewContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
 
 
 
 
-.contactViewContainer {
-    grid-column: 2 / 3;
-    display: flex;
-    justify-content: center;
-    max-height: 100%;
-    overflow: auto;
-    background-color: rgb(224, 219, 219);
-    border: 10px solid rgb(224, 219, 219);
-    border-radius: 2rem;
-}
+    .contactViewContainer {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: center;
+        max-height: 100%;
+        overflow: auto;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+        border-radius: 2rem;
+    }
 
 
-.contactCard {
-    background-color: #f59e9e;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 5px;
-    border: 5px darkcyan solid;
-    padding: 5px;
-    border-radius: 2rem;
-}
+    .contactCard {
+        background-color: #f59e9e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 5px;
+        border: 5px darkcyan solid;
+        padding: 5px;
+        border-radius: 2rem;
+    }
 
 
 
-.contact_form {
-    position: fixed;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    .contact_form {
+        position: fixed;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-.contact_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-    
+    .contact_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
 
 }
