@@ -32,16 +32,17 @@ export const ViewProfile = () => {
             </div>
             <div className="content">
                 <div className="profileContainer">
-                    <div className="profileContent">
+                    <div className="containerOne">
+                        <div className="artistName">
+                            <b>Artist: </b>
+                            {bandUserObj.project_title ? (
+                                <>{bandUserObj.project_title}</>
+                            ) : (
+                                ""
+                            )}
+                        </div>
+
                         <div className="profileInfo">
-                            <div className="artistName">
-                                <b>Artist: </b>
-                                {bandUserObj.project_title ? (
-                                    <>{bandUserObj.project_title}</>
-                                ) : (
-                                    ""
-                                )}
-                            </div>
                             <div className="profileLinks">
                                 <button className="link-button">
                                     {bandUserObj.streaming ? (
@@ -87,15 +88,16 @@ export const ViewProfile = () => {
                                 </button>
                             </div>
 
-                        </div>
-                        <div className="profilePhoto">
-                            {bandUserObj.photo ? (
+                            <div className="profilePhoto">
+                                {bandUserObj.photo ? (
 
-                                <img src={bandUserObj.photo} alt="profile photo" />
-                            ) : (
-                                ""
-                            )}
+                                    <img src={bandUserObj.photo} alt="profile photo" />
+                                ) : (
+                                    ""
+                                )}
+                            </div>
                         </div>
+
                     </div>
 
                     <div className="artistBio">
