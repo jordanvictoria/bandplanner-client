@@ -101,8 +101,6 @@
 
     .profile_form {
         position: fixed;
-        height: 60%;
-        width: 40%;
         top: 48%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -232,8 +230,6 @@
 
     .profile_form {
         position: fixed;
-        height: 60%;
-        width: 40%;
         top: 48%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -247,5 +243,10 @@
 
     .editPhoto .compressedImg {
         margin-bottom: 5px;
+    }
+    .formRow {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
     }
 }
