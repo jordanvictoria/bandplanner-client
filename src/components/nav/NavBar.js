@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import Logo from "./bandplannerlogo.jpeg";
 import "./NavBar.css";
 
@@ -9,10 +9,19 @@ export const NavBar = ({ token, setToken }) => {
   const hamburger = useRef();
   const [isLiveDropdownVisible, setLiveDropdownVisible] = useState(false);
   const [isPressDropdownVisible, setPressDropdownVisible] = useState(false);
+  const location = useLocation(); // Get the current location
 
   const showMobileNavbar = () => {
     hamburger.current.classList.toggle("is-active");
     navbar.current.classList.toggle("is-active");
+  };
+
+  const closeMobileNavbar = () => {
+    // Check if any of the dropdowns are open, and do not close the menu in that case
+    if (!isLiveDropdownVisible && !isPressDropdownVisible) {
+      hamburger.current.classList.remove("is-active");
+      navbar.current.classList.remove("is-active");
+    }
   };
 
   
@@ -23,6 +32,27 @@ export const NavBar = ({ token, setToken }) => {
   const handlePressDropdownToggle = () => {
     setPressDropdownVisible(!isPressDropdownVisible);
   };
+
+  const toggleLiveDropdown = () => {
+    if (window.innerWidth <= 768) {
+      // For mobile devices, toggle the dropdown on click
+      handleLiveDropdownToggle();
+    }
+  };
+
+  const togglePressDropdown = () => {
+    if (window.innerWidth <= 768) {
+      // For mobile devices, toggle the dropdown on click
+      handlePressDropdownToggle();
+    }
+  };
+
+  const isLiveActive = () => {
+    const isActive = location.pathname.includes("/live") || location.pathname.includes("/setlist");
+    console.log("Is 'Live' Active?", isActive);
+    return isActive;
+  };
+  
 
   return (
     <nav
@@ -56,25 +86,25 @@ export const NavBar = ({ token, setToken }) => {
         <div className="navbar-item-container">
           <div>
             {token ? (
-              <Link to="/" className="navbar-item">
+              <NavLink to="/" exact activeClassName="active" className="navbar-item" onClick={closeMobileNavbar}>
                 Home
-              </Link>
+              </NavLink>
             ) : (
               ""
             )}
           </div>
-          <div className="dropdown-wrapper" onMouseEnter={handleLiveDropdownToggle} onMouseLeave={handleLiveDropdownToggle}>{token ? (
+          <div className="dropdown-wrapper" onClick={toggleLiveDropdown} onMouseEnter={handleLiveDropdownToggle} onMouseLeave={handleLiveDropdownToggle}>{token ? (
             <>
-              <Link to="/live" className="navbar-item ">
+              <NavLink activeClassName="active" to="/live" className={`navbar-item ${isLiveActive() ? "active" : ""}`}  onClick={closeMobileNavbar}>
                 Live
-              </Link>
+              </NavLink>
               {isLiveDropdownVisible && (
                 <div className="dropdown-content">
                   <li className="dropdown-item">
-                    <Link to="/live">Live Events</Link>
+                    <NavLink activeClassName="active" to="/live" onClick={closeMobileNavbar}>Live Events</NavLink>
                   </li>
                   <li className="dropdown-item">
-                    <Link to="/setlist">Setlists</Link>
+                    <NavLink activeClassName="active" to="/setlist" onClick={closeMobileNavbar}>Setlists</NavLink>
                   </li>
                 </div>
               )}
@@ -86,27 +116,27 @@ export const NavBar = ({ token, setToken }) => {
           <div >
             {token ? (
 
-              <Link to="/releases" className="navbar-item">
+              <NavLink activeClassName="active" to="/releases" className="navbar-item" onClick={closeMobileNavbar}>
                 Releases
-              </Link>
+              </NavLink>
 
             ) : (
               ""
             )}
           </div>
 
-          <div className="is-success dropdown-wrapper" onMouseEnter={handlePressDropdownToggle} onMouseLeave={handlePressDropdownToggle}>{token ? (
+          <div className="is-success dropdown-wrapper" onClick={togglePressDropdown} onMouseEnter={handlePressDropdownToggle} onMouseLeave={handlePressDropdownToggle}>{token ? (
             <>
-              <Link to="/pressclipping" className="navbar-item">
+              <NavLink activeClassName="active" to="/pressclipping" className="navbar-item" onClick={closeMobileNavbar}>
                 Press
-              </Link>
+              </NavLink>
               {isPressDropdownVisible && (
                 <div className="dropdown-content">
                   <li className="dropdown-item">
-                    <Link to="/pressclipping">Press Coverage</Link>
+                    <NavLink activeClassName="active" to="/pressclipping" onClick={closeMobileNavbar}>Press Coverage</NavLink>
                   </li>
                   <li className="dropdown-item">
-                    <Link to="/medialist">Media List</Link>
+                    <NavLink activeClassName="active" to="/medialist" onClick={closeMobileNavbar}>Media List</NavLink>
                   </li>
                 </div>
               )}
@@ -117,9 +147,9 @@ export const NavBar = ({ token, setToken }) => {
           </div>
           <div>
             {token ? (
-              <Link to="/profile" className="navbar-item">
+              <NavLink activeClassName="active" to="/profile" className="navbar-item" onClick={closeMobileNavbar}>
                 Profile
-              </Link>
+              </NavLink>
             ) : (
               ""
             )}
@@ -135,18 +165,19 @@ export const NavBar = ({ token, setToken }) => {
                   onClick={() => {
                     setToken("");
                     navigate("/login");
+                    closeMobileNavbar();
                   }}
                 >
                   Logout
                 </button>
               ) : (
                 <>
-                  <Link to="/register" className="button is-outlined">
+                  <NavLink activeClassName="active" to="/register" className="button is-outlined" onClick={closeMobileNavbar}>
                     Register
-                  </Link>
-                  <Link to="/login" className="button is-outlined">
+                  </NavLink>
+                  <NavLink activeClassName="active" to="/login" className="button is-outlined" onClick={closeMobileNavbar}>
                     Login
-                  </Link>
+                  </NavLink>
                 </>
               )}
             </div>
