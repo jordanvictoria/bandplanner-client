@@ -506,9 +506,11 @@ export const Setlists = () => {
                                                                     {...provided.draggableProps}
                                                                     {...provided.dragHandleProps}
                                                                     className="formRow"
+                                                                    
                                                                 >
-                                                                    {song.song.name}
-                                                                    <button onClick={async () => {
+                                                                    <span>{song.song.name}</span>
+                                                                    <button style={{ marginRight: "0"}}
+                                                                        onClick={async () => {
                                                                         await deleteSetlistSong(song.id)
                                                                         const newSetlistSongs = await getSetlistSongs();
                                                                         const setlistSongsByEditSetlistId = newSetlistSongs.filter(song => song.setlist.id === editSetlistId)
@@ -566,19 +568,19 @@ export const Setlists = () => {
                                         <li className="unchosenRow" key={song.id} value={song.id} >
                                             <div className="unchosen" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
                                                 {song.name}
-                                                <div style={{ display: 'flex' }}>
-
-                                                    <button onClick={async () => {
+                                                <div style={{ display: 'inline-flex' }}>
+                                                    <button style={{ flex: 1, width: '50px', height: '30px', fontSize: '10px' }}  onClick={async () => {
                                                         await setlistSongSaveButtonClick(song.id, editSetlistId)
                                                         const newSetlistSongs = await getSetlistSongs();
                                                         const setlistSongsByEditSetlistId = newSetlistSongs.filter(song => song.setlist.id === editSetlistId)
                                                         setFilteredSetlistSongs(setlistSongsByEditSetlistId)
                                                     }}>Add to Setlist</button>
-                                                    <button onClick={async () => {
+                                                    <button style={{ flex: 1, width: '50px', height: '30px', fontSize: '10px' }}  onClick={async () => {
                                                         await deleteSong(song.id)
                                                         const newSongs = await getSongs();
                                                         setSongs(newSongs)
-                                                    }}>Remove</button>
+                                                    }}>Delete Song</button>
+
                                                 </div>
                                             </div>
                                         </li>

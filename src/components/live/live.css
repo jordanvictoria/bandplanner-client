@@ -1961,21 +1961,38 @@
         padding: 2px;
     }
 
-    .unchosen {
+    .unchosenRow {
         margin-left: 5%;
-        max-height: 5%;
     }
-
-   
+    
+    .unchosenButton {
+        height: 50%;
+    }
 
 
     .edit_setlist button {
         background-color: rgb(189, 186, 186);
     }
 
+    .customList {
+        list-style-type: none;
+        padding: 0;
+      }
+      
+      .customList .formRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px; /* Adjust this value to control the space between list items */
+      }
+      
+      .customList .formRow span {
+        margin-right: 10px; /* Adjust this value to control the space between the song name and the button */
+      }
 
 
-formRow
+
+
 
 
 
