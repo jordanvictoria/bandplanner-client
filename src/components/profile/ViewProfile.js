@@ -30,7 +30,7 @@ export const ViewProfile = () => {
                     </Link>
                 </div>
             </div>
-            <div className="content">
+            <div className="profile-content">
                 <div className="profileContainer">
                     <div className="containerOne">
                         <div className="artistName">

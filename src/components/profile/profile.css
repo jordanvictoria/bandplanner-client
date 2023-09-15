@@ -6,7 +6,12 @@
         background-repeat: no-repeat;
     }
 
-
+    .profile-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: flex-start;
+        height: 60%;
+    }
 
 
     .profileContainer {
@@ -138,7 +143,7 @@
     }
 
 
-    .content {
+    .profile-content {
         display: flex;
         flex-direction: column-reverse;
         padding-right: 5%;
