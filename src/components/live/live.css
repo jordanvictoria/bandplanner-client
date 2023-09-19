@@ -31,7 +31,6 @@
     .header {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        /* Three equal columns */
         align-items: flex-start;
         margin-top: 5%;
         margin-bottom: 2%;
@@ -81,18 +80,26 @@
     .API-wrapper {
         grid-column: 1 / 2;
         display: flex;
-        justify-content: center;
-        width: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-left: 5%;
+        width: 80%;
         height: 100%;
         overflow: auto;
+        border: 2px solid black;
+        background-color: antiquewhite;
+        border-radius: .5rem;
+        padding-left: 2%;
+        padding-right: 5%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
     }
 
     .live-calendar-wrapper {
         grid-column: 2 / 3;
         display: flex;
         justify-content: center;
-        width: 100%;
-        height: 100%;
+        
         overflow: auto;
     }
 
@@ -140,7 +147,6 @@
     .fc-direction-ltr {
         height: 100%;
     }
-
 
 
 
@@ -296,25 +302,9 @@
 
 
 
-    .API {
-        border: 2px solid black;
-        background-color: antiquewhite;
-        border-radius: .5rem;
-        padding-left: 2%;
-        padding-right: 5%;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        height: 25%;
-    }
+   
 
 
-
-
-    .scrollable {
-        height: 300px;
-        /* Set the desired height for the scrollable div */
-        overflow: auto;
-        /* Enable scrolling */
-    }
 
     .searchBox {
         margin-top: 2%;
@@ -323,6 +313,13 @@
     .searchButton {
         margin-left: 6%;
     }
+
+    .scrollable {
+        margin-top: 5%;
+        width: 100%;
+        background-color: antiquewhite;
+    }
+
 
 
     .radioButtons {
@@ -336,8 +333,8 @@
 
     .APIcard {
         border: 2px solid black;
-        margin-top: 3px;
-        margin-right: 5px;
+        width: 100%;
+        border-radius: .5rem;
     }
 
 
@@ -1076,14 +1073,7 @@
 
 
 
-    .live-button-wrap {
-        grid-column: 2 / 3;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        height: 100%;
-    }
-
+   
 
     .new-add-release-button {
         background-color: rgb(50, 112, 245);
@@ -1102,13 +1092,18 @@
         padding: 1%;
     }
 
-
-
-
+    .live-button-wrap {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
 
     .content {
         display: flex;
         flex-direction: column-reverse;
+        justify-content: flex-end;
         padding-right: 5%;
         padding-left: 5%;
     }
@@ -1131,14 +1126,21 @@
         margin-bottom: 2%;
     }
 
+    
+
     .API-wrapper {
         display: flex;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
         overflow: auto;
+        height: 25% !important;
+        border: 2px solid black;
+        background-color: antiquewhite;
+        border-radius: .5rem;
+        padding-left: 2%;
+        padding-right: 5%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin-top: 2%;
-        margin-bottom: 5%;
     }
 
     .new-react-calendar {
@@ -1350,27 +1352,19 @@
 
 
 
-    .API {
-        border: 2px solid black;
-        background-color: antiquewhite;
-        border-radius: .5rem;
-        padding-left: 2%;
-        padding-right: 5%;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        max-height: 25%;
-        width: 100%;
-        overflow: auto;
-    }
-
-
-
-
+   
     .scrollable {
-        height: 300px;
-        /* Set the desired height for the scrollable div */
-        overflow: auto;
-        /* Enable scrolling */
+        margin-top: 5%;
+        width: 100%;
+        background-color: antiquewhite;
     }
+
+    .APIcard {
+        border: 2px solid black;
+        width: 100%;
+        border-radius: .5rem;
+    }
+
 
     .searchBox {
         margin: 0;
@@ -1381,7 +1375,7 @@
     }
 
     .searchBar {
-        margin-bottom: 10%;
+        margin-bottom: 3%;
     }
 
 
@@ -1390,12 +1384,6 @@
         gap: 10px;
     }
 
-
-    .APIcard {
-        border: 2px solid black;
-        margin-top: 3px;
-        margin-right: 5px;
-    }
 
 
 
@@ -1413,8 +1401,7 @@
         grid-column: 2 / 3;
         display: flex;
         justify-content: center;
-        height: 70%;
-        max-height: 70%;
+        height: 55%;
         overflow: auto;
         background-color: rgb(224, 219, 219);
         border: 10px solid rgb(224, 219, 219);

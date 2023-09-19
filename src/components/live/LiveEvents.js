@@ -866,7 +866,10 @@ export const LiveEvents = () => {
                 listSelected && (
 
                     <div className="content">
-                        <div className="API-wrapper">
+                        <div className="API-wrapper"
+                            style={{
+                                height: startSearch ? '100%' : '30%',
+                            }}>
                             <div className="API">
                                 <div className="searchBox">Search Live Events By: </div>
                                 <div className="radioButtons">
@@ -1130,8 +1133,11 @@ export const LiveEvents = () => {
                 calendarSelected && (
 
                     <div className="content">
-                        <div className="API-wrapper">
-                            <div className={`API ${startSearch ? 'fullHeight' : 'thirtyPercentHeight'}`}>
+                        <div className="API-wrapper"
+                            style={{
+                                height: startSearch ? '100%' : '30%',
+                            }}>
+                            <div className="API">
                                 <div className="searchBox">Search Live Events By: </div>
                                 <div className="radioButtons">
                                     <input
@@ -1167,7 +1173,7 @@ export const LiveEvents = () => {
                                             name="location"
                                             placeholder="Enter your search query"
                                         />
-                                        <button onClick={handleSearch}>Search</button>
+                                        <button className="searchButton" onClick={handleSearch}>Search</button>
                                     </div>
                                 )}
                                 {searchOption === "artist" && (
