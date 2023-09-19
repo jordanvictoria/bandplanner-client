@@ -11,7 +11,7 @@ export const NavBar = ({ token, setToken }) => {
   const [isPressDropdownVisible, setPressDropdownVisible] = useState(false);
   const [isLiveLinkActive, setLiveLinkActive] = useState(false);
 
-  const location = useLocation(); // Get the current location
+  const location = useLocation(); 
 
   const showMobileNavbar = () => {
     hamburger.current.classList.toggle("is-active");
@@ -19,7 +19,6 @@ export const NavBar = ({ token, setToken }) => {
   };
 
   const closeMobileNavbar = () => {
-    // Check if any of the dropdowns are open, and do not close the menu in that case
     hamburger.current.classList.remove("is-active");
     navbar.current.classList.remove("is-active");
 
@@ -38,14 +37,7 @@ export const NavBar = ({ token, setToken }) => {
 
 
 
-  const isLiveActive = () => {
-    const isActive =
-      location.pathname.includes("/live") ||
-      location.pathname.includes("/setlist") ||
-      isLiveLinkActive; // Check if isLiveLinkActive is true
-    console.log("Is 'Live' Active?", isActive);
-    return isActive;
-  };
+
 
 
   return (
@@ -87,15 +79,17 @@ export const NavBar = ({ token, setToken }) => {
               ""
             )}
           </div>
+
+
           <div className="dropdown-wrapper" onMouseEnter={handleLiveDropdownToggle} onMouseLeave={handleLiveDropdownToggle}>{token ? (
             <>
-              <NavLink to="/live" activeClassName={`${isLiveActive() ? "active" : ""}`} className="navbar-item" onClick={closeMobileNavbar}>
+              <NavLink to="/live" activeClassName={`${isLiveLinkActive ? "active" : ""}`} className="navbar-item" >
                 Live
               </NavLink>
               {isLiveDropdownVisible && (
                 <div className="dropdown-content">
                   <li className="dropdown-item">
-                    <NavLink to="/live" activeClassName={`${isLiveActive() ? "active" : ""}`}
+                    <NavLink to="/live" 
                       onClick={() => {
                         closeMobileNavbar();
                         setLiveLinkActive(true); // Set isLiveLinkActive to true
@@ -103,7 +97,7 @@ export const NavBar = ({ token, setToken }) => {
                     >Live Events</NavLink>
                   </li>
                   <li className="dropdown-item">
-                    <NavLink to="/setlist" activeClassName={`${isLiveActive() ? "active" : ""}`}
+                    <NavLink to="/setlist" 
                       onClick={() => {
                         closeMobileNavbar();
                         setLiveLinkActive(true); // Set isLiveLinkActive to true
@@ -117,6 +111,8 @@ export const NavBar = ({ token, setToken }) => {
             ""
           )}
           </div>
+
+
           <div >
             {token ? (
 
@@ -129,9 +125,11 @@ export const NavBar = ({ token, setToken }) => {
             )}
           </div>
 
+
+
           <div className="is-success dropdown-wrapper" onMouseEnter={handlePressDropdownToggle} onMouseLeave={handlePressDropdownToggle}>{token ? (
             <>
-              <NavLink activeClassName="active" to="/pressclipping" className="navbar-item" onClick={closeMobileNavbar}>
+              <NavLink activeClassName="active" to="/pressclipping" className="navbar-item">
                 Press
               </NavLink>
               {isPressDropdownVisible && (
@@ -149,6 +147,8 @@ export const NavBar = ({ token, setToken }) => {
             ""
           )}
           </div>
+
+          
           <div>
             {token ? (
               <NavLink activeClassName="active" to="/profile" className="navbar-item" onClick={closeMobileNavbar}>
