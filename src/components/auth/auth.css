@@ -6,7 +6,11 @@
 
   .rounded-form {
     border-radius: 10px !important;
+    overflow: auto;
   }
 
   
   
+.navbar-menu.is-active {
+  background-color: rgb(253, 128, 136);
+}

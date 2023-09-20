@@ -1,163 +1,724 @@
-@media screen and (min-width:641px) {
+@media screen and (min-width:769px) {
 
-.site-background {
-  background-image: url('../nav/bandplannerlogo.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+
+  .site-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../nav/bandplannerlogo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* Three equal columns */
+    align-items: flex-start;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding: 2%;
+    width: 100%;
+    height: 2%;
+  }
+
+  .button-wrap {
+    grid-column: 2 / 3;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+  }
+
+  .new-add-event-button {
+    padding: 1% 2%;
+    font-size: 1vw;
+    background-color: rgb(50, 112, 245);
+    color: white;
+    border-radius: 5px;
+    border: 0.2vw solid white;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* Three equal columns */
+    align-items: flex-start;
+    height: 60%;
+  }
+
+
+  .calendar-wrapper {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .filter-wrapper {
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .new-react-calendar {
+    background-color: antiquewhite;
+    padding: 2%;
+    border: 0.5vw darkcyan solid;
+    overflow: auto;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .new-filter-box {
+    border: 2px solid black;
+    margin-left: 15px;
+    padding: 10px;
+    /* Add padding for spacing */
+    background-color: antiquewhite !important;
+    width: 50%;
+    max-height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align content to the top */
+    justify-content: flex-start;
+    /* Align content to the top */
+    overflow: auto;
+  }
+
+
+  .content table tbody tr:last-child td {
+    padding: 0;
+  }
+
+  .fc-direction-ltr {
+    height: 100%;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  .modal {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform: translate(50%, 50%);
+  }
+
+  .modal-content {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-header {
+    background-color: #5454ff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+  }
+
+  .modal-title {
+    text-align: center; 
+    flex: 1; 
+  }
+
+
+  .modal-body {
+    height: 30%;
+  }
+
+  .modal-body p {
+    text-align: center; 
+    flex: 1; 
+  }
+
+  .modal-footer {
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+  }
+
+
+  .left-buttons {
+    display: flex;
+    align-items: center;
+    margin: 2px
+  }
+
+  .right-button {
+    margin-left: auto;
+    margin-right: 2px;
+
+  }
+
+  .new-square-modal .modal-content {
+    width: 30vw;
+    height: 10vw;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .new_pop_up {
+    position: fixed;
+    height: 10%;
+    width: 15%;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    border: 2px solid black;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .pop_up select {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .pop_up button {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .rehearsal_form {
+    position: fixed;
+    height: 44%;
+    top: 295px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .rehearsal_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .formRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .formRow label {
+    width: 100px;
+    /* Adjust the width as needed */
+    margin-right: 10px;
+  }
+
+  .formRow input {
+    margin-left: auto;
+  }
+
+  .formButtons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+
+  .event_form {
+    position: fixed;
+    height: 25%;
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .event_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
 }
 
 
-.add-event-button {
-  position: absolute;
-  top: 80px;
-  left: 365px;
-  padding: 5px 5px;
-  font-size: 14px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 575px) {
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+
+  .site-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../nav/bandplannerlogo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    align-items: center;
+    margin-top: 20%;
+    margin-bottom: 4%;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  .button-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .new-add-event-button {
+    width: 100%;
+    height: 100%;
+    padding: 1% 2%;
+    font-size: 2vw;
+    background-color: rgb(50, 112, 245);
+    color: white;
+    border-radius: 5px;
+    border: 0.2vw solid white;
+  }
+
+
+
+
+
+
+  .content {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+
+  .calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 90%;
+    overflow: auto;
+  }
+
+  .filter-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 4%;
+  }
+
+  .new-react-calendar {
+    background-color: antiquewhite;
+    padding: 2% 2% 0 2%;
+    border: 0.5vw darkcyan solid;
+    overflow: auto;
+    width: 100%;
+    height: 65%;
+  }
+
+
+  .new-filter-box {
+    border: 2px solid black;
+    padding: 1%;
+    background-color: antiquewhite !important;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    grid-column-gap: 2%;
+  }
+
+  .new-filters {
+    font-size: x-small;
+
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    /* Align checkbox and text vertically */
+    margin-bottom: 2%;
+    /* Add some vertical spacing between items */
+  }
+
+  input[type="checkbox"] {
+    margin-right: 5%;
+    /* Add some spacing between checkbox and text */
+  }
+
+
+
+
+
+
+
+  .fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0;
+    max-height: 5%;
+  }
+
+
+  .fc .fc-toolbar {
+    max-height: 5%;
+  }
+
+  .fc .fc-toolbar-chunk {
+    display: flex;
+  }
+
+  .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+    margin: 0;
+    padding: 0;
+    height: 0%;
+    width: 0%;
+  }
+
+  .fc .fc-daygrid-day-frame {
+    height: 20px;
+  }
+
+  .fc-h-event {
+    border: 0px;
+  }
+
+
+
+  .fc .fc-scroller-liquid-absolute {
+    inset: 0px;
+  }
+
+
+  .fc .fc-scrollgrid-section>td {
+    padding: 0px;
+  }
+
+  .fc .fc-daygrid-day-number {
+    padding: 0px;
+    font-size: xx-small;
+  }
+
+  .fc .fc-daygrid-day-top {
+    height: 50%;
+
+  }
+
+  .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .fc .fc-daygrid-day-frame {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+
+
+  .fc .fc-daygrid-block-event .fc-event-title .fc-sticky {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+
+
+  .content table td {
+    padding: 0 5% 0 0 !important;
+  }
+
+  .fc-daygrid-event {
+    font-size: xx-small;
+    width: 100%;
+    height: 100%;
+  }
+
+
+
+
+
+
+
+
+  .modal {
+    position: absolute;
+    transform: translate(50%, 50%);
+  }
+
+  .new-square-modal .modal-content {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+
+  .modal-header {
+    background-color: #5454ff !important;
+    color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    font-size: small;
+  }
+
+
+  .modal-title {
+    text-align: center; /* Center align the text */
+    flex: 1; /* Allow the title to expand and take available space */
+  }
+
+
+  .modal-body {
+    height: 30%;
+  }
+
+  .modal-body p {
+    font-size: small;
+    text-align: center; /* Center align the text */
+    flex: 1; /* Allow the title to expand and take available space */
+  }
+
+  .modal-footer {
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+  }
+
+
+  .left-buttons {
+    display: flex;
+    align-items: center;
+    margin: 2px
+  }
+
+  .right-button {
+    margin-left: auto;
+    margin-right: 2px;
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .new_pop_up {
+    position: fixed;
+    background-color: rgb(139, 167, 227);
+    border: 2px solid black;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 10%;
+    z-index: 9999;
+  }
+
+  .pop_up select {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .pop_up button {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .rehearsal_form {
+    position: fixed;
+    height: 44%;
+    top: 295px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .rehearsal_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .formRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .formRow label {
+    width: 100px;
+    /* Adjust the width as needed */
+    margin-right: 10px;
+  }
+
+  .formRow input {
+    margin-left: auto;
+  }
+
+  .formButtons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+
+  .event_form {
+    position: fixed;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgb(139, 167, 227);
+    color: rgb(4, 4, 4);
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .event_form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 }
 
-.custom-button {
-  background-color: rgb(50, 112, 245);
-  color: white;
-  border-radius: 5px;
-  border: 2px solid white;
-}
-
-
-
-
-.react-calendar {
-  background-color: antiquewhite;
-  width: 100%;
-  height: 100%;
+.new_single_form {
+  position: fixed;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgb(139, 167, 227);
+  color: rgb(4, 4, 4);
+  border: 2px solid black;
   padding: 10px;
-  border: 5px darkcyan solid;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: auto;
 }
 
-
-
-
-.filterBox {
-  border: 2px solid black;
-  margin-left: 15px;
-  padding: 2px;
-  background-color: antiquewhite !important;
-  position: absolute;
-  top: 80px;
-  width: 250px;
-  right: -30px;
-
-}
-
-
-
-
-
-
-
-
-
-
-.modal {
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  transform: translate(50%, 50%);
-}
-
-.modal-content {
-  background-color: #f7f7f7;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
-
-.modal-header {
-  background-color: #5454ff !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* width: 50% ; */
-  height: 50%;
-}
-
-.modal-body {
-  /* width: 30%; */
-  height: 30%;
-}
-
-.modal-footer {
-  background-color: #f7f7f7;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* width: 20%; */
-  height: 20%;
-}
-
-
-.left-buttons {
-  display: flex;
-  align-items: center;
-  margin: 2px
-}
-
-.right-button {
-  margin-left: auto;
-  margin-right: 2px;
-
-}
-
-.square-modal .modal-content {
-  width: 30vw;
-  /* Set the desired width as a percentage of the viewport width */
-  height: 10vw;
-  /* Set the same height as the width */
-  max-width: 400px;
-  /* Set a maximum width if needed */
-  max-height: 400px;
-  /* Set a maximum height if needed */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.pop_up {
+.new_bundle_form {
   position: fixed;
-  height: 10%;
-  width: 15%;
-  top: 22%;
+  top: 43%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
   background-color: rgb(139, 167, 227);
+  color: rgb(4, 4, 4);
   border: 2px solid black;
   padding: 10px;
-  justify-content: center;
-}
-
-.pop_up select {
-
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: auto;
 }
 
-.pop_up button {
-
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.rehearsal_form {
+.new_rehearsal_form {
   position: fixed;
-  height: 44%;
-  top: 295px;
+  top: 36%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
@@ -168,38 +729,11 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.rehearsal_form button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.formRow {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.formRow label {
-  width: 100px;
-  /* Adjust the width as needed */
-  margin-right: 10px;
-}
-
-.formRow input {
-  margin-left: auto;
-}
-
-.formButtons {
-  display: flex;
-  justify-content: flex-end;
-}
-
-
-
-.event_form {
-
+.newGigForm {
   position: fixed;
-  height: 25%;
-  top: 29%;
+  height: 70%;
+  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
@@ -208,22 +742,7 @@
   border: 2px solid black;
   padding: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: auto;
 }
 
-.event_form button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
+  
