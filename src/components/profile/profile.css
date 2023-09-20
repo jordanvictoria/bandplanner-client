@@ -135,6 +135,14 @@
 @media screen and (max-width: 575px) {
 
 
+    .header {
+        align-items: center;
+        margin-top: 20%;
+        margin-bottom: 1%;
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
 
     .site-background {
         background-image: url('../nav/bandplannerlogo.jpeg');

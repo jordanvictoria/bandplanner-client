@@ -1223,7 +1223,7 @@ export const LiveEvents = () => {
                         </div>
 
                         <div className="live-calendar-wrapper">
-                            <div className="new-react-calendar">
+                            <div className="live-new-react-calendar">
                                 <FullCalendar
                                     themeSystem="Simplex"
                                     plugins={[dayGridPlugin]}
@@ -1235,7 +1235,7 @@ export const LiveEvents = () => {
                             </div>
                         </div>
 
-                        <div className="filter-wrapper">
+                        <div className="live-filter-wrapper">
                             <div className="live-filter-box">
                                 <div className="live-filters">
                                     <div >

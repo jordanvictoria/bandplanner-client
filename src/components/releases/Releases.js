@@ -1119,7 +1119,7 @@ export const Releases = () => {
                 calendarSelected && (
                     <div className="content">
                         <div className="calendar-wrapper">
-                            <div className="new-react-calendar">
+                            <div className="release-new-react-calendar">
                                 <FullCalendar
                                     themeSystem="Simplex"
                                     plugins={[dayGridPlugin]}

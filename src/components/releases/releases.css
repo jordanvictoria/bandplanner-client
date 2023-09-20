@@ -93,7 +93,7 @@
     overflow: auto;
   }
 
-  .new-react-calendar {
+  .release-new-react-calendar {
     background-color: antiquewhite;
     padding: 2%;
     border: 0.5vw darkcyan solid;
@@ -811,6 +811,7 @@
     flex-direction: column-reverse;
     padding-right: 5%;
     padding-left: 5%;
+    height: 100%;
   }
 
 
@@ -831,13 +832,13 @@
     margin-bottom: 2%;
   }
 
-  .new-react-calendar {
+  .release-new-react-calendar {
     background-color: antiquewhite;
     padding: 2% 2% 0 2%;
     border: 0.5vw darkcyan solid;
     overflow: auto;
     width: 100%;
-    height: 100%;
+    height: 65%;
   }
 
 
@@ -1053,6 +1054,7 @@
     background-color: rgb(224, 219, 219);
     border: 10px solid rgb(224, 219, 219);
     border-radius: 2rem;
+        max-height: 55%;
   }
 
   .content .releaseContainer ul {
