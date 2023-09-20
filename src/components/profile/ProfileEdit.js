@@ -38,12 +38,12 @@ export const ProfileEdit = () => {
 
     useEffect(
         () => {
-            if (photoUpload === true) {
+            if (photoUpload) {
                 setProfileEditURL(profile.photo)
             } else {
                 setProfileEditURL("")
             }
-        }, [photoUpload])
+        }, [photoUpload, profile])
 
     useEffect(
         () => {
@@ -105,7 +105,7 @@ export const ProfileEdit = () => {
 
 
     return <>
-        <div className="site-background hero is-fullheight">
+        <div className="site-background">
             <form className="profile_form">
 
                 <fieldset>
@@ -118,7 +118,8 @@ export const ProfileEdit = () => {
                             }
                         } />
                     </div>
-                    <div className="formRow">Photo:
+                    <div className="formRow">
+                    <label htmlFor="photo">Photo:</label>
                         <div className="editPhoto" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
                             {profileEditURL === "" ? ""

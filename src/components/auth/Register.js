@@ -29,8 +29,9 @@ export const Register = ({ setToken }) => {
 
       registerUser(newUser)
         .then((res) => {
-          if ("valid" in res && res.valid) {
-            setToken(res.token);
+          console.log("Registration response:", res);
+          if ("token" in res) {
+            setToken(res.token, res.user_id);
             navigate("/");
           } else if ("error" in res) {
             setErrorMessage(res.error);

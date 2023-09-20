@@ -334,36 +334,49 @@ export const Setlists = () => {
 
     return <>
 
-        <div className="site-background hero is-fullheight">
-            <div className="setlistContainer">
-                <div className="setlistBoxContainer">
-                    <div className="setListBandName">
-                        {bandUserObj.project_title}'s Setlists
-                    </div>
-                    {
-                        setlists.map(setlist => {
-                            const matchedSongs = setlistSongs.filter(song => song.setlist.id === setlist.id)
-                            const numberOfSongs = matchedSongs.length;
-                            const dateDisplay = formatDateDisplay(setlist.last_edited)
-                            return (
-                                <div key={setlist.id} className="setlistBox" onClick={() => {
-                                    setSetlistId(parseInt(setlist.id))
-                                    setViewSetlist(true)
-                                }} >
-                                    <h3>{setlist.title}</h3>
-                                    <div className="fontStyles">
-                                        <h6>- {numberOfSongs} songs</h6>
-                                        <h6>- Last edited on {dateDisplay}</h6>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                    <div className="addSetlist" onClick={() => {
+        <div className="site-background">
+            <div className="header">
+                <div className="button-wrap">
+                    <div className="new-add-live-button custom-button" onClick={() => {
                         openNewSetlistForm(true)
                     }}>
                         Add New Setlist
                     </div>
+                </div>
+            </div>
+            <div className="content">
+                <div className="setlistContainer">
+                    <h3 className="setListBandName">
+                        <b>
+                            {bandUserObj.project_title ? (
+                                <>{bandUserObj.project_title}'s Setlists</>
+                            ) : (
+                                <>Setlists</>
+                            )}
+                        </b>
+                    </h3>
+                    <ul>
+
+                        {
+                            setlists.map(setlist => {
+                                const matchedSongs = setlistSongs.filter(song => song.setlist.id === setlist.id)
+                                const numberOfSongs = matchedSongs.length;
+                                const dateDisplay = formatDateDisplay(setlist.last_edited)
+                                return (
+                                    <li key={setlist.id} value={setlist.id}>
+                                        <div key={setlist.id} className="liveItem" onClick={() => {
+                                            setSetlistId(parseInt(setlist.id))
+                                            setViewSetlist(true)
+                                        }} >
+                                            <h3><b>{setlist.title}</b></h3>
+                                            <section>- {numberOfSongs} songs</section>
+                                            <section>- Last edited on {dateDisplay}</section>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
                 </div>
             </div>
             {
@@ -382,24 +395,28 @@ export const Setlists = () => {
                                 })
                             }
                         </ol>
-                        <div className="button_group">
-                            <button className="edit_button" onClick={() => {
-                                setEditSetlistId(setlistViewObj.id)
-                                setSetlistId(0)
-                                setViewSetlist(false)
-                                openEditSetlistForm(true)
-                            }}>Edit</button>
-                            <button className="delete_button" onClick={async () => {
-                                await deleteSetlist(setlistViewObj.id)
-                                const newSetlists = await getSetlists();
-                                setSetlists(newSetlists);
-                                setViewSetlist(false)
-                            }}>Delete</button>
+                        <div className="setlist-button-group">
+                            <div className="buttonOne">
+                                <button className="edit_button" onClick={() => {
+                                    setEditSetlistId(setlistViewObj.id)
+                                    setSetlistId(0)
+                                    setViewSetlist(false)
+                                    openEditSetlistForm(true)
+                                }}>Edit</button>
+                                <button className="delete_button" onClick={async () => {
+                                    await deleteSetlist(setlistViewObj.id)
+                                    const newSetlists = await getSetlists();
+                                    setSetlists(newSetlists);
+                                    setViewSetlist(false)
+                                }}>Delete</button>
+                            </div>
+                            <div>
+                                <button className="close_button" onClick={() => {
+                                    setSetlistId(0)
+                                    setViewSetlist(false)
+                                }}>Close</button>
+                            </div>
                         </div>
-                        <button className="close_button" onClick={() => {
-                            setSetlistId(0)
-                            setViewSetlist(false)
-                        }}>Close</button>
                     </div>
                 )
             }
@@ -489,9 +506,11 @@ export const Setlists = () => {
                                                                     {...provided.draggableProps}
                                                                     {...provided.dragHandleProps}
                                                                     className="formRow"
+                                                                    
                                                                 >
-                                                                    {song.song.name}
-                                                                    <button onClick={async () => {
+                                                                    <span>{song.song.name}</span>
+                                                                    <button style={{ marginRight: "0"}}
+                                                                        onClick={async () => {
                                                                         await deleteSetlistSong(song.id)
                                                                         const newSetlistSongs = await getSetlistSongs();
                                                                         const setlistSongsByEditSetlistId = newSetlistSongs.filter(song => song.setlist.id === editSetlistId)
@@ -546,22 +565,22 @@ export const Setlists = () => {
                             {
                                 unchosenSongs.map(song => {
                                     return (
-                                        <li key={song.id} value={song.id} >
-                                            <div className="unchosen" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',  }}>
+                                        <li className="unchosenRow" key={song.id} value={song.id} >
+                                            <div className="unchosen" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
                                                 {song.name}
-                                                <div style={{ display: 'flex' }}>
-
-                                                    <button onClick={async () => {
+                                                <div style={{ display: 'inline-flex' }}>
+                                                    <button style={{ flex: 1, width: '50px', height: '30px', fontSize: '10px' }}  onClick={async () => {
                                                         await setlistSongSaveButtonClick(song.id, editSetlistId)
                                                         const newSetlistSongs = await getSetlistSongs();
                                                         const setlistSongsByEditSetlistId = newSetlistSongs.filter(song => song.setlist.id === editSetlistId)
                                                         setFilteredSetlistSongs(setlistSongsByEditSetlistId)
                                                     }}>Add to Setlist</button>
-                                                    <button onClick={async () => {
+                                                    <button style={{ flex: 1, width: '50px', height: '30px', fontSize: '10px' }}  onClick={async () => {
                                                         await deleteSong(song.id)
                                                         const newSongs = await getSongs();
                                                         setSongs(newSongs)
-                                                    }}>Remove</button>
+                                                    }}>Delete Song</button>
+
                                                 </div>
                                             </div>
                                         </li>

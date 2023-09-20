@@ -1,7 +1,7 @@
 
 
 export const getBandUsers = () => {
-  return fetch("http://localhost:8000/bandusers", {
+  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/bandusers", {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -23,7 +23,7 @@ export const getBandUsers = () => {
 
 
 export const getSetlists = () => {
-  return fetch("http://localhost:8000/setlists", {
+  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/setlists", {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -35,7 +35,7 @@ export const getSetlists = () => {
 };
 
 export const getSetlistById = (id) => {
-  return fetch(`http://localhost:8000/setlists/${id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/setlists/${id}`, {
     headers: {
       "Authorization": `Token ${localStorage.getItem("band_token")}`
     }
@@ -45,7 +45,7 @@ export const getSetlistById = (id) => {
 
 
 export const addSetlist = (newSetlist) => {
-  return fetch("http://localhost:8000/setlists", {
+  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/setlists", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export const addSetlist = (newSetlist) => {
 
 
 export const editSetlist = (newSetlist) => {
-  return fetch(`http://localhost:8000/setlists/${newSetlist.id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/setlists/${newSetlist.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export const editSetlist = (newSetlist) => {
 
 
 export const deleteSetlist = (id) => {
-  return fetch(`http://localhost:8000/setlists/${id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/setlists/${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Token ${localStorage.getItem("band_token")}`
@@ -89,7 +89,7 @@ export const deleteSetlist = (id) => {
 
 
 export const getSongs = () => {
-  return fetch("http://localhost:8000/songs", {
+  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/songs", {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -107,7 +107,7 @@ export const getSongs = () => {
 
 
 export const getSongById = (id) => {
-  return fetch(`http://localhost:8000/songs/${id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/songs/${id}`, {
     headers: {
       "Authorization": `Token ${localStorage.getItem("band_token")}`
     }
@@ -120,7 +120,7 @@ export const getSongById = (id) => {
 
 
 export const addSong = (newSong) => {
-  return fetch("http://localhost:8000/songs", {
+  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/songs", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -134,7 +134,7 @@ export const addSong = (newSong) => {
 
 
 export const editSong = (newSong) => {
-  return fetch(`http://localhost:8000/songs/${newSong.id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/songs/${newSong.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -147,7 +147,7 @@ export const editSong = (newSong) => {
 
 
 export const deleteSong = (id) => {
-  return fetch(`http://localhost:8000/songs/${id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/songs/${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Token ${localStorage.getItem("band_token")}`
@@ -163,7 +163,7 @@ export const deleteSong = (id) => {
 
 
 export const getSetlistSongs = () => {
-  return fetch("http://localhost:8000/setlistsongs", {
+  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/setlistsongs", {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -175,7 +175,7 @@ export const getSetlistSongs = () => {
 };
 
 export const getSetlistSongById = (id) => {
-  return fetch(`http://localhost:8000/setlistsongs/${id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/setlistsongs/${id}`, {
     headers: {
       "Authorization": `Token ${localStorage.getItem("band_token")}`
     }
@@ -187,7 +187,7 @@ export const getSetlistSongById = (id) => {
 
 
  export const addSetlistSong = (newSetlistSong) => {
-  return fetch("http://localhost:8000/setlistsongs", {
+  return fetch("https://bandplanner-d63f46179b66.herokuapp.com/setlistsongs", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -198,7 +198,7 @@ export const getSetlistSongById = (id) => {
 };
 
 export const editSetlistSong = (newSetlistSong) => {
-  return fetch(`http://localhost:8000/setlistsongs/${newSetlistSong.id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/setlistsongs/${newSetlistSong.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -212,7 +212,7 @@ export const editSetlistSong = (newSetlistSong) => {
 
 
 export const deleteSetlistSong = (id) => {
-  return fetch(`http://localhost:8000/setlistsongs/${id}`, {
+  return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/setlistsongs/${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Token ${localStorage.getItem("band_token")}`
@@ -228,7 +228,7 @@ export const deleteSetlistSong = (id) => {
 
   
   export const getEventsByType = (event_type) => {
-    return fetch(`http://localhost:8000/events?event_type=${event_type}`, {
+    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/events?event_type=${event_type}`, {
       headers: {
         "Authorization": `Token ${localStorage.getItem("band_token")}`
       }
@@ -238,7 +238,7 @@ export const deleteSetlistSong = (id) => {
   
   
   export const getEvents = () => {
-    return fetch("http://localhost:8000/events", {
+    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/events", {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -249,7 +249,7 @@ export const deleteSetlistSong = (id) => {
     
   };
   export const getEventById = (id) => {
-    return fetch(`http://localhost:8000/events/${id}`, {
+    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/events/${id}`, {
       headers: {
         "Authorization": `Token ${localStorage.getItem("band_token")}`
       }
@@ -267,7 +267,7 @@ export const deleteSetlistSong = (id) => {
   
   
   export const addEvent = (newEvent) => {
-    return fetch("http://localhost:8000/events", {
+    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/events", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -278,7 +278,7 @@ export const deleteSetlistSong = (id) => {
   };
   
   export const editEvent = (newEvent) => {
-    return fetch(`http://localhost:8000/events/${newEvent.id}`, {
+    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/events/${newEvent.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -291,7 +291,7 @@ export const deleteSetlistSong = (id) => {
   
   
   export const deleteEvent = (eventId) => {
-    return fetch(`http://localhost:8000/events/${eventId}`, {
+    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/events/${eventId}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Token ${localStorage.getItem("band_token")}`
@@ -304,7 +304,7 @@ export const deleteSetlistSong = (id) => {
   //rehearsal
   
   export const getRehearsals = () => {
-    return fetch("http://localhost:8000/rehearsals", {
+    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/rehearsals", {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -316,7 +316,7 @@ export const deleteSetlistSong = (id) => {
   };
   
   export const getRehearsalById = (id) => {
-    return fetch(`http://localhost:8000/rehearsals/${id}`, {
+    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/rehearsals/${id}`, {
       headers: {
         "Authorization": `Token ${localStorage.getItem("band_token")}`
       }
@@ -324,7 +324,7 @@ export const deleteSetlistSong = (id) => {
   };
   
   export const addRehearsal = (newEvent) => {
-    return fetch("http://localhost:8000/rehearsals", {
+    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/rehearsals", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -334,7 +334,7 @@ export const deleteSetlistSong = (id) => {
     })
   };
   export const editRehearsal = (newRehearsal) => {
-    return fetch(`http://localhost:8000/rehearsals/${newRehearsal.id}`, {
+    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/rehearsals/${newRehearsal.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -355,7 +355,7 @@ export const deleteSetlistSong = (id) => {
   
   
   export const getGigs = () => {
-    return fetch("http://localhost:8000/gigs", {
+    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/gigs", {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -367,7 +367,7 @@ export const deleteSetlistSong = (id) => {
   };
   
   export const getGigById = (id) => {
-    return fetch(`http://localhost:8000/gigs/${id}`, {
+    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/gigs/${id}`, {
       headers: {
         "Authorization": `Token ${localStorage.getItem("band_token")}`
       }
@@ -375,7 +375,7 @@ export const deleteSetlistSong = (id) => {
   };
   
   export const addGig = (newEvent) => {
-    return fetch("http://localhost:8000/gigs", {
+    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/gigs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -385,7 +385,7 @@ export const deleteSetlistSong = (id) => {
     })
   };
   export const editGig = (newGig) => {
-    return fetch(`http://localhost:8000/gigs/${newGig.id}`, {
+    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/gigs/${newGig.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

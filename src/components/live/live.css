@@ -1,68 +1,151 @@
+@media screen and (min-width:769px) {
+
+    .dragged-item {
+        opacity: 0.5;
+        /* Adjust the opacity value as needed */
+    }
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+
+    .site-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../nav/bandplannerlogo.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: flex-start;
+        margin-top: 5%;
+        margin-bottom: 2%;
+        padding: 2%;
+        width: 100%;
+        height: 2%;
+    }
+
+    .live-button-wrap {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+    .new-add-live-button {
+        padding: 1% 2%;
+        font-size: 1vw;
+        background-color: rgb(50, 112, 245);
+        color: white;
+        border-radius: 5px;
+        border: 0.2vw solid white;
+    }
+
+    .custom-button {
+        background-color: rgb(125, 128, 128);
+        /* Replace "red" with the desired color */
+        color: white;
+        /* Replace "white" with the desired font color */
+        border-radius: 5px;
+        border: 2px solid white;
+    }
+
+
+
+
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: flex-start;
+        height: 60%;
+    }
+
+    .API-wrapper {
+        grid-column: 1 / 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-left: 5%;
+        width: 80%;
+        height: 100%;
+        overflow: auto;
+        border: 2px solid black;
+        background-color: antiquewhite;
+        border-radius: .5rem;
+        padding-left: 2%;
+        padding-right: 5%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+    }
+
+    .live-calendar-wrapper {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: center;
+        overflow: auto;
+    }
 
-.dragged-item {
-    opacity: 0.5; /* Adjust the opacity value as needed */
-  }
+    .filter-wrapper {
+        grid-column: 3 / 4;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
 
-  .site-background {
-    background-image: url('../nav/bandplannerlogo.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-
-.add-event-button {
-    position: absolute;
-    top: 80px;
-    /* Adjust the top position as needed */
-    left: 365px;
-    /* Adjust the right position as needed */
-    padding: 5px 5px;
-    /* Adjust the padding as needed */
-    font-size: 14px;
-    /* Adjust the font size as needed */
-}
-
-.custom-button {
-    background-color: rgb(125, 128, 128);
-    /* Replace "red" with the desired color */
-    color: white;
-    /* Replace "white" with the desired font color */
-    border-radius: 5px;
-    border: 2px solid white;
-}
-
-
-.button-view-container {
-    position: absolute;
-    top: 75px;
-    right: 25%;
-    transform: translateY(50%);
-}
+    .live-new-react-calendar {
+        background-color: antiquewhite;
+        padding: 2%;
+        border: 0.5vw darkcyan solid;
+        overflow: auto;
+        overflow-y: auto;
+        width: 100%;
+        height: 100%;
+    }
 
-.react-calendar {
-    margin-top: 10px;
-    background-color: antiquewhite;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    border: 5px darkcyan solid;
-    overflow: auto;
-}
 
+    .live-filter-box {
+        border: 2px solid black;
+        margin-left: 15px;
+        padding: 10px;
+        /* Add padding for spacing */
+        background-color: antiquewhite !important;
+        height: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        /* Align content to the top */
+        justify-content: flex-start;
+        /* Align content to the top */
+        overflow: auto;
+    }
 
 
+    .content table tbody tr:last-child td {
+        padding: 0;
+    }
 
-.filterBox {
-    border: 2px solid black;
-    margin-left: 15px;
-    padding: 2px;
-    background-color: antiquewhite !important;
-    position: absolute !important;
-    top: 130px !important;
-    /* Adjust the top position as needed */
-    width: 250px !important;
-    right: 50px !important;
-}
+    .fc-direction-ltr {
+        height: 100%;
+    }
 
 
 
@@ -73,72 +156,72 @@
 
 
 
-.modal {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    transform: translate(50%, 50%);
-}
 
-.modal-content {
-    background-color: #f7f7f7;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
 
-.modal-header {
-    background-color: #5454ff !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* width: 50% ; */
-    height: 50%;
-}
 
-.modal-body {
-    /* width: 30%; */
-    height: 30%;
-}
 
-.modal-footer {
-    background-color: #f7f7f7;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* width: 20%; */
-    height: 20%;
-}
 
 
-.left-buttons {
-    display: flex;
-    align-items: center;
-    margin: 2px
-}
 
-.right-button {
-    margin-left: auto;
-    margin-right: 2px;
+    .modal {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        transform: translate(50%, 50%);
+    }
 
-}
+    .modal-content {
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
 
-.square-modal .modal-content {
-    width: 30vw;
-    /* Set the desired width as a percentage of the viewport width */
-    height: 10vw;
-    /* Set the same height as the width */
-    max-width: 400px;
-    /* Set a maximum width if needed */
-    max-height: 400px;
-    /* Set a maximum height if needed */
-}
+    .modal-header {
+        background-color: #5454ff !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* width: 50% ; */
+        height: 50%;
+    }
 
+    .modal-body {
+        /* width: 30%; */
+        height: 30%;
+    }
 
+    .modal-footer {
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* width: 20%; */
+        height: 20%;
+    }
 
 
+    .left-buttons {
+        display: flex;
+        align-items: center;
+        margin: 2px
+    }
 
+    .right-button {
+        margin-left: auto;
+        margin-right: 2px;
 
+    }
 
+    .live-square-modal .modal-content {
+        width: 30vw;
+        /* Set the desired width as a percentage of the viewport width */
+        height: 10vw;
+        /* Set the same height as the width */
+        max-width: 400px;
+        /* Set a maximum width if needed */
+        max-height: 400px;
+        /* Set a maximum height if needed */
+    }
 
 
 
@@ -152,90 +235,64 @@
 
 
 
-.API {
-    position: sticky;
-    top: 120px;
-    left: 45px;
-    width: 20%;
-    border: 2px solid black;
-    background-color: antiquewhite;
-    border-radius: .5rem;
-    padding-left: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.fullHeight {
-    height: 420px;
-}
 
-.thirtyPercentHeight {
-    height: 110px;
-}
 
+    /* LIST VIEW */
 
 
-.scrollable {
-    height: 300px;
-    /* Set the desired height for the scrollable div */
-    overflow: auto;
-    /* Enable scrolling */
-}
 
 
-.searchBox {
-    padding: 5px;
-}
 
-.radioButtons {
-    display: flex;
-    gap: 10px;
-    /* Adjust the value as per your preference */
-    margin: 10px 0;
-    /* Add margin around the radio buttons */
-}
+    .liveContainer {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: center;
+        max-height: 100%;
+        overflow: auto;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+        border-radius: 2rem;
+    }
 
+    .content .liveContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
 
-.APIcard {
-    border: 2px solid black;
-    margin-top: 3px;
-    margin-right: 5px;
-}
+    .content .liveContainer h3 {
+        margin-bottom: 0%;
+    }
 
+    .liveItem {
+        background-color: #f59e9e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 5px;
+        border: 5px darkcyan solid;
+        width: 100%;
+        padding: 2%;
+        border-radius: 2rem;
+    }
 
+    .liveFont {
+        font-size: smaller;
+        font-style: italic;
+    }
 
+    .liveButton {
+        background-color: #64b37d;
+    }
 
 
 
 
 
-.listViewContainer {
-    margin-top: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 70%;
-}
 
 
 
-.listViewItem {
-    background-color: #f59e9e;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 5px;
-    border: 5px darkcyan solid;
-    padding: 5px;
-}
 
-.smallerFont {
-    font-size: smaller;
-    font-style: italic;
-}
 
-.greenButton {
-    background-color: #64b37d;
-}
 
 
 
@@ -244,162 +301,210 @@
 
 
 
+   
 
-.pop_up {
-    position: fixed;
-    height: 10%;
-    width: 15%;
-    top: 22%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    border: 2px solid black;
-    padding: 10px;
-    justify-content: center;
-}
 
-.pop_up select {
 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    .searchBox {
+        margin-top: 2%;
+    }
 
-.pop_up button {
+    .searchButton {
+        margin-left: 6%;
+    }
 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    .scrollable {
+        margin-top: 5%;
+        width: 100%;
+        background-color: antiquewhite;
+    }
 
 
 
+    .radioButtons {
+        display: flex;
+        gap: 10px;
+        /* Adjust the value as per your preference */
+        margin: 10px 0;
+        /* Add margin around the radio buttons */
+    }
 
 
+    .APIcard {
+        border: 2px solid black;
+        width: 100%;
+        border-radius: .5rem;
+    }
 
-.pop_up_gig {
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    height: 90%;
-    width: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-}
 
 
 
-.pop_up_gig .listItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
 
-.pop_up_gig .listKey {
-    font-weight: bold;
-    width: 30%;
-    /* Set the width to 30% */
-}
 
-.pop_up_gig .listValue {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    width: 70%;
-    /* Set the width to 70% */
-}
 
-.pop_up_gig .listValue div {
-    width: 100%;
-    /* Ensure the text takes full width */
-}
 
 
-.imagePopup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 50vh;
-    height: 50vh;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: whitesmoke;
-    border: 2px solid black;
-    padding: 10px;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-}
 
-.imagePopup img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-}
 
-.imagePopup .closePopupBtn {
-    margin-top: auto;
-    align-self: flex-end;
-}
 
 
 
 
+    .pop_up_rehearsal {
+        max-width: 25%;
+        position: fixed;
+        top: 29%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+    }
 
 
 
+    .pop_up_rehearsal .listItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
 
+    .pop_up_rehearsal .listKey {
+        font-weight: bold;
+        width: 28%;
+        margin-right: 2%;
+    }
 
+    .pop_up_rehearsal .listValue {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-left: 10px;
+        width: 70%;
+    }
 
+    .pop_up_rehearsal .listValue div {
+        width: 100%;
+    }
 
 
-.gigForm {
-    position: fixed;
-    top: 55%;
-    left: 50%;
-    height: 77%;
-    width: 25%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: auto;
-}
 
-.gigForm button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.compressedImg {
-    max-width: 100px; /* Set the maximum width you want the image to take */
-    max-height: 100px; /* Set the maximum height you want the image to take */
-    object-fit: cover; /* Maintain aspect ratio and fill the container */
-    margin-right: 5px;
-  }
 
 
 
 
+    .pop_up_gig {
+        position: fixed;
+        top: 58%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+    }
 
 
 
+    .pop_up_gig .listItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
 
+    .pop_up_gig .listKey {
+        font-weight: bold;
+        width: 28%;
+        margin-right: 2%;
+    }
 
+    .pop_up_gig .listValue {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-left: 10px;
+        width: 70%;
+    }
 
+    .pop_up_gig .listValue div {
+        width: 100%;
+        /* Ensure the text takes full width */
+    }
 
 
+    .imagePopup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+        background-color: whitesmoke;
+        border: 2px solid black;
+        padding: 10px;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center content horizontally */
+        justify-content: center;
+        /* Center content vertically */
+        width: 30vw;
+        /* Set a maximum width to avoid overflowing the viewport */
+        max-height: 90vh;
+        /* Set a maximum height to avoid overflowing the viewport */
+    }
 
+    .imagePopup img {
+        width: auto;
+        /* Let the image adjust its width based on the container */
+        height: auto;
+        /* Let the image adjust its height based on the container */
+        max-width: 100%;
+        /* Ensure the image doesn't exceed the container width */
+        max-height: 100%;
+        /* Ensure the image doesn't exceed the container height */
+        object-fit: contain;
+        /* Maintain aspect ratio and fit within the container */
+    }
 
+    .imagePopup .closePopupBtn {
+        position: fixed;
+        /* Make the close button fixed */
+        top: 10px;
+        /* Adjust the top position as needed to place it at the desired height */
+        right: 10px;
+        /* Adjust the right position as needed to place it at the desired distance from the right edge */
+        z-index: 10001;
+        /* Ensure it's above the popup content */
+    }
 
 
+    .new_button_live_group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: flex-start;
+    }
 
+    .group_one {
+        grid-column: 1 / 2;
+        display: flex;
+        justify-content: flex-start;
+    }
 
+    .group_two {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: flex-end;
+    }
 
 
+    .new_delete_live_button {
+        margin-left: 2%;
+    }
 
 
 
@@ -410,62 +515,41 @@
 
 
 
-.pop_up_rehearsal {
-    position: fixed;
-    height: 200px;
-    width: 400px;
-    top: 100px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-}
+    .newGigForm {
+        position: fixed;
+        top: 59%;
+        left: 50%;
+        height: 77%;
+        width: 25%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: auto;
+    }
 
-.pop_up_rehearsal .listItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
+    .newGigForm button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-.pop_up_rehearsal .listKey {
-    font-weight: bold;
-    width: 30%;
-    /* Set the width to 30% */
-}
+    .compressedImg {
+        max-width: 100px;
+        /* Set the maximum width you want the image to take */
+        max-height: 100px;
+        /* Set the maximum height you want the image to take */
+        object-fit: cover;
+        /* Maintain aspect ratio and fill the container */
+        margin-right: 5px;
+    }
 
-.pop_up_rehearsal .listValue {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    width: 70%;
-    /* Set the width to 70% */
-}
 
-.pop_up_rehearsal .listValue div {
-    width: 100%;
-    /* Ensure the text takes full width */
-}
 
 
-.button_group {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-}
 
-.edit_button,
-.delete_button {
-    margin-right: 10px;
-}
 
-.close_button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
 
 
 
@@ -475,23 +559,7 @@
 
 
 
-.rehearsal_form {
-    position: fixed;
-    height: 44%;
-    top: 295px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.rehearsal_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
 
 
@@ -499,46 +567,31 @@
 
 
 
-.formRow {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .formRow label {
-    width: 100px; /* Adjust the width as needed */
-    margin-right: 10px;
-  }
-  
-  .formRow input {
-    margin-left: auto;
-  }
 
-  .formRow button {
-    margin-left: auto;
-  }
 
-  .formRow select {
-    margin-left: auto;
-  }
 
-  .formRow img {
-    margin-left: auto;
-  }
 
-  .formRow div {
-    margin-left: auto;
-  }
 
-  .formButtons {
-    display: flex;
-    justify-content: flex-end;
-  }
 
 
 
 
+    .new_rehearsal_form {
+        position: fixed;
+        top: 37%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
+    .new_rehearsal_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
 
 
@@ -546,168 +599,129 @@
 
 
 
+    .formRow {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
+    .formRow label {
+        width: 100px;
+        /* Adjust the width as needed */
+        margin-right: 10px;
+    }
 
+    .formRow input {
+        margin-left: auto;
+    }
 
+    .formRow button {
+        margin-left: auto;
+    }
 
+    .formRow select {
+        margin-left: auto;
+    }
 
+    .formRow img {
+        margin-left: auto;
+    }
 
+    .formRow div {
+        margin-left: auto;
+    }
 
+    .formButtons {
+        display: flex;
+        justify-content: flex-end;
+    }
 
 
 
 
 
-/* SETLISTS */
 
 
 
-.addSetlist {
-    position: absolute;
-    left: 43%;
-    top: 65px;
-    font-size: 14px;
-    background-color: rgb(125, 128, 128);
-    color: white;
-    border-radius: 5px;
-    border: 2px solid white;
-    margin-bottom: 30px;
-    padding: 2px;
-}
 
 
-.setlistContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 70%;
-    background-color: #f59e9e;
-    border-radius: 1rem;
-}
 
 
-.setlistBoxContainer {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    padding: 0 20px;
-}
 
-.setListBandName {
-    width: 100%;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    border-bottom: 2px solid grey;
-    padding: 10px;
-}
 
-.setlistBox {
-    width: 200px;
-    /* Adjust the width to your desired size */
-    height: 175px;
-    /* Adjust the height to your desired size */
-    margin: 30px 10px 0 10px;
-    padding: 20px;
-    text-align: center;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    background-color: grey;
-    color: black;
 
 
-}
 
-.setlistBox h3 {
-    font-weight: bold;
 
 
-}
 
 
-.fontStyles {
-    font-size: smaller;
-    font-style: italic;
-}
 
 
 
+    /* SETLISTS */
 
 
 
 
 
+    .setlistContainer {
+        display: flex;
+        grid-column: 2 / 3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-height: 100%;
+        overflow: auto;
+        border-radius: 2rem;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+    }
 
 
 
 
-/* VIEW SETLIST */
 
+    .content .setlistContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
 
 
-.viewContainer {
-    position: fixed;
-    top: 41%;
-    left: 50%;
-    height: 50%;
-    width: 25%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    text-align: center;
-}
 
-.viewContainer h2 {
-    font-weight: bold;
-}
 
-.viewContainer h3 {
-    font-style: italic;
-    font-size: smaller;
-}
+    .setListBandName {
+        text-align: center;
+    }
 
+    .setlistBox {
+        width: 40%;
+        height: 50%;
+        margin: 2%;
+        text-align: center;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        background-color: grey;
+        color: black;
 
 
-.viewContainer .customList {
-    text-align: left;
-    margin-left: 20px;
-    margin-top: 10px;
-    padding-left: 20px;
-    counter-reset: item;
-}
+    }
 
-.viewContainer .customList li {
-    counter-increment: item;
-    list-style: none;
-}
+    .setlistBox h3 {
+        font-weight: bold;
 
-.viewContainer .customList li:before {
-    content: counter(item) ".";
-    display: inline-block;
-    width: 1em;
-    margin-left: -1.5em;
-}
 
+    }
 
 
+    .fontStyles {
+        font-size: smaller;
+        font-style: italic;
+    }
 
 
 
@@ -720,153 +734,220 @@
 
 
 
+    /* VIEW SETLIST */
 
 
 
+    .viewContainer {
+        position: fixed;
+        top: 41%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 1%;
+        text-align: center;
+        width: 25%;
+    }
 
+    .viewContainer h2 {
+        font-weight: bold;
+    }
 
+    .viewContainer h3 {
+        font-style: italic;
+        font-size: smaller;
+    }
 
+    .setlist-button-group {
+        display: flex;
+        justify-content: space-between;
+    }
 
 
 
-/* POST SETLIST */
+    .viewContainer .customList {
+        text-align: left;
+        margin: 5% 0 5% 10%;
+        counter-reset: item;
+    }
 
+    .viewContainer .customList li {
+        counter-increment: item;
+        list-style: none;
+    }
 
+    .viewContainer .customList li:before {
+        content: counter(item) ".";
+        display: inline-block;
+        width: 1em;
+        margin-left: -1.5em;
+    }
 
 
-.setlist_form {
-    position: fixed;
-    height: 20%;
-    top: 26%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.setlist_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
 
 
-.edit_setlist {
-    position: fixed;
-    height: 44%;
-    width: 25%;
-    top: 295px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgb(139, 167, 227);
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: auto;
-}
 
-.edit_setlist button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.edit_setlist .customList {
-    text-align: left;
-    margin-left: 20px;
-    margin-top: 10px;
-    padding-left: 20px;
-    counter-reset: item;
-}
 
-.edit_setlist .customList li {
-    counter-increment: item;
-    list-style: none;
-}
 
-.edit_setlist .customList li:before {
-    content: counter(item) ".";
-    display: inline-block;
-    width: 1em;
-    margin-left: -1.5em;
-}
 
 
 
-.edit_setlist .setlist-songs-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px 0;
-  }
-  
-  .edit_setlist .setlist-songs-header h3 {
-    margin: 0;
-    border: 2px black solid; 
-    border-radius: 2rem;
-    padding: 10px;
-    background-color: black;
-    color: whitesmoke;
-  }
-  
-  .edit_setlist .setlist-songs-header button {
-    margin-left: 10px;
-    background-color: #f59e9e;
-  }
 
 
-  .edit_setlist .setlist_songs {
-    height: 65%;
-    overflow: auto;
-    margin-top: 10px;
-    border: 2px solid black;
-    padding: 2px;
-  }
 
-  .unchosen {
-    margin-left: 15px;
-}
 
 
-.edit_setlist  button {
-    background-color: rgb(189, 186, 186);
-  }
 
 
 
 
 
 
+    /* POST SETLIST */
 
 
 
 
+    .setlist_form {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 2%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
+    .setlist_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-.song_form {
-    position: fixed;
-    height: 44%;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: #f59e9e;
-    color: rgb(4, 4, 4);
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.song_form button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
+    .edit_setlist {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        max-height: 60%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: auto;
+    }
 
+    .edit_setlist button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-/* .newSetlistContainer {
+    .edit_setlist .buttonDiv button {
+        background-color: #64b37d;
+    }
+
+    .edit_setlist .customList {
+        text-align: left;
+        margin-left: 20px;
+        margin-top: 10px;
+        padding-left: 20px;
+        counter-reset: item;
+    }
+
+    .edit_setlist .customList li {
+        counter-increment: item;
+        list-style: none;
+    }
+
+    .edit_setlist .customList li:before {
+        content: counter(item) ".";
+        display: inline-block;
+        width: 1em;
+        margin-left: -1.5em;
+    }
+
+
+
+    .edit_setlist .setlist-songs-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0;
+    }
+
+    .edit_setlist .setlist-songs-header h3 {
+        margin: 0;
+        border: 2px black solid;
+        border-radius: 2rem;
+        padding: 10px;
+        background-color: black;
+        color: whitesmoke;
+    }
+
+    .edit_setlist .setlist-songs-header button {
+        margin-left: 10px;
+        background-color: #f59e9e;
+    }
+
+
+    .edit_setlist .setlist_songs {
+        height: 65%;
+        overflow: auto;
+        margin-top: 10px;
+        border: 2px solid black;
+        padding: 2px;
+    }
+
+    .unchosen {
+        margin-left: 15px;
+    }
+
+
+    .edit_setlist button {
+        background-color: rgb(189, 186, 186);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    .song_form {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: #f59e9e;
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .song_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+
+    /* .newSetlistContainer {
     position: absolute;
     width: 60%;
     height: 85%;
@@ -901,34 +982,1029 @@
 
 
 
-/* EDIT SETLIST */
+    /* EDIT SETLIST */
 
-.editSetlistContainer {
-    position: absolute;
-    width: 60%;
-    height: 85%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    .editSetlistContainer {
+        position: absolute;
+        width: 60%;
+        height: 85%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+
+    }
+
+
+    .editSetlistForm {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        width: 70%;
+        height: 70%;
+        z-index: 9999;
+        background-color: rgb(142, 182, 187);
+        border: 2px solid black;
+    }
+
+    .buttonDiv {
+        margin-left: 235px;
+    }
+
+
+
+
 
 }
 
 
-.editSetlistForm {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    width: 70%;
-    height: 70%;
-    z-index: 9999;
-    background-color: rgb(142, 182, 187);
-    border: 2px solid black;
-}
 
-.buttonDiv {
-    margin-left: 235px;
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 575px) {
+
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+
+    .site-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../nav/bandplannerlogo.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        align-items: center;
+        margin-top: 20%;
+        margin-bottom: 4%;
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+
+
+   
+
+    .new-add-release-button {
+        background-color: rgb(50, 112, 245);
+        color: white;
+        border-radius: 5px;
+        border: 0.2vw solid white;
+    }
+
+    .custom-button {
+        background-color: rgb(125, 128, 128);
+        /* Replace "red" with the desired color */
+        color: white;
+        /* Replace "white" with the desired font color */
+        border-radius: 5px;
+        border: 2px solid white;
+        padding: 1%;
+    }
+
+    .live-button-wrap {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        padding-right: 5%;
+        padding-left: 5%;
+        height: 100%;
+    }
+
+
+    .live-calendar-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 48%;
+        overflow: auto;
+    }
+
+    .live-filter-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 6%;
+        margin-bottom: 0%;
+    }
+
+    
+
+    .API-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow: auto;
+        height: 25% !important;
+        border: 2px solid black;
+        background-color: antiquewhite;
+        border-radius: .5rem;
+        padding-left: 2%;
+        padding-right: 5%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 2%;
+    }
+
+    .live-new-react-calendar {
+        background-color: antiquewhite;
+        padding: 2% 2% 0 2%;
+        border: 0.5vw darkcyan solid;
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .live-filter-box {
+        border: 2px solid black;
+        padding: 1%;
+        background-color: antiquewhite !important;
+        width: 100%;
+        height: auto;
+
+    }
+
+    .live-filters {
+        display: flex;
+        /* flex-direction: column; */
+        /* Remove this line */
+        justify-content: space-around;
+        align-items: center;
+        font-size: x-small;
+
+    }
+
+    .live-filters label {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        margin-bottom: 2%;
+    }
+
+    .live-filters input[type="checkbox"] {
+        margin-right: 3%;
+        /* Add some spacing between checkbox and text */
+    }
+
+
+
+    .fc .fc-toolbar.fc-header-toolbar {
+        margin-bottom: 0;
+        max-height: 5%;
+    }
+
+
+    .fc .fc-toolbar {
+        max-height: 5%;
+    }
+
+    .fc .fc-toolbar-chunk {
+        display: flex;
+    }
+
+    .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+        margin: 0;
+        padding: 0;
+        height: 0%;
+        width: 0%;
+    }
+
+    .fc .fc-daygrid-day-frame {
+        height: 20px;
+    }
+
+    .fc-h-event {
+        border: 0px;
+    }
+
+
+
+    .fc .fc-scroller-liquid-absolute {
+        inset: 0px;
+    }
+
+
+    .fc .fc-scrollgrid-section>td {
+        padding: 0px;
+    }
+
+    .fc .fc-daygrid-day-number {
+        padding: 0px;
+        font-size: xx-small;
+    }
+
+    .fc .fc-daygrid-day-top {
+        height: 50%;
+
+    }
+
+    .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .fc .fc-daygrid-day-frame {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+
+
+    .fc .fc-daygrid-block-event .fc-event-title .fc-sticky {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+
+
+    .content table td {
+        padding: 0 5% 0 0 !important;
+    }
+
+    .fc-daygrid-event {
+        font-size: xx-small;
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+
+
+
+
+
+    .modal {
+        position: absolute;
+        transform: translate(50%, 50%);
+        width: 50%;
+        height: 50%;
+    }
+
+    .live-square-modal .modal-content {
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        overflow: auto;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+
+    .modal-header {
+        background-color: #5454ff !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        font-size: small;
+    }
+
+
+    .modal-title {
+        text-align: center;
+        /* Center align the text */
+        flex: 1;
+        /* Allow the title to expand and take available space */
+    }
+
+
+    .modal-body {
+        height: 30%;
+    }
+
+    .modal-body p {
+        font-size: small;
+        text-align: center;
+        /* Center align the text */
+        flex: 1;
+        /* Allow the title to expand and take available space */
+    }
+
+    .modal-footer {
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 20%;
+    }
+
+
+    .left-buttons {
+        display: flex;
+        align-items: center;
+        margin: 2px
+    }
+
+    .right-button {
+        margin-left: auto;
+        margin-right: 2px;
+
+    }
+
+
+
+
+
+   
+    .scrollable {
+        margin-top: 5%;
+        width: 100%;
+        background-color: antiquewhite;
+        overflow: auto;
+    }
+
+    .APIcard {
+        border: 2px solid black;
+        width: 100%;
+        border-radius: .5rem;
+    }
+
+
+    .searchBox {
+        margin: 0;
+    }
+
+    .searchButton {
+        margin-left: 6%;
+    }
+
+    .searchBar {
+        margin-bottom: 3%;
+    }
+
+
+    .radioButtons {
+        display: flex;
+        gap: 10px;
+    }
+
+
+
+
+
+
+
+    /* LIST VIEW */
+
+
+
+
+
+
+    .liveContainer {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: center;
+        max-height: 55%;
+        overflow: auto;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+        border-radius: 2rem;
+    }
+
+    .content .liveContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+
+    .content .liveContainer h3 {
+        margin-bottom: 0%;
+    }
+
+    .liveItem {
+        background-color: #f59e9e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 5px;
+        border: 5px darkcyan solid;
+        width: 100%;
+        padding: 2%;
+        border-radius: 2rem;
+    }
+
+    .liveFont {
+        font-size: smaller;
+        font-style: italic;
+    }
+
+    .liveButton {
+        background-color: #64b37d;
+    }
+
+
+
+
+
+
+
+
+
+
+    .pop_up_rehearsal {
+        width: 90%;
+        position: fixed;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+    }
+
+
+
+    .pop_up_rehearsal .listItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .pop_up_rehearsal .listKey {
+        font-weight: bold;
+        width: 28%;
+        margin-right: 2%;
+    }
+
+    .pop_up_rehearsal .listValue {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-left: 10px;
+        width: 70%;
+    }
+
+    .pop_up_rehearsal .listValue div {
+        width: 100%;
+        /* Ensure the text takes full width */
+    }
+
+
+
+
+
+
+
+
+    .pop_up_gig {
+        position: fixed;
+        width: 60%;
+        height: 83%;
+        overflow: auto;
+        top: 58%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+    }
+
+
+
+    .pop_up_gig .listItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .pop_up_gig .listKey {
+        font-weight: bold;
+        width: 28%;
+        margin-right: 2%;
+    }
+
+    .pop_up_gig .listValue {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-left: 10px;
+        width: 70%;
+    }
+
+    .pop_up_gig .listValue div {
+        width: 100%;
+        /* Ensure the text takes full width */
+    }
+
+
+    .imagePopup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+        background-color: whitesmoke;
+        border: 2px solid black;
+        padding: 10px;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center content horizontally */
+        justify-content: center;
+        /* Center content vertically */
+        width: 80vw;
+        /* Set a maximum width to avoid overflowing the viewport */
+        max-height: 90vh;
+        /* Set a maximum height to avoid overflowing the viewport */
+    }
+
+    .imagePopup img {
+        width: auto;
+        /* Let the image adjust its width based on the container */
+        height: auto;
+        /* Let the image adjust its height based on the container */
+        max-width: 100%;
+        /* Ensure the image doesn't exceed the container width */
+        max-height: 100%;
+        /* Ensure the image doesn't exceed the container height */
+        object-fit: contain;
+        /* Maintain aspect ratio and fit within the container */
+    }
+
+    .imagePopup .closePopupBtn {
+        position: fixed;
+        /* Make the close button fixed */
+        top: 10px;
+        /* Adjust the top position as needed to place it at the desired height */
+        right: 10px;
+        /* Adjust the right position as needed to place it at the desired distance from the right edge */
+        z-index: 10001;
+        /* Ensure it's above the popup content */
+    }
+
+
+    .new_button_live_group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: flex-start;
+    }
+
+    .group_one {
+        grid-column: 1 / 2;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .group_two {
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+
+    .new_delete_live_button {
+        margin-left: 2%;
+    }
+
+
+
+
+
+
+
+
+
+
+    .newGigForm {
+        position: fixed;
+        top: 59%;
+        left: 50%;
+        height: 77%;
+        width: 25%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: auto;
+    }
+
+    .newGigForm button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .compressedImg {
+        max-width: 100px;
+        /* Set the maximum width you want the image to take */
+        max-height: 100px;
+        /* Set the maximum height you want the image to take */
+        object-fit: cover;
+        /* Maintain aspect ratio and fill the container */
+        margin-right: 5px;
+    }
+
+
+
+
+    .new_pop_up {
+        position: fixed;
+        top: 22%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        border: 2px solid black;
+        padding: 10px;
+    }
+
+    .new_rehearsal_form {
+        position: fixed;
+        top: 37%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+    .liveGigForm {
+        position: fixed;
+        height: 80%;
+        top: 57%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: auto;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /* SETLISTS */
+
+
+
+
+
+    .setlistContainer {
+        display: flex;
+        grid-column: 2 / 3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-height: 100%;
+        overflow: auto;
+        border-radius: 2rem;
+        background-color: rgb(224, 219, 219);
+        border: 10px solid rgb(224, 219, 219);
+    }
+
+
+
+
+
+    .content .setlistContainer ul {
+        width: 100%;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+
+
+
+
+    .setListBandName {
+        text-align: center;
+    }
+
+    .setlistBox {
+        width: 40%;
+        height: 50%;
+        margin: 2%;
+        text-align: center;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        background-color: grey;
+        color: black;
+
+
+    }
+
+    .setlistBox h3 {
+        font-weight: bold;
+
+
+    }
+
+
+    .fontStyles {
+        font-size: smaller;
+        font-style: italic;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /* VIEW SETLIST */
+
+
+
+    .viewContainer {
+        position: fixed;
+        top: 41%;
+        left: 50%;
+        width: 80%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 1%;
+        text-align: center;
+    }
+
+    .viewContainer h2 {
+        font-weight: bold;
+    }
+
+    .viewContainer h3 {
+        font-style: italic;
+        font-size: smaller;
+    }
+
+    .setlist-button-group {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+
+    .viewContainer .customList {
+        text-align: left;
+        margin: 5% 0 5% 10%;
+        counter-reset: item;
+    }
+
+    .viewContainer .customList li {
+        counter-increment: item;
+        list-style: none;
+    }
+
+    .viewContainer .customList li:before {
+        content: counter(item) ".";
+        display: inline-block;
+        width: 1em;
+        margin-left: -1.5em;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* POST SETLIST */
+
+
+
+
+    .setlist_form {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 2%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .setlist_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+
+    .edit_setlist {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        max-height: 60%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgb(139, 167, 227);
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: auto;
+    }
+
+    .edit_setlist button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .edit_setlist .buttonDiv button {
+        background-color: #64b37d;
+    }
+
+    .edit_setlist .customList {
+        text-align: left;
+        margin-left: 20px;
+        margin-top: 10px;
+        padding-left: 20px;
+        counter-reset: item;
+    }
+
+    .edit_setlist .customList li {
+        counter-increment: item;
+        list-style: none;
+    }
+
+    .edit_setlist .customList li:before {
+        content: counter(item) ".";
+        display: inline-block;
+        width: 1em;
+        margin-left: -1.5em;
+    }
+
+
+
+    .edit_setlist .setlist-songs-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0;
+    }
+
+    .edit_setlist .setlist-songs-header h3 {
+        margin: 0;
+        border: 2px black solid;
+        border-radius: 2rem;
+        padding: 10px;
+        background-color: black;
+        color: whitesmoke;
+    }
+
+    .edit_setlist .setlist-songs-header button {
+        margin-left: 10px;
+        background-color: #f59e9e;
+    }
+
+
+    .edit_setlist .setlist_songs {
+        height: 65%;
+        overflow: auto;
+        margin-top: 10px;
+        border: 2px solid black;
+        padding: 2px;
+    }
+
+    .unchosenRow {
+        margin-left: 5%;
+    }
+    
+    .unchosenButton {
+        height: 50%;
+    }
+
+
+    .edit_setlist button {
+        background-color: rgb(189, 186, 186);
+    }
+
+    .customList {
+        list-style-type: none;
+        padding: 0;
+      }
+      
+      .customList .formRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px; /* Adjust this value to control the space between list items */
+      }
+      
+      .customList .formRow span {
+        margin-right: 10px; /* Adjust this value to control the space between the song name and the button */
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+    .song_form {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #f59e9e;
+        color: rgb(4, 4, 4);
+        border: 2px solid black;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .song_form button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+}

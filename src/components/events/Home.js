@@ -966,15 +966,20 @@ export const Home = () => {
 
     return <>
 
-        <div className="site-background hero is-fullheight">
+        <div className="site-background">
+            <div className="header">
+                <div className="button-wrap">
 
-            <button className="add-event-button custom-button" onClick={() => setIsOpen(true)}>
-                Add New Event
-            </button>
+                    <button className="new-add-event-button new-custom-button" onClick={() => setIsOpen(true)}>
+                        Add New Event
+                    </button>
+                </div>
+            </div>
 
-            <div className="columns is-gapless">
-                <div className="column is-three-quarters">
-                    <div className="react-calendar">
+
+            <div className="content">
+                <div className="calendar-wrapper">
+                    <div className="new-react-calendar">
                         <FullCalendar
                             themeSystem="Simplex"
                             plugins={[dayGridPlugin]}
@@ -985,31 +990,42 @@ export const Home = () => {
                             }} />
                     </div>
                 </div>
-                <div className="column">
-                    <div className="card filterBox">
-                        <div className="card-content">
+                <div className="filter-wrapper">
+                    <div className="new-filter-box">
+                        <div className="new-filters">
+                            <label>
 
-                            <div >
                                 <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
                                     onClick={() => setFilteredByType(0)} /> Show All
-                            </div>
-                            <div >
+                            </label>
+                        </div>
+                        <div className="new-filters" >
+                            <label>
+
                                 <input type="checkbox" checked={checkedIndex === 1} onChange={() => handleCheckboxChange(1)}
                                     onClick={() => setFilteredByType(1)} /> Show Single Releases
-                            </div>
-                            <div >
+                            </label>
+                        </div>
+                        <div className="new-filters" >
+                            <label>
+
                                 <input type="checkbox" checked={checkedIndex === 2} onChange={() => handleCheckboxChange(2)}
                                     onClick={() => setFilteredByType(2)} /> Show Bundle Releases
-                            </div>
-                            <div >
+                            </label>
+                        </div>
+                        <div className="new-filters" >
+                            <label>
+
                                 <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
                                     onClick={() => setFilteredByType(3)} /> Show Rehearsals
-                            </div>
-                            <div >
+                            </label>
+                        </div>
+                        <div className="new-filters" >
+                            <label>
+
                                 <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
                                     onClick={() => setFilteredByType(4)} /> Show Gigs
-                            </div>
-
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -1020,7 +1036,7 @@ export const Home = () => {
 
             {
                 isOpen && (
-                    <div className="pop_up">
+                    <div className="new_pop_up">
                         <div>
                             <select onChange={
                                 (evt) => {
@@ -1048,7 +1064,7 @@ export const Home = () => {
 
             {
                 singleForm && (
-                    <div className="single_form">
+                    <div className="new_single_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1364,7 +1380,7 @@ export const Home = () => {
 
             {
                 bundleForm && (
-                    <div className="bundle_form">
+                    <div className="new_bundle_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1600,7 +1616,7 @@ export const Home = () => {
 
             {
                 rehearsalForm && (
-                    <div className="rehearsal_form">
+                    <div className="new_rehearsal_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">
@@ -1775,7 +1791,7 @@ export const Home = () => {
 
             {
                 gigForm && (
-                    <div className="gigForm">
+                    <div className="newGigForm">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -2268,10 +2284,10 @@ export const Home = () => {
                 onHide={handleCloseModal}
                 backdrop="static"
                 keyboard={false}
-                dialogClassName="square-modal"
+                dialogClassName="new-square-modal"
             >
                 <Modal.Header closeButton={false} className="modal-header">
-                    <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
+                    <Modal.Title className="modal-title">{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="modal-body">
                     <p>{event?.extendedProps?.description}</p>

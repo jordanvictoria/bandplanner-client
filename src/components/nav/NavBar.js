@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import Logo from "./bandplannerlogo.jpeg";
 import "./NavBar.css";
 
@@ -9,20 +9,36 @@ export const NavBar = ({ token, setToken }) => {
   const hamburger = useRef();
   const [isLiveDropdownVisible, setLiveDropdownVisible] = useState(false);
   const [isPressDropdownVisible, setPressDropdownVisible] = useState(false);
+  const [isLiveLinkActive, setLiveLinkActive] = useState(false);
+
+  const location = useLocation(); 
 
   const showMobileNavbar = () => {
     hamburger.current.classList.toggle("is-active");
     navbar.current.classList.toggle("is-active");
   };
 
-  
-  const handleLiveDropdownToggle = () => {
+  const closeMobileNavbar = () => {
+    hamburger.current.classList.remove("is-active");
+    navbar.current.classList.remove("is-active");
+
+  };
+
+
+  const handleLiveDropdownToggle = (event) => {
+    event.stopPropagation();
     setLiveDropdownVisible(!isLiveDropdownVisible);
   };
 
-  const handlePressDropdownToggle = () => {
+  const handlePressDropdownToggle = (event) => {
+    event.stopPropagation();
     setPressDropdownVisible(!isPressDropdownVisible);
   };
+
+
+
+
+
 
   return (
     <nav
@@ -56,25 +72,37 @@ export const NavBar = ({ token, setToken }) => {
         <div className="navbar-item-container">
           <div>
             {token ? (
-              <Link to="/" className="navbar-item">
+              <NavLink to="/" exact activeClassName="active" className="navbar-item" onClick={closeMobileNavbar}>
                 Home
-              </Link>
+              </NavLink>
             ) : (
               ""
             )}
           </div>
+
+
           <div className="dropdown-wrapper" onMouseEnter={handleLiveDropdownToggle} onMouseLeave={handleLiveDropdownToggle}>{token ? (
             <>
-              <Link to="/live" className="navbar-item ">
+              <NavLink to="/live" activeClassName={`${isLiveLinkActive ? "active" : ""}`} className="navbar-item" >
                 Live
-              </Link>
+              </NavLink>
               {isLiveDropdownVisible && (
                 <div className="dropdown-content">
                   <li className="dropdown-item">
-                    <Link to="/live">Live Events</Link>
+                    <NavLink to="/live" 
+                      onClick={() => {
+                        closeMobileNavbar();
+                        setLiveLinkActive(true); // Set isLiveLinkActive to true
+                      }}
+                    >Live Events</NavLink>
                   </li>
                   <li className="dropdown-item">
-                    <Link to="/setlist">Setlists</Link>
+                    <NavLink to="/setlist" 
+                      onClick={() => {
+                        closeMobileNavbar();
+                        setLiveLinkActive(true); // Set isLiveLinkActive to true
+                      }}
+                    >Setlists</NavLink>
                   </li>
                 </div>
               )}
@@ -83,30 +111,34 @@ export const NavBar = ({ token, setToken }) => {
             ""
           )}
           </div>
+
+
           <div >
             {token ? (
 
-              <Link to="/releases" className="navbar-item">
+              <NavLink activeClassName="active" to="/releases" className="navbar-item" onClick={closeMobileNavbar}>
                 Releases
-              </Link>
+              </NavLink>
 
             ) : (
               ""
             )}
           </div>
 
+
+
           <div className="is-success dropdown-wrapper" onMouseEnter={handlePressDropdownToggle} onMouseLeave={handlePressDropdownToggle}>{token ? (
             <>
-              <Link to="/pressclipping" className="navbar-item">
+              <NavLink activeClassName="active" to="/pressclipping" className="navbar-item">
                 Press
-              </Link>
+              </NavLink>
               {isPressDropdownVisible && (
                 <div className="dropdown-content">
                   <li className="dropdown-item">
-                    <Link to="/pressclipping">Press Coverage</Link>
+                    <NavLink activeClassName="active" to="/pressclipping" onClick={closeMobileNavbar}>Press Coverage</NavLink>
                   </li>
                   <li className="dropdown-item">
-                    <Link to="/medialist">Media List</Link>
+                    <NavLink activeClassName="active" to="/medialist" onClick={closeMobileNavbar}>Media List</NavLink>
                   </li>
                 </div>
               )}
@@ -115,11 +147,13 @@ export const NavBar = ({ token, setToken }) => {
             ""
           )}
           </div>
+
+          
           <div>
             {token ? (
-              <Link to="/profile" className="navbar-item">
+              <NavLink activeClassName="active" to="/profile" className="navbar-item" onClick={closeMobileNavbar}>
                 Profile
-              </Link>
+              </NavLink>
             ) : (
               ""
             )}
@@ -135,18 +169,19 @@ export const NavBar = ({ token, setToken }) => {
                   onClick={() => {
                     setToken("");
                     navigate("/login");
+                    closeMobileNavbar();
                   }}
                 >
                   Logout
                 </button>
               ) : (
                 <>
-                  <Link to="/register" className="button is-outlined">
+                  <NavLink activeClassName="active" to="/register" className="button is-outlined" onClick={closeMobileNavbar}>
                     Register
-                  </Link>
-                  <Link to="/login" className="button is-outlined">
+                  </NavLink>
+                  <NavLink activeClassName="active" to="/login" className="button is-outlined" onClick={closeMobileNavbar}>
                     Login
-                  </Link>
+                  </NavLink>
                 </>
               )}
             </div>

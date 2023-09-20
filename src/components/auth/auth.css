@@ -1,12 +1,16 @@
-.site-background {
-  background-image: url('../nav/bandplannerlogo.jpeg');
+.custom-background {
+  background-image: url('./loginbackground.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
 }
 
   .rounded-form {
     border-radius: 10px !important;
+    overflow: auto;
   }
 
   
   
+.navbar-menu.is-active {
+  background-color: rgb(253, 128, 136);
+}

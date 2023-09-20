@@ -9,6 +9,7 @@ import "./live.css"
 // import '@fullcalendar/common/main.css';
 // import '@fullcalendar/daygrid/main.css';
 
+
 export const LiveEvents = () => {
     const localUser = localStorage.getItem("userId");
     const [allEvents, setAllEvents] = useState([])
@@ -834,269 +835,296 @@ export const LiveEvents = () => {
 
     return <>
 
-        <div className="site-background hero is-fullheight">
-            <button className="add-event-button custom-button" onClick={() => setIsOpen(true)}>
-                Add Live Event
-            </button>
-            <div className="button-view-container">
-                <button
-                    onClick={() => handleOptionClick(1)}
-                    style={{
-                        backgroundColor: listSelected ? 'green' : 'white',
-                    }}
-                >
-                    List View
-                </button>
-                <button
-                    onClick={() => handleOptionClick(2)}
-                    style={{
-                        backgroundColor: calendarSelected ? 'green' : 'white',
-                    }}
-                >
-                    Calendar View
-                </button>
-            </div>
-            <div className={`API ${startSearch ? 'fullHeight' : 'thirtyPercentHeight'}`}>
-                <p className="searchBox">Search Live Events By: </p>
-                <div className="radioButtons">
-                    <input
-                        type="radio"
-                        id="radioOption1"
-                        name="searchOption"
-                        value="location"
-                        onChange={handleSearchOptionChange}
-                    />
-                    <label htmlFor="radioOption1">Location</label>
-                    <input
-                        type="radio"
-                        id="radioOption2"
-                        name="searchOption"
-                        value="artist"
-                        onChange={handleSearchOptionChange}
-                    />
-                    <label htmlFor="radioOption2">Artist</label>
-                    <input
-                        type="radio"
-                        id="radioOption3"
-                        name="searchOption"
-                        value="venue"
-                        onChange={handleSearchOptionChange}
-                    />
-                    <label htmlFor="radioOption3">Venue</label>
+        <div className="site-background">
+            <div className="header">
+                <div className="live-button-wrap">
+                    <button className="new-add-live-button custom-button" onClick={() => setIsOpen(true)}>
+                        Add Live Event
+                    </button>
+                    <div className="new-button-view-container">
+                        <button
+                            onClick={() => handleOptionClick(1)}
+                            style={{
+                                backgroundColor: listSelected ? 'green' : 'white',
+                            }}
+                        >
+                            List View
+                        </button>
+                        <button
+                            onClick={() => handleOptionClick(2)}
+                            style={{
+                                backgroundColor: calendarSelected ? 'green' : 'white',
+                            }}
+                        >
+                            Calendar View
+                        </button>
+                    </div>
                 </div>
-                {searchOption === "location" && (
-                    <div className="searchBar">
-                        <input
-                            type="text"
-                            onChange={handleInputChange}
-                            name="location"
-                            placeholder="Enter your search query"
-                        />
-                        <button onClick={handleSearch}>Search</button>
-                    </div>
-                )}
-                {searchOption === "artist" && (
-                    <div className="searchBar">
-                        <input
-                            type="text"
-                            onChange={handleInputChange}
-                            name="artist"
-                            placeholder="Enter your search query"
-                        />
-                        <button onClick={handleSearch}>Search</button>
-                    </div>
-                )}
-                {searchOption === "venue" && (
-                    <div className="searchBar">
-                        <input
-                            type="text"
-                            onChange={handleInputChange}
-                            name="venue"
-                            placeholder="Enter your search query"
-                        />
-                        <button onClick={handleSearch}>Search</button>
-                    </div>
-                )}
-                {
-                    !isLoading && eventsFromAPI && (
-                        <div className="scrollable">
-                            {
-                                eventsFromAPI.map((event, index) => {
-                                    const key = event.id || index;
-                                    const humanDate = formatDate(event.startDate)
-                                    return (
-                                        <li key={key}>
-                                            <section className="APIcard">
-                                                <header>{event.name} at {event.location.name}</header>
-                                                <body>{humanDate}</body>
-                                                <img src={event.image} alt="Event" />
-                                            </section>
-                                        </li>
-                                    )
-                                })
-                            }
-                        </div>
-                    )
-                }
             </div>
+
             {
                 listSelected && (
-                    <div className="listViewContainer">
-                        <ul>
-                            {
-                                events.map((event) => {
-                                    const formattedListDate = formatDate(event.date)
-                                    return (
-                                        <li key={event.id} value={event.id}>
-                                            <div className="listViewItem">
-                                                <h3><b>{event.title}</b></h3>
-                                                <section>{formattedListDate}</section>
-                                                <section className="smallerFont">{event.description}</section>
-                                                <button className="greenButton" onClick={() => { setEventListId(event.id) }}>View Details</button>
-                                            </div>
-                                        </li>
+
+                    <div className="content">
+                        <div className="API-wrapper"
+                            style={{
+                                height: startSearch ? '100%' : '30%',
+                            }}>
+                            <div className="API">
+                                <div className="searchBox">Search Live Events By: </div>
+                                <div className="radioButtons">
+                                    <input
+                                        type="radio"
+                                        id="radioOption1"
+                                        name="searchOption"
+                                        value="location"
+                                        onChange={handleSearchOptionChange}
+                                    />
+                                    <label htmlFor="radioOption1">Location</label>
+                                    <input
+                                        type="radio"
+                                        id="radioOption2"
+                                        name="searchOption"
+                                        value="artist"
+                                        onChange={handleSearchOptionChange}
+                                    />
+                                    <label htmlFor="radioOption2">Artist</label>
+                                    <input
+                                        type="radio"
+                                        id="radioOption3"
+                                        name="searchOption"
+                                        value="venue"
+                                        onChange={handleSearchOptionChange}
+                                    />
+                                    <label htmlFor="radioOption3">Venue</label>
+                                </div>
+                                {searchOption === "location" && (
+                                    <div className="searchBar">
+                                        <input
+                                            type="text"
+                                            onChange={handleInputChange}
+                                            name="location"
+                                            placeholder="Enter your search query"
+                                        />
+                                        <button className="searchButton" onClick={handleSearch}>Search</button>
+                                    </div>
+                                )}
+                                {searchOption === "artist" && (
+                                    <div className="searchBar">
+                                        <input
+                                            type="text"
+                                            onChange={handleInputChange}
+                                            name="artist"
+                                            placeholder="Enter your search query"
+                                        />
+                                        <button onClick={handleSearch}>Search</button>
+                                    </div>
+                                )}
+                                {searchOption === "venue" && (
+                                    <div className="searchBar">
+                                        <input
+                                            type="text"
+                                            onChange={handleInputChange}
+                                            name="venue"
+                                            placeholder="Enter your search query"
+                                        />
+                                        <button onClick={handleSearch}>Search</button>
+                                    </div>
+                                )}
+                                {
+                                    !isLoading && eventsFromAPI && (
+                                        <div className="scrollable">
+                                            {
+                                                eventsFromAPI.map((event, index) => {
+                                                    const key = event.id || index;
+                                                    const humanDate = formatDate(event.startDate)
+                                                    return (
+                                                        <li key={key}>
+                                                            <section className="APIcard">
+                                                                <header>{event.name} at {event.location.name}</header>
+                                                                <body>{humanDate}</body>
+                                                                <img src={event.image} alt="Event" />
+                                                            </section>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                     )
-                                })
+                                }
+                            </div>
+                        </div>
+                        <div className="liveContainer">
+                            <ul>
+                                {
+                                    events.map((event) => {
+                                        const formattedListDate = formatDate(event.date)
+                                        return (
+                                            <li key={event.id} value={event.id}>
+                                                <div className="liveItem">
+                                                    <h3><b>{event.title}</b></h3>
+                                                    <section>{formattedListDate}</section>
+                                                    <section className="liveFont">{event.description}</section>
+                                                    <button className="liveButton" onClick={() => { setEventListId(event.id) }}>View Details</button>
+                                                </div>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                            {
+                                viewMatchedRehearsal && (
+                                    <div className="pop_up_rehearsal">
+                                        <div className="listItem">
+                                            <div className="listKey">Location:</div> <div className="listValue">{matchedRehearsal.location}</div>
+                                        </div>
+                                        <div className="listItem lastKey">
+                                            <div className="listKey">Band Members:</div> <div className="listValue"> {matchedRehearsal.band_info}</div>
+                                        </div>
+                                        <div className="new_button_live_group">
+                                            <div className="group_one">
+                                                <button className="edit_button" onClick={async () => {
+                                                    setViewMatchedRehearsal(false)
+                                                    setEventListId(0)
+                                                    setEventId(parseInt(matchedRehearsal.event.id));
+                                                }}>
+                                                    Edit
+                                                </button>
+                                                <button className="delete_button" onClick={async () => {
+                                                    await deleteEvent(parseInt(matchedRehearsal.event.id));
+                                                    const newEvents = await getEvents();
+                                                    setAllEvents(newEvents);
+                                                    setViewMatchedRehearsal(false)
+                                                }}>Delete</button>
+                                            </div>
+                                            <div className="group_two">
+                                                <button className="new_close_live_button" onClick={() => {
+                                                    setViewMatchedRehearsal(false)
+                                                    setEventListId(0)
+                                                }}>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                )
                             }
-                        </ul>
-                        {
-                            viewMatchedRehearsal && (
-                                <div className="pop_up_rehearsal">
-                                    <div className="listItem">
-                                        <div className="listKey">Location:</div> <div className="listValue">{matchedRehearsal.location}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Band Members:</div> <div className="listValue"> {matchedRehearsal.band_info}</div>
-                                    </div>
-                                    <div className="button_group">
-                                        <button className="edit_button" onClick={async () => {
-                                            setViewMatchedRehearsal(false)
-                                            setEventListId(0)
-                                            setEventId(parseInt(matchedRehearsal.event.id));
-                                        }}>
-                                            Edit
-                                        </button>
-                                        <button className="delete_button" onClick={async () => {
-                                            await deleteEvent(parseInt(matchedRehearsal.event.id));
-                                            const newEvents = await getEvents();
-                                            setAllEvents(newEvents);
-                                            setViewMatchedRehearsal(false)
-                                        }}>Delete</button>
-                                    </div>
-                                    <button className="close_button" onClick={() => {
-                                        setViewMatchedRehearsal(false)
-                                        setEventListId(0)
-                                    }}>Close</button>
-                                </div>
-                            )
-                        }
-                        {
-                            viewMatchedGig && (
-                                <div className="pop_up_gig">
-                                    <div className="listItem">
-                                        <div className="listKey">City/State: </div><div className="listValue">{matchedGig.song_city_state}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Venue:</div><div className="listValue"> {matchedGig.venue}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Band Members:</div><div className="listValue"> {matchedGig.band_info}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Age Requirement: </div><div className="listValue">{matchedGig.age_requirement}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Ticket Price:</div><div className="listValue"> {matchedGig.ticket_price}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Ticket Link: </div><div className="listValue">
-                                            <a href={matchedGig.ticket_link} target="_blank" rel="noopener noreferrer"> {matchedGig.ticket_link}</a>
+                            {
+                                viewMatchedGig && (
+                                    <div className="pop_up_gig">
+                                        <div className="listItem">
+                                            <div className="listKey">City/State: </div><div className="listValue">{matchedGig.song_city_state}</div>
                                         </div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Guarantee:</div><div className="listValue"> {matchedGig.guarantee}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Sold out:</div><div className="listValue"> {matchedGig.sold_out ? 'Yes' : 'No'}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Announced:</div><div className="listValue"> {matchedGig.announced ? 'Yes' : 'No'}</div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Flier: </div>
-                                        <div className="listValue">
-                                            <button className="viewImageBtn" onClick={openFlierPopup}>
-                                                View Image
-                                            </button>
+                                        <div className="listItem">
+                                            <div className="listKey">Venue:</div><div className="listValue"> {matchedGig.venue}</div>
                                         </div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Stage Plot: </div>
-                                        <div className="listValue">
-                                            <button className="viewImageBtn" onClick={openStagePlotPopup}>
-                                                View Image
-                                            </button>
+                                        <div className="listItem">
+                                            <div className="listKey">Band Members:</div><div className="listValue"> {matchedGig.band_info}</div>
                                         </div>
-                                    </div>
-                                    <div className="listItem">
-                                        <div className="listKey">Input List:</div>
-                                        <div className="listValue">
-                                            <button className="viewImageBtn" onClick={openInputListPopup}>
-                                                View Image
-                                            </button>
+                                        <div className="listItem">
+                                            <div className="listKey">Age Requirement: </div><div className="listValue">{matchedGig.age_requirement}</div>
                                         </div>
-                                    </div>
-                                    <div className="button_group">
-                                        <button className="edit_button" onClick={async () => {
-                                            setViewMatchedGig(false)
-                                            setEventListId(0)
-                                            setEventId(parseInt(matchedGig.event.id));
-                                        }}>
-                                            Edit
-                                        </button>
-                                        <button className="delete_button" onClick={async () => {
-                                            await deleteEvent(parseInt(matchedGig.event.id));
-                                            const newEvents = await getEvents();
-                                            setAllEvents(newEvents);
-                                            setViewMatchedGig(false)
-                                        }}>Delete</button>
-                                    </div>
-                                    <button className="close_button" onClick={() => {
-                                        setViewMatchedGig(false)
-                                        setEventListId(0)
-                                    }}>Close</button>
-                                    {/* Flier Pop-up */}
-                                    {showFlierPopup && (
-                                        <div className="imagePopup">
-                                            <img src={matchedGig.flier} alt="flier" />
-                                            <button className="closePopupBtn" onClick={closeFlierPopup}>
-                                                Close
-                                            </button>
+                                        <div className="listItem">
+                                            <div className="listKey">Ticket Price:</div><div className="listValue"> {matchedGig.ticket_price}</div>
                                         </div>
-                                    )}
+                                        <div className="listItem">
+                                            <div className="listKey">Ticket Link: </div><div className="listValue">
+                                                {matchedGig.ticket_link ? (
+                                                    <a href={matchedGig.ticket_link} target="_blank" rel="noopener noreferrer"> Open in New Tab</a>
+                                                ) : (
+                                                    ""
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="listItem">
+                                            <div className="listKey">Guarantee:</div><div className="listValue"> {matchedGig.guarantee}</div>
+                                        </div>
+                                        <div className="listItem">
+                                            <div className="listKey">Sold out:</div><div className="listValue"> {matchedGig.sold_out ? 'Yes' : 'No'}</div>
+                                        </div>
+                                        <div className="listItem">
+                                            <div className="listKey">Announced:</div><div className="listValue"> {matchedGig.announced ? 'Yes' : 'No'}</div>
+                                        </div>
+                                        <div className="listItem">
+                                            <div className="listKey">Flier: </div>
+                                            <div className="listValue">
+                                                <button className="viewImageBtn" onClick={openFlierPopup}>
+                                                    View Image
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="listItem">
+                                            <div className="listKey">Stage Plot: </div>
+                                            <div className="listValue">
+                                                <button className="viewImageBtn" onClick={openStagePlotPopup}>
+                                                    View Image
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="listItem lastKey">
+                                            <div className="listKey">Input List:</div>
+                                            <div className="listValue">
+                                                <button className="viewImageBtn" onClick={openInputListPopup}>
+                                                    View Image
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="new_button_live_group">
+                                            <div className="group_one">
+                                                <button className="edit_button" onClick={async () => {
+                                                    setViewMatchedGig(false)
+                                                    setEventListId(0)
+                                                    setEventId(parseInt(matchedGig.event.id));
+                                                }}>
+                                                    Edit
+                                                </button>
+                                                <button className="delete_button" onClick={async () => {
+                                                    await deleteEvent(parseInt(matchedGig.event.id));
+                                                    const newEvents = await getEvents();
+                                                    setAllEvents(newEvents);
+                                                    setViewMatchedGig(false)
+                                                }}>Delete</button>
+                                            </div>
+                                            <div className="group_two">
+                                                <button className="close_button" onClick={() => {
+                                                    setViewMatchedGig(false)
+                                                    setEventListId(0)
+                                                }}>Close</button>
+                                            </div>
+                                        </div>
 
-                                    {/* Stage Plot Pop-up */}
-                                    {showStagePlotPopup && (
-                                        <div className="imagePopup">
-                                            <img src={matchedGig.stage_plot} alt="stage_plot" />
-                                            <button className="closePopupBtn" onClick={closeStagePlotPopup}>
-                                                Close
-                                            </button>
-                                        </div>
-                                    )}
+                                    </div>
+                                )
+                            }
+                        </div>
+                        {/* Flier Pop-up */}
+                        {showFlierPopup && (
+                            <div className="imagePopup">
+                                <button className="closePopupBtn" onClick={closeFlierPopup}>
+                                    x
+                                </button>
+                                <img src={matchedGig.flier} alt="flier" />
+                            </div>
+                        )}
 
-                                    {/* Input List Pop-up */}
-                                    {showInputListPopup && (
-                                        <div className="imagePopup">
-                                            <img src={matchedGig.input_list} alt="input_list" />
-                                            <button className="closePopupBtn" onClick={closeInputListPopup}>
-                                                Close
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-                            )
-                        }
+                        {/* Stage Plot Pop-up */}
+                        {showStagePlotPopup && (
+                            <div className="imagePopup">
+                                <button className="closePopupBtn" onClick={closeStagePlotPopup}>
+                                    x
+                                </button>
+                                <img src={matchedGig.stage_plot} alt="stage_plot" />
+                            </div>
+                        )}
+
+                        {/* Input List Pop-up */}
+                        {showInputListPopup && (
+                            <div className="imagePopup">
+                                <button className="closePopupBtn" onClick={closeInputListPopup}>
+                                    x
+                                </button>
+                                <img src={matchedGig.input_list} alt="input_list" />
+                            </div>
+                        )}
                     </div>
                 )
             }
@@ -1104,9 +1132,98 @@ export const LiveEvents = () => {
             {
                 calendarSelected && (
 
-                    <div className="columns is-gapless">
-                        <div className="column is-three-quarters">
-                            <div className="react-calendar">
+                    <div className="content">
+                        <div className="API-wrapper"
+                            style={{
+                                height: startSearch ? '100%' : '30%',
+                            }}>
+                            <div className="API">
+                                <div className="searchBox">Search Live Events By: </div>
+                                <div className="radioButtons">
+                                    <input
+                                        type="radio"
+                                        id="radioOption1"
+                                        name="searchOption"
+                                        value="location"
+                                        onChange={handleSearchOptionChange}
+                                    />
+                                    <label htmlFor="radioOption1">Location</label>
+                                    <input
+                                        type="radio"
+                                        id="radioOption2"
+                                        name="searchOption"
+                                        value="artist"
+                                        onChange={handleSearchOptionChange}
+                                    />
+                                    <label htmlFor="radioOption2">Artist</label>
+                                    <input
+                                        type="radio"
+                                        id="radioOption3"
+                                        name="searchOption"
+                                        value="venue"
+                                        onChange={handleSearchOptionChange}
+                                    />
+                                    <label htmlFor="radioOption3">Venue</label>
+                                </div>
+                                {searchOption === "location" && (
+                                    <div className="searchBar">
+                                        <input
+                                            type="text"
+                                            onChange={handleInputChange}
+                                            name="location"
+                                            placeholder="Enter your search query"
+                                        />
+                                        <button className="searchButton" onClick={handleSearch}>Search</button>
+                                    </div>
+                                )}
+                                {searchOption === "artist" && (
+                                    <div className="searchBar">
+                                        <input
+                                            type="text"
+                                            onChange={handleInputChange}
+                                            name="artist"
+                                            placeholder="Enter your search query"
+                                        />
+                                        <button onClick={handleSearch}>Search</button>
+                                    </div>
+                                )}
+                                {searchOption === "venue" && (
+                                    <div className="searchBar">
+                                        <input
+                                            type="text"
+                                            onChange={handleInputChange}
+                                            name="venue"
+                                            placeholder="Enter your search query"
+                                        />
+                                        <button onClick={handleSearch}>Search</button>
+                                    </div>
+                                )}
+                                {
+                                    !isLoading && eventsFromAPI && (
+                                        <div className="scrollable">
+                                            {
+                                                eventsFromAPI.map((event, index) => {
+                                                    const key = event.id || index;
+                                                    const humanDate = formatDate(event.startDate)
+                                                    return (
+                                                        <li key={key}>
+                                                            <section className="APIcard">
+                                                                <header>{event.name} at {event.location.name}</header>
+                                                                <body>{humanDate}</body>
+                                                                <img src={event.image} alt="Event" />
+                                                            </section>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    )
+                                }
+                            </div>
+                        </div>
+
+                        <div className="live-calendar-wrapper">
+                            <div className="live-new-react-calendar">
                                 <FullCalendar
                                     themeSystem="Simplex"
                                     plugins={[dayGridPlugin]}
@@ -1117,20 +1234,30 @@ export const LiveEvents = () => {
                                     }} />
                             </div>
                         </div>
-                        <div className="column">
-                            <div className="card filterBox">
-                                <div className="card-content">
+
+                        <div className="live-filter-wrapper">
+                            <div className="live-filter-box">
+                                <div className="live-filters">
                                     <div >
-                                        Show All <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
-                                            onClick={() => setFilteredByType(0)} />
+                                        <label>
+
+                                            <input type="checkbox" checked={checkedIndex === 0} onChange={() => handleCheckboxChange(0)}
+                                                onClick={() => setFilteredByType(0)} />  Show All
+                                        </label>
                                     </div>
                                     <div >
-                                        Show Rehearsals Only <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
-                                            onClick={() => setFilteredByType(3)} />
+                                        <label>
+
+                                            <input type="checkbox" checked={checkedIndex === 3} onChange={() => handleCheckboxChange(3)}
+                                                onClick={() => setFilteredByType(3)} />  Show Rehearsals Only
+                                        </label>
                                     </div>
                                     <div >
-                                        Show Gigs Only <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
-                                            onClick={() => setFilteredByType(4)} />
+                                        <label>
+
+                                            <input type="checkbox" checked={checkedIndex === 4} onChange={() => handleCheckboxChange(4)}
+                                                onClick={() => setFilteredByType(4)} /> Show Gigs Only
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -1145,7 +1272,7 @@ export const LiveEvents = () => {
 
             {
                 isOpen && (
-                    <div className="pop_up">
+                    <div className="new_pop_up">
                         <div>
                             <select onChange={
                                 (evt) => {
@@ -1169,11 +1296,11 @@ export const LiveEvents = () => {
 
             {
                 rehearsalForm && (
-                    <div className="rehearsal_form">
+                    <div className="new_rehearsal_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">
-                                    <div className="label">Title:</div>
+                                    Title:
                                     <input type="text" id="title" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1183,7 +1310,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Date:</div>
+                                    Date:
                                     <input type="date" id="date" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1193,7 +1320,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Time:</div>
+                                    Time:
                                     <input type="time" id="time" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1205,7 +1332,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Description:</div>
+                                    Description:
                                     <input type="text" id="description" onChange={
                                         (evt) => {
                                             const copy = { ...newEvent }
@@ -1216,7 +1343,7 @@ export const LiveEvents = () => {
                                 </div>
 
                                 <div className="formRow">
-                                    <div className="label">Location:</div>
+                                    Location:
                                     <input type="text" id="location" onChange={
                                         (evt) => {
                                             const copy = { ...newRehearsal }
@@ -1226,7 +1353,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Band Members:</div>
+                                    Band Members:
                                     <input type="text" id="band_info" onChange={
                                         (evt) => {
                                             const copy = { ...newRehearsal }
@@ -1254,11 +1381,11 @@ export const LiveEvents = () => {
 
             {
                 rehearsalEditForm && (
-                    <div className="rehearsal_form">
+                    <div className="new_rehearsal_form">
                         <form>
                             <fieldset>
                                 <div className="formRow">
-                                    <div className="label">Title:</div>
+                                    Title:
                                     <input required autoFocus type="text" id="title" placeholder={eventEdit.title} value={eventEdit.title} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1268,7 +1395,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Date:</div>
+                                    Date:
                                     <input type={dateInputType} id="date" placeholder={eventEdit.date} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1278,7 +1405,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Time:</div>
+                                    Time:
                                     <input type={timeInputType} id="time" placeholder={eventEdit.time} onFocus={() => setTimeInputType('time')} onBlur={() => setTimeInputType('text')} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1290,7 +1417,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Description:</div>
+                                    Description:
                                     <input type="text" id="description" placeholder={eventEdit.description} value={eventEdit.description} onChange={
                                         (evt) => {
                                             const copy = { ...eventEdit }
@@ -1300,7 +1427,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Location:</div>
+                                    Location:
                                     <input type="text" id="location" placeholder={rehearsalEdit.location} value={rehearsalEdit.location} onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
@@ -1310,7 +1437,7 @@ export const LiveEvents = () => {
                                     } />
                                 </div>
                                 <div className="formRow">
-                                    <div className="label">Band Members:</div>
+                                    Band Members:
                                     <input type="text" id="band_info" placeholder={rehearsalEdit.band_info} value={rehearsalEdit.band_info} onChange={
                                         (evt) => {
                                             const copy = { ...rehearsalEdit }
@@ -1343,7 +1470,7 @@ export const LiveEvents = () => {
 
             {
                 gigForm && (
-                    <div className="gigForm">
+                    <div className="liveGigForm">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1520,7 +1647,7 @@ export const LiveEvents = () => {
 
             {
                 gigEditForm && (
-                    <div className="gigForm">
+                    <div className="liveGigForm">
                         <form>
                             <fieldset>
                                 <div className="formRow">Title:
@@ -1651,7 +1778,7 @@ export const LiveEvents = () => {
                                             }
                                         } />
                                 </div>
-                                <div className="formRow">Flier: 
+                                <div className="formRow">Flier:
 
                                     {flierEditURL === "" ? ""
                                         : <img className="compressedImg" src={flierEditURL} alt="flier" />}
@@ -1660,7 +1787,7 @@ export const LiveEvents = () => {
 
                                     <UploadFile className="upload" onUpload={handleFlierUpload} />
                                 </div>
-                                <div className="formRow">Stage Plot: 
+                                <div className="formRow">Stage Plot:
 
                                     {stagePlotEditURL === "" ? ""
                                         : <img className="compressedImg" src={stagePlotEditURL} alt="stage plot" />}
@@ -1669,7 +1796,7 @@ export const LiveEvents = () => {
 
                                     <UploadFile className="upload" onUpload={handleStagePlotUpload} />
                                 </div>
-                                <div className="formRow">Input List: 
+                                <div className="formRow">Input List:
 
                                     {inputListEditURL === "" ? ""
                                         : <img className="compressedImg" src={inputListEditURL} alt="input list" />}
@@ -1688,6 +1815,9 @@ export const LiveEvents = () => {
                                         setFlierURL("")
                                         setStagePlotURL("")
                                         setInputListURL("")
+                                        setFlierEditURL("")
+                                        setStagePlotEditURL("")
+                                        setInputListEditURL("")
                                     }}>Save</button>
                                     <button className="cancelItem" onClick={() => {
                                         openGigEditForm(false)
@@ -1696,6 +1826,9 @@ export const LiveEvents = () => {
                                         setFlierURL("")
                                         setStagePlotURL("")
                                         setInputListURL("")
+                                        setFlierEditURL("")
+                                        setStagePlotEditURL("")
+                                        setInputListEditURL("")
                                     }}>Cancel</button>
                                 </div>
                             </fieldset>
@@ -1712,7 +1845,7 @@ export const LiveEvents = () => {
                     onHide={handleCloseModal}
                     backdrop="static"
                     keyboard={false}
-                    dialogClassName="square-modal"
+                    dialogClassName="live-square-modal"
                 >
                     <Modal.Header closeButton={false} className="modal-header">
                         <Modal.Title>{event?.title} at {formatTime(event?.extendedProps?.time)}</Modal.Title>
