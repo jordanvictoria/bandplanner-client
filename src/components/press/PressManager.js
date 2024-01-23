@@ -3,7 +3,7 @@
 
 
 export const getBandUsers = () => {
-    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/bandusers", {
+    return fetch("http://localhost:8000/bandusers", {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -18,7 +18,7 @@ export const getBandUsers = () => {
 
 
 export const getMediaTypes = () => {
-    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/mediatypes", {
+    return fetch("http://localhost:8000/mediatypes", {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -30,7 +30,7 @@ export const getMediaTypes = () => {
   };
   
   export const getContactsByType = (media_type) => {
-    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/mediacontacts?media_type=${media_type}`, {
+    return fetch(`http://localhost:8000/mediacontacts?media_type=${media_type}`, {
       headers: {
         "Authorization": `Token ${localStorage.getItem("band_token")}`
       }
@@ -41,7 +41,7 @@ export const getMediaTypes = () => {
   //media contacts
   
   export const getMediaContacts = () => {
-    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/mediacontacts", {
+    return fetch("http://localhost:8000/mediacontacts", {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -52,7 +52,7 @@ export const getMediaTypes = () => {
     
   };
   export const getMediaContactById = (id) => {
-    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/mediacontacts/${id}`, {
+    return fetch(`http://localhost:8000/mediacontacts/${id}`, {
       headers: {
         "Authorization": `Token ${localStorage.getItem("band_token")}`
       }
@@ -62,7 +62,7 @@ export const getMediaTypes = () => {
   
   
   export const addMediaContact = (newMediaContact) => {
-    return fetch("https://bandplanner-d63f46179b66.herokuapp.com/mediacontacts", {
+    return fetch("http://localhost:8000/mediacontacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export const getMediaTypes = () => {
   };
   
   export const editMediaContact = (newMediaContact) => {
-    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/mediacontacts/${newMediaContact.id}`, {
+    return fetch(`http://localhost:8000/mediacontacts/${newMediaContact.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export const getMediaTypes = () => {
   
   
   export const deleteMediaContact = (mediaContactId) => {
-    return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/mediacontacts/${mediaContactId}`, {
+    return fetch(`http://localhost:8000/mediacontacts/${mediaContactId}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Token ${localStorage.getItem("band_token")}`
@@ -99,7 +99,7 @@ export const getMediaTypes = () => {
     //press clippings
   
     export const getPressClippings = () => {
-        return fetch("https://bandplanner-d63f46179b66.herokuapp.com/pressclippings", {
+        return fetch("http://localhost:8000/pressclippings", {
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
@@ -110,7 +110,7 @@ export const getMediaTypes = () => {
         
       };
       export const getPressClippingById = (id) => {
-        return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/pressclippings/${id}`, {
+        return fetch(`http://localhost:8000/pressclippings/${id}`, {
           headers: {
             "Authorization": `Token ${localStorage.getItem("band_token")}`
           }
@@ -120,7 +120,7 @@ export const getMediaTypes = () => {
       
       
       export const addPressClipping = (newPressClipping) => {
-        return fetch("https://bandplanner-d63f46179b66.herokuapp.com/pressclippings", {
+        return fetch("http://localhost:8000/pressclippings", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -131,7 +131,7 @@ export const getMediaTypes = () => {
       };
       
       export const editPressClipping = (newPressClipping) => {
-        return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/pressclippings/${newPressClipping.id}`, {
+        return fetch(`http://localhost:8000/pressclippings/${newPressClipping.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -144,7 +144,7 @@ export const getMediaTypes = () => {
       
       
       export const deletePressClipping = (pressClippingId) => {
-        return fetch(`https://bandplanner-d63f46179b66.herokuapp.com/pressclippings/${pressClippingId}`, {
+        return fetch(`http://localhost:8000/pressclippings/${pressClippingId}`, {
           method: "DELETE",
           headers: {
             "Authorization": `Token ${localStorage.getItem("band_token")}`

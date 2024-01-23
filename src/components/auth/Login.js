@@ -9,8 +9,8 @@ export const Login = ({ setToken }) => {
   const password = useRef()
   const navigate = useNavigate()
   const [isUnsuccessful, setisUnsuccessful] = useState(false)
-  const [defaultUsername, setDefaultUsername] = useState("jv")
-  const [defaultPassword, setDefaultPassword] = useState("7914142Bby.")
+  const [defaultUsername, setDefaultUsername] = useState("")
+  const [defaultPassword, setDefaultPassword] = useState("")
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -47,6 +47,7 @@ export const Login = ({ setToken }) => {
                   <div className="control">
                     <input 
                     className="input" 
+                    name="username"
                     type="text" 
                     ref={username} 
                     value={defaultUsername}
@@ -60,6 +61,7 @@ export const Login = ({ setToken }) => {
                   <div className="control">
                     <input 
                     className="input"
+                    name="password" 
                     type="password"
                     ref={password}
                     value={defaultPassword}

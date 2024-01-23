@@ -39,7 +39,6 @@ export const NavBar = ({ token, setToken }) => {
 
 
 
-
   return (
     <nav
       className="navbar is-success "
