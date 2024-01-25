@@ -44,16 +44,6 @@ describe('Login Functionality', () => {
 
 
 
-// // Cypress test
-// it('should perform CRUD operations without affecting the database', () => {
-//     // Begin a transaction
-//     cy.task('beginTransaction');
-  
-//     // Perform CRUD operations using Cypress commands
-  
-//     // Roll back the transaction
-//     cy.task('rollbackTransaction');
-//   });
-  
+
 
 
